@@ -106,3 +106,8 @@ int Field::HitCheckDown(int px, int py)
 		return py  % 64 + 1;
 	return 0;
 }
+
+//二方向触れているとぐわぐわする
+//追加のインクルードディレクトの設定がわからない
+//↓これ追加のインクルードディレクトに入れないと
+// Libraryとこのプロジェクトのファイル（field.hとかなんかここにあるから）DxLIbの追加しないとのやつ
