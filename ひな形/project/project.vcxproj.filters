@@ -53,6 +53,9 @@
     <ClCompile Include="field.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -118,6 +121,9 @@
       <Filter>Library</Filter>
     </ClInclude>
     <ClInclude Include="field.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
