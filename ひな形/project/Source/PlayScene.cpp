@@ -1,7 +1,11 @@
 #include "PlayScene.h"
+#include "DxLib.h"
+#include "field.h"
+
 
 PlayScene::PlayScene()
 {
+	new Field();
 }
 
 PlayScene::~PlayScene()
