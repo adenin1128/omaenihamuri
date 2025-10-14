@@ -33,7 +33,7 @@ Field::Field()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
-				new Player(x * 64, y * 64);
+				new Player(x * 64, (y-1) * 64);//
 			}
 		}
 	}
@@ -61,53 +61,48 @@ void Field::Draw()
 
 int Field::HitCheckRight(int px, int py)
 {
-
-	int x = (px  + 64)/ 64;
-	int y = py / 64;
+	int x = px / 64;
+	int y = py/ 64;
 	if (maps[y][x] == 1)
+	{ // 当たってる 
 		return px % 64 + 1;
+	}
 	return 0;
 }
+
+
+
+
 
 int Field::HitCheckLeft(int px, int py)
 {
-
-	int x = (px -1)/ 64;
+	int x = px / 64;
 	int y = py / 64;
 	if (maps[y][x] == 1)
-		return 64 - px % 64;
+	{ // 当たってる 
+		return px % 64 - 64;
+	}
 	return 0;
 }
+
+
 
 int Field::HitCheckUp(int px, int py)
 {
-	int x_check = px / 64;
-	int y_check = py / 64; // 衝突していると、このタイルが壁(1)になっているはず
-
-	// Y座標はマイナスにならないことを前提に bounds check（境界チェック）
-	if (y_check < 0 || y_check >= maps.size()) return 0;
-
-	if (maps[y_check][x_check] == 1) {
-		// 食い込み量: 壁の底辺 - プレイヤーの上端
-		// 壁の底辺: (y_check * 64) + 64
-		return (y_check * 64 + 64) - py;
-	}
+	int x = px / 64;
+	int y = py / 64;
+	if (maps[y][x] == 1)
+		return 64 - py % 64;
 	return 0;
 }
 
+
+
 int Field::HitCheckDown(int px, int py)
 {
-	// プレイヤーの下端が触れているタイルのインデックス
-	int x_check = px / 64;
-	int y_check = (py + 64) / 64; // プレイヤーの底辺 (py + 64) が入っているタイル
-
-	if (y_check < 0 || y_check >= maps.size() || x_check < 0 || x_check >= maps[0].size()) return 0;
-
-	if (maps[y_check][x_check] == 1) {
-		// 食い込み量: プレイヤーの下端 - 壁の上端
-		// プレイヤーの下端: py + 64
-		// 壁の上端: y_check * 64
-		return (py + 64) - (y_check * 64);
-	}
+	int x = px / 64;
+	int y = py / 64;
+	if (maps[y][x] == 1)
+		return py  % 64 + 1;
 	return 0;
 }
