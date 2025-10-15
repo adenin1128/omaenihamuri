@@ -1,6 +1,7 @@
 #include "player.h"
 #include "Field.h"
 #include "DxLib.h"
+#include "Trigger.h"
 
 static const float Gravity = 0.1;
 static const float v0 = -5.0;
@@ -22,6 +23,11 @@ Player::~Player()
 //ŒvŽZ‚·‚é‚Æ‚±‚ë
 void Player::Update()
 {
+	if (onGround == true) {
+		if(jumpcount < Maxjumpcount) {
+			jumpcount += 1;
+		}
+	}
 	if (CheckHitKey(KEY_INPUT_D))
 	{
 		x += 2.0f; // ‰E‚Éi‚Þ 
@@ -39,16 +45,16 @@ void Player::Update()
 		x -= max(push1, push2);
 	}
 	if (onGround == true) {
-		if (KeyUtility::CheckTrigger(KEY_INPUT_SPACE)) {
-			velocity = V0;
+		if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
+			velocity = v0;
 			onGround = false;
 		}
 	}
 	if (onGround == false) {
 		if (jumpcount == Maxjumpcount) {
-			if (KeyUtility::CheckTrigger(KEY_INPUT_SPACE)) {
+			if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
 				jumpcount -= 1;
-				velocity = V0;
+				velocity = v0;
 			}
 		}
 	}
@@ -88,4 +94,5 @@ void Player::Draw()
 	DrawRectGraph(x,y,0,0,64,64, hImage, 1);
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "X::%4f", x);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);
+	DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);
 }
