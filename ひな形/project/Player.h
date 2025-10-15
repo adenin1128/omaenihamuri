@@ -14,6 +14,8 @@ private:
 	float x, y;
 	float velocity;
 	bool onGround;
+	int jumpcount;
+	int Maxjumpcount;
 };
 
 

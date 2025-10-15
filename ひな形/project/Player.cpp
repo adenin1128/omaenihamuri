@@ -10,6 +10,8 @@ Player::Player(float startX, float startY)
     : x(startX), y(startY), velocity(0.0f), onGround(false)
 {
     hImage = LoadGraph("data/image/aoi.png");
+	jumpcount = 0;
+	Maxjumpcount = 1;
 }
 //デストラクター
 //最後に一度だけ必ず呼ばれる
@@ -37,10 +39,17 @@ void Player::Update()
 		x -= max(push1, push2);
 	}
 	if (onGround == true) {
-
-
-		if (CheckHitKey(KEY_INPUT_SPACE)) {
-			velocity = v0;
+		if (KeyUtility::CheckTrigger(KEY_INPUT_SPACE)) {
+			velocity = V0;
+			onGround = false;
+		}
+	}
+	if (onGround == false) {
+		if (jumpcount == Maxjumpcount) {
+			if (KeyUtility::CheckTrigger(KEY_INPUT_SPACE)) {
+				jumpcount -= 1;
+				velocity = V0;
+			}
 		}
 	}
 	y += velocity;
