@@ -77,7 +77,7 @@ void Player::Update()
 	else
 	{
 		Field* field = FindGameObject<Field>();
-		int push1 = field->HitCheckUp(x + 10, y + 5); // D“_‚Ì‰º 
+		int push1 = field->HitCheckUp(x + 14, y + 5); // D“_‚Ì‰º 
 		int push2 = field->HitCheckUp(x + 50, y + 5); // A“_‚Ì‰º 
 		int push = max(push1, push2);
 		if (push > 0) {
