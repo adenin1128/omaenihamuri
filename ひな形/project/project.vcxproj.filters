@@ -56,6 +56,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Gameover.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -124,6 +127,9 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameover.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
