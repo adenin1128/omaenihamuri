@@ -3,8 +3,8 @@
 #include "DxLib.h"
 #include "Trigger.h"
 
-static const float Gravity = 0.1;
-static const float v0 = -5.0;
+static const float Gravity = 0.4;
+static const float v0 = -10.0;
 //コンストラクター
 //最初に一回だけ必ず呼ばれる
 Player::Player(float startX, float startY)
