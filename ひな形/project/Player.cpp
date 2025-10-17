@@ -2,18 +2,24 @@
 #include "Field.h"
 #include "DxLib.h"
 #include "Trigger.h"
+#include "Gameover.h"
 
 static const float Gravity = 0.4;
 static const float v0 = -10.0;
-//コンストラクター
-//最初に一回だけ必ず呼ばれる
-Player::Player(float startX, float startY)
-    : x(startX), y(startY), velocity(0.0f), onGround(false)
-{
-    hImage = LoadGraph("data/image/aoi.png");
+
+
+Player::Player(float startX, float startY) 
+	: x(startX), y(startY), velocity(0.0f), onGround(false)
+{   
+	hImage = LoadGraph("data/image/aoi.png");
 	jumpcount = 0;
 	Maxjumpcount = 1;
+	PlayerHP = 1;
 }
+
+//コンストラクター
+//最初に一回だけ必ず呼ばれる
+
 //デストラクター
 //最後に一度だけ必ず呼ばれる
 Player::~Player()
@@ -23,6 +29,15 @@ Player::~Player()
 //計算するところ
 void Player::Update()
 {
+	
+
+	if (PlayerHP == 0) {
+		new GameOver();
+	}
+	if (CheckHitKey(KEY_INPUT_R))
+	{
+		PlayerHP = 0;
+	}
 	if (onGround == true) {
 		if(jumpcount < Maxjumpcount) {
 			jumpcount += 1;
@@ -95,4 +110,5 @@ void Player::Draw()
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "X::%4f", x);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);
 	DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);
+	DrawFormatString(0, 160, GetColor(255, 255, 255), "PlayerHP::%d", PlayerHP);
 }
