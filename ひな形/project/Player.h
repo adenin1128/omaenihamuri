@@ -9,6 +9,7 @@ public:
 	~Player();
 	void Update() override;
 	void Draw() override;
+	int PlayerHP;
 private:
 	int hImage;
 	float x, y;
