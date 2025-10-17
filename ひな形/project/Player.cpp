@@ -11,7 +11,9 @@ static const float v0 = -10.0;
 Player::Player(float startX, float startY) 
 	: x(startX), y(startY), velocity(0.0f), onGround(false)
 {   
-	hImage = LoadGraph("data/image/aoi.png");
+	animImage = LoadGraph("data/image/おまえ歩き.png");
+	posX = 100;
+	posY = 100;
 	jumpcount = 0;
 	Maxjumpcount = 1;
 	PlayerHP = 1;
@@ -29,7 +31,7 @@ Player::~Player()
 //計算するところ
 void Player::Update()
 {
-	
+	int moveX = 0;
 
 	if (PlayerHP == 0) {
 		new GameOver();
@@ -43,28 +45,34 @@ void Player::Update()
 			jumpcount += 1;
 		}
 	}
+
 	if (CheckHitKey(KEY_INPUT_D))
 	{
 		x += 2.0f; // 右に進む 
+		moveX += 2.0f;
 		Field* field = FindGameObject<Field>();
 		int push1 = field->HitCheckRight(x + 50, y + 5);
 		int push2 = field->HitCheckRight(x + 50, y + 61);
 		x -= max(push1, push2);
 
 	}
+
 	if (CheckHitKey(KEY_INPUT_A)) {
 		x -= 2.0f;
+		moveX -= 2.0f;
 		Field* field = FindGameObject<Field>();
 		int push1 = field->HitCheckLeft(x + 14, y + 5);
 		int push2 = field->HitCheckLeft(x + 14, y + 61);
 		x -= max(push1, push2);
 	}
+
 	if (onGround == true) {
 		if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
 			velocity = v0;
 			onGround = false;
 		}
 	}
+
 	if (onGround == false) {
 		if (jumpcount == Maxjumpcount) {
 			if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
@@ -101,12 +109,32 @@ void Player::Update()
 		}
 	}
 
+	if (moveX != 0)
+	{
+		//  アニメーションの更新
+		animFrame = (animFrame + 1) % ANIM_FRAME_INTERVAL;
+		if (animFrame == 0)
+		{
+			animIndex = (animIndex + 1) % ANIM_FRAME_COUNT;     //  アニメーションのコマを更新
+		}
+
+		//  キャラクターの位置を更新
+		xPosition += moveX;
+	}
+
 }
 //表示するところ
 void Player::Draw()
 {
 	Field* field = FindGameObject<Field>();	
-	DrawRectGraph(x,y,0,0,64,64, hImage, 1);
+	//DrawRectGraph(x, y, 0/*CHR_SIZE * pat*/, 0/*CHR_SIZE * dir*/, 64/*CHR_SIZE*/, 64/*CHR_SIZE*/, hImage, 1);
+	//  アニメーションのコマがTextureAtlasのどこにあるか計算する
+	int xRect = (animIndex % ATLAS_WIDTH) * CHARACTER_WIDTH;
+	int yRect = (animIndex / ATLAS_WIDTH) * CHARACTER_HEIGHT;
+
+	//  キャラクターをTextureAtlasを使って表示する
+	DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE);
+
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "X::%4f", x);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);
 	DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);

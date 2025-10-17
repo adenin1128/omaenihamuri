@@ -160,6 +160,7 @@
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Source\BootScene.h" />
+    <ClInclude Include="Source\respawn.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\SceneFactory.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
+    <ClCompile Include="Source\respawn.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Trigger.cpp" />
