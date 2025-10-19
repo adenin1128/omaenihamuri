@@ -17,6 +17,10 @@ Player::Player(float startX, float startY)
 	jumpcount = 0;
 	Maxjumpcount = 1;
 	PlayerHP = 1;
+	direction = true;
+	int moveX = 1;
+	animIndex = 0;       // 最初のコマからスタートさせるやつ
+	animFrame = 0;       // アニメーションカウンターをリセットしたやつ
 }
 
 //コンストラクター
@@ -49,6 +53,7 @@ void Player::Update()
 	if (CheckHitKey(KEY_INPUT_D))
 	{
 		x += 2.0f; // 右に進む 
+		direction = false;
 		moveX += 2.0f;
 		Field* field = FindGameObject<Field>();
 		int push1 = field->HitCheckRight(x + 50, y + 5);
@@ -59,6 +64,7 @@ void Player::Update()
 
 	if (CheckHitKey(KEY_INPUT_A)) {
 		x -= 2.0f;
+		direction = true;
 		moveX -= 2.0f;
 		Field* field = FindGameObject<Field>();
 		int push1 = field->HitCheckLeft(x + 14, y + 5);
@@ -108,21 +114,23 @@ void Player::Update()
 			velocity = 0;
 		}
 	}
-
 	if (moveX != 0)
 	{
-		//  アニメーションの更新
+		// 移動時のアニメーション更新
 		animFrame = (animFrame + 1) % ANIM_FRAME_INTERVAL;
 		if (animFrame == 0)
 		{
-			animIndex = (animIndex + 1) % ANIM_FRAME_COUNT;     //  アニメーションのコマを更新
+			animIndex = (animIndex + 1) % ANIM_FRAME_COUNT;
 		}
 
-		//  キャラクターの位置を更新
-		xPosition += moveX;
 	}
-
+	else
+	{
+		animIndex = 0; // アニメーションのコマを最初のコマ (静止画) に固定する
+    }
 }
+
+
 //表示するところ
 void Player::Draw()
 {
@@ -133,7 +141,7 @@ void Player::Draw()
 	int yRect = (animIndex / ATLAS_WIDTH) * CHARACTER_HEIGHT;
 
 	//  キャラクターをTextureAtlasを使って表示する
-	DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE);
+	DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE, direction);
 
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "X::%4f", x);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);

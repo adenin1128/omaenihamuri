@@ -23,7 +23,7 @@ private:
 	int animIndex;      //  どこのコマを表示するか
 	int animFrame;      //  アニメーション間隔
 	int xPosition;      //  キャラクターのX座標
-
+	bool direction;		//  キャラクターの向き(true:左向き/false:右向き)
 
 	int hImage;
 	int posX ;
