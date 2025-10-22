@@ -52,7 +52,7 @@ void Player::Update()
 
 	if (CheckHitKey(KEY_INPUT_D))
 	{
-		x += 2.0f; // 右に進む 
+		x += 3.0f; // 右に進む 
 		direction = false;
 		moveX += 2.0f;
 		Field* field = FindGameObject<Field>();
@@ -63,7 +63,7 @@ void Player::Update()
 	}
 
 	if (CheckHitKey(KEY_INPUT_A)) {
-		x -= 2.0f;
+		x -= 3.0f;
 		direction = true;
 		moveX -= 2.0f;
 		Field* field = FindGameObject<Field>();
