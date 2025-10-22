@@ -27,6 +27,7 @@ vector<vector<int>> maps = {
 
 Field::Field()
 {
+	haikeimage = LoadGraph("data/image/kabe.png");
 	hImage = LoadGraph("data/image/bgchar.png");
 	harimage = LoadGraph("data/image/hari.png");
 	hataimage = LoadGraph("data/image/hata.png");
@@ -54,6 +55,7 @@ void Field::Update()
 
 void Field::Draw()
 {
+	DrawRectGraph(0, 0, 0, 0, 1920, 1080, haikeimage, 1);
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 1) {

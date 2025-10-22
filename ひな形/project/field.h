@@ -23,4 +23,5 @@ private:
 	int scrollX;
 	int harimage;
 	int hataimage;
+	int haikeimage;
 };

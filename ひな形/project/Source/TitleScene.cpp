@@ -22,7 +22,7 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
-	DrawRectGraph(0, 0, 0, 0, 64, 64, titleimage, 1);
+	DrawRectGraph(0, 0, 0, 0, 1920, 1080, titleimage, 1);
 	extern const char* Version();
 	DrawString(0, 20, Version(), GetColor(255,255,255));
 	DrawString(0, 0, "TITLE SCENE", GetColor(255,255,255));
