@@ -2,7 +2,7 @@
 #include "field.h"
 #include "Player.h"
 
-trap::trap(int px,int py)
+trap::trap(int px, int py)
 {
 	hariImage = LoadGraph("data/image/hari.png");
 	x = px;

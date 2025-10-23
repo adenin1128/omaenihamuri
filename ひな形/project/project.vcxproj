@@ -139,8 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="field.h" />
-    <ClInclude Include="Gameover.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
     <ClInclude Include="ImGui\imgui_impl_dx11.h" />
@@ -158,19 +156,19 @@
     <ClInclude Include="Library\SceneBase.h" />
     <ClInclude Include="Library\SceneManager.h" />
     <ClInclude Include="Library\Time.h" />
-    <ClInclude Include="Library\trap.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Source\BootScene.h" />
+    <ClInclude Include="Source\field.h" />
+    <ClInclude Include="Source\Gameover.h" />
+    <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\respawn.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\SceneFactory.h" />
     <ClInclude Include="Source\TitleScene.h" />
-    <ClInclude Include="Trigger.h" />
+    <ClInclude Include="Source\trap.h" />
+    <ClInclude Include="Source\Trigger.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="field.cpp" />
-    <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
     <ClCompile Include="ImGui\imgui_impl_dx11.cpp" />
@@ -184,14 +182,16 @@
     <ClCompile Include="Library\ObjectManager.cpp" />
     <ClCompile Include="Library\SceneManager.cpp" />
     <ClCompile Include="Library\Time.cpp" />
-    <ClCompile Include="Library\trap.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
+    <ClCompile Include="Source\field.cpp" />
+    <ClCompile Include="Source\Gameover.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\respawn.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
-    <ClCompile Include="Trigger.cpp" />
+    <ClCompile Include="Source\trap.cpp" />
+    <ClCompile Include="Source\Trigger.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
