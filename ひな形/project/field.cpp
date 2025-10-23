@@ -1,6 +1,7 @@
 #include "field.h"
 #include <vector>
 #include "Player.h"
+#include "trap.h"
 using namespace std;
 
 vector<vector<int>> maps = {
@@ -37,11 +38,17 @@ Field::Field()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
-				new Player(x * 64, (y-1) * 64);//
+				new Player(x * 64, y * 64);//
 			}
 		}
 	}
-
+	for (int y = 0; y < maps.size(); y++) {
+		for (int x = 0; x < maps[y].size(); x++) {
+			if (maps[y][x] == 3) {
+				new trap(x * 64, y  * 64);
+			}
+		}
+	}
 }
 
 Field::~Field()
@@ -63,13 +70,13 @@ void Field::Draw()
 			}
 		}
 	}
-	for (int y = 0; y < maps.size(); y++) {
+	/*for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 3) {
 				DrawRectGraph(x *64,y * 64, 0, 0, 64, 64, harimage, 1);
 			}
 		}
-	}
+	}*/
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 4) {

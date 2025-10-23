@@ -65,6 +65,7 @@
     <ClCompile Include="Source\respawn.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Library\trap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Source\respawn.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Library\trap.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
