@@ -3,6 +3,7 @@
 #include "DxLib.h"
 #include "Trigger.h"
 #include "Gameover.h"
+#include "trap.h"
 
 static const float Gravity = 0.4;
 static const float v0 = -10.0;
@@ -59,7 +60,9 @@ void Player::Update()
 		int push1 = field->HitCheckRight(x + 50, y + 5);
 		int push2 = field->HitCheckRight(x + 50, y + 61);
 		x -= max(push1, push2);
-
+		if (field->Istrap(x + 32, y + 32)) {
+			/*new Clear();*/
+		}
 	}
 
 	if (CheckHitKey(KEY_INPUT_A)) {
@@ -70,6 +73,9 @@ void Player::Update()
 		int push1 = field->HitCheckLeft(x + 14, y + 5);
 		int push2 = field->HitCheckLeft(x + 14, y + 61);
 		x -= max(push1, push2);
+		if (field->Istrap(x + 32, y + 32)) {
+			/*new Clear();*/
+		}
 	}
 
 	if (onGround == true) {

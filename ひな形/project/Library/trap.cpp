@@ -2,12 +2,14 @@
 #include "field.h"
 #include "Player.h"
 
-trap::trap(int px,int py)
+trap::trap(int px,int py, int i)
 {
+	type = (Type)i;
 	hariImage = LoadGraph("data/image/hari.png");
 	x = px;
 	y = py;
 	UP = -1.0f;
+	isActive = false;
 }
 
 trap::~trap()
@@ -16,8 +18,21 @@ trap::~trap()
 
 void trap::Update()
 {
+	switch (type) {
+	case Up:
+		y += UP;
+		break;
+	case Down:
+		y -= UP;
+		break;
+	}
+	if (isActive == true) {
+		y += UP;
+	}
+}
 
-	y += UP;
+void trap::Active() {
+	isActive = true; 
 }
 
 void trap::Draw()

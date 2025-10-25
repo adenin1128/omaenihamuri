@@ -16,7 +16,7 @@ public:
 	int HitCheckDown(int px, int py);
 	int GetScrollX() { return scrollX; }
 	void SetScrollX(int s) { scrollX = s; }
-
+	bool Istrap(int px, int py);
 private:
 	int hImage;
 	float x, y;

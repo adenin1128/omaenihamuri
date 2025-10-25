@@ -18,14 +18,14 @@ vector<vector<int>> maps = {
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
 	{1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1 },
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-    {1,0,0,0,0,0,0,0,3,0,3,0,3,0,3,0,0,4,0,0,0,0,0,0,4,0,0,0,0,1 },
+	{1,0,0,0,0,0,0,0,201,0,202,0,203,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
+	{1,0,0,0,0,0,0,0,201,0,202,0,203,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+    {1,0,0,0,0,0,0,0,101,0,102,0,103,0,6,0,0,4,0,0,0,0,0,0,4,0,0,0,0,1 },
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1 },
-    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,3,3,1,1,1,1,1,1,1,1,1 },
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6,6,6,1,1,1,1,1,1,1,1,1 },
 
 };
-
+trap* traps[99];
 Field::Field()
 {
 	haikeimage = LoadGraph("data/image/kabe.png");
@@ -44,8 +44,15 @@ Field::Field()
 	}
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
-			if (maps[y][x] == 3) {
-				new trap(x * 64, y  * 64);
+			/*if (maps[y][x] == 101) {
+				trap1 = new trap(x * 64, y  * 64);
+			}
+			if (maps[y][x] == 5) {
+				trap2 = new trap(x * 64, y * 64);
+			}*/
+
+			if (maps[y][x] > 100 && maps[y][x] < 200) {
+				traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101);
 			}
 		}
 	}
@@ -70,13 +77,6 @@ void Field::Draw()
 			}
 		}
 	}
-	/*for (int y = 0; y < maps.size(); y++) {
-		for (int x = 0; x < maps[y].size(); x++) {
-			if (maps[y][x] == 3) {
-				DrawRectGraph(x *64,y * 64, 0, 0, 64, 64, harimage, 1);
-			}
-		}
-	}*/
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 4) {
@@ -90,6 +90,16 @@ int Field::HitCheckRight(int px, int py)
 {
 	int x = px / 64;
 	int y = py/ 64;
+	//if (maps[y][x] == 10) {
+	//	trap1->Active();
+	//	/*trap* t = FindGameObject<trap>();
+	//	if (t != nullptr) {
+	//		t->Active();
+	//	}*/
+	//}
+	if (maps[y][x] > 200) {
+		traps[maps[y][x] - 201]->Active();
+	}
 	if (maps[y][x] == 1)
 	{ // ìñÇΩÇ¡ÇƒÇÈ 
 		return px % 64 + 1;
@@ -132,6 +142,21 @@ int Field::HitCheckDown(int px, int py)
 	if (maps[y][x] == 1)
 		return py  % 64 + 1;
 	return 0;
+}
+
+bool Field::Istrap(int px, int py)
+{
+	if (py < 400) {
+		return 0;
+	}
+	int x = px / 64;
+	int y = (py - 400) / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 10) {
+		return true;
+	}
+	return false;
 }
 
 //ìÒï˚å¸êGÇÍÇƒÇ¢ÇÈÇ∆ÇÆÇÌÇÆÇÌÇ∑ÇÈ
