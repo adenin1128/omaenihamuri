@@ -35,6 +35,7 @@ Field::Field()
 	x = 0;
 	y = 1080-64;
 	scrollX = 0; 
+	HIT_TRAP = 0;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -173,7 +174,7 @@ int Field::HitCheckRightTrap(int px, int py)
 		if (traps[index])
 		{
 			traps[index]->Active();// トラップ起動
-			HIT_TRAP++;
+			HIT_TRAP = 1;
 			return 1;                // 当たったことを返す
 		}
 	}
@@ -194,7 +195,7 @@ int Field::HitCheckLeftTrap(int px, int py)
 		if (traps[index])
 		{
 			traps[index]->Active();
-			HIT_TRAP++;
+			HIT_TRAP = 1;
 			return 1;
 		}
 	}
