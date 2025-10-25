@@ -50,22 +50,22 @@
     <ClCompile Include="Library\Time.cpp">
       <Filter>Library</Filter>
     </ClCompile>
-    <ClCompile Include="field.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Gameover.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Trigger.cpp">
-      <Filter>Library</Filter>
-    </ClCompile>
     <ClCompile Include="Source\respawn.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Library\trap.cpp">
+    <ClCompile Include="Source\trap.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\field.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gameover.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Trigger.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -132,22 +132,22 @@
     <ClInclude Include="Library\myDxLib.h">
       <Filter>Library</Filter>
     </ClInclude>
-    <ClInclude Include="field.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Gameover.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Trigger.h">
-      <Filter>Library</Filter>
-    </ClInclude>
     <ClInclude Include="Source\respawn.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Library\trap.h">
+    <ClInclude Include="Source\trap.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\field.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Gameover.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Trigger.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

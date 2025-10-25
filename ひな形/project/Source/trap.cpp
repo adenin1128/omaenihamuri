@@ -18,16 +18,16 @@ trap::~trap()
 
 void trap::Update()
 {
-	switch (type) {
-	case Up:
-		y += UP;
-		break;
-	case Down:
-		y -= UP;
-		break;
-	}
+	
 	if (isActive == true) {
-		y += UP;
+		switch (type) {
+		case Up:
+			y += UP;
+			break;
+		case Down:
+			y -= UP;
+			break;
+		}
 	}
 }
 
