@@ -84,6 +84,7 @@ void Field::Draw()
 			}
 		}
 	}
+	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 }
 
 int Field::HitCheckRight(int px, int py)
@@ -157,6 +158,89 @@ bool Field::Istrap(int px, int py)
 		return true;
 	}
 	return false;
+}
+int Field::HitCheckRightTrap(int px, int py)
+{
+	int tx = px / 64;
+	int ty = py / 64;
+
+	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
+
+	int mapValue = maps[ty][tx];
+	if (mapValue >= 101 && mapValue < 200)
+	{
+		int index = mapValue - 101;
+		if (traps[index])
+		{
+			traps[index]->Active();// トラップ起動
+			HIT_TRAP++;
+			return 1;                // 当たったことを返す
+		}
+	}
+	return 0;
+}
+
+int Field::HitCheckLeftTrap(int px, int py)
+{
+	int tx = px / 64;
+	int ty = py / 64;
+
+	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
+
+	int mapValue = maps[ty][tx];
+	if (mapValue >= 101 && mapValue < 200)
+	{
+		int index = mapValue - 101;
+		if (traps[index])
+		{
+			traps[index]->Active();
+			HIT_TRAP++;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int Field::HitCheckUpTrap(int px, int py)
+{
+	int tx = px / 64;
+	int ty = py / 64;
+
+	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
+
+	int mapValue = maps[ty][tx];
+	if (mapValue >= 101 && mapValue < 200)
+	{
+		int index = mapValue - 101;
+		if (traps[index])
+		{
+			traps[index]->Active();
+			HIT_TRAP++;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int Field::HitCheckDownTrap(int px, int py)
+{
+	int tx = px / 64;
+	int ty = py / 64;
+
+	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
+
+	int mapValue = maps[ty][tx];
+	if (mapValue >= 101 && mapValue < 200)
+	{
+		int index = mapValue - 101;
+		if (traps[index])
+		{
+			traps[index]->Active();
+			HIT_TRAP++;
+			return 1;
+		}
+	}
+	return 0;
 }
 
 //二方向触れているとぐわぐわする

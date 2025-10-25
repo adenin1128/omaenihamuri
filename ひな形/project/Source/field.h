@@ -17,6 +17,10 @@ public:
 	int GetScrollX() { return scrollX; }
 	void SetScrollX(int s) { scrollX = s; }
 	bool Istrap(int px, int py);
+	int HitCheckRightTrap(int px, int py);
+	int HitCheckLeftTrap(int px, int py);
+	int HitCheckUpTrap(int px, int py);
+	int HitCheckDownTrap(int px, int py);
 private:
 	int hImage;
 	float x, y;
@@ -24,4 +28,5 @@ private:
 	int harimage;
 	int hataimage;
 	int haikeimage;
+	int HIT_TRAP = 0;
 };
