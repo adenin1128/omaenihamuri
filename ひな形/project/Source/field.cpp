@@ -162,85 +162,41 @@ bool Field::Istrap(int px, int py)
 }
 int Field::HitCheckRightTrap(int px, int py)
 {
-	int tx = px / 64;
-	int ty = py / 64;
-
-	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
-
-	int mapValue = maps[ty][tx];
-	if (mapValue >= 101 && mapValue < 200)
-	{
-		int index = mapValue - 101;
-		if (traps[index])
-		{
-			traps[index]->Active();// トラップ起動
-			HIT_TRAP = 1;
-			return 1;                // 当たったことを返す
-		}
+	int x = px / 64;
+	int y = py / 64;
+	if (maps[y][x] > 100 && maps[y][x] < 200)
+	{ // 当たってる 
+		return px % 64 + 1;
 	}
 	return 0;
 }
 
 int Field::HitCheckLeftTrap(int px, int py)
 {
-	int tx = px / 64;
-	int ty = py / 64;
-
-	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
-
-	int mapValue = maps[ty][tx];
-	if (mapValue >= 101 && mapValue < 200)
-	{
-		int index = mapValue - 101;
-		if (traps[index])
-		{
-			traps[index]->Active();
-			HIT_TRAP = 1;
-			return 1;
-		}
+	int x = px / 64;
+	int y = py / 64;
+	if (maps[y][x] > 100 && maps[y][x] < 200)
+	{ // 当たってる 
+		return px % 64 - 64;
 	}
 	return 0;
 }
 
 int Field::HitCheckUpTrap(int px, int py)
 {
-	int tx = px / 64;
-	int ty = py / 64;
-
-	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
-
-	int mapValue = maps[ty][tx];
-	if (mapValue >= 101 && mapValue < 200)
-	{
-		int index = mapValue - 101;
-		if (traps[index])
-		{
-			traps[index]->Active();
-			HIT_TRAP++;
-			return 1;
-		}
-	}
+	int x = px / 64;
+	int y = py / 64;
+	if (maps[y][x] > 100 && maps[y][x] < 200)
+		return 64 - py % 64;
 	return 0;
 }
 
 int Field::HitCheckDownTrap(int px, int py)
 {
-	int tx = px / 64;
-	int ty = py / 64;
-
-	if (ty < 0 || ty >= maps.size() || tx < 0 || tx >= maps[ty].size()) return 0;
-
-	int mapValue = maps[ty][tx];
-	if (mapValue >= 101 && mapValue < 200)
-	{
-		int index = mapValue - 101;
-		if (traps[index])
-		{
-			traps[index]->Active();
-			HIT_TRAP++;
-			return 1;
-		}
-	}
+	int x = px / 64;
+	int y = py / 64;
+	if (maps[y][x] > 100 && maps[y][x] < 200)
+		return py % 64 + 1;
 	return 0;
 }
 
