@@ -160,45 +160,45 @@ bool Field::Istrap(int px, int py)
 	}
 	return false;
 }
-int Field::HitCheckRightTrap(int px, int py)
-{
-	int x = px / 64;
-	int y = py / 64;
-	if (maps[y][x] > 100 && maps[y][x] < 200)
-	{ // 当たってる 
-		return px % 64 + 1;
-	}
-	return 0;
-}
-
-int Field::HitCheckLeftTrap(int px, int py)
-{
-	int x = px / 64;
-	int y = py / 64;
-	if (maps[y][x] > 100 && maps[y][x] < 200)
-	{ // 当たってる 
-		return px % 64 - 64;
-	}
-	return 0;
-}
-
-int Field::HitCheckUpTrap(int px, int py)
-{
-	int x = px / 64;
-	int y = py / 64;
-	if (maps[y][x] > 100 && maps[y][x] < 200)
-		return 64 - py % 64;
-	return 0;
-}
-
-int Field::HitCheckDownTrap(int px, int py)
-{
-	int x = px / 64;
-	int y = py / 64;
-	if (maps[y][x] > 100 && maps[y][x] < 200)
-		return py % 64 + 1;
-	return 0;
-}
+//int Field::HitCheckRightTrap(int px, int py)
+//{
+//	int x = px / 64;
+//	int y = py / 64;
+//	if (maps[y][x] > 100)
+//	{ // 当たってる 
+//		return px % 64 + 1;
+//	}
+//	return 0;
+//}
+//
+//int Field::HitCheckLeftTrap(int px, int py)
+//{
+//	int x = px / 64;
+//	int y = py / 64;
+//	if (maps[y][x] > 100)
+//	{ // 当たってる 
+//		return px % 64 - 64;
+//	}
+//	return 0;
+//}
+//
+//int Field::HitCheckUpTrap(int px, int py)
+//{
+//	int x = px / 64;
+//	int y = py / 64;
+//	if (maps[y][x] > 100)
+//		return 64 - py % 64;
+//	return 0;
+//}
+//
+//int Field::HitCheckDownTrap(int px, int py)
+//{
+//	int x = px / 64;
+//	int y = py / 64;
+//	if (maps[y][x] > 100)
+//		return py % 64 + 1;
+//	return 0;
+//}
 
 //二方向触れているとぐわぐわする
 //追加のインクルードディレクトの設定がわからない

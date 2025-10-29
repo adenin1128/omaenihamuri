@@ -10,6 +10,11 @@ public:
 	void Update() override;
 	void Draw() override;
 	int PlayerHP;
+	VECTOR2 GetPosition() { return VECTOR2(x, y); }
+	VECTOR2 GetColliderLeftTop() { return VECTOR2(x + colliderOffset, y + colliderOffset); }
+	VECTOR2 GetColliderLeftBottom() { return VECTOR2(x + colliderOffset, y + CHARACTER_HEIGHT - colliderOffset); }
+	VECTOR2 GetColliderRightTop() { return VECTOR2(x + CHARACTER_WIDTH - colliderOffset, y + colliderOffset); }
+	VECTOR2 GetColliderRightBottom() { return VECTOR2(x + CHARACTER_WIDTH - colliderOffset, y + CHARACTER_HEIGHT - colliderOffset); }
 private:
 	static const int CHARACTER_WIDTH = 64;
 	static const int CHARACTER_HEIGHT = 64;
@@ -33,6 +38,8 @@ private:
 	bool onGround;
 	int jumpcount;
 	int Maxjumpcount;
+
+	int colliderOffset = 8;
 };
 
 

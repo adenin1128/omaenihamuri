@@ -153,4 +153,10 @@ void Player::Draw()
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);
 	DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "PlayerHP::%d", PlayerHP);
+
+	// デバッグ用当たり判定表示
+	DrawCircle(GetColliderLeftTop().x, GetColliderLeftTop().y, 2, GetColor(0, 255, 0), true);
+	DrawCircle(GetColliderLeftBottom().x, GetColliderLeftBottom().y, 2, GetColor(0, 255, 0), true);
+	DrawCircle(GetColliderRightTop().x, GetColliderRightTop().y, 2, GetColor(0, 255, 0), true);
+	DrawCircle(GetColliderRightBottom().x, GetColliderRightBottom().y, 2, GetColor(0, 255, 0), true);
 }
