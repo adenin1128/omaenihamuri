@@ -117,6 +117,8 @@ int Field::HitCheckLeft(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
+	if (y >= maps.size())
+		return 0;
 	if (maps[y][x] == 1)
 	{ // “–‚½‚Á‚Ä‚é 
 		return px % 64 - 64;
@@ -130,6 +132,8 @@ int Field::HitCheckUp(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
+	if (y >= maps.size())
+		return 0;
 	if (maps[y][x] == 1)
 		return 64 - py % 64;
 	return 0;
@@ -141,9 +145,18 @@ int Field::HitCheckDown(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
+	if (y >= maps.size())
+		return 0;
 	if (maps[y][x] == 1)
 		return py  % 64 + 1;
 	return 0;
+}
+
+bool Field::OutOfMap(int px, int py)
+{
+	if (py < 400 + 64 * maps.size()) {
+		return 0;
+	}
 }
 
 bool Field::Istrap(int px, int py)
@@ -153,6 +166,8 @@ bool Field::Istrap(int px, int py)
 	}
 	int x = px / 64;
 	int y = (py - 400) / 64;
+	if (y >= maps.size())
+		return 0;
 	if (y >= maps.size())
 		return 0;
 	if (maps[y][x] == 10) {

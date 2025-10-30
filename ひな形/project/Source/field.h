@@ -16,6 +16,7 @@ public:
 	int HitCheckDown(int px, int py);
 	int GetScrollX() { return scrollX; }
 	void SetScrollX(int s) { scrollX = s; }
+	bool OutOfMap(int px, int py);
 	bool Istrap(int px, int py);
 	int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);
