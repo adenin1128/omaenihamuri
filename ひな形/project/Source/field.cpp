@@ -29,7 +29,7 @@ trap* traps[99];
 Field::Field()
 {
 	haikeimage = LoadGraph("data/image/kabe.png");
-	hImage = LoadGraph("data/image/bgchar.png");
+	hImage = LoadGraph("data/image/New blo.png");
 	harimage = LoadGraph("data/image/hari.png");
 	hataimage = LoadGraph("data/image/hata.png");
 	x = 0;
@@ -74,14 +74,14 @@ void Field::Draw()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 1) {
-				DrawRectGraph(x * 64, y * 64  , 0, 32, 64, 64, hImage, 1);
+				DrawGraph(x * 64, y * 64, hImage, 1);
 			}
 		}
 	}
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 4) {
-				DrawRectGraph(x * 64, y * 64, 2, 2, 64, 64, hataimage, 1);
+				DrawGraph(x * 64, y * 64,hataimage, 1);
 			}
 		}
 	}
