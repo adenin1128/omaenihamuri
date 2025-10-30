@@ -21,5 +21,5 @@ void GameOver::Update()
 
 void GameOver::Draw()
 {
-	DrawGraph(1400, 200, hImage, TRUE);
+	DrawGraph(715, 500, hImage, TRUE);
 }

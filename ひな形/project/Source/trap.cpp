@@ -1,6 +1,7 @@
 #include "trap.h"
 #include "field.h"
 #include "Player.h"
+#include "Gameover.h"
 
 struct Vector2D {
     double x;
@@ -79,6 +80,7 @@ void trap::Update()
     {
         SetFontSize(32);
 		DrawString(10, 10, "Hit!", GetColor(255, 0, 0));
+        new GameOver();
     }
 
 	if (isActive == true) {

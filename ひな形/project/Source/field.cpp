@@ -92,6 +92,8 @@ int Field::HitCheckRight(int px, int py)
 {
 	int x = px / 64;
 	int y = py/ 64;
+	if (y >= maps.size())
+		return 0;
 	//if (maps[y][x] == 10) {
 	//	trap1->Active();
 	//	/*trap* t = FindGameObject<trap>();
