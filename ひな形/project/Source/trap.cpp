@@ -2,6 +2,9 @@
 #include "field.h"
 #include "Player.h"
 #include "Gameover.h"
+#include <cmath> // 平方根を呼び出すやつ
+
+const float BOOM_FORCE = 100.0f; // 吹っ飛びの勢い
 
 struct Vector2D {
     double x;
@@ -51,15 +54,15 @@ int hittest_point_polygon_2d(VECTOR2 A, VECTOR2 B, VECTOR2 C, VECTOR2 P) {
 }
 
 
-trap::trap(int px,int py, int i)
+trap::trap(int px, int py, int i)
 {
-	type = (Type)i;
-	hariImage = LoadGraph("data/image/hari.png");
-	x = px;
-	y = py;
-	UP = -1.0f;
-	isActive = false;
-	isGameover = false;
+    type = (Type)i;
+    hariImage = LoadGraph("data/image/hari.png");
+    x = px;
+    y = py;
+    UP = -1.0f;
+    isActive = false;
+    isGameover = false;
 }
 
 trap::~trap()
@@ -68,44 +71,90 @@ trap::~trap()
 
 void trap::Update()
 {
-	VECTOR2 top = VECTOR2(x + 32, y);
-	VECTOR2 underLeft = VECTOR2(x, y + 64);
-	VECTOR2 underRight = VECTOR2(x + 64, y + 64);
+    VECTOR2 top = VECTOR2(x + 32, y);
+    VECTOR2 underLeft = VECTOR2(x, y + 64);
+    VECTOR2 underRight = VECTOR2(x + 64, y + 64);
 
-	Player* player = FindGameObject<Player>();
+    Player* player = FindGameObject<Player>();
+
+    // プレイヤーが撃墜中かゲームオーバーなら処理しない
+    if (player->GetState() != STATE_NORMAL) {
+
+        if (isActive) {
+            switch (type) {
+            case Up: y += UP; break;
+            case Down: y -= UP; break;
+            }
+        }
+        return;
+    }
+
+
+    // 当たり判定
     if (!hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderLeftTop()) ||
         !hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderLeftBottom()) ||
         !hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderRightTop()) ||
         !hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderRightBottom()))
     {
-        SetFontSize(32);
-		DrawString(10, 10, "Hit!", GetColor(255, 0, 0));
-        new GameOver();
+        //SetFontSize(32); DrawString(100, 100, "Hit!", GetColor(255, 0, 0)); //debug用(機能しない)
+
+       //ゲームオーバー処理の代わりに撃墜処理を呼び出す
+
+       // 1. 撃墜ベクトルの計算
+        float playerX = player->GetX();
+        float playerY = player->GetY();
+
+        float dx = playerX - (x + 32); // プレイヤー中心 - トラップ中心
+        float dy = playerY - (y + 32);
+
+        float length = std::sqrt(dx * dx + dy * dy);
+
+        if (length == 0.0f) {
+            length = 1.0f;
+            dx = 1.0f; dy = 0.0f; // 例外処理
+        }
+
+        float unitX = dx / length;
+        float unitY = dy / length;
+
+        // 2. プレイヤーに初速を設定し、状態をSTATE_BOOMにする
+        player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+
+        // お試しでnew GameOver()を呼ばない
+        if (player->GetState() == STATE_BOOM) {
+            SetFontSize(32);
+            DrawString(10, 50, "BOOM ok", GetColor(255, 255, 0));
+        }
     }
 
-	if (isActive == true) {
-		switch (type) {
-		case Up:
-			y += UP;
-			break;
-		case Down:
-			y -= UP;
-			break;
-		}
-	}
+    if (isActive == true) {
+        switch (type) {
+        case Up:
+            y += UP;
+            break;
+        case Down:
+            y -= UP;
+            break;
+        }
+    }
 }
 
 void trap::Active() {
-	isActive = true; 
+    isActive = true;
 }
 void trap::Draw()
 {
-	DrawCircle(x + 32, y, 2, GetColor(255, 0, 0), true);
+    DrawCircle(x + 32, y, 2, GetColor(255, 0, 0), true);
     DrawCircle(x, y + 64, 2, GetColor(255, 0, 0), true);
     DrawCircle(x + 64, y + 64, 2, GetColor(255, 0, 0), true);
-	DrawGraph(x, y, hariImage, true);
+    DrawGraph(x, y, hariImage, true);
     if (isGameover) {
         SetFontSize(64);
         DrawFormatString(x - 100, y - 100, GetColor(255, 0, 0), "ゲームオーバー");
+    }
+    Player* player = FindGameObject<Player>();
+    if (player && player->IsBOOM()) { // IsBOOM() は Player.h で定義されているとして
+        SetFontSize(32);
+        DrawString(10, 50, "BOOM ACTIVE!", GetColor(255, 255, 0));
     }
 }
