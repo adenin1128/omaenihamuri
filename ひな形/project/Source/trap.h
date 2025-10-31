@@ -3,7 +3,7 @@
 
 class trap : public GameObject {
 public:
-	trap(int px,int py, int i);
+	trap(int px, int py, int i);
 	~trap();
 	void Update() override;
 	void Draw() override;
