@@ -57,7 +57,8 @@ trap::trap(int px,int py, int i)
 	hariImage = LoadGraph("data/image/hari.png");
 	x = px;
 	y = py;
-	UP = -1.0f;
+	UP = -10.0f;
+    RIGHT = 20.0f;
 	isActive = false;
 	isGameover = false;
 }
@@ -91,6 +92,12 @@ void trap::Update()
 		case Down:
 			y -= UP;
 			break;
+        case Right:
+            x += RIGHT;
+            break;
+        case up:
+            y += UP;
+            break;
 		}
 	}
 }
