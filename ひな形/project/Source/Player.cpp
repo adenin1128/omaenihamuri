@@ -4,7 +4,9 @@
 #include "Trigger.h"
 #include "Gameover.h"
 #include "trap.h"
-
+#define _USE_MATH_DEFINES
+#include <math.h>
+#define PI    3.1415926535897932384626433832795f
 
 static const float Gravity = 0.4;
 static const float v0 = -10.0;
@@ -13,6 +15,7 @@ const float DRAG_COEFFICIENT = 0.05f;  // 速度の減衰係数
 const float ROT_SPEED = 0.0f;          // 回転速度
 const int SAFE_MARGIN = 100;           // 画面外判定マージン
 
+int boomGraphs[36];
 
 
 Player::Player(float startX, float startY)
@@ -20,6 +23,7 @@ Player::Player(float startX, float startY)
 {
 	animImage = LoadGraph("data/image/おまえ歩き.png");
 	BOOMImage = LoadGraph("data/image/BOOM!!.png");
+	LoadDivGraph("data/image/BOOM!!.png", 36, 36, 1, 64, 64, boomGraphs);
 	posX = 100;
 	posY = 100;
 	jumpcount = 0;
@@ -149,7 +153,7 @@ void Player::Update()
 	}
 	if (state == STATE_BOOM) {
 
-		const float deltaTime = 20.0f / 60.0f;
+		const float deltaTime = 50.0f / 60.0f;
 
 		// 1. 速度の減衰
 		velX *= (1.0f - DRAG_COEFFICIENT);
@@ -166,14 +170,17 @@ void Player::Update()
 		if (x < -SAFE_MARGIN || x > 1920 + SAFE_MARGIN ||
 			y < -SAFE_MARGIN || y > 1080 + SAFE_MARGIN)//シーンの幅と高さを入れる
 		{
-			boomFrame = (boomFrame + 1) % BOOM_ANIM_FRAME_INTERVAL;
-			if (boomFrame == 0)
-			{
-				boomAnimIndex = (boomAnimIndex + 1) % BOOM_ANIM_FRAME_COUNT;
-			}
 			// 画面外に出たらゲームオーバー処理へ移行
 			state = STATE_GAMEOVER;
 			new GameOver(); // ここで初めてゲームオーバー画面へ移行するようにしたい
+		}
+	}
+	if(state == STATE_GAMEOVER){
+		// ゲームオーバー状態の処理（必要に応じて追加）
+		boomFrame = (boomFrame + 1) % BOOM_ANIM_FRAME_INTERVAL;
+		if (boomFrame == 0)
+		{
+			boomAnimIndex = (boomAnimIndex + 1) % BOOM_ANIM_FRAME_COUNT;
 		}
 	}
 }
@@ -189,20 +196,50 @@ void Player::Draw()
 	int yRect = (animIndex / ATLAS_WIDTH) * CHARACTER_HEIGHT;
 	int boomXRect = (boomAnimIndex % BOOM_ATLAS_WIDTH) * BOOM_CHARACTER_WIDTH;
 	int boomYRect = (boomAnimIndex / BOOM_ATLAS_WIDTH) * BOOM_CHARACTER_HEIGHT;
+	int boomDestx = boomXRect * 2;
+	int boomDesty = boomYRect * 2;
+	int boomDestWidth = 64 * 2;
+	int boomDestHeight = 64 * 2;
 
 	//  キャラクターをTextureAtlasを使って表示する
-	if (state == STATE_BOOM) {
-
-		DrawRectGraph(x, y, boomXRect, boomYRect, 64, 64, BOOMImage, TRUE, direction);
+	if (state == STATE_GAMEOVER) {
+		int size = 10;
+		double rad = 0;
+		int displayX = x;
+		int displayY = y;
+		if (x < -SAFE_MARGIN)
+		{
+			rad = M_PI;
+			displayX = x + (size + 1) * 32;
+		}
+		else if (x > 1920 + SAFE_MARGIN) {
+			rad = 0;
+			displayX = x - (size + 1) * 32;
+		}
+		else if (y < -SAFE_MARGIN) {
+			rad = -M_PI / 2;
+			displayY = y + (size + 1) * 32;
+		}
+		else if (y > 1080 + SAFE_MARGIN) {
+			rad = PI / 2;
+			displayY = y - (size + 1) * 32;
+		}
+		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE,FALSE);
 	}
 	else {
 		DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE, direction);
+		/*int rad = M_PI;
+		int size = 10;
+		DrawRotaGraph(x , y, size, M_PI / 2, boomGraphs[boomAnimIndex], TRUE, FALSE);*/
+		//DrawRotaGraph(x+32, y+32, 3.f, 3.14, boomGraphs[10], TRUE);
 	}
 	// デバッグ用情報表示
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "X::%4f", x);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);
 	DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "PlayerHP::%d", PlayerHP);
+	DrawFormatString(0, 200, GetColor(255, 255, 255), "PlayerState::%d", state);
+
 
 	// デバッグ用当たり判定表示
 	DrawCircle(GetColliderLeftTop().x, GetColliderLeftTop().y, 2, GetColor(0, 255, 0), true);

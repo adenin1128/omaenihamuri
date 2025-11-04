@@ -123,7 +123,7 @@ void trap::Update()
         // ‚¨ŽŽ‚µ‚Ånew GameOver()‚ðŒÄ‚Î‚È‚¢
         if (player->GetState() == STATE_BOOM) {
             SetFontSize(32);
-            DrawString(10, 50, "BOOM ok", GetColor(255, 255, 0));
+            DrawString(200, 70, "BOOM ok", GetColor(255, 255, 0));
         }
     }
 
