@@ -68,6 +68,7 @@
     <ClCompile Include="Source\Trigger.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\downtrap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Source\Trigger.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\downtrap.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

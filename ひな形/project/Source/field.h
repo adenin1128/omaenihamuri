@@ -31,5 +31,6 @@ private:
 	int harimage;
 	int hataimage;
 	int haikeimage;
+	int harisitaimage;
 	int HIT_TRAP = 0;
 };
