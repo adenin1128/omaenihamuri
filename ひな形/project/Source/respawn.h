@@ -8,9 +8,7 @@ public:
 	~respawn();
 	void Update() override;
 	void Draw() override;
-	void resActive();
 private:
 	int hataImage;
 	int x, y;
-	bool isresActive;
 };

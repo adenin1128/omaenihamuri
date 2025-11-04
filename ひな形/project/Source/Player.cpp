@@ -55,7 +55,7 @@ void Player::Update()
 		}
 		if (CheckHitKey(KEY_INPUT_R))
 		{
-			PlayerHP = 0;
+			PlayerHP = 3;
 		}
 		if (onGround == true) {
 			if (jumpcount < Maxjumpcount) {
