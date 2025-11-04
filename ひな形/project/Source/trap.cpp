@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "Gameover.h"
 #include <cmath> // 平方根を呼び出すやつ
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 const float BOOM_FORCE = 100.0f; // 吹っ飛びの勢い
 
@@ -60,9 +62,12 @@ trap::trap(int px, int py, int i)
     hariImage = LoadGraph("data/image/hari.png");
     x = px;
     y = py;
-    UP = -1.0f;
+    UP = -5.0f;
+    right = -10.0f;
+    UP3 = -10.0f;
     isActive = false;
     isGameover = false;
+    kaiten = 90.0f * (M_PI / 180.0f);
 }
 
 trap::~trap()
@@ -83,6 +88,11 @@ void trap::Update()
         if (isActive) {
             switch (type) {
             case Up: y += UP; break;
+            case Up2: y += UP;break;
+            case Right: x -= right;break;
+            case Up3: y += UP3;break;
+            case Up4: y += UP3;break;
+            case Up5: y += UP3;break;
             case Down: y -= UP; break;
             }
         }
@@ -132,9 +142,22 @@ void trap::Update()
         case Up:
             y += UP;
             break;
-        case Down:
-            y -= UP;
+        case Up2:
+            y += UP;
             break;
+        case Right:
+            x -= right;
+            break;
+        case Up3:
+            y += UP3;
+            break;
+        case Up4:
+            y += UP3;
+            break;
+        case Up5:
+            y += UP3;
+            break; 
+
         }
     }
 }
@@ -148,6 +171,7 @@ void trap::Draw()
     DrawCircle(x, y + 64, 2, GetColor(255, 0, 0), true);
     DrawCircle(x + 64, y + 64, 2, GetColor(255, 0, 0), true);
     DrawGraph(x, y, hariImage, true);
+    //DrawRotaGraph(x + 32, y + 32, 1.0, M_PI, hariImage, true, false);
     if (isGameover) {
         SetFontSize(64);
         DrawFormatString(x - 100, y - 100, GetColor(255, 0, 0), "ゲームオーバー");

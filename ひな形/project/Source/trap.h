@@ -12,12 +12,19 @@ private:
 	int hariImage;
 	float x, y;
 	float UP;
+	float right;
+	float UP3;
 	bool isActive;     // ƒgƒ‰ƒbƒv‚ª”­“®‚µ‚½‚©
 	bool isGameover;
+	float kaiten;
 	enum Type {
 		Up,
-		Down,
-		Right
+		Up2,
+		Right,
+		Up3,
+		Up4,
+		Up5,
+		Down
 	};
 	Type type;
 };

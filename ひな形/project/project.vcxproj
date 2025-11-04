@@ -157,6 +157,7 @@
     <ClInclude Include="Library\SceneManager.h" />
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Source\BootScene.h" />
+    <ClInclude Include="Source\downtrap.h" />
     <ClInclude Include="Source\field.h" />
     <ClInclude Include="Source\Gameover.h" />
     <ClInclude Include="Source\Player.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Library\SceneManager.cpp" />
     <ClCompile Include="Library\Time.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
+    <ClCompile Include="Source\downtrap.cpp" />
     <ClCompile Include="Source\field.cpp" />
     <ClCompile Include="Source\Gameover.cpp" />
     <ClCompile Include="Source\Player.cpp" />
