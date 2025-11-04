@@ -25,9 +25,12 @@ vector<vector<int>> maps = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6,6,6,1,1,1,1,1,1,1,1,1 },
 
 };
+
+vector<vector<int>> saveMaps;
 trap* traps[99];
 Field::Field()
 {
+	saveMaps = maps;
 	haikeimage = LoadGraph("data/image/kabe.png");
 	hImage = LoadGraph("data/image/New blo.png");
 	harimage = LoadGraph("data/image/hari.png");
@@ -176,6 +179,26 @@ bool Field::Istrap(int px, int py)
 		return true;
 	}
 	return false;
+}
+
+
+void Field::ChangeMapChip(int x, int y, int type)
+{
+	saveMaps[y][x] = type;
+}
+void Field::ChangeRespawnPoint(int x, int y)
+{
+	// リスポーンポイントの削除
+	for (int my = 0; my < saveMaps.size(); my++) {
+		for (int mx = 0; mx < saveMaps[my].size(); mx++) {
+			if (saveMaps[my][mx] == 2) {
+				saveMaps[my][mx] = 0;
+			}
+		}
+	}
+
+	// saveMaps[y][x]をリスポーンポイントに設定
+	ChangeMapChip(x, y, 2);
 }
 //int Field::HitCheckRightTrap(int px, int py)
 //{
