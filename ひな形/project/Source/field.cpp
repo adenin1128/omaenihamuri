@@ -151,6 +151,9 @@ int Field::HitCheckLeft(int px, int py)
 	int y = py / 64;
 	if (y >= maps.size())
 		return 0;
+	if (maps[y][x] > 200) {
+		traps[maps[y][x] - 201]->Active();
+	}
 	if (maps[y][x] == 1)
 	{ // “–‚½‚Á‚Ä‚é 
 		return px % 64 - 64;
