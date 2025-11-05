@@ -68,7 +68,9 @@
     <ClCompile Include="Source\Trigger.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\downtrap.cpp" />
+    <ClCompile Include="Source\downtrap.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -151,7 +153,9 @@
     <ClInclude Include="Source\Trigger.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\downtrap.h" />
+    <ClInclude Include="Source\downtrap.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

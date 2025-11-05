@@ -5,6 +5,7 @@
 #include <cmath> // •½•ûª‚ğŒÄ‚Ño‚·‚â‚Â
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "downtrap.h"
 
 const float BOOM_FORCE = 200.0f; // ‚Á”ò‚Ñ‚Ì¨‚¢
 
@@ -161,7 +162,6 @@ void trap::Update()
         }
     }
 }
-
 void trap::Active() {
     isActive = true;
 }
