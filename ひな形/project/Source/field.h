@@ -33,4 +33,5 @@ private:
 	int haikeimage;
 	int harisitaimage;
 	int HIT_TRAP = 0;
+	int deathcount;
 };

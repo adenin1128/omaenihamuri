@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "trap.h"
 #include "respawn.h"
+#include "Trigger.h"
 using namespace std;
 
 vector<vector<int>> maps = {
@@ -42,6 +43,7 @@ Field::Field()
 	y = 1080-64;
 	scrollX = 0; 
 	HIT_TRAP = 0;
+	deathcount = 0;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -75,12 +77,12 @@ Field::~Field()
 
 void Field::Update()
 {
-	if (CheckHitKey(KEY_INPUT_R)) {
+	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
 		for (auto& trap : traps) {
 			if (trap != nullptr) {
 				trap->DestroyMe();
 			}		}
-
+		deathcount++;
 		for (int y = 0; y < saveMaps.size();y++) {
 			for (int x = 0;x < saveMaps[y].size();x++) {
 				if (saveMaps[y][x] == 2) {
@@ -123,6 +125,7 @@ void Field::Draw()
 		}
 	}*/
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
+	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 }
 
 int Field::HitCheckRight(int px, int py)
