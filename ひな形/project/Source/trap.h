@@ -24,6 +24,7 @@ private:
 		Up3,
 		Up4,
 		Up5,
+		Up6,
 		Down
 	};
 	Type type;
