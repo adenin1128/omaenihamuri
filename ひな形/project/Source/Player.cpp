@@ -153,7 +153,7 @@ void Player::Update()
 	}
 	if (state == STATE_BOOM) {
 
-		const float deltaTime = 50.0f / 60.0f;
+		const float deltaTime = 55.0f / 60.0f;
 
 		// 1. ë¨ìxÇÃå∏êä
 		velX *= (1.0f - DRAG_COEFFICIENT);

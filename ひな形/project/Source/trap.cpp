@@ -6,7 +6,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-const float BOOM_FORCE = 100.0f; // ‚Á”ò‚Ñ‚Ì¨‚¢
+const float BOOM_FORCE = 200.0f; // ‚Á”ò‚Ñ‚Ì¨‚¢
 
 struct Vector2D {
     double x;
