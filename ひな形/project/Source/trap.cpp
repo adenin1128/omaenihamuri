@@ -96,6 +96,8 @@ void trap::Update()
             case Up5: y += UP3;break;
             case Down: y -= UP; break;
 			case Up6: y += UP3; break;
+            case Up7: x += right;break;
+            case Up8: x -= right; y += UP3;break;
             }
         }
         return;
@@ -162,6 +164,13 @@ void trap::Update()
         case Up6:
 			y += UP3;
 			break;
+        case Up7:
+            x += right;
+            break;
+        case Up8:
+            x -= right;
+            y += UP3;
+            break;
         }
     }
 }
