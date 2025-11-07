@@ -5,7 +5,7 @@
 class Field : public GameObject
 {
 public:
-	Field();
+	Field(int stage);
 	~Field();
 	void Update() override;
 	void Draw() override;
