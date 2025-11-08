@@ -24,6 +24,8 @@ public:
 	int HitCheckDownTrap(int px, int py);
 	void ChangeMapChip(int x, int y, int type);
 	void ChangeRespawnPoint(int x, int y);
+
+	int GetDeathCount() { return deathcount; }
 private:
 	int hImage;
 	float x, y;

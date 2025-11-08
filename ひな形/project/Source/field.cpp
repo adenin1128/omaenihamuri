@@ -65,7 +65,7 @@ Field::Field(int stage)
 	y = 1080-64;
 	scrollX = 0; 
 	HIT_TRAP = 0;
-	deathcount = 0;
+	deathcount = 1;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -107,7 +107,8 @@ void Field::Update()
 		for (auto& trap : traps) {
 			if (trap != nullptr) {
 				trap->DestroyMe();
-			}		}
+			}		
+		}
 		deathcount++;
 		for (int y = 0; y < saveMaps.size();y++) {
 			for (int x = 0;x < saveMaps[y].size();x++) {
@@ -163,11 +164,6 @@ void Field::Draw()
 	}*/
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
-
-	Player* player = FindGameObject<Player>();
-	if (player->GetState() == STATE_GAMEOVER) {
-		DrawExtendFormatStringToHandle(900, 200, 1, 1, GetColor(0, 0, 0), GetDefaultFontHandle(), "•‰‚¯‚½‰ñ”@%d‰ñ", deathcount);
-	}
 }
 
 int Field::HitCheckRight(int px, int py)

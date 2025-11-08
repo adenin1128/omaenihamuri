@@ -55,13 +55,6 @@ void Player::Update()
 	if (state == STATE_NORMAL) {
 		int moveX = 0;
 
-		if (PlayerHP == 0) {
-			new GameOver();
-		}
-		if (CheckHitKey(KEY_INPUT_R))
-		{
-			PlayerHP = 3;
-		}
 		if (onGround == true) {
 			if (jumpcount < Maxjumpcount) {
 				jumpcount += 1;
@@ -225,7 +218,7 @@ void Player::Draw()
 			displayY = y - (size + 1) * 32;
 		}
 		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE,FALSE);
-		DrawRotaGraph(990, 540, 0.5,0.,loseImage, TRUE,FALSE);
+		new GameOver();
 	}
 	else {
 		DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE, direction);
