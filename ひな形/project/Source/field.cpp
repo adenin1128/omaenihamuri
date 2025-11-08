@@ -163,6 +163,11 @@ void Field::Draw()
 	}*/
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
+
+	Player* player = FindGameObject<Player>();
+	if (player->GetState() == STATE_GAMEOVER) {
+		DrawExtendFormatStringToHandle(900, 200, 1, 1, GetColor(0, 0, 0), GetDefaultFontHandle(), "ïâÇØÇΩâÒêîÅ@%dâÒ", deathcount);
+	}
 }
 
 int Field::HitCheckRight(int px, int py)
