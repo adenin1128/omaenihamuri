@@ -24,6 +24,7 @@ Player::Player(float startX, float startY)
 	animImage = LoadGraph("data/image/おまえ歩き.png");
 	BOOMImage = LoadGraph("data/image/BOOM!!.png");
 	LoadDivGraph("data/image/BOOM!!.png", 36, 36, 1, 64, 64, boomGraphs);
+	loseImage = LoadGraph("data/image/you lose.png");
 	posX = 100;
 	posY = 100;
 	jumpcount = 0;
@@ -172,7 +173,6 @@ void Player::Update()
 		{
 			// 画面外に出たらゲームオーバー処理へ移行
 			state = STATE_GAMEOVER;
-			new GameOver(); // ここで初めてゲームオーバー画面へ移行するようにしたい
 		}
 	}
 	if(state == STATE_GAMEOVER){
@@ -225,6 +225,7 @@ void Player::Draw()
 			displayY = y - (size + 1) * 32;
 		}
 		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE,FALSE);
+		DrawRotaGraph(990, 540, 0.5,0.,loseImage, TRUE,FALSE);
 	}
 	else {
 		DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE, direction);

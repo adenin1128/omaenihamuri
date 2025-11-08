@@ -64,7 +64,7 @@ private:
 	int boomAnimIndex;  //  撃墜アニメーションのコマ
 	int boomFrame;      //  撃墜アニメーション間隔
 
-
+	int loseImage;
 	int hImage;
 	int posX;
 	int posY;
