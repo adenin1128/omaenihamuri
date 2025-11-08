@@ -40,6 +40,7 @@ trap* traps[99];
 downtrap* downtraps[99];
 Field::Field(int stage)
 {
+
 	char filename[60];
 	sprintf_s<60>(filename, "data/Stage%02d.csv", stage);
 
@@ -55,12 +56,13 @@ Field::Field(int stage)
 		}
 	}
 
+    harimage = LoadGraph("data/image/hari.png");
+	hataimage = LoadGraph("data/image/hata.png");
+	harisitaimage = LoadGraph("data/image/harisita.png");
 	saveMaps = maps;
 	haikeimage = LoadGraph("data/image/kabe.png");
 	hImage = LoadGraph("data/image/New blo.png");
-	harimage = LoadGraph("data/image/hari.png");
-	hataimage = LoadGraph("data/image/hata.png");
-	harisitaimage = LoadGraph("data/image/harisita.png");
+	
 	x = 0;
 	y = 1080-64;
 	scrollX = 0; 
