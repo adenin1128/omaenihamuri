@@ -25,12 +25,12 @@ void respawn::Update()
 	int diffY = pPos.y - y;
 	diffY = diffY * diffY;
 	int diff = sqrtf(diffX + diffY);
-
-	if (diff < 64) {
-		Field* field = FindGameObject<Field>();
-		
-		field->ChangeRespawnPoint(x/64, y/64);
-		DestroyMe();
+	if (player->GetState() == STATE_NORMAL) {
+		if (diff < 64) {
+			Field* field = FindGameObject<Field>();
+			field->ChangeRespawnPoint(x / 64, y / 64);
+			DestroyMe();
+		}
 	}
 }
 

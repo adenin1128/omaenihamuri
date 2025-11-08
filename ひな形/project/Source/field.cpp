@@ -272,18 +272,21 @@ void Field::ChangeMapChip(int x, int y, int type)
 }
 void Field::ChangeRespawnPoint(int x, int y)
 {
-	if (maps[y][x] == 4) {
-		// リスポーンポイントの削除
-		for (int my = 0; my < saveMaps.size(); my++) {
-			for (int mx = 0; mx < saveMaps[my].size(); mx++) {
-				if (saveMaps[my][mx] == 2) {
-					saveMaps[my][mx] = 0;
+	Player* player = FindGameObject<Player>();
+	if (player->GetState() == STATE_NORMAL) {
+		if (maps[y][x] == 4) {
+			// リスポーンポイントの削除
+			for (int my = 0; my < saveMaps.size(); my++) {
+				for (int mx = 0; mx < saveMaps[my].size(); mx++) {
+					if (saveMaps[my][mx] == 2) {
+						saveMaps[my][mx] = 0;
+					}
 				}
 			}
-		}
 
-		// saveMaps[y][x]をリスポーンポイントに設定
-		ChangeMapChip(x, y, 2);
+			// saveMaps[y][x]をリスポーンポイントに設定
+			ChangeMapChip(x, y, 2);
+		}
 	}
 }
 //int Field::HitCheckRightTrap(int px, int py)
