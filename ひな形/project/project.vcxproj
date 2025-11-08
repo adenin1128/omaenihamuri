@@ -157,6 +157,7 @@
     <ClInclude Include="Library\SceneManager.h" />
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Source\BootScene.h" />
+    <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\CsvReader.h" />
     <ClInclude Include="Source\downtrap.h" />
     <ClInclude Include="Source\field.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="Library\SceneManager.cpp" />
     <ClCompile Include="Library\Time.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
+    <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\csvReader.cpp" />
     <ClCompile Include="Source\downtrap.cpp" />
     <ClCompile Include="Source\field.cpp" />
