@@ -23,7 +23,7 @@ Player::Player(float startX, float startY)
 {
 	animImage = LoadGraph("data/image/おまえ歩き.png");
 	BOOMImage = LoadGraph("data/image/BOOM!!.png");
-	LoadDivGraph("data/image/BOOM!!.png", 36, 36, 1, 64, 64, boomGraphs);
+	LoadDivGraph("data/image/BOOM!!.png", 37, 37, 1, 64, 64, boomGraphs);
 	loseImage = LoadGraph("data/image/you lose.png");
 	posX = 100;
 	posY = 100;
@@ -37,6 +37,7 @@ Player::Player(float startX, float startY)
 	state = STATE_NORMAL;
 	boomAnimIndex = 0;
 	boomFrame = 0;
+	Boomtime = 0;
 
 }
 
@@ -171,9 +172,10 @@ void Player::Update()
 	if(state == STATE_GAMEOVER){
 		// ゲームオーバー状態の処理（必要に応じて追加）
 		boomFrame = (boomFrame + 1) % BOOM_ANIM_FRAME_INTERVAL;
-		if (boomFrame == 0)
+		if (boomFrame == 0 && Boomtime < 36 )
 		{
 			boomAnimIndex = (boomAnimIndex + 1) % BOOM_ANIM_FRAME_COUNT;
+			Boomtime++;
 		}
 	}
 }
@@ -233,6 +235,7 @@ void Player::Draw()
 	DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "PlayerHP::%d", PlayerHP);
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "PlayerState::%d", state);
+	DrawFormatString(0, 260, GetColor(255, 255, 255), "Boomtime::%d", Boomtime);
 
 
 	// デバッグ用当たり判定表示

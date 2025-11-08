@@ -47,9 +47,9 @@ private:
 	static const int ATLAS_HEIGHT = 1;
 	static const int BOOM_CHARACTER_WIDTH = 64;
 	static const int BOOM_CHARACTER_HEIGHT = 64;
-	static const int BOOM_ATLAS_WIDTH = 36;
+	static const int BOOM_ATLAS_WIDTH = 37;
 	static const int BOOM_ATLAS_HEIGHT = 1;
-	static const int BOOM_ANIM_FRAME_COUNT = 36;
+	static const int BOOM_ANIM_FRAME_COUNT = 37;
 	static const int BOOM_ANIM_FRAME_INTERVAL = 4;
 	static const int ANIM_FRAME_COUNT = 12;
 	static const int ANIM_FRAME_INTERVAL = 4;   //  アニメーション間隔(frame)
@@ -63,6 +63,7 @@ private:
 	int BOOMImage;      //  撃墜用画像ハンドル
 	int boomAnimIndex;  //  撃墜アニメーションのコマ
 	int boomFrame;      //  撃墜アニメーション間隔
+	int Boomtime;       // BOOMの時間
 
 	int loseImage;
 	int hImage;
