@@ -167,6 +167,7 @@ void Player::Update()
 		{
 			// 画面外に出たらゲームオーバー処理へ移行
 			state = STATE_GAMEOVER;
+			new GameOver();
 		}
 	}
 	if(state == STATE_GAMEOVER){
@@ -220,7 +221,6 @@ void Player::Draw()
 			displayY = y - (size + 1) * 32;
 		}
 		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE,FALSE);
-		new GameOver();
 	}
 	else {
 		DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE, direction);
