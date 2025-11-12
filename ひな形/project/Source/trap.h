@@ -1,23 +1,13 @@
 #pragma once
 #include "../Library/GameObject.h"
-
+#include <vector>
 class trap : public GameObject {
 public:
-	trap(int px, int py, int i);
+	trap(int px, int py, int i, int d);
 	~trap();
 	void Update() override;
 	void Draw() override;
 	void Active();
-private:
-	int hariImage;
-	float x, y;
-	float UP;
-	float right;
-	float right3;
-	float UP3;
-	bool isActive;     // トラップが発動したか
-	bool isGameover;
-	float kaiten;
 	enum Type {
 		Up,
 		Up2,
@@ -30,5 +20,25 @@ private:
 		Up8,
 		Down
 	};
+	enum Direction {
+		TOP,
+		RIGHT,
+		UNDER,
+		LEFT
+	};
+private:
+	int hariImage;
+	float x, y;
+	float UP;
+	float right;
+	float right3;
+	float UP3;
+	bool isActive;     // トラップが発動したか
+	bool isGameover;
+	float kaiten;
+	
 	Type type;
+	Direction dir;
+	double rot;
+	std::vector<VECTOR2> colliderPoints;
 };

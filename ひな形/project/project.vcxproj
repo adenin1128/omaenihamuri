@@ -76,13 +76,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\adema\Downloads\DxLib_VC3_24f %281%29\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project\Library;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project\Source;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\adema\Downloads\DxLib_VC3_24f %281%29\DxLib_VC\プロジェクトに追加すべきファイル_VC用;D:\DxLib_VC3_24f\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;D:\visual stadio\omaeniha muri\ひな形\project\Library;D:\visual stadio\omaeniha muri\ひな形\project</AdditionalLibraryDirectories>
-      <AdditionalDependencies>DxLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -92,12 +91,11 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\adema\Downloads\DxLib_VC3_24f %281%29\DxLib_VC\プロジェクトに追加すべきファイル_VC用;D:\1023\ひな形\project\Library;D:\1023\ひな形\project;D:\1023\ひな形\project\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\adema\Downloads\DxLib_VC3_24f %281%29\DxLib_VC\プロジェクトに追加すべきファイル_VC用;D:\DxLib_VC3_24f\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;D:\1023\ひな形\project\Library;D:\1023\ひな形\project\Source;D:\1023\ひな形\project</AdditionalLibraryDirectories>
-      <AdditionalDependencies>DxLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,14 +107,13 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\adema\Downloads\DxLib_VC3_24f %281%29\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project\Library;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project\Source;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>D:\DxLib_VC3_24f\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;D:\visual stadio\omaeniha muri\ひな形\project\Library;D:\visual stadio\omaeniha muri\ひな形\project</AdditionalLibraryDirectories>
-      <AdditionalDependencies>DxLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -127,15 +124,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\adema\Downloads\DxLib_VC3_24f %281%29\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project\Library;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project\Source;C:\Users\adema\OneDrive\デスクトップ\新しいフォルダー\ひな形\project</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>D:\DxLib_VC3_24f\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;D:\visual stadio\omaeniha muri\ひな形\project\Library;D:\visual stadio\omaeniha muri\ひな形\project</AdditionalLibraryDirectories>
-      <AdditionalDependencies>DxLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\DxLib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -158,10 +154,11 @@
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Source\BootScene.h" />
     <ClInclude Include="Source\Box.h" />
+    <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\CsvReader.h" />
     <ClInclude Include="Source\downtrap.h" />
-    <ClInclude Include="Source\field.h" />
-    <ClInclude Include="Source\Gameover.h" />
+    <ClInclude Include="Source\Field.h" />
+    <ClInclude Include="Source\GameOver.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\respawn.h" />
     <ClInclude Include="Source\Screen.h" />
@@ -187,10 +184,11 @@
     <ClCompile Include="Library\Time.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
     <ClCompile Include="Source\Box.cpp" />
+    <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\csvReader.cpp" />
     <ClCompile Include="Source\downtrap.cpp" />
-    <ClCompile Include="Source\field.cpp" />
-    <ClCompile Include="Source\Gameover.cpp" />
+    <ClCompile Include="Source\Field.cpp" />
+    <ClCompile Include="Source\GameOver.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\respawn.cpp" />

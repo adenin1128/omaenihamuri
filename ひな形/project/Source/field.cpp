@@ -37,7 +37,7 @@ using namespace std;
 vector<vector<int>> maps;
 vector<vector<int>> saveMaps;
 trap* traps[99];
-downtrap* downtraps[99];
+trap* downtraps[99];
 Field::Field(int stage)
 {
 	char filename[60];
@@ -83,11 +83,11 @@ Field::Field(int stage)
 			}*/
 
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
-				traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101);
+				traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101, 0);
 			}
 
 			if (maps[y][x] > 300 && maps[y][x] < 400) {
-				downtraps[maps[y][x] - 301] = new downtrap(x * 64, y * 64, maps[y][x] - 301);
+				downtraps[maps[y][x] - 301] = new trap(x * 64, y * 64, maps[y][x] - 301, 2);
 			}
 
 			if (maps[y][x] == 4) {
@@ -119,8 +119,12 @@ void Field::Update()
 
 				// trapÄ¶¬
 				if (maps[y][x] > 100 && maps[y][x] < 200) {
-					traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101);
+					traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101, 0);
 				}
+				if (maps[y][x] > 300 && maps[y][x] < 400) {
+					downtraps[maps[y][x] - 301] = new trap(x * 64, y * 64, maps[y][x] - 301, 2);
+				}
+
 			}
 		}
 	}
@@ -165,23 +169,21 @@ void Field::Draw()
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 }
-
+void CheckTrap(int x, int y) {
+	if (maps[y][x] > 200 && maps[y][x] < 300) {
+		traps[maps[y][x] - 201]->Active();
+	}
+	if (maps[y][x] > 400 && maps[y][x] < 500) {
+		downtraps[maps[y][x] - 401]->Active();
+	}
+}
 int Field::HitCheckRight(int px, int py)
 {
 	int x = px / 64;
 	int y = py/ 64;
 	if (y >= maps.size())
 		return 0;
-	//if (maps[y][x] == 10) {
-	//	trap1->Active();
-	//	/*trap* t = FindGameObject<trap>();
-	//	if (t != nullptr) {
-	//		t->Active();
-	//	}*/
-	//}
-	if (maps[y][x] > 200) {
-		traps[maps[y][x] - 201]->Active();
-	}
+	CheckTrap(x, y);
 	if (maps[y][x] == 1)
 	{ // “–‚½‚Á‚Ä‚é 
 		return px % 64 + 1;
@@ -189,19 +191,13 @@ int Field::HitCheckRight(int px, int py)
 	return 0;
 }
 
-
-
-
-
 int Field::HitCheckLeft(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
 	if (y >= maps.size())
 		return 0;
-	if (maps[y][x] > 200) {
-		traps[maps[y][x] - 201]->Active();
-	}
+	CheckTrap(x, y);
 	if (maps[y][x] == 1)
 	{ // “–‚½‚Á‚Ä‚é 
 		return px % 64 - 64;
@@ -209,23 +205,17 @@ int Field::HitCheckLeft(int px, int py)
 	return 0;
 }
 
-
-
 int Field::HitCheckUp(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
 	if (y >= maps.size())
 		return 0;
-	if (maps[y][x] > 200) {
-		traps[maps[y][x] - 201]->Active();
-	}
+	CheckTrap(x, y);
 	if (maps[y][x] == 1)
 		return 64 - py % 64;
 	return 0;
 }
-
-
 
 int Field::HitCheckDown(int px, int py)
 {
@@ -233,9 +223,7 @@ int Field::HitCheckDown(int px, int py)
 	int y = py / 64;
 	if (y >= maps.size())
 		return 0;
-	if (maps[y][x] > 200) {
-		traps[maps[y][x] - 201]->Active();
-	}
+	CheckTrap(x, y);
 	if (maps[y][x] == 1)
 		return py  % 64 + 1;
 	return 0;

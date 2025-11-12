@@ -1,6 +1,6 @@
 #pragma once
 #include "../Library/GameObject.h"
-
+#include <vector>
 class downtrap : public GameObject {
 public:
 	downtrap(int px, int py, int i);
@@ -15,8 +15,17 @@ private:
 	bool isActive;     // ƒgƒ‰ƒbƒv‚ª”­“®‚µ‚½‚©
 	bool isGameover;
 	float kaiten;
-	enum Type {
+	enum MoveType {
 		Down
 	};
-	Type type;
+	MoveType type;
+	enum Direction {
+		Top,
+		Right,
+		Under,
+		Left
+	};
+	Direction dir;
+	double rot;
+	std::vector<VECTOR2> colliderPoints;
 };

@@ -38,6 +38,8 @@ Player::Player(float startX, float startY)
 	boomAnimIndex = 0;
 	boomFrame = 0;
 	Boomtime = 0;
+	x = 500;
+	y = 200;
 
 }
 

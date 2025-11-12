@@ -7,59 +7,28 @@
 #include <math.h>
 #include "downtrap.h"
 
+// 当たり判定ライブラリ
+#include "Collider.h"
+using namespace ColliderLibrary;
+
 const float BOOM_FORCE = 200.0f; // 吹っ飛びの勢い
 
-struct Vector2D {
-    double x;
-    double y;
-};
-//頂点の定義(ベクトルと同じ)
-#define Vertex2D Vector2D
-
-//ベクトル引き算(a-b)
-VECTOR2 sub_vector(const VECTOR2& a, const VECTOR2& b)
+VECTOR2 RotatePoint(VECTOR2 vec, double rot)
 {
-    VECTOR2 ret;
-    ret.x = a.x - b.x;
-    ret.y = a.y - b.y;
-    return ret;
+    // 中心を基準に座標を回転
+    double dx = vec.x - 32;
+    double dy = vec.y - 32;
+
+    double newX = dx * std::cos(rot) - dy * std::sin(rot);
+    double newY = dx * std::sin(rot) + dy * std::cos(rot);
+
+    return VECTOR2(newX + 32, newY + 32);
 }
 
-// 三角形と点の当たり判定(2Dの場合)
-// 戻り値    0:三角形の内側に点がある    1:三角形の外側に点がある
-int hittest_point_polygon_2d(VECTOR2 A, VECTOR2 B, VECTOR2 C, VECTOR2 P) {
-
-    //線上は外とみなします。
-    //ABCが三角形かどうかのチェックは省略...
-
-    VECTOR2 AB = sub_vector(B, A);
-    VECTOR2 BP = sub_vector(P, B);
-
-    VECTOR2 BC = sub_vector(C, B);
-    VECTOR2 CP = sub_vector(P, C);
-
-    VECTOR2 CA = sub_vector(A, C);
-    VECTOR2 AP = sub_vector(P, A);
-
-    //外積    Z成分だけ計算すればよいです
-    double c1 = AB.x * BP.y - AB.y * BP.x;
-    double c2 = BC.x * CP.y - BC.y * CP.x;
-    double c3 = CA.x * AP.y - CA.y * AP.x;
-
-    if ((c1 > 0 && c2 > 0 && c3 > 0) || (c1 < 0 && c2 < 0 && c3 < 0)) {
-        //三角形の内側に点がある
-        return 0;
-    }
-
-    //三角形の外側に点がある
-    return 1;
-
-}
-
-
-trap::trap(int px, int py, int i)
+trap::trap(int px, int py, int i, int d)
 {
-    type = (Type)i;
+	type = (Type)i;
+    dir = (Direction)d;
     hariImage = LoadGraph("data/image/hari.png");
     x = px;
     y = py;
@@ -70,6 +39,18 @@ trap::trap(int px, int py, int i)
     isActive = false;
     isGameover = false;
     kaiten = 90.0f * (M_PI / 180.0f);
+
+    // 上向きの三角形の頂点座標を設定
+    colliderPoints.resize(3);
+    colliderPoints[0] = VECTOR2(32, 0);          // 頂点
+    colliderPoints[1] = VECTOR2(0, 64);          // ポイント２
+    colliderPoints[2] = VECTOR2(64, 64);     // ポイント３
+
+    // 向きに応じて頂点座標を回転・移動
+    rot = 3.14 / 2 * dir; // 向きに応じた回転角 
+    colliderPoints[0] = VECTOR2(x, y) + RotatePoint(VECTOR2(32, 0), rot);
+    colliderPoints[1] = VECTOR2(x, y) + RotatePoint(VECTOR2(0, 64), rot);
+    colliderPoints[2] = VECTOR2(x, y) + RotatePoint(VECTOR2(64, 64), rot);
 }
 
 trap::~trap()
@@ -78,10 +59,9 @@ trap::~trap()
 
 void trap::Update()
 {
-    VECTOR2 top = VECTOR2(x + 32, y);
-    VECTOR2 underLeft = VECTOR2(x, y + 64);
-    VECTOR2 underRight = VECTOR2(x + 64, y + 64);
-
+    colliderPoints[0] = VECTOR2(x, y) + RotatePoint(VECTOR2(32, 0), rot);
+    colliderPoints[1] = VECTOR2(x, y) + RotatePoint(VECTOR2(0, 64), rot);
+    colliderPoints[2] = VECTOR2(x, y) + RotatePoint(VECTOR2(64, 64), rot);
     Player* player = FindGameObject<Player>();
 
     // プレイヤーが撃墜中かゲームオーバーなら処理しない
@@ -89,7 +69,7 @@ void trap::Update()
 
         if (isActive) {
             switch (type) {
-            case Up: y += UP; break;
+            case Up: y += UP; break;   //caseとdirをいじる　dirで向き
             case Up2: y += UP;break;
             case Right: x -= right;break;
             case Up3: y += UP3;break;
@@ -107,10 +87,10 @@ void trap::Update()
 
 
     // 当たり判定
-    if (!hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderLeftTop()) ||
-        !hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderLeftBottom()) ||
-        !hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderRightTop()) ||
-        !hittest_point_polygon_2d(top, underLeft, underRight, player->GetColliderRightBottom()))
+    if (!hittest_point_polygon_2d(colliderPoints[0], colliderPoints[1], colliderPoints[2], player->GetColliderLeftTop()) ||
+        !hittest_point_polygon_2d(colliderPoints[0], colliderPoints[1], colliderPoints[2], player->GetColliderLeftBottom()) ||
+        !hittest_point_polygon_2d(colliderPoints[0], colliderPoints[1], colliderPoints[2], player->GetColliderRightTop()) ||
+        !hittest_point_polygon_2d(colliderPoints[0], colliderPoints[1], colliderPoints[2], player->GetColliderRightBottom()))
     {
         //SetFontSize(32); DrawString(100, 100, "Hit!", GetColor(255, 0, 0)); //debug用(機能しない)
 
@@ -181,10 +161,11 @@ void trap::Active() {
 }
 void trap::Draw()
 {
-    DrawCircle(x + 32, y, 2, GetColor(255, 0, 0), true);
-    DrawCircle(x, y + 64, 2, GetColor(255, 0, 0), true);
-    DrawCircle(x + 64, y + 64, 2, GetColor(255, 0, 0), true);
-    DrawGraph(x, y, hariImage, true);
+    for (auto point : colliderPoints) {
+        DrawCircle((int)point.x, (int)point.y, 3, GetColor(255, 0, 0), true);
+    }
+
+    DrawRotaGraph(x + 32, y + 32, 1, rot, hariImage, true);
     //DrawRotaGraph(x + 32, y + 32, 1.0, M_PI, hariImage, true, false);
     if (isGameover) {
         SetFontSize(64);
