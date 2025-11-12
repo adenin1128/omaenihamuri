@@ -13,6 +13,7 @@ private:
 	float x, y;
 	float UP;
 	float right;
+	float right3;
 	float UP3;
 	bool isActive;     // ƒgƒ‰ƒbƒv‚ª”­“®‚µ‚½‚©
 	bool isGameover;

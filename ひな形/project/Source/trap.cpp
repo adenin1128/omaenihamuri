@@ -64,7 +64,8 @@ trap::trap(int px, int py, int i)
     x = px;
     y = py;
     UP = -5.0f;
-    right = -10.0f;
+    right = -7.0f;
+    right3 = -10.0f;
     UP3 = -10.0f;
     isActive = false;
     isGameover = false;
@@ -97,7 +98,7 @@ void trap::Update()
             case Down: y -= UP; break;
 			case Up6: y += UP3; break;
             case Up7: x += right;break;
-            case 8:x -= right;y += UP3;break;
+            case 8:x -= right3;y += UP3;break;
             //case Up8: x += right
             }
         }
@@ -169,7 +170,7 @@ void trap::Update()
             x += right;
             break;
         case 8:
-            x -= right;
+            x -= right3;
             y += UP3;
             break;
         }
