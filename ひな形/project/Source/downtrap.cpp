@@ -98,7 +98,7 @@ void downtrap::Update()
     if (isActive == true) {
         switch (type) {
         case Down:
-            y += UP;
+            y -= UP;
             break;
 
         }
