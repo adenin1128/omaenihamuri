@@ -14,5 +14,5 @@ private:
 	int size;
 	int move;
 	int count;
-	
+	int loop;
 };

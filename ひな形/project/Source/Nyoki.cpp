@@ -12,6 +12,7 @@ Nyoki::Nyoki(int px, int py)
 	size = 64;
 	move = 0;
 	count = 0;
+	loop = 4;
 }
 
 Nyoki::~Nyoki()
@@ -20,12 +21,12 @@ Nyoki::~Nyoki()
 
 void Nyoki::Update()
 {
-	while (move = 4) {
+	if(loop > 0) {
 		count += 1;
-		if (count >= 5) {
+		if (count >= 50) {
 			count = 0;
-			move = (move + 4) % 13;
-			break;
+			move = (move + 4) % 17;
+			loop--;
 		}
 	}
 }
@@ -33,4 +34,7 @@ void Nyoki::Update()
 void Nyoki::Draw()
 {
 	DrawRectGraph(x, y, size * move,0,size,size * 4,nyokiImage, TRUE);
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "count:: %d", count);
+	DrawFormatString(0, 280, GetColor(255, 255, 255), "move:: %d", move);
+	DrawFormatString(0, 300, GetColor(255, 255, 255), "loop:: %d", loop);
 }
