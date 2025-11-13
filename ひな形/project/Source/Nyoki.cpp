@@ -25,6 +25,7 @@ void Nyoki::Update()
 		if (count >= 5) {
 			count = 0;
 			move = (move + 4) % 13;
+			break;
 		}
 	}
 }
