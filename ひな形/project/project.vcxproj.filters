@@ -77,6 +77,9 @@
     <ClCompile Include="Source\Collider.cpp">
       <Filter>Library</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Nyoki.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="Source\Collider.h">
       <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Nyoki.h">
+      <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
