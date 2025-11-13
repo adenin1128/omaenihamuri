@@ -158,11 +158,13 @@
     <ClInclude Include="Source\CsvReader.h" />
     <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\GameOver.h" />
+    <ClInclude Include="Source\Mainmenu.h" />
     <ClInclude Include="Source\Nyoki.h" />
     <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\PlayScene2.h" />
     <ClInclude Include="Source\respawn.h" />
     <ClInclude Include="Source\Screen.h" />
-    <ClInclude Include="Source\PlayScene.h" />
+    <ClInclude Include="Source\PlayScene1.h" />
     <ClInclude Include="Source\SceneFactory.h" />
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\trap.h" />
@@ -188,9 +190,11 @@
     <ClCompile Include="Source\csvReader.cpp" />
     <ClCompile Include="Source\Field.cpp" />
     <ClCompile Include="Source\GameOver.cpp" />
+    <ClCompile Include="Source\Mainmenu.cpp" />
     <ClCompile Include="Source\Nyoki.cpp" />
     <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\PlayScene.cpp" />
+    <ClCompile Include="Source\PlayScene1.cpp" />
+    <ClCompile Include="Source\PlayScene2.cpp" />
     <ClCompile Include="Source\respawn.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />

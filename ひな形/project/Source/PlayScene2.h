@@ -3,12 +3,12 @@
 
 /// <summary>
 /// ゲームプレイのシーンを制御する
-/// </summary>
-class PlayScene : public SceneBase
+///</summary>
+class PlayScene2 : public SceneBase
 {
 public:
-	PlayScene();
-	~PlayScene();
+	PlayScene2();
+	~PlayScene2();
 	void Update() override;
 	void Draw() override;
 };

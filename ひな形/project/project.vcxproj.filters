@@ -14,7 +14,7 @@
     <ClCompile Include="Source\TitleScene.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayScene.cpp">
+    <ClCompile Include="Source\PlayScene1.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp">
@@ -80,6 +80,12 @@
     <ClCompile Include="Source\Nyoki.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mainmenu.cpp">
+      <Filter>Mainmenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayScene2.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -99,7 +105,7 @@
     <ClInclude Include="Source\TitleScene.h">
       <Filter>TitleScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayScene.h">
+    <ClInclude Include="Source\PlayScene1.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imconfig.h">
@@ -174,6 +180,12 @@
     <ClInclude Include="Source\Nyoki.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Mainmenu.h">
+      <Filter>Mainmenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayScene2.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -190,6 +202,9 @@
     </Filter>
     <Filter Include="ImGui">
       <UniqueIdentifier>{a717257b-67b3-4bfa-834c-1e34032b33b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mainmenu">
+      <UniqueIdentifier>{7deb0397-eb1a-4047-bd5c-7733a16ded2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
