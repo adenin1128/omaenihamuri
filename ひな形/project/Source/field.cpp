@@ -145,6 +145,7 @@ void Field::Update()
 				}
 
 				if (saveMaps[y][x] == 9){
+					FindGameObject<Nyoki>()->DestroyMe();
 					new Nyoki(x * 64, y * 64);
 				}
 			}
