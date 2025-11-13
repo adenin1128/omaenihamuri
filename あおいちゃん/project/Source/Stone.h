@@ -1,18 +1,16 @@
 #pragma once
 #include "../Library/GameObject.h"
 
-class Player : public GameObject
+class Stone : public GameObject
 {
 public:
-	Player();
-	Player(int sx, int sy);
-	~Player();
+	Stone();
+	Stone(int sx, int sy, float vx, float vy);
+	~Stone();
 	void Update() override;
 	void Draw() override;
 private:
 	int hImage;
 	float x, y;
-	float velocity;
-	bool onGround;
-	bool prevPush;
+	float velocityX, velocityY;
 };

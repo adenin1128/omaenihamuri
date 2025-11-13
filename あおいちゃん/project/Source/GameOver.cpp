@@ -13,6 +13,9 @@ GameOver::~GameOver()
 
 void GameOver::Update()
 {
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		SceneManager::ChangeScene("TITLE");
+	}
 }
 
 void GameOver::Draw()

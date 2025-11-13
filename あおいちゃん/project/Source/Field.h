@@ -4,7 +4,7 @@
 class Field : public GameObject
 {
 public:
-	Field();
+	Field(int stage);
 	~Field();
 	void Update() override;
 	void Draw() override;
@@ -15,6 +15,8 @@ public:
 	int HitCheckDown(int px, int py);
 	int GetScollX() { return scrollX; }
 	void SetScrollX(int s) { scrollX = s; }
+	bool OutOfMap(int px, int py);
+	bool IsGoal(int px, int py);
 private:
 	int hImage;
 	float x, y;

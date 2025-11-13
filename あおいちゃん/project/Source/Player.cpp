@@ -1,5 +1,8 @@
 #include "Player.h"
 #include "Field.h"
+#include "GameOver.h"
+#include "Clear.h"
+#include "Stone.h"
 
 static const float Gravity = 0.2;
 static const float V0 = -10.0;
@@ -39,7 +42,7 @@ void Player::Update()
 		int push1 = field->HitCheckRight(x + 50, y + 5);
 		int push2 = field->HitCheckRight(x + 50, y + 63);
 		x -= max(push1, push2);
-		}
+	}
 	if (CheckHitKey(KEY_INPUT_A)) {
 		x -= 2; 
 		Field* field = FindGameObject<Field>();
@@ -47,12 +50,23 @@ void Player::Update()
 		int push2 = field->HitCheckLeft(x + 14, y + 63);
 		x += max(push1, push2);
 	}
+	if (CheckHitKey(KEY_INPUT_M)) {
+		if (prevPush == false) {
+			new Stone(x + 32, y + 20, 20.0f, 0.0f);
+		}
+		prevPush = true;
+	}
+	else {
+		prevPush = false;
+	}
 	if (onGround == true) {
 		if (CheckHitKey(KEY_INPUT_SPACE)) {
 			velocity = V0;
 			onGround = false;
 		}
 	}
+
+
 
 	y += velocity;
 	velocity += Gravity;
@@ -66,8 +80,11 @@ void Player::Update()
 			velocity = 0;
 			onGround = true;
 		}
-		else {
+		else { // °‚ª‚È‚©‚Á‚½
 			onGround = false;
+			if (field->OutOfMap(x, y)) {
+				new GameOver();
+			}
 		}
 	}
 	else {
@@ -85,6 +102,10 @@ void Player::Update()
 	int sc = field->GetScollX();
 	if (x-sc >= 300) {
 		field->SetScrollX(x-300);	
+	}
+
+	if (field->IsGoal(x + 32, y + 32)) {
+		new Clear();
 	}
 }
 
