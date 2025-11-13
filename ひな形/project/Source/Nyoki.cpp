@@ -12,7 +12,7 @@ Nyoki::Nyoki(int px, int py)
 	size = 64;
 	move = 0;
 	count = 0;
-	loop = 4;
+	loop = 0;//4にしたらニョキニョキする
 }
 
 Nyoki::~Nyoki()
