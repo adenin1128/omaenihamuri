@@ -5,6 +5,7 @@
 #include "respawn.h"
 #include "Trigger.h"
 #include "CsvReader.h"
+#include "Nyoki.h"
 using namespace std;
 
 //vector<vector<int>> maps = {
@@ -102,6 +103,9 @@ Field::Field(int stage)
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
 			}
+			if (maps[y][x] == 9) {
+				new Nyoki(x * 64, y * 64);
+			}
 		}
 	}
 }
@@ -127,17 +131,21 @@ void Field::Update()
 				}
 
 				// trapÄ¶¬
-				if (maps[y][x] > 100 && maps[y][x] < 200) {
-					traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101, 0);
+				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
+					traps[saveMaps[y][x] - 101] = new trap(x * 64, y * 64, saveMaps[y][x] - 101, 0);
 				}
-				if (maps[y][x] > 300 && maps[y][x] < 400) {
-					downtraps[maps[y][x] - 301] = new trap(x * 64, y * 64, maps[y][x] - 301, 2);
+				if (saveMaps[y][x] > 300 && saveMaps[y][x] < 400) {
+					downtraps[saveMaps[y][x] - 301] = new trap(x * 64, y * 64, saveMaps[y][x] - 301, 2);
 				}
-				if (maps[y][x] > 500 && maps[y][x] < 600) {
-					righttraps[maps[y][x] - 501] = new trap(x * 64, y * 64, maps[y][x] - 501, 1);
+				if (saveMaps[y][x] > 500 && saveMaps[y][x] < 600) {
+					righttraps[saveMaps[y][x] - 501] = new trap(x * 64, y * 64, saveMaps[y][x] - 501, 1);
 				}
-				if (maps[y][x] > 700 && maps[y][x] < 800) {
-					lefttraps[maps[y][x] - 701] = new trap(x * 64, y * 64, maps[y][x] - 701, 3);
+				if (saveMaps[y][x] > 700 && saveMaps[y][x] < 800) {
+					lefttraps[saveMaps[y][x] - 701] = new trap(x * 64, y * 64, saveMaps[y][x] - 701, 3);
+				}
+
+				if (saveMaps[y][x] == 9){
+					new Nyoki(x * 64, y * 64);
 				}
 			}
 		}
