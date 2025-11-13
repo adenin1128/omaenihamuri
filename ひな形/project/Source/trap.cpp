@@ -24,23 +24,19 @@ VECTOR2 RotatePoint(VECTOR2 vec, double rot)
     return VECTOR2(newX + 32, newY + 32);
 }
 
-trap::trap(int px, int py, int i, int d)
+trap::trap(int px, int py, int i, int d, int tx, int ty)
 {
-	type = (Type)i;
     dir = (Direction)d;
     hariImage = LoadGraph("data/image/hari.png");
     x = px;
     y = py;
-    UP = -5.0f;
-    right = -7.0f;
-    right3 = -10.0f;
-    UP3 = -10.0f;
-    isActive1 = false;
-    isActive2 = false;
-    isActive3 = false;
-    isGameover = false;
-    kaiten = 90.0f * (M_PI / 180.0f);
 
+    vx = tx;
+	vy = ty;
+
+
+    isActive = false;
+    isGameover = false;
     // 上向きの三角形の頂点座標を設定
     colliderPoints.resize(3);
     colliderPoints[0] = VECTOR2(32, 0);          // 頂点
@@ -68,38 +64,9 @@ void trap::Update()
     // プレイヤーが撃墜中かゲームオーバーなら処理しない
     if (player->GetState() != STATE_NORMAL) {
 
-        if (isActive1) {
-            switch (type) {
-            case Up: y += UP; break;
-            case Up2: y += UP;break;
-            case Right: x -= right;break;
-            case Up3: y += UP3;break;
-            case Up4: y += UP3;break;
-            case Up5: y += UP3;break;
-            case Down: y -= UP; break;
-			case Up6: y += UP3; break;
-            case Up7: x += right;break;
-            case Up8: x -= right3;y += UP3;break;
-            case Left:x -= UP;break;
-            }
-        }
-        return;
-        if (isActive2) {
-            switch (type) {
-            case Down: y -= UP; break;
-            }
-        }
-        return;
-        if (isActive3) {
-            switch (type) {
-            case Right: x += UP; break;
-            }
-        }
-        return;
-        if (isActive4) {
-            switch (type) {
-            case Left: x -= UP; break;
-            }
+        if (isActive) {
+            x += vx;
+			y += vy;
         }
         return;
     }
@@ -142,74 +109,14 @@ void trap::Update()
         }
     }
 
-    if (isActive1 == true) {
-        switch (type) {
-        case Up:
-            y += UP;
-            break;
-        case Up2:
-            y += UP;
-            break;
-        case Right:
-            x -= right;
-            break;
-        case Up3:
-            y += UP3;
-            break;
-        case Up4:
-            y += UP3;
-            break;
-        case Up5:
-            y += UP3;
-            break; 
-        case Up6:
-			y += UP3;
-            break;
-        case Up8: 
-            x -= right3;
-            y += UP3;
-            break;
+    if (isActive) {
+		x += vx;
+		y += vy;
         }
-    }
-    if (isActive2 == true) {
-        switch (type) {
-        case Up: y += UP; break;
-        case Down:
-            y -= UP;
-            break;
-        }
-    }
-   /* if (isActive3 == true) {
-        switch (type) {
-        case Right:
-            x += UP;
-            break;
-        }
-    }
-    if (isActive4 == true) {
-        switch (type) {
-        case Left:
-            x -= UP;
-            break;
-        }
-    }*/
 }
-void trap::UPActive() {
-    isActive1 = true;
+void trap::Active() {
+    isActive = true;
 }
-void trap::DOWNActive() {
-    isActive2 = true;
-    type = Down;
-}
-
-void trap::RIGHTActive() { 
-    isActive3 = true;
-}
-
-void trap::LEFTActive() {
-    isActive4 = true;
-}
-
 void trap::Draw()
 {
     for (auto point : colliderPoints) {

@@ -36,10 +36,22 @@ using namespace std;
 
 vector<vector<int>> maps;
 vector<vector<int>> saveMaps;
+vector<vector<int>> trapDatas;
+
 trap* traps[99];
-trap* downtraps[99];
-trap* righttraps[99];
-trap* lefttraps[99];
+
+void GenerateTrap(int posx, int posy, int id) {
+	int direction = 0, tx = 0, ty = 0;
+	for (int y = 0; y < trapDatas.size(); y++) {
+		if (trapDatas[y][0] == id) {
+			direction = trapDatas[y][1];
+			tx = trapDatas[y][2];
+			ty = trapDatas[y][3];
+		}
+	}
+	traps[id - 101] = new trap(posx, posy, id, direction, tx, ty);
+}
+;
 Field::Field(int stage)
 {
 	char filename[60];
@@ -56,6 +68,20 @@ Field::Field(int stage)
 			maps[y][x] = num;
 		}
 	}
+
+	sprintf_s<60>(filename, "data/trap%02d.csv", stage);
+	csv = new CsvReader(filename);
+	lines = csv->GetLines();
+	trapDatas.resize(lines);
+	for(int y = 0; y < lines; y++) {
+		int cols = csv->GetColumns(y);
+		trapDatas[y].resize(cols);
+		for (int x = 0; x < cols; x++) {
+			int num = csv->GetInt(y, x);
+			trapDatas[y][x] = num;
+		}
+	}
+	delete csv;
 
 	saveMaps = maps;
 	haikeimage = LoadGraph("data/image/kabe.png");
@@ -84,21 +110,9 @@ Field::Field(int stage)
 				trap2 = new trap(x * 64, y * 64);
 			}*/
 
-			//↓上向きトラップ
+			//↓トラップ
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
-				traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101, 0);
-			}
-			//↓下向きトラップ
-			if (maps[y][x] > 300 && maps[y][x] < 400) {
-				downtraps[maps[y][x] - 301] = new trap(x * 64, y * 64, maps[y][x] - 301, 2);
-			}
-			//↓右向きトラップ
-			if (maps[y][x] > 500 && maps[y][x] < 600) {
-				righttraps[maps[y][x] - 501] = new trap(x * 64, y * 64, maps[y][x] - 501, 1);
-			}
-			//↓左向きトラップ
-			if (maps[y][x] > 700 && maps[y][x] < 800) {
-				lefttraps[maps[y][x] - 701] = new trap(x * 64, y * 64, maps[y][x] - 701, 3);
+				GenerateTrap(x * 64, y * 64, maps[y][x]);
 			}
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
@@ -132,18 +146,8 @@ void Field::Update()
 
 				// trap再生成
 				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
-					traps[saveMaps[y][x] - 101] = new trap(x * 64, y * 64, saveMaps[y][x] - 101, 0);
+					GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
 				}
-				if (saveMaps[y][x] > 300 && saveMaps[y][x] < 400) {
-					downtraps[saveMaps[y][x] - 301] = new trap(x * 64, y * 64, saveMaps[y][x] - 301, 2);
-				}
-				if (saveMaps[y][x] > 500 && saveMaps[y][x] < 600) {
-					righttraps[saveMaps[y][x] - 501] = new trap(x * 64, y * 64, saveMaps[y][x] - 501, 1);
-				}
-				if (saveMaps[y][x] > 700 && saveMaps[y][x] < 800) {
-					lefttraps[saveMaps[y][x] - 701] = new trap(x * 64, y * 64, saveMaps[y][x] - 701, 3);
-				}
-
 				if (saveMaps[y][x] == 9){
 					new Nyoki(x * 64, y * 64);
 				}
@@ -193,16 +197,7 @@ void Field::Draw()
 }
 void CheckTrap(int x, int y) {
 	if (maps[y][x] > 200 && maps[y][x] < 300) {
-		traps[maps[y][x] - 201]->UPActive();
-	}
-	else if (maps[y][x] > 400 && maps[y][x] < 500) {
-		downtraps[maps[y][x] - 401]->DOWNActive();
-	}
-	else if (maps[y][x] > 600 && maps[y][x] < 700) {
-		righttraps[maps[y][x] - 601]->RIGHTActive();
-	}
-	else if (maps[y][x] > 800 && maps[y][x] < 900) {
-		lefttraps[maps[y][x] - 801]->LEFTActive();
+		traps[maps[y][x] - 201]->Active();
 	}
 }
 int Field::HitCheckRight(int px, int py)
