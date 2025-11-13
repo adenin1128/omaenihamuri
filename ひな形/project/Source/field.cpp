@@ -185,16 +185,16 @@ void Field::Draw()
 }
 void CheckTrap(int x, int y) {
 	if (maps[y][x] > 200 && maps[y][x] < 300) {
-		traps[maps[y][x] - 201]->Active();
+		traps[maps[y][x] - 201]->UPActive();
 	}
-	if (maps[y][x] > 400 && maps[y][x] < 500) {
-		downtraps[maps[y][x] - 401]->Active();
+	else if (maps[y][x] > 400 && maps[y][x] < 500) {
+		downtraps[maps[y][x] - 401]->DOWNActive();
 	}
-	if (maps[y][x] > 600 && maps[y][x] < 700) {
-		righttraps[maps[y][x] - 601]->Active();
+	else if (maps[y][x] > 600 && maps[y][x] < 700) {
+		righttraps[maps[y][x] - 601]->RIGHTActive();
 	}
-	if (maps[y][x] > 800 && maps[y][x] < 900) {
-		lefttraps[maps[y][x] - 801]->Active();
+	else if (maps[y][x] > 800 && maps[y][x] < 900) {
+		lefttraps[maps[y][x] - 801]->LEFTActive();
 	}
 }
 int Field::HitCheckRight(int px, int py)

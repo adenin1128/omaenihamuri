@@ -35,7 +35,9 @@ trap::trap(int px, int py, int i, int d)
     right = -7.0f;
     right3 = -10.0f;
     UP3 = -10.0f;
-    isActive = false;
+    isActive1 = false;
+    isActive2 = false;
+    isActive3 = false;
     isGameover = false;
     kaiten = 90.0f * (M_PI / 180.0f);
 
@@ -66,9 +68,9 @@ void trap::Update()
     // プレイヤーが撃墜中かゲームオーバーなら処理しない
     if (player->GetState() != STATE_NORMAL) {
 
-        if (isActive) {
+        if (isActive1) {
             switch (type) {
-            case Up: y += UP; break;   //caseとdirをいじる　dirで向き
+            case Up: y += UP; break;
             case Up2: y += UP;break;
             case Right: x -= right;break;
             case Up3: y += UP3;break;
@@ -77,7 +79,26 @@ void trap::Update()
             case Down: y -= UP; break;
 			case Up6: y += UP3; break;
             case Up7: x += right;break;
-            case 8:x -= right3;y += UP3;break;
+            case Up8: x -= right3;y += UP3;break;
+            case Left:x -= UP;break;
+            }
+        }
+        return;
+        if (isActive2) {
+            switch (type) {
+            case Down: y -= UP; break;
+            }
+        }
+        return;
+        if (isActive3) {
+            switch (type) {
+            case Right: x += UP; break;
+            }
+        }
+        return;
+        if (isActive4) {
+            switch (type) {
+            case Left: x -= UP; break;
             }
         }
         return;
@@ -121,7 +142,7 @@ void trap::Update()
         }
     }
 
-    if (isActive == true) {
+    if (isActive1 == true) {
         switch (type) {
         case Up:
             y += UP;
@@ -143,23 +164,52 @@ void trap::Update()
             break; 
         case Up6:
 			y += UP3;
-			break;
-        case Up7:
-            x += right;
             break;
-        case 8:
+        case Up8: 
             x -= right3;
             y += UP3;
             break;
-        case Down:
-            y -= UP;
-			break;
         }
     }
+    if (isActive2 == true) {
+        switch (type) {
+        case Up: y += UP; break;
+        case Down:
+            y -= UP;
+            break;
+        }
+    }
+   /* if (isActive3 == true) {
+        switch (type) {
+        case Right:
+            x += UP;
+            break;
+        }
+    }
+    if (isActive4 == true) {
+        switch (type) {
+        case Left:
+            x -= UP;
+            break;
+        }
+    }*/
 }
-void trap::Active() {
-    isActive = true;
+void trap::UPActive() {
+    isActive1 = true;
 }
+void trap::DOWNActive() {
+    isActive2 = true;
+    type = Down;
+}
+
+void trap::RIGHTActive() { 
+    isActive3 = true;
+}
+
+void trap::LEFTActive() {
+    isActive4 = true;
+}
+
 void trap::Draw()
 {
     for (auto point : colliderPoints) {
