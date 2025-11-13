@@ -5,7 +5,6 @@
 #include <cmath> // •½•ûª‚ğŒÄ‚Ño‚·‚â‚Â
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "downtrap.h"
 
 // “–‚½‚è”»’èƒ‰ƒCƒuƒ‰ƒŠ
 #include "Collider.h"
@@ -79,7 +78,6 @@ void trap::Update()
 			case Up6: y += UP3; break;
             case Up7: x += right;break;
             case 8:x -= right3;y += UP3;break;
-            //case Up8: x += right
             }
         }
         return;
@@ -153,6 +151,9 @@ void trap::Update()
             x -= right3;
             y += UP3;
             break;
+        case Down:
+            y -= UP;
+			break;
         }
     }
 }

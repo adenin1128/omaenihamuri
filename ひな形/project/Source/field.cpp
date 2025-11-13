@@ -4,7 +4,6 @@
 #include "trap.h"
 #include "respawn.h"
 #include "Trigger.h"
-#include "downtrap.h"
 #include "CsvReader.h"
 using namespace std;
 
@@ -38,6 +37,8 @@ vector<vector<int>> maps;
 vector<vector<int>> saveMaps;
 trap* traps[99];
 trap* downtraps[99];
+trap* righttraps[99];
+trap* lefttraps[99];
 Field::Field(int stage)
 {
 	char filename[60];
@@ -69,7 +70,7 @@ Field::Field(int stage)
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
-				new Player(x * 64, y * 64);//
+				new Player(x * 64, y * 64);
 			}
 		}
 	}
@@ -82,14 +83,22 @@ Field::Field(int stage)
 				trap2 = new trap(x * 64, y * 64);
 			}*/
 
+			//↓上向きトラップ
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
 				traps[maps[y][x] - 101] = new trap(x * 64, y * 64, maps[y][x] - 101, 0);
 			}
-
+			//↓下向きトラップ
 			if (maps[y][x] > 300 && maps[y][x] < 400) {
 				downtraps[maps[y][x] - 301] = new trap(x * 64, y * 64, maps[y][x] - 301, 2);
 			}
-
+			//↓右向きトラップ
+			if (maps[y][x] > 500 && maps[y][x] < 600) {
+				righttraps[maps[y][x] - 501] = new trap(x * 64, y * 64, maps[y][x] - 501, 1);
+			}
+			//↓左向きトラップ
+			if (maps[y][x] > 700 && maps[y][x] < 800) {
+				lefttraps[maps[y][x] - 701] = new trap(x * 64, y * 64, maps[y][x] - 701, 3);
+			}
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
 			}
@@ -124,7 +133,12 @@ void Field::Update()
 				if (maps[y][x] > 300 && maps[y][x] < 400) {
 					downtraps[maps[y][x] - 301] = new trap(x * 64, y * 64, maps[y][x] - 301, 2);
 				}
-
+				if (maps[y][x] > 500 && maps[y][x] < 600) {
+					righttraps[maps[y][x] - 501] = new trap(x * 64, y * 64, maps[y][x] - 501, 1);
+				}
+				if (maps[y][x] > 700 && maps[y][x] < 800) {
+					lefttraps[maps[y][x] - 701] = new trap(x * 64, y * 64, maps[y][x] - 701, 3);
+				}
 			}
 		}
 	}
@@ -175,6 +189,12 @@ void CheckTrap(int x, int y) {
 	}
 	if (maps[y][x] > 400 && maps[y][x] < 500) {
 		downtraps[maps[y][x] - 401]->Active();
+	}
+	if (maps[y][x] > 600 && maps[y][x] < 700) {
+		righttraps[maps[y][x] - 601]->Active();
+	}
+	if (maps[y][x] > 800 && maps[y][x] < 900) {
+		lefttraps[maps[y][x] - 801]->Active();
 	}
 }
 int Field::HitCheckRight(int px, int py)

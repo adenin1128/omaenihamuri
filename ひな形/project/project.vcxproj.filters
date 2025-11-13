@@ -65,9 +65,6 @@
     <ClCompile Include="Source\csvReader.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\downtrap.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\respawn.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -157,9 +154,6 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\CsvReader.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\downtrap.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\respawn.h">

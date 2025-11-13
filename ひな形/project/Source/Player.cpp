@@ -223,6 +223,7 @@ void Player::Draw()
 			displayY = y - (size + 1) * 32;
 		}
 		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE,FALSE);
+		//new GameOver();
 	}
 	else {
 		DrawRectGraph(x, y, xRect, yRect, CHARACTER_WIDTH, CHARACTER_HEIGHT, animImage, TRUE, direction);
