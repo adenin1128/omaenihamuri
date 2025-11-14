@@ -55,6 +55,7 @@ void GenerateTrap(int posx, int posy, int id) {
 ;
 Field::Field(int stage)
 {
+	clear = false;
 	char filename[60];
 	sprintf_s<60>(filename, "data/Stage%02d.csv", stage);
 
@@ -134,6 +135,7 @@ Field::~Field()
 
 void Field::Update()
 {
+
 	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
 		for (auto& trap : traps) {
 			if (trap != nullptr) {
@@ -324,6 +326,18 @@ void Field::ChangeRespawnPoint(int x, int y)
 
 			// saveMaps[y][x]をリスポーンポイントに設定
 			ChangeMapChip(x, y, 2);
+		}
+	}
+}
+void Field::ChangeClearPoint(int x, int y)
+{
+	Player* player = FindGameObject<Player>();
+	if (player->GetState() == STATE_NORMAL) {
+		if (maps[y][x] == 6) {
+			clear = true;
+			new clear;
+
+
 		}
 	}
 }

@@ -154,6 +154,7 @@
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Source\BootScene.h" />
     <ClInclude Include="Source\Box.h" />
+    <ClInclude Include="Source\Clear.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\CsvReader.h" />
     <ClInclude Include="Source\Field.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Library\Time.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
     <ClCompile Include="Source\Box.cpp" />
+    <ClCompile Include="Source\Clear.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\csvReader.cpp" />
     <ClCompile Include="Source\Field.cpp" />

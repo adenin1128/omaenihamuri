@@ -26,6 +26,7 @@ public:
 	int HitCheckDownTrap(int px, int py);*/
 	void ChangeMapChip(int x, int y, int type);
 	void ChangeRespawnPoint(int x, int y);
+	void ChangeClearPoint(int x, int y);
 
 	int GetDeathCount() { return deathcount; }
 private:
@@ -38,4 +39,5 @@ private:
 	int harisitaimage;
 	int HIT_TRAP = 0;
 	int deathcount;
+	bool clear;
 };
