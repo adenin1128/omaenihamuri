@@ -6,6 +6,7 @@
 #include "Trigger.h"
 #include "CsvReader.h"
 #include "Nyoki.h"
+#include "skeleton.h"
 using namespace std;
 
 //vector<vector<int>> maps = {
@@ -120,6 +121,9 @@ Field::Field(int stage)
 			if (maps[y][x] == 9) {
 				new Nyoki(x * 64, y * 64);
 			}
+			if (maps[y][x] == 10) {
+				new Skeleton(x * 64, y * 64);
+			}
 		}
 	}
 }
@@ -151,6 +155,10 @@ void Field::Update()
 				if (saveMaps[y][x] == 9){
 					FindGameObject<Nyoki>()->DestroyMe();
 					new Nyoki(x * 64, y * 64);
+				}
+				if (saveMaps[y][x] == 10) {
+					FindGameObject<Skeleton>()->DestroyMe();
+					new Skeleton(x * 64, y * 64);
 				}
 			}
 		}
@@ -196,9 +204,20 @@ void Field::Draw()
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 }
-void CheckTrap(int x, int y) {
+void Field::CheckTrap(int x, int y) {
 	if (maps[y][x] > 200 && maps[y][x] < 300) {
 		traps[maps[y][x] - 201]->Active();
+	}
+	if (maps[y][x] == 9) {
+		Nyoki* nyoki = FindGameObject<Nyoki>();
+		/*if (nyoki->IsNyoki(x, y)) {
+			state = STATE_BOOM;
+		}*/
+		nyoki->IsNyoki(x, y);
+	}
+	if(maps[y][x] == 10) {
+		Skeleton* skelton = FindGameObject<Skeleton>();
+		skelton->IsHit(x, y);
 	}
 }
 int Field::HitCheckRight(int px, int py)

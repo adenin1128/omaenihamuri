@@ -8,11 +8,14 @@ public:
 	~Nyoki();
 	void Update() override;
 	void Draw() override;
+	bool IsNyoki(int px, int py);
+
 private:
-	float x, y;
+	float nx, ny;
 	int nyokiImage;
 	int size;
 	int move;
 	int count;
 	int loop;
+	int a;
 };

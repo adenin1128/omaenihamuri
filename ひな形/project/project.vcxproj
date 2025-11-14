@@ -166,6 +166,7 @@
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene1.h" />
     <ClInclude Include="Source\SceneFactory.h" />
+    <ClInclude Include="Source\skeleton.h" />
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\trap.h" />
     <ClInclude Include="Source\Trigger.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Source\PlayScene2.cpp" />
     <ClCompile Include="Source\respawn.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
+    <ClCompile Include="Source\skeleton.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\trap.cpp" />
     <ClCompile Include="Source\Trigger.cpp" />

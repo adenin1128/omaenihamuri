@@ -86,6 +86,9 @@
     <ClCompile Include="Source\PlayScene2.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\skeleton.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -184,6 +187,9 @@
       <Filter>Mainmenu</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayScene2.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\skeleton.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
