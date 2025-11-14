@@ -38,7 +38,7 @@ public:
 	void SetState(PlayerState s) { state = s; }
 	// Player.h の public: セクションに仮定で追加
 	bool IsBOOM() const { return state == STATE_BOOM; }
-
+	void Move(int vx, int vy); // プレイヤーの移動処理
 private:
 
 	static const int CHARACTER_WIDTH = 64;

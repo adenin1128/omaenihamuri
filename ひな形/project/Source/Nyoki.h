@@ -18,4 +18,6 @@ private:
 	int count;
 	int loop;
 	int a;
+
+	int cx, cy;
 };
