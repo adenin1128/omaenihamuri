@@ -78,7 +78,7 @@ void Player::Update()
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
-			field->Checkbol(x + 32, y + 32);
+			//field->Checkbol(x + 32, y + 32);
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
@@ -92,7 +92,7 @@ void Player::Update()
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
-			field->Checkbol(x + 32, y + 32);
+			//field->Checkbol(x + 32, y + 32);
 		}
 
 		if (onGround == true) {
@@ -100,7 +100,7 @@ void Player::Update()
 				velocity = v0;
 				onGround = false;
 				Field* field = FindGameObject<Field>();
-				field->Checkbol(x + 32, y + 32);
+				//field->Checkbol(x + 32, y + 32);
 			}
 		}
 
@@ -110,7 +110,7 @@ void Player::Update()
 					jumpcount -= 1;
 					velocity = v0;
 					Field* field = FindGameObject<Field>();
-					field->Checkbol(x + 32, y + 32);
+					//field->Checkbol(x + 32, y + 32);
 				}
 			}
 		}
@@ -254,4 +254,10 @@ void Player::Draw()
 	DrawCircle(GetColliderLeftBottom().x, GetColliderLeftBottom().y, 2, GetColor(0, 255, 0), true);
 	DrawCircle(GetColliderRightTop().x, GetColliderRightTop().y, 2, GetColor(0, 255, 0), true);
 	DrawCircle(GetColliderRightBottom().x, GetColliderRightBottom().y, 2, GetColor(0, 255, 0), true);
+}
+
+void Player::Move(int vx, int vy)
+{
+	x += vx;
+	y += vy;
 }

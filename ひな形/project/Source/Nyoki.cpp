@@ -30,6 +30,14 @@ void Nyoki::Update()
 			loop--;
 		}
 	}
+
+	Player* player = FindGameObject<Player>();
+	if (player != nullptr) {
+		if (IsNyoki(player->GetX(), player->GetY())) {
+ 			//player->Move(cx, cy);
+			return;
+		}
+	}
 }
 
 void Nyoki::Draw()
@@ -47,10 +55,17 @@ bool Nyoki::IsNyoki(int px, int py)
 	//nx,nyÇÕNyokiÇÃç¿ïW
 	int xp = px;
 	int yp = py;
-	if ((xp < (nx + size)) && ((xp + size) > nx) && ((yp + size > ny)) && (yp < (ny + size))) {
-		a++;
+	if ((xp < (nx + size)) && ((xp + size) > nx) && ((yp + size * 4> ny)) && (yp < (ny + size * 4))) {
+		//a++;
+		//cx = (nx - px) - 64;
+		//if (py + 64 < ny) cx = 0;
+		//cy = 64 - (ny + size * 4 - py);
+		//Player* player = FindGameObject<Player>();
+		//player->Move(cx, 0);
 		return true;
 	}
 	//(xp<(nx+size))&&((xp + size)>nx)&&((yp+size>ny))&&(yp<(ny+size))Ç±ÇÍÇ™AABBÇ≈Ç†Ç¡ÇƒÇÈÇÕÇ∏Åc
+	cx = 0;
+	cy = 0;
 	return false;
 }
