@@ -118,10 +118,10 @@ Field::Field(int stage)
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
 			}
-			if (maps[y][x] == 9) {
+			if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
 			}
-			if (maps[y][x] == 10) {
+			if (maps[y][x] == 11) {
 				new Skeleton(x * 64, y * 64);
 			}
 		}
@@ -152,11 +152,11 @@ void Field::Update()
 				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
 					GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
 				}
-				if (saveMaps[y][x] == 9){
+				if (saveMaps[y][x] == 10){
 					FindGameObject<Nyoki>()->DestroyMe();
 					new Nyoki(x * 64, y * 64);
 				}
-				if (saveMaps[y][x] == 10) {
+				if (saveMaps[y][x] == 11) {
 					FindGameObject<Skeleton>()->DestroyMe();
 					new Skeleton(x * 64, y * 64);
 				}
@@ -208,14 +208,17 @@ void Field::CheckTrap(int x, int y) {
 	if (maps[y][x] > 200 && maps[y][x] < 300) {
 		traps[maps[y][x] - 201]->Active();
 	}
-	if (maps[y][x] == 9) {
+}
+void Field::Checkbol(int x, int y)
+{
+	if (maps[y][x] == 10) {
 		Nyoki* nyoki = FindGameObject<Nyoki>();
 		/*if (nyoki->IsNyoki(x, y)) {
 			state = STATE_BOOM;
 		}*/
 		nyoki->IsNyoki(x, y);
 	}
-	if(maps[y][x] == 10) {
+	if (maps[y][x] == 11) {
 		Skeleton* skelton = FindGameObject<Skeleton>();
 		skelton->IsHit(x, y);
 	}
@@ -227,6 +230,7 @@ int Field::HitCheckRight(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
+	Checkbol(x, y);
 	if (maps[y][x] == 1)
 	{ // “–‚½‚Á‚Ä‚é 
 		return px % 64 + 1;
@@ -241,6 +245,7 @@ int Field::HitCheckLeft(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
+	Checkbol(x, y);
 	if (maps[y][x] == 1)
 	{ // “–‚½‚Á‚Ä‚é 
 		return px % 64 - 64;
@@ -255,6 +260,7 @@ int Field::HitCheckUp(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
+	Checkbol(x, y);
 	if (maps[y][x] == 1)
 		return 64 - py % 64;
 	return 0;
@@ -267,6 +273,7 @@ int Field::HitCheckDown(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
+	Checkbol(x, y);
 	if (maps[y][x] == 1)
 		return py  % 64 + 1;
 	return 0;
