@@ -7,12 +7,13 @@ Nyoki::Nyoki(int px, int py)
 {
 	nyokiImage = LoadGraph("data/image/nyoblo.png");
 	assert(nyokiImage > 0);
-	x = px;
-	y = py;
+	nx = px;
+	ny = py;
 	size = 64;
 	move = 0;
 	count = 0;
-	loop = 0;//4にしたらニョキニョキする
+	loop = 4;//4にしたらニョキニョキする
+	a = 0;
 }
 
 Nyoki::~Nyoki()
@@ -23,7 +24,7 @@ void Nyoki::Update()
 {
 	if(loop > 0) {
 		count += 1;
-		if (count >= 50) {
+		if (count >= 10) {
 			count = 0;
 			move = (move + 4) % 17;
 			loop--;
@@ -33,8 +34,23 @@ void Nyoki::Update()
 
 void Nyoki::Draw()
 {
-	DrawRectGraph(x, y, size * move,0,size,size * 4,nyokiImage, TRUE);
+	DrawRectGraph(nx, ny, size * move,0,size,size * 4,nyokiImage, TRUE);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "count:: %d", count);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "move:: %d", move);
 	DrawFormatString(0, 300, GetColor(255, 255, 255), "loop:: %d", loop);
+	DrawFormatString(0, 320, GetColor(255, 255, 255), "hit:: %d", a);
+}
+
+bool Nyoki::IsNyoki(int px, int py)
+{
+	//xp,ypはplayerの座標
+	//nx,nyはNyokiの座標
+	int xp = px;
+	int yp = py;
+	if ((xp < (nx + size)) && ((xp + size) > nx) && ((yp + size > ny)) && (yp < (ny + size))) {
+		a++;
+		return true;
+	}
+	//(xp<(nx+size))&&((xp + size)>nx)&&((yp+size>ny))&&(yp<(ny+size))これがAABBであってるはず…
+	return false;
 }
