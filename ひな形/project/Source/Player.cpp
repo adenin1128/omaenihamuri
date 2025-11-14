@@ -78,7 +78,7 @@ void Player::Update()
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
-			//field->CheckTrap(x + 32, y + 32);
+			field->Checkbol(x + 32, y + 32);
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
@@ -92,15 +92,15 @@ void Player::Update()
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
-			//field->CheckTrap(x + 32, y + 32);
+			field->Checkbol(x + 32, y + 32);
 		}
 
 		if (onGround == true) {
 			if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
 				velocity = v0;
 				onGround = false;
-				/*Field* field = FindGameObject<Field>();
-				field->CheckTrap(x + 32, y + 32);*/
+				Field* field = FindGameObject<Field>();
+				field->Checkbol(x + 32, y + 32);
 			}
 		}
 
@@ -109,8 +109,8 @@ void Player::Update()
 				if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
 					jumpcount -= 1;
 					velocity = v0;
-					/*Field* field = FindGameObject<Field>();
-					field->CheckTrap(x + 32, y + 32);*/
+					Field* field = FindGameObject<Field>();
+					field->Checkbol(x + 32, y + 32);
 				}
 			}
 		}
