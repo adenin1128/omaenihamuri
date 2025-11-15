@@ -7,13 +7,13 @@
 #include "CsvReader.h"
 #include "Nyoki.h"
 #include "skeleton.h"
-#include "updraft.h"
+#include "Clear.h"
 using namespace std;
 
 //vector<vector<int>> maps = {
-//	//199‚ÍŒÅ’èjI“®‚©‚µ‚½‚ç‚ ‚©‚ñ
-//	//0:‹ó”’ 1:’n–ÊiƒuƒƒbƒNj 4:’†ŠÔ 5:‚·‚è”²‚¯ƒuƒƒbƒN 
-//	//101`199:ƒgƒ‰ƒbƒv‚Ìj 201`299:ƒgƒ‰ƒbƒv‚ğ“®‚©‚·‚½‚ß‚ÌêŠ
+//	//199ã¯å›ºå®šé‡ï¼å‹•ã‹ã—ãŸã‚‰ã‚ã‹ã‚“
+//	//0:ç©ºç™½ 1:åœ°é¢ï¼ˆãƒ–ãƒ­ãƒƒã‚¯ï¼‰ 4:ä¸­é–“ 5:ã™ã‚ŠæŠœã‘ãƒ–ãƒ­ãƒƒã‚¯ 
+//	//101ï½199:ãƒˆãƒ©ãƒƒãƒ—ã®é‡ 201ï½299:ãƒˆãƒ©ãƒƒãƒ—ã‚’å‹•ã‹ã™ãŸã‚ã®å ´æ‰€
 //	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 //	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
@@ -32,7 +32,7 @@ using namespace std;
 //  {1,2,0,0,0,0,0,0,101,0,102,0,103,0,0,203,203,4,0,0,0,0,0,0,4,207,0,0,0,1 },
 //	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,104,105,109,1,1,1,1,1,1,1,1,1 },
 //  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,106,0,0,1,1,1,107,1,1,1,1 },
-//	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },//Œ©‚¦‚È‚¢ƒgƒ‰ƒbƒv’u‚­ƒ][ƒ“
+//	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },//è¦‹ãˆãªã„ãƒˆãƒ©ãƒƒãƒ—ç½®ãã‚¾ãƒ¼ãƒ³
 //
 //};
 
@@ -113,7 +113,7 @@ Field::Field(int stage)
 				trap2 = new trap(x * 64, y * 64);
 			}*/
 
-			//«ƒgƒ‰ƒbƒv
+			//â†“ãƒˆãƒ©ãƒƒãƒ—
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
 				GenerateTrap(x * 64, y * 64, maps[y][x]);
 			}
@@ -154,7 +154,7 @@ void Field::Update()
 					new Player(x * 64, y * 64);
 				}
 
-				// trapÄ¶¬
+				// trapå†ç”Ÿæˆ
 				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
 					GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
 				}
@@ -169,7 +169,7 @@ void Field::Update()
 			}
 		}
 	}
-	//	scrollX += 1; //‹­§ƒXƒNƒ[ƒ‹‚Ìê‡
+	//	scrollX += 1; //å¼·åˆ¶ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã®å ´åˆ
 }
 
 void Field::Draw()
@@ -238,7 +238,7 @@ int Field::HitCheckRight(int px, int py)
 	CheckTrap(x, y);
 	Checkbol(x, y);
 	if (maps[y][x] == 1)
-	{ // “–‚½‚Á‚Ä‚é 
+	{ // å½“ãŸã£ã¦ã‚‹ 
 		return px % 64 + 1;
 	}
 	return 0;
@@ -253,7 +253,7 @@ int Field::HitCheckLeft(int px, int py)
 	CheckTrap(x, y);
 	Checkbol(x, y);
 	if (maps[y][x] == 1)
-	{ // “–‚½‚Á‚Ä‚é 
+	{ // å½“ãŸã£ã¦ã‚‹ 
 		return px % 64 - 64;
 	}
 	return 0;
@@ -319,7 +319,7 @@ void Field::ChangeRespawnPoint(int x, int y)
 	Player* player = FindGameObject<Player>();
 	if (player->GetState() == STATE_NORMAL) {
 		if (maps[y][x] == 4) {
-			// ƒŠƒXƒ|[ƒ“ƒ|ƒCƒ“ƒg‚Ìíœ
+			// ãƒªã‚¹ãƒãƒ¼ãƒ³ãƒã‚¤ãƒ³ãƒˆã®å‰Šé™¤
 			for (int my = 0; my < saveMaps.size(); my++) {
 				for (int mx = 0; mx < saveMaps[my].size(); mx++) {
 					if (saveMaps[my][mx] == 2) {
@@ -327,28 +327,35 @@ void Field::ChangeRespawnPoint(int x, int y)
 					}
 				}
 			}
-
-			// saveMaps[y][x]‚ğƒŠƒXƒ|[ƒ“ƒ|ƒCƒ“ƒg‚Éİ’è
+			// saveMaps[y][x]ã‚’ãƒªã‚¹ãƒãƒ¼ãƒ³ãƒã‚¤ãƒ³ãƒˆã«è¨­å®š
 			ChangeMapChip(x, y, 2);
 		}
 	}
 }
-void Field::ChangeClearPoint(int x, int y)
+
+bool Field::IsGoal(int px, int py)
 {
-	Player* player = FindGameObject<Player>();
-	if (player->GetState() == STATE_NORMAL) {
-		if (maps[y][x] == 6) {
-			clear = true;
-			//new clear;
-		}
+	if (py < 0) {
+		return 0;
 	}
+	int x = px / 64;
+	int y = py / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 7) {
+		return true;
+	}
+	return false;
 }
+
+
+
 //int Field::HitCheckRightTrap(int px, int py)
 //{
 //	int x = px / 64;
 //	int y = py / 64;
 //	if (maps[y][x] > 100)
-//	{ // “–‚½‚Á‚Ä‚é 
+//	{ // å½“ãŸã£ã¦ã‚‹ 
 //		return px % 64 + 1;
 //	}
 //	return 0;
@@ -359,7 +366,7 @@ void Field::ChangeClearPoint(int x, int y)
 //	int x = px / 64;
 //	int y = py / 64;
 //	if (maps[y][x] > 100)
-//	{ // “–‚½‚Á‚Ä‚é 
+//	{ // å½“ãŸã£ã¦ã‚‹ 
 //		return px % 64 - 64;
 //	}
 //	return 0;
@@ -383,7 +390,7 @@ void Field::ChangeClearPoint(int x, int y)
 //	return 0;
 //}
 
-//“ñ•ûŒüG‚ê‚Ä‚¢‚é‚Æ‚®‚í‚®‚í‚·‚é
-//’Ç‰Á‚ÌƒCƒ“ƒNƒ‹[ƒhƒfƒBƒŒƒNƒg‚Ìİ’è‚ª‚í‚©‚ç‚È‚¢
-//«‚±‚ê’Ç‰Á‚ÌƒCƒ“ƒNƒ‹[ƒhƒfƒBƒŒƒNƒg‚É“ü‚ê‚È‚¢‚Æ
-// Library‚Æ‚±‚ÌƒvƒƒWƒFƒNƒg‚Ìƒtƒ@ƒCƒ‹ifield.h‚Æ‚©‚È‚ñ‚©‚±‚±‚É‚ ‚é‚©‚çjDxLIb‚Ì’Ç‰Á‚µ‚È‚¢‚Æ‚Ì‚â‚Â
+//äºŒæ–¹å‘è§¦ã‚Œã¦ã„ã‚‹ã¨ãã‚ãã‚ã™ã‚‹
+//è¿½åŠ ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆã®è¨­å®šãŒã‚ã‹ã‚‰ãªã„
+//â†“ã“ã‚Œè¿½åŠ ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆã«å…¥ã‚Œãªã„ã¨
+// Libraryã¨ã“ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆfield.hã¨ã‹ãªã‚“ã‹ã“ã“ã«ã‚ã‚‹ã‹ã‚‰ï¼‰DxLIbã®è¿½åŠ ã—ãªã„ã¨ã®ã‚„ã¤
