@@ -19,7 +19,7 @@ void Updraft::Update()
 	Player* player = FindGameObject<Player>();
 	if (player != nullptr) {
 		if (IsUp(player->GetX(), player->GetY())) {
-			player->VerocityUp(-10.0f);
+			player->VerocityUp();
 			return;
 		}
 	}
@@ -37,7 +37,7 @@ bool Updraft::IsUp(int px, int py)
 {
 	int xp = px;
 	int yp = py;
-	if ((xp < (x + size)) && ((xp + size) > x) && ((yp + size * 4 > y)) && (yp < (y + size * 4))) {
+	if ((xp < (x + size)) && ((xp + size) > x) && ((yp + size > y)) && (yp < (y + size))) {
 		Uphit = true;
 		Vy = -10.0f;
 		return true;

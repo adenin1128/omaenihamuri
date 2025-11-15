@@ -39,7 +39,8 @@ public:
 	// Player.h の public: セクションに仮定で追加
 	bool IsBOOM() const { return state == STATE_BOOM; }
 	void Move(int vx, int vy); // プレイヤーの移動処理
-	void VerocityUp(int Vy);
+	void VerocityUp();
+	void VerocityDown();
 private:
 
 	static const int CHARACTER_WIDTH = 64;

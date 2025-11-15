@@ -8,6 +8,8 @@
 #include "Nyoki.h"
 #include "skeleton.h"
 #include "Clear.h"
+#include "updraft.h"
+#include "Gravity.h"
 using namespace std;
 
 //vector<vector<int>> maps = {
@@ -128,6 +130,9 @@ Field::Field(int stage)
 			}
 			if(maps[y][x] == 15) {
 				new Updraft(x * 64, y * 64);
+			}
+			if(maps[y][x] == 16) {
+				new Gravity(x * 64, y * 64);
 			}
 		}
 	}
