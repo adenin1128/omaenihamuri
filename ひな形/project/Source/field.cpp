@@ -335,7 +335,7 @@ void Field::ChangeClearPoint(int x, int y)
 	if (player->GetState() == STATE_NORMAL) {
 		if (maps[y][x] == 6) {
 			clear = true;
-			new clear;
+			//new clear;
 
 
 		}
