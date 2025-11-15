@@ -7,6 +7,7 @@
 #include "CsvReader.h"
 #include "Nyoki.h"
 #include "skeleton.h"
+#include "updraft.h"
 using namespace std;
 
 //vector<vector<int>> maps = {
@@ -124,6 +125,9 @@ Field::Field(int stage)
 			}
 			if (maps[y][x] == 11) {
 				new Skeleton(x * 64, y * 64);
+			}
+			if(maps[y][x] == 15) {
+				new Updraft(x * 64, y * 64);
 			}
 		}
 	}
@@ -336,8 +340,6 @@ void Field::ChangeClearPoint(int x, int y)
 		if (maps[y][x] == 6) {
 			clear = true;
 			//new clear;
-
-
 		}
 	}
 }

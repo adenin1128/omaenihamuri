@@ -261,3 +261,8 @@ void Player::Move(int vx, int vy)
 	x += vx;
 	y += vy;
 }
+
+void Player::VerocityUp(int Vy)
+{
+	y += Vy;
+}
