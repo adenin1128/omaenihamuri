@@ -11,7 +11,7 @@
 #include <math.h>
 #define PI    3.1415926535897932384626433832795f
 
-static const float Gravity = 0.4;
+static float Gravity = 0.4;
 static const float v0 = -10.0;
 
 const float DRAG_COEFFICIENT = 0.05f;  // ‘¬“x‚ÌŒ¸ŠŒW”
@@ -65,6 +65,10 @@ void Player::Update()
 			if (jumpcount < Maxjumpcount) {
 				jumpcount += 1;
 			}
+		}
+
+		if(CheckHitKey(KEY_INPUT_R)) {
+			Gravity = 0.4;
 		}
 
 		if (CheckHitKey(KEY_INPUT_D))
@@ -269,7 +273,12 @@ void Player::Move(int vx, int vy)
 	y += vy;
 }
 
-void Player::VerocityUp(int Vy)
+void Player::VerocityUp()
 {
-	y += Vy;
+	Gravity = -0.2;
+}
+
+void Player::VerocityDown()
+{
+	Gravity = 0.4;
 }
