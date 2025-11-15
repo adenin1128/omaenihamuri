@@ -4,7 +4,8 @@
 enum PlayerState {
 	STATE_NORMAL,    // 通常時
 	STATE_BOOM, // 撃墜中
-	STATE_GAMEOVER   // 画面外に出てゲームオーバー
+	STATE_GAMEOVER,   // 画面外に出てゲームオーバー
+	STATE_CLEAR
 };
 
 class Player : public GameObject

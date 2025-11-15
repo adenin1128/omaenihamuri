@@ -159,6 +159,7 @@ void Player::Update()
 		Field* field = FindGameObject<Field>();
 		if (field->IsGoal(x, y)) {
 			new Clear();
+			state = STATE_CLEAR;
 		}
 	}
 	if (state == STATE_BOOM) {

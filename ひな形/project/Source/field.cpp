@@ -8,6 +8,7 @@
 #include "Nyoki.h"
 #include "skeleton.h"
 #include "Clear.h"
+#include "updraft.h"
 using namespace std;
 
 //vector<vector<int>> maps = {
