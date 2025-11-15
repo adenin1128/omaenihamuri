@@ -67,6 +67,10 @@ void Player::Update()
 			}
 		}
 
+		if(CheckHitKey(KEY_INPUT_R)) {
+			Gravity = 0.4;
+		}
+
 		if (CheckHitKey(KEY_INPUT_D))
 		{
 			x += 3.0f; // âEÇ…êiÇﬁ 
