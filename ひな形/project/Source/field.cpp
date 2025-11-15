@@ -7,6 +7,7 @@
 #include "CsvReader.h"
 #include "Nyoki.h"
 #include "skeleton.h"
+#include "Clear.h"
 using namespace std;
 
 //vector<vector<int>> maps = {
@@ -323,24 +324,29 @@ void Field::ChangeRespawnPoint(int x, int y)
 					}
 				}
 			}
-
 			// saveMaps[y][x]をリスポーンポイントに設定
 			ChangeMapChip(x, y, 2);
 		}
 	}
 }
-void Field::ChangeClearPoint(int x, int y)
+
+bool Field::IsGoal(int px, int py)
 {
-	Player* player = FindGameObject<Player>();
-	if (player->GetState() == STATE_NORMAL) {
-		if (maps[y][x] == 6) {
-			clear = true;
-			new clear;
-
-
-		}
+	if (py < 0) {
+		return 0;
 	}
+	int x = px / 64;
+	int y = py / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 7) {
+		return true;
+	}
+	return false;
 }
+
+
+
 //int Field::HitCheckRightTrap(int px, int py)
 //{
 //	int x = px / 64;

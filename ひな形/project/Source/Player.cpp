@@ -6,6 +6,7 @@
 #include "trap.h"
 #include "Nyoki.h"
 #include "skeleton.h"
+#include "Clear.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #define PI    3.1415926535897932384626433832795f
@@ -155,6 +156,10 @@ void Player::Update()
 		{
 			animIndex = 0; // アニメーションのコマを最初のコマ (静止画) に固定する
 		}
+		Field* field = FindGameObject<Field>();
+		if (field->IsGoal(x, y)) {
+			new Clear();
+		}
 	}
 	if (state == STATE_BOOM) {
 
@@ -189,6 +194,7 @@ void Player::Update()
 			Boomtime++;
 		}
 	}
+
 }
 
 
