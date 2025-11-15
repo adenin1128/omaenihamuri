@@ -9,6 +9,7 @@
 #include "skeleton.h"
 #include "Clear.h"
 #include "updraft.h"
+#include "Gravity.h"
 
 using namespace std;
 
