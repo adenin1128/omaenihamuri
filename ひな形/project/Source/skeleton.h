@@ -12,5 +12,4 @@ public:
 private:
 	float x, y;
 	int size;
-	int b;
 };
