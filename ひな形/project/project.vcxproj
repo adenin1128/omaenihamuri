@@ -171,6 +171,7 @@
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\trap.h" />
     <ClInclude Include="Source\Trigger.h" />
+    <ClInclude Include="Source\updraft.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImGui\imgui.cpp" />
@@ -204,6 +205,7 @@
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\trap.cpp" />
     <ClCompile Include="Source\Trigger.cpp" />
+    <ClCompile Include="Source\updraft.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

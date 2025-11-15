@@ -11,9 +11,9 @@
 using namespace std;
 
 //vector<vector<int>> maps = {
-//	//199�͌Œ�j�I���������炠����
-//	//0:�� 1:�n�ʁi�u���b�N�j 4:���� 5:���蔲���u���b�N 
-//	//101�`199:�g���b�v�̐j 201�`299:�g���b�v�𓮂������߂̏ꏊ
+//	//199は固定針！動かしたらあかん
+//	//0:空白 1:地面（ブロック） 4:中間 5:すり抜けブロック 
+//	//101～199:トラップの針 201～299:トラップを動かすための場所
 //	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 //	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
@@ -32,7 +32,7 @@ using namespace std;
 //  {1,2,0,0,0,0,0,0,101,0,102,0,103,0,0,203,203,4,0,0,0,0,0,0,4,207,0,0,0,1 },
 //	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,104,105,109,1,1,1,1,1,1,1,1,1 },
 //  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,106,0,0,1,1,1,107,1,1,1,1 },
-//	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },//�����Ȃ��g���b�v�u���]�[��
+//	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },//見えないトラップ置くゾーン
 //
 //};
 
@@ -113,7 +113,7 @@ Field::Field(int stage)
 				trap2 = new trap(x * 64, y * 64);
 			}*/
 
-			//���g���b�v
+			//↓トラップ
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
 				GenerateTrap(x * 64, y * 64, maps[y][x]);
 			}
@@ -125,6 +125,9 @@ Field::Field(int stage)
 			}
 			if (maps[y][x] == 11) {
 				new Skeleton(x * 64, y * 64);
+			}
+			if(maps[y][x] == 15) {
+				new Updraft(x * 64, y * 64);
 			}
 		}
 	}
@@ -151,7 +154,7 @@ void Field::Update()
 					new Player(x * 64, y * 64);
 				}
 
-				// trap�Đ���
+				// trap再生成
 				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
 					GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
 				}
@@ -166,7 +169,7 @@ void Field::Update()
 			}
 		}
 	}
-	//	scrollX += 1; //�����X�N���[���̏ꍇ
+	//	scrollX += 1; //強制スクロールの場合
 }
 
 void Field::Draw()
@@ -235,7 +238,7 @@ int Field::HitCheckRight(int px, int py)
 	CheckTrap(x, y);
 	Checkbol(x, y);
 	if (maps[y][x] == 1)
-	{ // �������Ă� 
+	{ // 当たってる 
 		return px % 64 + 1;
 	}
 	return 0;
@@ -250,7 +253,7 @@ int Field::HitCheckLeft(int px, int py)
 	CheckTrap(x, y);
 	Checkbol(x, y);
 	if (maps[y][x] == 1)
-	{ // �������Ă� 
+	{ // 当たってる 
 		return px % 64 - 64;
 	}
 	return 0;
@@ -316,7 +319,7 @@ void Field::ChangeRespawnPoint(int x, int y)
 	Player* player = FindGameObject<Player>();
 	if (player->GetState() == STATE_NORMAL) {
 		if (maps[y][x] == 4) {
-			// ���X�|�[���|�C���g�̍폜
+			// リスポーンポイントの削除
 			for (int my = 0; my < saveMaps.size(); my++) {
 				for (int mx = 0; mx < saveMaps[my].size(); mx++) {
 					if (saveMaps[my][mx] == 2) {
@@ -324,7 +327,7 @@ void Field::ChangeRespawnPoint(int x, int y)
 					}
 				}
 			}
-			// saveMaps[y][x]�����X�|�[���|�C���g�ɐݒ�
+			// saveMaps[y][x]をリスポーンポイントに設定
 			ChangeMapChip(x, y, 2);
 		}
 	}
@@ -352,7 +355,7 @@ bool Field::IsGoal(int px, int py)
 //	int x = px / 64;
 //	int y = py / 64;
 //	if (maps[y][x] > 100)
-//	{ // �������Ă� 
+//	{ // 当たってる 
 //		return px % 64 + 1;
 //	}
 //	return 0;
@@ -363,7 +366,7 @@ bool Field::IsGoal(int px, int py)
 //	int x = px / 64;
 //	int y = py / 64;
 //	if (maps[y][x] > 100)
-//	{ // �������Ă� 
+//	{ // 当たってる 
 //		return px % 64 - 64;
 //	}
 //	return 0;
@@ -387,7 +390,7 @@ bool Field::IsGoal(int px, int py)
 //	return 0;
 //}
 
-//������G��Ă���Ƃ��킮�킷��
-//�ǉ��̃C���N���[�h�f�B���N�g�̐ݒ肪�킩��Ȃ�
-//������ǉ��̃C���N���[�h�f�B���N�g�ɓ���Ȃ���
-// Library�Ƃ��̃v���W�F�N�g�̃t�@�C���ifield.h�Ƃ��Ȃ񂩂����ɂ��邩��jDxLIb�̒ǉ����Ȃ��Ƃ̂��
+//二方向触れているとぐわぐわする
+//追加のインクルードディレクトの設定がわからない
+//↓これ追加のインクルードディレクトに入れないと
+// Libraryとこのプロジェクトのファイル（field.hとかなんかここにあるから）DxLIbの追加しないとのやつ

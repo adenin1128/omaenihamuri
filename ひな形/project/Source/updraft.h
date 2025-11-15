@@ -1,15 +1,18 @@
 #pragma once
 #include "../Library/GameObject.h"
 
-class Skeleton : public GameObject
+class Updraft : public GameObject
 {
 public:
-	Skeleton(int px, int py);
-	~Skeleton();
+	Updraft(int px, int py);
+	~Updraft();
 	void Update() override;
 	void Draw() override;
-	bool IsHit(int px, int py);
+	bool IsUp(int px, int py);
 private:
 	float x, y;
+	int windImage;
+	int Uphit;
 	int size;
+	int Vy;
 };
