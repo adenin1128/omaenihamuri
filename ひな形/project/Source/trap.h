@@ -9,10 +9,10 @@ public:
 	void Draw() override;
 	void Active();
 	enum Direction {
-		TOP,
-		RIGHT,
-		UNDER,
-		LEFT
+		TOP,  //0
+		RIGHT,//1
+		UNDER,//2
+		LEFT  //3
 	};
 private:
 	int hariImage;
