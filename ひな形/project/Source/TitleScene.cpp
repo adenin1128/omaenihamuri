@@ -1,4 +1,5 @@
 #include "TitleScene.h"
+#include "Trigger.h"
 
 TitleScene::TitleScene()
 {
@@ -11,7 +12,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Update()
 {
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
+	if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
 		SceneManager::ChangeScene("MENU");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
