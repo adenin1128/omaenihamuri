@@ -223,17 +223,17 @@ void Field::CheckTrap(int x, int y) {
 }
 void Field::Checkbol(int x, int y)
 {
-	if (maps[y][x] == 10) {
-		Nyoki* nyoki = FindGameObject<Nyoki>();
-		/*if (nyoki->IsNyoki(x, y)) {
-			state = STATE_BOOM;
-		}*/
-		nyoki->IsNyoki(x, y);
-	}
-	if (maps[y][x] == 11) {
-		Skeleton* skelton = FindGameObject<Skeleton>();
-		skelton->IsHit(x, y);
-	}
+	//if (maps[y][x] == 10) {
+	//	Nyoki* nyoki = FindGameObject<Nyoki>();
+	//	/*if (nyoki->IsNyoki(x, y)) {
+	//		state = STATE_BOOM;
+	//	}*/
+	//	nyoki->IsNyoki(x, y);
+	//}
+	//if (maps[y][x] == 11) {
+	//	Skeleton* skelton = FindGameObject<Skeleton>();
+	//	skelton->IsHit(x, y);
+	//}
 }
 int Field::HitCheckRight(int px, int py)
 {

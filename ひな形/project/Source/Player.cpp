@@ -9,7 +9,7 @@
 #include "Clear.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
-#define PI    3.1415926535897932384626433832795f
+#include "Debug.h"
 
 static float Gravity = 0.4;
 static const float v0 = -10.0;
@@ -43,7 +43,7 @@ Player::Player(float startX, float startY)
 	Boomtime = 0;
 	/*x = 500;
 	y = 200;*/
-
+	new Debug();
 }
 
 //コンストラクター
@@ -58,6 +58,19 @@ Player::~Player()
 //計算するところ
 void Player::Update()
 {
+	// Nyokiの左右判定
+	Nyoki* nyoki = FindGameObject<Nyoki>();
+	if (nyoki != nullptr) {
+		int push1, push2;
+		push1 = nyoki->HitCheckRight(x + 50, y + 5);
+		push2 = nyoki->HitCheckRight(x + 50, y + 61);
+		x -= max(push1, push2);
+		
+		push1 = nyoki->HitCheckLeft(x + 14, y + 5);
+		push2 = nyoki->HitCheckLeft(x + 14, y + 61);
+		x -= min(push1, push2);
+	}
+
 	if (state == STATE_NORMAL) {
 		int moveX = 0;
 
@@ -76,6 +89,8 @@ void Player::Update()
 			x += 3.0f; // 右に進む 
 			direction = false;
 			moveX += 2.0f;
+			
+			// Field判定
 			Field* field = FindGameObject<Field>();
 			int push1 = field->HitCheckRight(x + 50, y + 5);
 			int push2 = field->HitCheckRight(x + 50, y + 61);
@@ -90,9 +105,12 @@ void Player::Update()
 			x -= 3.0f;
 			direction = true;
 			moveX -= 2.0f;
+
+			// Field判定
 			Field* field = FindGameObject<Field>();
 			int push1 = field->HitCheckLeft(x + 14, y + 5);
 			int push2 = field->HitCheckLeft(x + 14, y + 61);
+
 			x -= max(push1, push2);
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
@@ -122,9 +140,18 @@ void Player::Update()
 		y += velocity;
 		velocity += Gravity;
 		if (velocity >= 0) {
+			// Field判定
 			Field* field = FindGameObject<Field>();
 			int push1 = field->HitCheckDown(x + 14, y + 64); // D点の下 
 			int push2 = field->HitCheckDown(x + 50, y + 64); // A点の下 
+
+			// Nyoki判定を追加
+			Nyoki* nyoki = FindGameObject<Nyoki>();
+			if (nyoki != nullptr) {
+				push1 = max(push1, nyoki->HitCheckDown(x + 14, y + 64));
+				push2 = max(push2, nyoki->HitCheckDown(x + 50, y + 64));
+			}
+
 			int push = max(push1, push2);
 			if (push > 0) {
 				y -= push - 1;
@@ -137,9 +164,18 @@ void Player::Update()
 		}
 		else
 		{
+			// Field判定
 			Field* field = FindGameObject<Field>();
 			int push1 = field->HitCheckUp(x + 14, y + 5); // D点の下 
-			int push2 = field->HitCheckUp(x + 50, y + 5); // A点の下 
+			int push2 = field->HitCheckUp(x + 50, y + 5); // A点の下
+
+			// Nyoki判定を追加
+			Nyoki* nyoki = FindGameObject<Nyoki>();
+			if (nyoki != nullptr) {
+				push1 = max(push1, nyoki->HitCheckUp(x + 14, y + 5));
+				push2 = max(push2, nyoki->HitCheckUp(x + 50, y + 5));
+			}
+
 			int push = max(push1, push2);
 			if (push > 0) {
 				y += push;
@@ -238,7 +274,7 @@ void Player::Draw()
 			displayY = y + (size + 1) * 32;
 		}
 		else if (y > 1080 + SAFE_MARGIN) {
-			rad = PI / 2;
+			rad = M_PI / 2;
 			displayY = y - (size + 1) * 32;
 		}
 		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE,FALSE);

@@ -8,7 +8,11 @@ public:
 	~Nyoki();
 	void Update() override;
 	void Draw() override;
-	bool IsNyoki(int px, int py);
+	
+	int HitCheckDown(int px, int py);
+	int HitCheckLeft(int px, int py);
+	int HitCheckUp(int px, int py);
+	int HitCheckRight(int px, int py);
 
 private:
 	float nx, ny;
@@ -17,7 +21,5 @@ private:
 	int move;
 	int count;
 	int loop;
-	int a;
-
-	int cx, cy;
+	bool a;
 };

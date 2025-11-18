@@ -101,6 +101,9 @@
     <ClCompile Include="Source\PlayScene3.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Debug.cpp">
+      <Filter>PlayScene\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -216,6 +219,9 @@
     <ClInclude Include="Source\PlayScene3.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Debug.h">
+      <Filter>PlayScene\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -235,6 +241,9 @@
     </Filter>
     <Filter Include="Mainmenu">
       <UniqueIdentifier>{7deb0397-eb1a-4047-bd5c-7733a16ded2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\Debug">
+      <UniqueIdentifier>{3a31862a-1efc-4855-aca1-802c723981cb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
