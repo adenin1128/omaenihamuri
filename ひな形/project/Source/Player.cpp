@@ -62,12 +62,12 @@ void Player::Update()
 	Nyoki* nyoki = FindGameObject<Nyoki>();
 	if (nyoki != nullptr) {
 		int push1, push2;
-		push1 = nyoki->HitCheckRight(x + 50, y + 5);
-		push2 = nyoki->HitCheckRight(x + 50, y + 61);
+		push1 = nyoki->HitCheckRight(x + 60, y + 5);
+		push2 = nyoki->HitCheckRight(x + 60, y + 61);
 		x -= max(push1, push2);
 		
-		push1 = nyoki->HitCheckLeft(x + 14, y + 5);
-		push2 = nyoki->HitCheckLeft(x + 14, y + 61);
+		push1 = nyoki->HitCheckLeft(x + 4, y + 5);
+		push2 = nyoki->HitCheckLeft(x + 4, y + 61);
 		x -= min(push1, push2);
 	}
 
@@ -92,13 +92,12 @@ void Player::Update()
 			
 			// Field判定
 			Field* field = FindGameObject<Field>();
-			int push1 = field->HitCheckRight(x + 50, y + 5);
-			int push2 = field->HitCheckRight(x + 50, y + 61);
+			int push1 = field->HitCheckRight(x + 60, y + 5);
+			int push2 = field->HitCheckRight(x + 60, y + 61);
 			x -= max(push1, push2);
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
-			//field->Checkbol(x + 32, y + 32);
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
@@ -108,14 +107,13 @@ void Player::Update()
 
 			// Field判定
 			Field* field = FindGameObject<Field>();
-			int push1 = field->HitCheckLeft(x + 14, y + 5);
-			int push2 = field->HitCheckLeft(x + 14, y + 61);
+			int push1 = field->HitCheckLeft(x + 4, y + 5);
+			int push2 = field->HitCheckLeft(x + 4, y + 61);
 
 			x -= max(push1, push2);
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
-			//field->Checkbol(x + 32, y + 32);
 		}
 
 		if (onGround == true) {
@@ -123,7 +121,6 @@ void Player::Update()
 				velocity = v0;
 				onGround = false;
 				Field* field = FindGameObject<Field>();
-				//field->Checkbol(x + 32, y + 32);
 			}
 		}
 
@@ -133,7 +130,6 @@ void Player::Update()
 					jumpcount -= 1;
 					velocity = v0;
 					Field* field = FindGameObject<Field>();
-					//field->Checkbol(x + 32, y + 32);
 				}
 			}
 		}
@@ -142,14 +138,14 @@ void Player::Update()
 		if (velocity >= 0) {
 			// Field判定
 			Field* field = FindGameObject<Field>();
-			int push1 = field->HitCheckDown(x + 14, y + 64); // D点の下 
-			int push2 = field->HitCheckDown(x + 50, y + 64); // A点の下 
+			int push1 = field->HitCheckDown(x + 4, y + 64); // D点の下 
+			int push2 = field->HitCheckDown(x + 60, y + 64); // A点の下 
 
 			// Nyoki判定を追加
 			Nyoki* nyoki = FindGameObject<Nyoki>();
 			if (nyoki != nullptr) {
-				push1 = max(push1, nyoki->HitCheckDown(x + 14, y + 64));
-				push2 = max(push2, nyoki->HitCheckDown(x + 50, y + 64));
+				push1 = max(push1, nyoki->HitCheckDown(x + 4, y + 64));
+				push2 = max(push2, nyoki->HitCheckDown(x + 60, y + 64));
 			}
 
 			int push = max(push1, push2);
@@ -166,14 +162,14 @@ void Player::Update()
 		{
 			// Field判定
 			Field* field = FindGameObject<Field>();
-			int push1 = field->HitCheckUp(x + 14, y + 5); // D点の下 
-			int push2 = field->HitCheckUp(x + 50, y + 5); // A点の下
+			int push1 = field->HitCheckUp(x + 4, y + 5); // D点の下 
+			int push2 = field->HitCheckUp(x + 60, y + 5); // A点の下
 
 			// Nyoki判定を追加
 			Nyoki* nyoki = FindGameObject<Nyoki>();
 			if (nyoki != nullptr) {
-				push1 = max(push1, nyoki->HitCheckUp(x + 14, y + 5));
-				push2 = max(push2, nyoki->HitCheckUp(x + 50, y + 5));
+				push1 = max(push1, nyoki->HitCheckUp(x + 4, y + 5));
+				push2 = max(push2, nyoki->HitCheckUp(x + 60, y + 5));
 			}
 
 			int push = max(push1, push2);
