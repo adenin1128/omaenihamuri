@@ -30,14 +30,6 @@ void Nyoki::Update()
 			loop--;
 		}
 	}
-
-	Player* player = FindGameObject<Player>();
-	if (player != nullptr) {
-		if (IsNyoki(player->GetX(), player->GetY())) {
- 			//player->Move(cx, cy);
-			return;
-		}
-	}
 }
 
 void Nyoki::Draw()
@@ -51,24 +43,55 @@ void Nyoki::Draw()
 		a = false;
 	}
 }
-bool Nyoki::IsNyoki(int px, int py)
-{
-	//xp,ypはplayerの座標
-	//nx,nyはNyokiの座標
-	int xp = px;
-	int yp = py;
-	if ((xp < (nx + size)) && ((xp + size) > nx) && ((yp + size * 4> ny)) && (yp < (ny + size * 4))) {
-		a = true;
-		
-		//cx = (nx - px) - 64;
-		//if (py + 64 < ny) cx = 0;
-		//cy = 64 - (ny + size * 4 - py);
-		//Player* player = FindGameObject<Player>();
-		//player->Move(cx, 0);
-		return true;
+
+// プレイヤーの下判定用
+int Nyoki::HitCheckDown(int px, int py) {
+	// Nyokiの横範囲内かチェック
+	if (px < nx || px >= nx + size) return 0;
+
+	// ブロックの上面とプレイヤーの足元の距離
+	int push = py - ny;
+	if (push >= 0 && push < 16) {  // ブロックの上面付近なら押し出す
+		return push;
 	}
-	//(xp<(nx+size))&&((xp + size)>nx)&&((yp+size>ny))&&(yp<(ny+size))これがAABBであってるはず…
-	cx = 0;
-	cy = 0;
-	return false;
+	return 0;
+}
+
+// プレイヤーの横判定用（右に移動するとき）
+int Nyoki::HitCheckRight(int px, int py) {
+	// Nyokiの縦範囲内かチェック
+	if (py < ny || py >= ny + 256) return 0;
+
+	// プレイヤーの右端がNyokiの左端に当たったか
+	int push = nx - px;
+	if (push < 0 && push > -16) {
+		return -push;  // 正の値で返す
+	}
+	return 0;
+}
+
+// プレイヤーの横判定用（左に移動するとき）
+int Nyoki::HitCheckLeft(int px, int py) {
+	// Nyokiの縦範囲内かチェック
+	if (py < ny || py >= ny + 256) return 0;
+
+	// プレイヤーの左端がNyokiの右端に当たったか
+	int push = (nx + 64) - px;
+	if (push > 0 && push < 16) {
+		return -push;  // 負の値で返す
+	}
+	return 0;
+}
+
+// プレイヤーの上判定用
+int Nyoki::HitCheckUp(int px, int py) {
+	// Nyokiの横範囲内かチェック
+	if (px < nx || px >= nx + 64) return 0;
+
+	// プレイヤーの頭がNyokiの下面に当たったか
+	int push = (ny + 256) - py;
+	if (push > 0 && push < 16) {
+		return push;
+	}
+	return 0;
 }
