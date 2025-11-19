@@ -2,6 +2,12 @@
 #include "../Library/GameObject.h"
 #include "Player.h"
 
+enum ClearState {
+	STATE_0,    // ドア待機状態
+	STATE_1,    // ドア閉めてる
+	STATE_2     // ドア閉まってる状態
+};
+
 class Field : public GameObject
 {
 public:
@@ -29,6 +35,9 @@ public:
 	void ChangeRespawnPoint(int x, int y);
 	void ChangeClearPoint(int x, int y);
 	int GetDeathCount() { return deathcount; }
+	ClearState state;
+	ClearState GetState() const { return state; }
+	void SetState(ClearState s) { state = s; }
 private:
 	int hImage;
 	float x, y;
@@ -38,6 +47,7 @@ private:
 	int haikeimage;
 	int harisitaimage;
 	int doorimage;
+	int kaiheiimage;
 	int HIT_TRAP = 0;
 	int deathcount;
 	bool clear;

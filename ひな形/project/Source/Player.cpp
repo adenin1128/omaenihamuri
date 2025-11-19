@@ -200,6 +200,7 @@ void Player::Update()
 		if (field->IsGoal(x, y)) {
 			new Clear();
 			state = STATE_CLEAR;
+			//field->SetState();
 		}
 	}
 	if (state == STATE_BOOM) {
