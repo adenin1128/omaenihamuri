@@ -109,8 +109,8 @@ void Debug::Draw()
 		DrawLine(0, y * 64, WIDTH, y * 64, GetColor(0, 255, 0), 2);
 	}
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
-	DrawBox(0, 0, WIDTH, HEIGHT, GetColor(255, 255, 255), TRUE);
+	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
+	//DrawBox(0, 0, WIDTH, HEIGHT, GetColor(255, 255, 255), TRUE);
 	DrawBox(x * 64, y * 64, x * 64 + 64, y * 64 + 64, GetColor(255, 0, 0), TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 }
