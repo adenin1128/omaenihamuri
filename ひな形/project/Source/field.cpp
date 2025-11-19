@@ -47,7 +47,9 @@ vector<vector<int>> trapDatas;
 
 trap* traps[99];
 
+
 int doorGraphs[7];
+int kaiheiGraphs[9];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -101,6 +103,9 @@ Field::Field(int stage)
 	harisitaimage = LoadGraph("data/image/harisita.png");
 	doorimage = LoadGraph("data/image/GOOOOOOOOOOAL.png");
 	LoadDivGraph("data/image/GOOOOOOOOOOAL.png", 7, 7, 1, 64, 64, doorGraphs);
+	kaiheiimage = LoadGraph("data/image/GOOOOOOOOAL/png");
+	LoadDivGraph("data/image/GOOOOOOOOAL.png", 9, 9, 1, 64, 64, kaiheiGraphs);
+
 	x = 0;
 	y = 1080-64;
 	scrollX = 0; 
@@ -109,6 +114,7 @@ Field::Field(int stage)
 	size = 2;
 	timer = 0;
 	fream = 0;
+	state = STATE_0;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -200,22 +206,26 @@ void Field::Draw()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 7) {
-				//Player* player = FindGameObject<Player>();
-				/*if (fream < 6) {
-					if (timer % 50 == 0) {
+				if (state == STATE_0) {
+					if (timer % 10 == 0) {
 						fream++;
+
+						if (fream >= 7) {
+							fream = 0;
+						}
 					}
 					timer++;
-				}*/
-				if (timer % 10 == 0) {
-					fream++;
-
-					if (fream >= 7) {
-						fream = 0;
-					}
+					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, doorGraphs[fream], TRUE, FALSE);
 				}
-				timer++;
-				DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, doorGraphs[fream], TRUE, FALSE);
+				if (state == STATE_1) {
+					if (fream < 8) {
+						if (timer % 50 == 0) {
+							fream++;
+						}
+						timer++;
+					}
+					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[fream], TRUE, FALSE);
+				}
 				/*if (player->GetState() == STATE_CLEAR) {
 					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0);
 					if (CheckHitKey(KEY_INPUT_R)) {
