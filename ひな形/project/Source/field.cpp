@@ -95,6 +95,7 @@ Field::Field(int stage)
 	harimage = LoadGraph("data/image/hari.png");
 	hataimage = LoadGraph("data/image/hata.png");
 	harisitaimage = LoadGraph("data/image/harisita.png");
+	doorimage = LoadGraph("data/image/door.png");
 	x = 0;
 	y = 1080-64;
 	scrollX = 0; 

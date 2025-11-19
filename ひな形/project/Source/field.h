@@ -37,6 +37,7 @@ private:
 	int hataimage;
 	int haikeimage;
 	int harisitaimage;
+	int doorimage;
 	int HIT_TRAP = 0;
 	int deathcount;
 	bool clear;
