@@ -41,4 +41,5 @@ private:
 	int HIT_TRAP = 0;
 	int deathcount;
 	bool clear;
+	int size;
 };

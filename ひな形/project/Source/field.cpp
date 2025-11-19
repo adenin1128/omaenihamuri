@@ -10,6 +10,8 @@
 #include "Clear.h"
 #include "updraft.h"
 #include "Gravity.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 using namespace std;
 
@@ -44,6 +46,8 @@ vector<vector<int>> saveMaps;
 vector<vector<int>> trapDatas;
 
 trap* traps[99];
+
+int doorGraphs[9];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -95,12 +99,14 @@ Field::Field(int stage)
 	harimage = LoadGraph("data/image/hari.png");
 	hataimage = LoadGraph("data/image/hata.png");
 	harisitaimage = LoadGraph("data/image/harisita.png");
-	doorimage = LoadGraph("data/image/door.png");
+	doorimage = LoadGraph("data/image/GOOOOOOOOOOOOAL.png");
+	LoadDivGraph("data/image/GOOOOOOOOOOOOAL.png", 10, 10, 1, 64, 64, doorGraphs);
 	x = 0;
 	y = 1080-64;
 	scrollX = 0; 
 	HIT_TRAP = 0;
 	deathcount = 1;
+	size = 3;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -191,11 +197,9 @@ void Field::Draw()
 	}
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
-			int id = maps[y][x];
-
-		/*	if (id >= 107 && id <= 122) {
-				DrawGraph(x * 64, y * 64, harisitaimage, TRUE);
-			}*/
+			if (maps[y][x] == 7) {
+				DrawRotaGraph(x, y, size, 0, doorGraphs[9], TRUE, FALSE);
+			}
 		}
 	}
 
