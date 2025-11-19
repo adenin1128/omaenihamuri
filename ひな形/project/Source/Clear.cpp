@@ -18,12 +18,12 @@ Clear::~Clear()
 void Clear::Update()
 {
 	Player* player = FindGameObject<Player>();
-	if (player->GetState() != STATE_CLEAR)
-	if (CheckHitKey(KEY_INPUT_R)) {
-		SceneManager::ChangeScene("MENU");
-		DestroyMe();
+	if (player->GetState() != STATE_CLEAR) {
+		if (CheckHitKey(KEY_INPUT_R)) {
+			SceneManager::ChangeScene("MENU");
+			DestroyMe();
+		}
 	}
-
 }
 
 void Clear::Draw()

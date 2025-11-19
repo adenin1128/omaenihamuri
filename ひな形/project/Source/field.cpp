@@ -47,7 +47,7 @@ vector<vector<int>> trapDatas;
 
 trap* traps[99];
 
-int doorGraphs[9];
+int doorGraphs[7];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -99,14 +99,16 @@ Field::Field(int stage)
 	harimage = LoadGraph("data/image/hari.png");
 	hataimage = LoadGraph("data/image/hata.png");
 	harisitaimage = LoadGraph("data/image/harisita.png");
-	doorimage = LoadGraph("data/image/GOOOOOOOOOOOOAL.png");
-	LoadDivGraph("data/image/GOOOOOOOOOOOOAL.png", 10, 10, 1, 64, 64, doorGraphs);
+	doorimage = LoadGraph("data/image/GOOOOOOOOOOAL.png");
+	LoadDivGraph("data/image/GOOOOOOOOOOAL.png", 7, 7, 1, 64, 64, doorGraphs);
 	x = 0;
 	y = 1080-64;
 	scrollX = 0; 
 	HIT_TRAP = 0;
 	deathcount = 1;
-	size = 3;
+	size = 2;
+	timer = 0;
+	fream = 0;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -198,7 +200,28 @@ void Field::Draw()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 7) {
-				DrawRotaGraph(x, y, size, 0, doorGraphs[9], TRUE, FALSE);
+				//Player* player = FindGameObject<Player>();
+				/*if (fream < 6) {
+					if (timer % 50 == 0) {
+						fream++;
+					}
+					timer++;
+				}*/
+				if (timer % 10 == 0) {
+					fream++;
+
+					if (fream >= 7) {
+						fream = 0;
+					}
+				}
+				timer++;
+				DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, doorGraphs[fream], TRUE, FALSE);
+				/*if (player->GetState() == STATE_CLEAR) {
+					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0);
+					if (CheckHitKey(KEY_INPUT_R)) {
+						SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+					}
+				}*/
 			}
 		}
 	}
@@ -221,6 +244,7 @@ void Field::Draw()
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 }
+
 void Field::CheckTrap(int x, int y) {
 	if (maps[y][x] > 200 && maps[y][x] < 300) {
 		traps[maps[y][x] - 201]->Active();
