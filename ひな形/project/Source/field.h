@@ -42,4 +42,6 @@ private:
 	int deathcount;
 	bool clear;
 	int size;
+	int timer;
+	int fream;
 };
