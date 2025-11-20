@@ -115,6 +115,7 @@ Field::Field(int stage)
 	timer = 0;
 	fream = 0;
 	state = STATE_0;
+	hit = false;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -138,9 +139,6 @@ Field::Field(int stage)
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
 			}
-			if (maps[y][x] == 10) {
-				new Nyoki(x * 64, y * 64);
-			}
 			if (maps[y][x] == 11) {
 				new Skeleton(x * 64, y * 64);
 			}
@@ -150,6 +148,9 @@ Field::Field(int stage)
 			if(maps[y][x] == 16) {
 				new Gravity(x * 64, y * 64);
 			}
+			/*if (maps[y][x] == 10) {
+				new Nyoki(x * 64, y * 64);
+			}*/
 		}
 	}
 }
@@ -162,6 +163,7 @@ void Field::Update()
 {
 
 	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
+		hit = false;
 		for (auto& trap : traps) {
 			if (trap != nullptr) {
 				trap->DestroyMe();
@@ -179,13 +181,12 @@ void Field::Update()
 				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
 					GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
 				}
-				if (saveMaps[y][x] == 10){
-					FindGameObject<Nyoki>()->DestroyMe();
-					new Nyoki(x * 64, y * 64);
-				}
 				if (saveMaps[y][x] == 11) {
 					FindGameObject<Skeleton>()->DestroyMe();
 					new Skeleton(x * 64, y * 64);
+				}
+				if (saveMaps[y][x] == 10) {
+					FindGameObject<Nyoki>()->DestroyMe();
 				}
 			}
 		}
@@ -203,6 +204,7 @@ void Field::Draw()
 			}
 		}
 	}
+
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 7) {
@@ -229,6 +231,7 @@ void Field::Draw()
 						state = STATE_2;
 					}
 				}
+
 				if(state == STATE_2) {
 					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[8], TRUE, FALSE);
 				}
@@ -253,6 +256,8 @@ void Field::Draw()
 	}*/
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
+	if(hit == true)
+		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 }
 
 void Field::CheckTrap(int x, int y) {
@@ -369,6 +374,30 @@ bool Field::IsGoal(int px, int py)
 		return 0;
 	if (maps[y][x] == 7) {
 		return true;
+	}
+	return false;
+}
+
+bool Field::IsNyoki(int px, int py)
+{
+	if (py < 0) {
+		return 0;
+	}
+	int x = (px + 32) / 64;
+	int y = (py + 32) / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 9 && !hit) {
+		
+		for (int y = 0; y < maps.size(); y++) {
+			for (int x = 0; x < maps[y].size(); x++) {
+				if (maps[y][x] == 10) {
+					new Nyoki(x * 64, y * 64);
+					hit = true;
+					return true;
+				}
+			}
+		}
 	}
 	return false;
 }

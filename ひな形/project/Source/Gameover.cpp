@@ -24,6 +24,6 @@ void GameOver::Update()
 void GameOver::Draw()
 {
 	DrawRotaGraph(990, 540, 0.5, 0., loseImage, TRUE, FALSE);
-	DrawExtendFormatStringToHandle(850, 560, 2, 2, GetColor(0, 0, 0), GetDefaultFontHandle(), "•‰‚¯‚½‰ñ” %d‰ñ", deathCount);
+	DrawExtendFormatStringToHandle(850, 560, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "•‰‚¯‚½‰ñ” %d‰ñ", deathCount);
 
 }
