@@ -38,6 +38,9 @@ public:
 	ClearState state;
 	ClearState GetState() const { return state; }
 	void SetState(ClearState s) { state = s; }
+	void SetClear() {
+		state = STATE_1;
+	}
 private:
 	int hImage;
 	float x, y;
