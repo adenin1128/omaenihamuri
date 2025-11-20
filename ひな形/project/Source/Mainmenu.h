@@ -14,5 +14,9 @@ public:
 	void Update() override;
 	void Draw() override;
 	int menuImage;
+	int GetStageNum() { return rand; }
+
+private:
+	int rand;
 };
 
