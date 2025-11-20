@@ -18,28 +18,28 @@
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_impl_dx9.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_impl_win32.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_ja_gryph_ranges.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_tables.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="Library\ObjectManager.cpp">
       <Filter>Library</Filter>
@@ -104,6 +104,9 @@
     <ClCompile Include="Source\Debug.cpp">
       <Filter>PlayScene\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayScene4.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -127,34 +130,34 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imconfig.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_dx9.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_dx11.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_dxlib.hpp">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_impl_win32.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imgui_internal.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_rectpack.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_textedit.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imstb_truetype.h">
-      <Filter>ImGui</Filter>
+      <Filter>BootScene\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Library\ObjectManager.h">
       <Filter>Library</Filter>
@@ -222,6 +225,9 @@
     <ClInclude Include="Source\Debug.h">
       <Filter>PlayScene\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PlayScene4.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -236,14 +242,14 @@
     <Filter Include="PlayScene">
       <UniqueIdentifier>{8123ada4-16d1-40da-a8f3-3f9e93aafb30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ImGui">
-      <UniqueIdentifier>{a717257b-67b3-4bfa-834c-1e34032b33b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mainmenu">
       <UniqueIdentifier>{7deb0397-eb1a-4047-bd5c-7733a16ded2e}</UniqueIdentifier>
     </Filter>
     <Filter Include="PlayScene\Debug">
       <UniqueIdentifier>{3a31862a-1efc-4855-aca1-802c723981cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BootScene\ImGui">
+      <UniqueIdentifier>{a717257b-67b3-4bfa-834c-1e34032b33b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

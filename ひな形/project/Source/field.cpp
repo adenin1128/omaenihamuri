@@ -331,9 +331,6 @@ bool Field::Istrap(int px, int py)
 		return 0;
 	if (y >= maps.size())
 		return 0;
-	if (maps[y][x] == 10) {
-		return true;
-	}
 	return false;
 }
 

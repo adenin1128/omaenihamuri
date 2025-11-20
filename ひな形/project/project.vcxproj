@@ -166,6 +166,7 @@
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PlayScene2.h" />
     <ClInclude Include="Source\PlayScene3.h" />
+    <ClInclude Include="Source\PlayScene4.h" />
     <ClInclude Include="Source\respawn.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene1.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="Source\PlayScene1.cpp" />
     <ClCompile Include="Source\PlayScene2.cpp" />
     <ClCompile Include="Source\PlayScene3.cpp" />
+    <ClCompile Include="Source\PlayScene4.cpp" />
     <ClCompile Include="Source\respawn.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\skeleton.cpp" />

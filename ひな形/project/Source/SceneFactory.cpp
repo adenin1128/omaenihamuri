@@ -6,6 +6,7 @@
 #include "PlayScene1.h"
 #include "PlayScene2.h"
 #include "PlayScene3.h"
+#include "PlayScene4.h"
 #include "../Source/Mainmenu.h"
 
 
@@ -35,6 +36,10 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	if (name == "PLAY3")
 	{
 		return new PlayScene3();
+	}
+	if (name == "PLAY4")
+	{
+		return new PlayScene4();
 	}
 	MessageBox(NULL, ("éüÇÃÉVÅ[ÉìÇÕÇ†ÇËÇ‹ÇπÇÒ\n" + name).c_str(), "SceneFactory", MB_ICONERROR | MB_OK);
 	assert(false);
