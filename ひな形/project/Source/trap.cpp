@@ -101,12 +101,6 @@ void trap::Update()
 
         // 2. プレイヤーに初速を設定し、状態をSTATE_BOOMにする
         player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
-
-        // お試しでnew GameOver()を呼ばない
-        if (player->GetState() == STATE_BOOM) {
-            SetFontSize(32);
-            DrawString(200, 70, "BOOM ok", GetColor(255, 255, 0));
-        }
     }
 
     if (isActive) {
@@ -125,13 +119,4 @@ void trap::Draw()
 
     DrawRotaGraph(x + 32, y + 32, 1, rot, hariImage, true);
     //DrawRotaGraph(x + 32, y + 32, 1.0, M_PI, hariImage, true, false);
-    if (isGameover) {
-        SetFontSize(64);
-        DrawFormatString(x - 100, y - 100, GetColor(255, 0, 0), "ゲームオーバー");
-    }
-    Player* player = FindGameObject<Player>();
-    if (player && player->IsBOOM()) { // IsBOOM() は Player.h で定義されているとして
-        SetFontSize(32);
-        DrawString(10, 50, "BOOM ACTIVE!", GetColor(255, 255, 0));
-    }
 }
