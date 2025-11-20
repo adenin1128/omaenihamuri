@@ -8,6 +8,8 @@ namespace Screen
 {
 	static const int WIDTH = 1920;
 	static const int HEIGHT = 1080;
+	//static const int WIDTH = 2880;    OMEN—p
+	//static const int HEIGHT = 1800;   OMEN—p
 	static const BOOL WINDOW_MODE = TRUE;
 	static const char* WINDOW_NAME = "project";
 	static const float WINDOW_EXTEND = 1.0f;

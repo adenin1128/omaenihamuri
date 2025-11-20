@@ -2,6 +2,10 @@
 #include "field.h"
 #include "Player.h"
 #include <assert.h>
+#include "CsvReader.h"
+#include <vector>
+
+//vector<vector<int>> maps;
 
 Nyoki::Nyoki(int px, int py)
 {
@@ -24,11 +28,14 @@ void Nyoki::Update()
 {
 	if(loop > 0) {
 		count += 1;
-		if (count >= 40) {
+		if (count >= 10) {
 			count = 0;
 			move = (move + 4) % 17;
 			loop--;
 		}
+	}
+	else if(loop == 0) {
+		nx -= 10;
 	}
 }
 
