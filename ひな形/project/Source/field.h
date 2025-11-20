@@ -27,6 +27,7 @@ public:
 	bool OutOfMap(int px, int py);
 	bool Istrap(int px, int py);
 	bool IsGoal(int px, int py);
+	bool IsNyoki(int px, int py);
 	/*int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);
 	int HitCheckUpTrap(int px, int py);
@@ -57,4 +58,5 @@ private:
 	int size;
 	int timer;
 	int fream;
+	int hit;
 };

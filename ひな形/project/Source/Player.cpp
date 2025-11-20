@@ -99,6 +99,7 @@ void Player::Update()
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
+			field->IsNyoki(x + 32, y + 32);
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
@@ -116,6 +117,7 @@ void Player::Update()
 			if (field->Istrap(x + 32, y + 32)) {
 				/*new Clear();*/
 			}
+			field->IsNyoki(x + 32, y + 32);
 		}
 
 		if (onGround == true) {
@@ -202,6 +204,9 @@ void Player::Update()
 			state = STATE_CLEAR;
 			field->SetClear();
 			DeleteGraph(animImage);
+		}
+		if (field->IsNyoki(x, y)) {
+
 		}
 	}
 	if (state == STATE_BOOM) {
