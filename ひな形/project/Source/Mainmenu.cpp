@@ -22,6 +22,9 @@ void MainmenuScene::Update()
 	if (CheckHitKey(KEY_INPUT_3)) {
 		SceneManager::ChangeScene("PLAY3");
 	}
+	if (CheckHitKey(KEY_INPUT_4)) {
+		SceneManager::ChangeScene("PLAY4");
+	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		SceneManager::Exit();
 	}
@@ -36,4 +39,5 @@ void MainmenuScene::Draw()
 	DrawFormatString(100, 100, GetColor(255, 255, 255), "%4.1f", 1.0f / Time::DeltaTime());
 	DrawString(100, 400, "一応一旦1でステージ１だお\n2でステージ２だお", GetColor(255, 255, 255));
 	DrawString(100, 440, "ステージ3も追加したお", GetColor(255, 255, 255));
+	DrawString(100, 490, "魂のステージ4をご照覧あれ", GetColor(255, 255, 255));
 }
