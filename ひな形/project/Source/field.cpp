@@ -219,19 +219,19 @@ void Field::Draw()
 				}
 				if (state == STATE_1) {
 					if (fream < 8) {
-						if (timer % 50 == 0) {
+						if (timer % 15 == 0) {
 							fream++;
 						}
 						timer++;
 					}
 					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[fream], TRUE, FALSE);
-				}
-				/*if (player->GetState() == STATE_CLEAR) {
-					SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0);
-					if (CheckHitKey(KEY_INPUT_R)) {
-						SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+					if(fream >= 8) {
+						state = STATE_2;
 					}
-				}*/
+				}
+				if(state == STATE_2) {
+					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[8], TRUE, FALSE);
+				}
 			}
 		}
 	}
@@ -260,20 +260,7 @@ void Field::CheckTrap(int x, int y) {
 		traps[maps[y][x] - 201]->Active();
 	}
 }
-void Field::Checkbol(int x, int y)
-{
-	//if (maps[y][x] == 10) {
-	//	Nyoki* nyoki = FindGameObject<Nyoki>();
-	//	/*if (nyoki->IsNyoki(x, y)) {
-	//		state = STATE_BOOM;
-	//	}*/
-	//	nyoki->IsNyoki(x, y);
-	//}
-	//if (maps[y][x] == 11) {
-	//	Skeleton* skelton = FindGameObject<Skeleton>();
-	//	skelton->IsHit(x, y);
-	//}
-}
+
 int Field::HitCheckRight(int px, int py)
 {
 	int x = px / 64;
@@ -281,7 +268,6 @@ int Field::HitCheckRight(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
-	Checkbol(x, y);
 	if (maps[y][x] == 1)
 	{ // 当たってる 
 		return px % 64 + 1;
@@ -296,7 +282,6 @@ int Field::HitCheckLeft(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
-	Checkbol(x, y);
 	if (maps[y][x] == 1)
 	{ // 当たってる 
 		return px % 64 - 64;
@@ -311,7 +296,6 @@ int Field::HitCheckUp(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
-	Checkbol(x, y);
 	if (maps[y][x] == 1)
 		return 64 - py % 64;
 	return 0;
@@ -324,7 +308,6 @@ int Field::HitCheckDown(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	CheckTrap(x, y);
-	Checkbol(x, y);
 	if (maps[y][x] == 1)
 		return py  % 64 + 1;
 	return 0;
@@ -383,8 +366,8 @@ bool Field::IsGoal(int px, int py)
 	if (py < 0) {
 		return 0;
 	}
-	int x = px / 64;
-	int y = py / 64;
+	int x = (px + 32) / 64;
+	int y = (py + 32) / 64;
 	if (y >= maps.size())
 		return 0;
 	if (maps[y][x] == 7) {
