@@ -167,11 +167,11 @@ void Field::Update()
 		for (auto& trap : traps) {
 			if (trap != nullptr) {
 				trap->DestroyMe();
-			}		
+			}
 		}
 		deathcount++;
-		for (int y = 0; y < saveMaps.size();y++) {
-			for (int x = 0;x < saveMaps[y].size();x++) {
+		for (int y = 0; y < saveMaps.size(); y++) {
+			for (int x = 0; x < saveMaps[y].size(); x++) {
 				if (saveMaps[y][x] == 2) {
 					FindGameObject<Player>()->DestroyMe();
 					new Player(x * 64, y * 64);
@@ -185,8 +185,10 @@ void Field::Update()
 					FindGameObject<Skeleton>()->DestroyMe();
 					new Skeleton(x * 64, y * 64);
 				}
-				if (saveMaps[y][x] == 10) {
-					FindGameObject<Nyoki>()->DestroyMe();
+				if (hit == true) {
+					if (saveMaps[y][x] == 10) {
+						FindGameObject<Nyoki>()->DestroyMe();
+					}
 				}
 			}
 		}
