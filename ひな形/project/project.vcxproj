@@ -164,6 +164,7 @@
     <ClInclude Include="Source\Mainmenu.h" />
     <ClInclude Include="Source\Nyoki.h" />
     <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\PlayScene0.h" />
     <ClInclude Include="Source\PlayScene2.h" />
     <ClInclude Include="Source\PlayScene3.h" />
     <ClInclude Include="Source\PlayScene4.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="Source\Mainmenu.cpp" />
     <ClCompile Include="Source\Nyoki.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\PlayScene0.cpp" />
     <ClCompile Include="Source\PlayScene1.cpp" />
     <ClCompile Include="Source\PlayScene2.cpp" />
     <ClCompile Include="Source\PlayScene3.cpp" />

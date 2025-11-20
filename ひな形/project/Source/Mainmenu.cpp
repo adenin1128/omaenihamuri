@@ -1,9 +1,11 @@
 #include "Mainmenu.h"
-
+#include <random>
+using namespace std;
 
 MainmenuScene::MainmenuScene()
 {
 	menuImage = LoadGraph("data/image/menu.png"); // メニュー用の画像いつか用意する
+	rand = 0;
 }
 
 MainmenuScene::~MainmenuScene()
@@ -12,7 +14,14 @@ MainmenuScene::~MainmenuScene()
 
 void MainmenuScene::Update()
 {
-
+	
+	if (CheckHitKey(KEY_INPUT_0)) {
+		/*random_device rnd;
+		mt19937 mt(rnd());
+		uniform_int_distribution<>rand100(1, 4);
+		rand = rand100(mt);*/
+		SceneManager::ChangeScene("Play0");
+	}
 	if (CheckHitKey(KEY_INPUT_1)) {
 		SceneManager::ChangeScene("PLAY1");
 	}

@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "BootScene.h"
 #include "TitleScene.h"
+#include "PlayScene0.h"
 #include "PlayScene1.h"
 #include "PlayScene2.h"
 #include "PlayScene3.h"
@@ -24,6 +25,10 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	if (name == "MENU")
 	{
 		return new MainmenuScene();
+	}
+	if (name == "PLAY0")
+	{
+		return new PlayScene0();
 	}
 	if (name == "PLAY1")
 	{
