@@ -14,4 +14,6 @@ public:
 	void Update() override;
 	void Draw() override;
 	int titleimage;
+private:
+	float thikathika;
 };
