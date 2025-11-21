@@ -193,11 +193,11 @@ void Field::Update()
 					FindGameObject<Skeleton>()->DestroyMe();
 					new Skeleton(x * 64, y * 64);
 				}
-				if (hit == true) {
+				/*if (hit == true) {
 					if (saveMaps[y][x] == 10) {
 						FindGameObject<Nyoki>()->DestroyMe();
 					}
-				}
+				}*/
 			}
 		}
 	}
@@ -407,21 +407,6 @@ bool Field::IsNyoki(int px, int py)
 				}
 			}
 		}
-	}
-	return false;
-}
-
-bool Field::NyokiStop(int nx, int ny)
-{
-	int x = nx / 64;
-	int y = ny / 64;
-	if (ny < 0) {
-		return 0;
-	}
-	if (ny >= maps.size())
-		return 0;
-	if (maps[y][x] == 12) {
-		return true;
 	}
 	return false;
 }

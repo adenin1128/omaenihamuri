@@ -22,4 +22,5 @@ private:
 	int count;
 	int loop;
 	bool a;
+	int currentMoveX;
 };

@@ -7,8 +7,7 @@
 
 //vector<vector<int>> maps;
 
-int maxMoveX = 64 * 10;
-int currentMoveX = 0;
+int maxMoveX = 64 * 18 - 2;
 Nyoki::Nyoki(int px, int py)
 {
 	nyokiImage = LoadGraph("data/image/nyoblo.png");
@@ -20,6 +19,7 @@ Nyoki::Nyoki(int px, int py)
 	count = 0;
 	loop = 4;//4にしたらニョキニョキする
 	a = false;
+	currentMoveX = 0;
 }
 
 Nyoki::~Nyoki()
@@ -28,6 +28,11 @@ Nyoki::~Nyoki()
 
 void Nyoki::Update()
 {
+	Field* field = FindGameObject<Field>();
+	if (CheckHitKey(KEY_INPUT_R)) {
+		DestroyMe();
+		return;
+	}
 	if(loop > 0) {
 		count += 1;
 		if (count >= 10) {
@@ -44,14 +49,14 @@ void Nyoki::Update()
 		else {
 			nx -= 10;
 		}*/
-		/*if (currentMoveX <= maxMoveX) {
+		if (currentMoveX < maxMoveX) {
 			currentMoveX += 10;
 			nx -= 10;
-		}*/
-
-		if (nx > 320) {
-			nx -= 10;
 		}
+
+		/*if (nx > 320) {
+			nx -= 10;
+		}*/
 	}
 }
 
@@ -61,10 +66,6 @@ void Nyoki::Draw()
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "count:: %d", count);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "move:: %d", move);
 	DrawFormatString(0, 300, GetColor(255, 255, 255), "loop:: %d", loop);
-	if (a == true) {
-		DrawString(0, 320, "hit", GetColor(255, 255, 255));
-		a = false;
-	}
 }
 
 // プレイヤーの下判定用

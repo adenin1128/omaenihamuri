@@ -67,7 +67,8 @@ void MainmenuScene::Draw()
 	DrawString(0, 20, Version(), GetColor(255, 255, 255));
 	DrawString(0, 0, "TITLE SCENE", GetColor(255, 255, 255));
 	DrawFormatString(100, 100, GetColor(255, 255, 255), "%4.1f", 1.0f / Time::DeltaTime());
-	DrawString(100, 400, "一応一旦1でステージ１だお\n2でステージ２だお", GetColor(255, 255, 255));
-	DrawString(100, 440, "ステージ3も追加したお", GetColor(255, 255, 255));
-	DrawString(100, 490, "魂のステージ4をご照覧あれ", GetColor(255, 255, 255));
+	//DrawString(100, 400, "一応一旦1でステージ１だお", GetColor(255, 255, 255));
+	//DrawString(100, 420, "2でステージ２だお", GetColor(255, 255, 255));
+	//DrawString(100, 440, "ステージ3も追加したお", GetColor(255, 255, 255));
+	//DrawString(100, 490, "魂のステージ4をご照覧あれ", GetColor(255, 255, 255));
 }
