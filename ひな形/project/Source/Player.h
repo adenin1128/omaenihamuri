@@ -42,6 +42,7 @@ public:
 	void Move(int vx, int vy); // ƒvƒŒƒCƒ„[‚ÌˆÚ“®ˆ—
 	void VerocityUp();
 	void VerocityDown();
+	void VerocitySITA();
 private:
 
 	static const int CHARACTER_WIDTH = 64;

@@ -110,6 +110,12 @@
     <ClCompile Include="Source\PlayScene0.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\downdraft.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NeoGravity.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -232,6 +238,12 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayScene0.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\downdraft.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NeoGravity.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
