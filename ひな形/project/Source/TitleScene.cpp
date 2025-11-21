@@ -17,35 +17,32 @@ TitleScene::~TitleScene()
 void TitleScene::Update()
 {
 	thikathika += 1;
-	if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
+	if (KeyTrigger::CheckTrigger(KEY_INPUT_M)) {
 		SceneManager::ChangeScene("MENU");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		SceneManager::Exit();
 	}
-	if (thikathika < 60) {
-		DrawExtendFormatStringToHandle(1920 / 3 - 128, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
+	/*if (thikathika < 60) {
+		DrawExtendFormatStringToHandle(1920 / 3 - 128, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");*/
 
+	//}
+	if (thikathika == 100)
+	{
+		thikathika = 0;
 	}
-	if (thikathika > 120) {
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0); // ←透明度0（完全透明）
-		DrawExtendFormatStringToHandle(
-			1920 / 3 - 128, 820,
-			4, 4,
-			GetColor(0, 0, 0),
-			GetDefaultFontHandle(),
-			"PRESS THE M KEY TO START");
+	if (thikathika < 50)
+	{
+		SetFontSize(20);
+		DrawExtendFormatStringToHandle(1920 / 3 - 198, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
 	}
-	if (thikathika > 121) {
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255); // ←忘れずに戻す
-		thikathika = 1;
-	}
+
+
 }
 	//if (thikathika > 100) {
 	//	DrawExtendFormatStringToHandle(850, 560, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
 	//	thikathika = 0;
 	//}
-
 
 
 

@@ -21,6 +21,9 @@ void PlayScene0::Update()
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		SceneManager::Exit();
 	}
+	if (CheckHitKey(KEY_INPUT_T)) {
+		SceneManager::ChangeScene("MENU");
+	}
 }
 
 void PlayScene0::Draw()
