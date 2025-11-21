@@ -10,6 +10,8 @@
 #include "Clear.h"
 #include "updraft.h"
 #include "Gravity.h"
+#include "NeoGravity.h"
+#include "downdraft.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -147,6 +149,12 @@ Field::Field(int stage)
 			}
 			if(maps[y][x] == 16) {
 				new Gravity(x * 64, y * 64);
+			}
+			/*if (maps[y][x] == 17) {
+				new downdraft(x * 64, y * 64);
+			}*/
+			if (maps[y][x] == 18) {
+				new NeoGravity(x * 64, y * 64);
 			}
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);

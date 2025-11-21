@@ -325,3 +325,9 @@ void Player::VerocityDown()
 {
 	Gravity = 0.4;
 }
+
+
+void Player::VerocitySITA()
+{
+	Gravity = 0.01;
+}
