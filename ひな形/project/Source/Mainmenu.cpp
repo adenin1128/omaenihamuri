@@ -1,5 +1,7 @@
 #include "Mainmenu.h"
 #include <random>
+
+#include <iostream>
 using namespace std;
 
 MainmenuScene::MainmenuScene()
@@ -16,11 +18,31 @@ void MainmenuScene::Update()
 {
 	
 	if (CheckHitKey(KEY_INPUT_0)) {
-		/*random_device rnd;
+		random_device rnd;
 		mt19937 mt(rnd());
 		uniform_int_distribution<>rand100(1, 4);
-		rand = rand100(mt);*/
-		SceneManager::ChangeScene("Play0");
+		rand = rand100(mt);
+		if (rand == 1) {
+			// ˆ— 1
+			SceneManager::ChangeScene("PLAY1");
+		}
+		else if (rand == 2) {
+			// ˆ— 2
+			SceneManager::ChangeScene("PLAY2");
+
+		}
+		else if (rand == 3) {
+			// ˆ— 3
+			SceneManager::ChangeScene("PLAY3");
+
+		}
+		else { // rand == 4
+			// ˆ— 4
+			SceneManager::ChangeScene("PLAY4");
+
+		}
+
+		//SceneManager::ChangeScene("Play0");
 	}
 	if (CheckHitKey(KEY_INPUT_1)) {
 		SceneManager::ChangeScene("PLAY1");
