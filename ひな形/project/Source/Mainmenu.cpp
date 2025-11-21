@@ -6,7 +6,7 @@ using namespace std;
 
 MainmenuScene::MainmenuScene()
 {
-	menuImage = LoadGraph("data/image/menu.png"); // ƒƒjƒ…[—p‚Ì‰æ‘œ‚¢‚Â‚©—pˆÓ‚·‚é
+	menuImage = LoadGraph("data/image/menu.png"); // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã®ç”»åƒã„ã¤ã‹ç”¨æ„ã™ã‚‹
 	rand = 0;
 }
 
@@ -22,27 +22,26 @@ void MainmenuScene::Update()
 		mt19937 mt(rnd());
 		uniform_int_distribution<>rand100(1, 4);
 		rand = rand100(mt);
+
 		if (rand == 1) {
-			// ˆ— 1
+			// å‡¦ç† 1
 			SceneManager::ChangeScene("PLAY1");
 		}
 		else if (rand == 2) {
-			// ˆ— 2
+			// å‡¦ç† 2
 			SceneManager::ChangeScene("PLAY2");
 
 		}
 		else if (rand == 3) {
-			// ˆ— 3
+			// å‡¦ç† 3
 			SceneManager::ChangeScene("PLAY3");
 
 		}
 		else { // rand == 4
-			// ˆ— 4
+			// å‡¦ç† 4
 			SceneManager::ChangeScene("PLAY4");
 
 		}
-
-		//SceneManager::ChangeScene("Play0");
 	}
 	if (CheckHitKey(KEY_INPUT_1)) {
 		SceneManager::ChangeScene("PLAY1");
@@ -68,7 +67,7 @@ void MainmenuScene::Draw()
 	DrawString(0, 20, Version(), GetColor(255, 255, 255));
 	DrawString(0, 0, "TITLE SCENE", GetColor(255, 255, 255));
 	DrawFormatString(100, 100, GetColor(255, 255, 255), "%4.1f", 1.0f / Time::DeltaTime());
-	DrawString(100, 400, "ˆê‰ˆê’U1‚ÅƒXƒe[ƒW‚P‚¾‚¨\n2‚ÅƒXƒe[ƒW‚Q‚¾‚¨", GetColor(255, 255, 255));
-	DrawString(100, 440, "ƒXƒe[ƒW3‚à’Ç‰Á‚µ‚½‚¨", GetColor(255, 255, 255));
-	DrawString(100, 490, "°‚ÌƒXƒe[ƒW4‚ğ‚²Æ——‚ ‚ê", GetColor(255, 255, 255));
+	DrawString(100, 400, "ä¸€å¿œä¸€æ—¦1ã§ã‚¹ãƒ†ãƒ¼ã‚¸ï¼‘ã ãŠ\n2ã§ã‚¹ãƒ†ãƒ¼ã‚¸ï¼’ã ãŠ", GetColor(255, 255, 255));
+	DrawString(100, 440, "ã‚¹ãƒ†ãƒ¼ã‚¸3ã‚‚è¿½åŠ ã—ãŸãŠ", GetColor(255, 255, 255));
+	DrawString(100, 490, "é­‚ã®ã‚¹ãƒ†ãƒ¼ã‚¸4ã‚’ã”ç…§è¦§ã‚ã‚Œ", GetColor(255, 255, 255));
 }
