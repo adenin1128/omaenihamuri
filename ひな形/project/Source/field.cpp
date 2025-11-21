@@ -390,7 +390,6 @@ bool Field::IsNyoki(int px, int py)
 	if (y >= maps.size())
 		return 0;
 	if (maps[y][x] == 9 && !hit) {
-		
 		for (int y = 0; y < maps.size(); y++) {
 			for (int x = 0; x < maps[y].size(); x++) {
 				if (maps[y][x] == 10) {
@@ -400,6 +399,21 @@ bool Field::IsNyoki(int px, int py)
 				}
 			}
 		}
+	}
+	return false;
+}
+
+bool Field::NyokiStop(int nx, int ny)
+{
+	int x = nx / 64;
+	int y = ny / 64;
+	if (ny < 0) {
+		return 0;
+	}
+	if (ny >= maps.size())
+		return 0;
+	if (maps[y][x] == 12) {
+		return true;
 	}
 	return false;
 }
