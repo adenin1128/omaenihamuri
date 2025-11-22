@@ -2,6 +2,7 @@
 #include <random>
 #include "DxLib.h"
 #include <iostream>
+#include "field.h"
 using namespace std;
 
 //extern const char* Version();
@@ -10,6 +11,7 @@ MainmenuScene::MainmenuScene()
 {
 	menuImage = LoadGraph("data/image/menu.png"); // メニュー用の画像いつか用意する
 	rand = 0;
+	new Field(5);
 }
 
 MainmenuScene::~MainmenuScene()
