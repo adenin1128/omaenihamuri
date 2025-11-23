@@ -104,6 +104,7 @@ void Player::Update()
 				/*new Clear();*/
 			}
 			field->IsNyoki(x + 32, y + 32);
+			field->Jetpack(x, y);
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
@@ -122,23 +123,33 @@ void Player::Update()
 				/*new Clear();*/
 			}
 			field->IsNyoki(x + 32, y + 32);
+			field->Jetpack(x, y);
 		}
 
-		if (onGround == true) {
-			if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
+		Field* j = FindGameObject<Field>();
+		if (j->GetJetpack() == true) {
+			if (CheckHitKey(KEY_INPUT_SPACE)) {
 				velocity = v0;
-				onGround = false;
 			}
 		}
-
-		if (onGround == false) {
-			if (jumpcount == Maxjumpcount) {
+		else if (j->GetJetpack() == false) {
+			if (onGround == true) {
 				if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
-					jumpcount -= 1;
 					velocity = v0;
+					onGround = false;
+				}
+			}
+
+			if (onGround == false) {
+				if (jumpcount == Maxjumpcount) {
+					if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
+						jumpcount -= 1;
+						velocity = v0;
+					}
 				}
 			}
 		}
+	
 		y += velocity;
 		velocity += Gravity;
 		if (velocity >= 0) {

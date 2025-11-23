@@ -118,6 +118,7 @@ Field::Field(int stage)
 	fream = 0;
 	state = STATE_0;
 	hit = false;
+	jet = false;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -150,9 +151,9 @@ Field::Field(int stage)
 			if(maps[y][x] == 16) {
 				new Gravity(x * 64, y * 64);
 			}
-			/*if (maps[y][x] == 17) {
-				new downdraft(x * 64, y * 64);
-			}*/
+			if (maps[y][x] == 17) {
+				Jetpack(x, y);
+			}
 			if (maps[y][x] == 18) {
 				new NeoGravity(x * 64, y * 64);
 			}
@@ -267,6 +268,8 @@ void Field::Draw()
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 	if(hit == true)
+		DrawString(0, 320, "hit", GetColor(255, 255, 255));
+	if(jet == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 }
 
@@ -407,6 +410,21 @@ bool Field::IsNyoki(int px, int py)
 				}
 			}
 		}
+	}
+	return false;
+}
+
+bool Field::Jetpack(int px, int py)
+{
+	int x = (px + 32) / 64;
+	int y = (py + 32) / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 17) {
+		jet = true;
+	}
+	else if (maps[y][x] == 19) {
+		jet = false;
 	}
 	return false;
 }
