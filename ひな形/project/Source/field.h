@@ -28,6 +28,7 @@ public:
 	bool Istrap(int px, int py);
 	bool IsGoal(int px, int py);
 	bool IsNyoki(int px, int py);
+	float NyokiStop();
 	bool Jetpack(int px, int py);
 	/*int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);

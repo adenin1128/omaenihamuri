@@ -23,4 +23,5 @@ private:
 	int loop;
 	bool a;
 	int currentMoveX;
+	int maxMoveX;
 };
