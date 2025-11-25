@@ -7,7 +7,6 @@
 
 //vector<vector<int>> maps;
 
-int maxMoveX = 64 * 18 - 2;
 Nyoki::Nyoki(int px, int py)
 {
 	nyokiImage = LoadGraph("data/image/nyoblo.png");
@@ -20,6 +19,7 @@ Nyoki::Nyoki(int px, int py)
 	loop = 4;//4にしたらニョキニョキする
 	a = false;
 	currentMoveX = 0;
+	maxMoveX = 0;
 }
 
 Nyoki::~Nyoki()
@@ -33,7 +33,7 @@ void Nyoki::Update()
 		DestroyMe();
 		return;
 	}
-	if(loop > 0) {
+	if (loop > 0) {
 		count += 1;
 		if (count >= 10) {
 			count = 0;
@@ -41,22 +41,17 @@ void Nyoki::Update()
 			loop--;
 		}
 	}
-	if(loop == 0) {
-		/*Field* field = FindGameObject<Field>();
-		if (field->NyokiStop(nx, ny) == true) {
-			nx = 320;
-		}
-		else {
-			nx -= 10;
-		}*/
+	if (loop == 0) {
+		Field* field = FindGameObject<Field>();
+		maxMoveX = field->NyokiStop();
 		if (currentMoveX < maxMoveX) {
 			currentMoveX += 10;
+			nx += 10;
+		}
+		if (currentMoveX > maxMoveX) {
+			currentMoveX -= 10;
 			nx -= 10;
 		}
-
-		/*if (nx > 320) {
-			nx -= 10;
-		}*/
 	}
 }
 

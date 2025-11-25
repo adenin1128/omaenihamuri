@@ -400,6 +400,7 @@ bool Field::IsNyoki(int px, int py)
 	int y = (py + 32) / 64;
 	if (y >= maps.size())
 		return 0;
+
 	if (maps[y][x] == 9 && !hit) {
 		for (int y = 0; y < maps.size(); y++) {
 			for (int x = 0; x < maps[y].size(); x++) {
@@ -412,6 +413,45 @@ bool Field::IsNyoki(int px, int py)
 		}
 	}
 	return false;
+}
+
+float Field::NyokiStop()
+{
+	/*int nsx = 0;
+	int nx = 0;
+	for (int y = 0; y < maps.size(); y++) {
+		for (int x = 0; x < maps[y].size(); x++) {
+			if (maps[y][x] == 12) {
+				nsx = x;
+			}
+			if (maps[y][x] == 10) {
+				nx = x;
+			}
+			int dx = (nsx - nx);
+			return dx;
+		}
+	}*/
+
+	int nsx = -1;   // 12 の x
+	int nx = -1;   // 10 の x
+
+	for (int y = 0; y < maps.size(); y++) {
+		for (int x = 0; x < maps[y].size(); x++) {
+
+			if (maps[y][x] == 12) {
+				nsx = x;
+			}
+			if (maps[y][x] == 10) {
+				nx = x;
+			}
+		}
+	}
+
+	// どちらか見つからなかった時の防御
+	if (nsx < 0 || nx < 0) return 0.0f;
+
+	return static_cast<float>(nsx - nx) * 64;
+	return 0.0f;
 }
 
 bool Field::Jetpack(int px, int py)
