@@ -24,6 +24,7 @@ Nyoki::Nyoki(int px, int py)
 
 Nyoki::~Nyoki()
 {
+	DeleteGraph(nyokiImage);
 }
 
 void Nyoki::Update()
