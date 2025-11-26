@@ -14,9 +14,6 @@
     <ClCompile Include="Source\TitleScene.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayScene1.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp">
       <Filter>BootScene\ImGui</Filter>
     </ClCompile>
@@ -83,9 +80,6 @@
     <ClCompile Include="Source\Mainmenu.cpp">
       <Filter>Mainmenu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayScene2.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\skeleton.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -98,22 +92,17 @@
     <ClCompile Include="Source\Gravity.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayScene3.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Debug.cpp">
       <Filter>PlayScene\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PlayScene4.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PlayScene0.cpp">
-      <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\downdraft.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\NeoGravity.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageNumber.cpp" />
+    <ClCompile Include="Source\PlayScene.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,9 +123,6 @@
     </ClInclude>
     <ClInclude Include="Source\TitleScene.h">
       <Filter>TitleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayScene1.h">
-      <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imconfig.h">
       <Filter>BootScene\ImGui</Filter>
@@ -213,9 +199,6 @@
     <ClInclude Include="Source\Mainmenu.h">
       <Filter>Mainmenu</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayScene2.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\skeleton.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
@@ -228,22 +211,17 @@
     <ClInclude Include="Source\Gravity.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayScene3.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Debug.h">
       <Filter>PlayScene\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayScene4.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayScene0.h">
-      <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\downdraft.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\NeoGravity.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageNumber.h" />
+    <ClInclude Include="Source\PlayScene.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

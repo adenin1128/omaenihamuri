@@ -3,6 +3,7 @@
 #include "DxLib.h"
 #include <iostream>
 #include "field.h"
+#include "StageNumber.h"
 using namespace std;
 
 //extern const char* Version();
@@ -20,7 +21,8 @@ MainmenuScene::~MainmenuScene()
 
 void MainmenuScene::Update()
 {
-	
+	StageNumber* stageNum = FindGameObject<StageNumber>();
+
 	if (CheckHitKey(KEY_INPUT_0)) {
 		random_device rnd;
 		mt19937 mt(rnd());
@@ -29,35 +31,43 @@ void MainmenuScene::Update()
 
 		if (rand == 1) {
 			// 処理 1
-			SceneManager::ChangeScene("PLAY1");
+			stageNum->stagenum = 1;
+			SceneManager::ChangeScene("PlayScene");
 		}
 		else if (rand == 2) {
 			// 処理 2
-			SceneManager::ChangeScene("PLAY2");
+			stageNum->stagenum = 2;
+			SceneManager::ChangeScene("PlayScene");
 
 		}
 		else if (rand == 3) {
 			// 処理 3
-			SceneManager::ChangeScene("PLAY3");
+			stageNum->stagenum = 3;
+			SceneManager::ChangeScene("PlayScene");
 
 		}
-		else { // rand == 4
+		else if (rand == 4) {
 			// 処理 4
-			SceneManager::ChangeScene("PLAY4");
+			stageNum->stagenum = 4;
+			SceneManager::ChangeScene("PlayScene");
 
 		}
 	}
 	if (CheckHitKey(KEY_INPUT_1)) {
-		SceneManager::ChangeScene("PLAY1");
+		stageNum->stagenum = 1;
+		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_2)) {
-		SceneManager::ChangeScene("PLAY2");
+		stageNum->stagenum = 2;
+		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_3)) {
-		SceneManager::ChangeScene("PLAY3");
+		stageNum->stagenum = 3;
+		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_4)) {
-		SceneManager::ChangeScene("PLAY4");
+		stageNum->stagenum = 4;
+		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		SceneManager::Exit();
