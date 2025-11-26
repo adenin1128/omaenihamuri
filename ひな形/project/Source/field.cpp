@@ -127,6 +127,7 @@ Field::Field(int stage)
 	state = STATE_0;
 	hit = false;
 	jet = false;
+	DL = 0;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -310,6 +311,7 @@ void Field::Draw()
 	}*/
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "Gate::%d", DL);
 	if(hit == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 	if(jet == true)
@@ -460,21 +462,6 @@ bool Field::IsNyoki(int px, int py)
 
 float Field::NyokiStop()
 {
-	/*int nsx = 0;
-	int nx = 0;
-	for (int y = 0; y < maps.size(); y++) {
-		for (int x = 0; x < maps[y].size(); x++) {
-			if (maps[y][x] == 12) {
-				nsx = x;
-			}
-			if (maps[y][x] == 10) {
-				nx = x;
-			}
-			int dx = (nsx - nx);
-			return dx;
-		}
-	}*/
-
 	int nsx = -1;   // 12 の x
 	int nx = -1;   // 10 の x
 
@@ -499,8 +486,8 @@ float Field::NyokiStop()
 
 bool Field::Jetpack(int px, int py)
 {
-	int x = (px + 32) / 64;
-	int y = (py + 32) / 64;
+	int x = px / 64;
+	int y = py / 64;
 	if (y >= maps.size())
 		return 0;
 	if (maps[y][x] == 17) {
@@ -508,6 +495,21 @@ bool Field::Jetpack(int px, int py)
 	}
 	else if (maps[y][x] == 19) {
 		jet = false;
+	}
+	return false;
+}
+
+bool Field::IsGate(int px, int py)
+{
+	int x = px / 64;
+	int y = py / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 21) {
+		DL = 21;
+	}
+	if (maps[y][x] == 22) {
+		DL = 22;
 	}
 	return false;
 }

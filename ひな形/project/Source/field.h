@@ -30,6 +30,7 @@ public:
 	bool IsNyoki(int px, int py);
 	float NyokiStop();
 	bool Jetpack(int px, int py);
+	bool IsGate(int px, int py);
 	/*int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);
 	int HitCheckUpTrap(int px, int py);
@@ -45,6 +46,7 @@ public:
 		state = STATE_1;
 	}
 	int GetJetpack() { return jet; }
+	int GetGateHit() { return DL; }
 private:
 	int hImage;
 	float x, y;
@@ -65,4 +67,5 @@ private:
 	bool jet;
 	int easyImage;
 	int HGimage;
+	int DL;
 };

@@ -22,6 +22,7 @@ MainmenuScene::~MainmenuScene()
 void MainmenuScene::Update()
 {
 	StageNumber* stageNum = FindGameObject<StageNumber>();
+	Field* f = FindGameObject<Field>();
 
 	if (CheckHitKey(KEY_INPUT_0)) {
 		random_device rnd;
@@ -57,8 +58,16 @@ void MainmenuScene::Update()
 		stageNum->stagenum = 1;
 		SceneManager::ChangeScene("PlayScene");
 	}
+	if (f->GetGateHit() == 21) {
+		stageNum->stagenum = 1;
+		SceneManager::ChangeScene("PlayScene");
+	}
 	if (CheckHitKey(KEY_INPUT_2)) {
 		stageNum->stagenum = 2;
+		SceneManager::ChangeScene("PlayScene");
+	}
+	if (f->GetGateHit() == 22) {
+		stageNum->stagenum = 3;
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_3)) {

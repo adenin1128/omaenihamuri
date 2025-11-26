@@ -18,6 +18,12 @@ void PlayScene::Update()
 	if (CheckHitKey(KEY_INPUT_T)) {
 		SceneManager::ChangeScene("TITLE");
 	}
+	if (CheckHitKey(KEY_INPUT_M)) {
+		SceneManager::ChangeScene("MANU");
+	}
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		SceneManager::Exit();
+	}
 }
 
 void PlayScene::Draw()
