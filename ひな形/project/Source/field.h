@@ -63,4 +63,5 @@ private:
 	int fream;
 	int hit;
 	bool jet;
+	int easyImage;
 };
