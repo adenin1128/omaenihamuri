@@ -100,11 +100,10 @@ void Player::Update()
 			int push2 = field->HitCheckRight(x + 55, y + 61);
 			int push3 = field->HitCheckRight(x + 55, y + 28);
 			x -= max(push1, push2, push3);
-			if (field->Istrap(x + 32, y + 32)) {
-				/*new Clear();*/
-			}
+			field->Istrap(x + 32, y + 32);
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
+			field->IsGate(x, y);
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
@@ -119,11 +118,10 @@ void Player::Update()
 			int push3 = field->HitCheckLeft(x + 9, y + 28);
 
 			x -= max(push1, push2, push3);
-			if (field->Istrap(x + 32, y + 32)) {
-				/*new Clear();*/
-			}
+			field->Istrap(x + 32, y + 32);
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
+			field->IsGate(x, y);
 		}
 
 		Field* j = FindGameObject<Field>();
