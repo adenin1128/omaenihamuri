@@ -64,4 +64,5 @@ private:
 	int hit;
 	bool jet;
 	int easyImage;
+	int HGimage;
 };

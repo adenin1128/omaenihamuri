@@ -54,6 +54,7 @@ trap* traps[99];
 int doorGraphs[7];
 int kaiheiGraphs[9];
 int EasyGraphs[8];
+int HGgraphs[8];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -111,7 +112,9 @@ Field::Field(int stage)
 	LoadDivGraph("data/image/GOOOOOOOOAL.png", 9, 9, 1, 64, 64, kaiheiGraphs);
 	easyImage = LoadGraph("data/image/EasyGate.png");//簡単用ゲート
 	LoadDivGraph("data/image/EasyGate.png", 8, 8, 1, 518, 518, EasyGraphs);
-	assert(easyImage > 0);
+	HGimage = LoadGraph("data/image/HardGate.png");
+	LoadDivGraph("data/image/HardGate.png", 8, 8, 1, 768, 768, HGgraphs);
+	assert(HGimage > 0);
 
 	x = 0;
 	y = 1080-64;
@@ -229,8 +232,6 @@ void Field::Draw()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 21) {
-				/*int timer = 0;
-				int frame = 0;*/
 				if (timer % 10 == 0) {
 					fream++;
 					if (fream >= 8) {
@@ -239,6 +240,21 @@ void Field::Draw()
 				}
 				timer++;
 				DrawRotaGraph(x * 64 + 35, y * 64 + 34, 0.5, 0, EasyGraphs[fream], TRUE, FALSE);
+			}
+		}
+	}
+
+	for (int y = 0; y < maps.size(); y++) {
+		for (int x = 0; x < maps[y].size(); x++) {
+			if (maps[y][x] == 22) {
+				if (timer % 10 == 0) {
+					fream++;
+					if (fream >= 8) {
+						fream = 0;
+					}
+				}
+				timer++;
+				DrawRotaGraph(x * 64 + 32, y * 64 - 32, 0.35, 0, HGgraphs[fream], TRUE, FALSE);
 			}
 		}
 	}
