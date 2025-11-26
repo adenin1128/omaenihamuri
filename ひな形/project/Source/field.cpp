@@ -173,8 +173,10 @@ void Field::Update()
 
 	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
 		hit = false;
+		int freme = 0;
 		for (auto& trap : traps) {
 			if (trap != nullptr) {
+				freme += 1;
 				trap->DestroyMe();
 			}
 		}
@@ -187,13 +189,16 @@ void Field::Update()
 				}
 
 				// trap再生成
-				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
-					GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
-				}
-				if (saveMaps[y][x] == 11) {
+				//if (freme >= 1) {
+					if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
+						GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
+						freme = 0;
+					}
+				//}
+				/*if (saveMaps[y][x] == 11) {
 					FindGameObject<Skeleton>()->DestroyMe();
 					new Skeleton(x * 64, y * 64);
-				}
+				}*/
 				/*if (hit == true) {
 					if (saveMaps[y][x] == 10) {
 						FindGameObject<Nyoki>()->DestroyMe();

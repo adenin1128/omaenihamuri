@@ -52,6 +52,7 @@ trap::trap(int px, int py, int i, int d, int tx, int ty)
 
 trap::~trap()
 {
+    DeleteGraph(hariImage);
 }
 
 void trap::Update()
