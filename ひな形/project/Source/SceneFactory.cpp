@@ -3,11 +3,8 @@
 #include <assert.h>
 #include "BootScene.h"
 #include "TitleScene.h"
-#include "PlayScene0.h"
-#include "PlayScene1.h"
-#include "PlayScene2.h"
-#include "PlayScene3.h"
-#include "PlayScene4.h"
+#include "PlayScene.h"
+#include "StageNumber.h"
 #include "../Source/Mainmenu.h"
 
 
@@ -18,6 +15,7 @@ SceneBase* SceneFactory::CreateFirst()
 
 SceneBase * SceneFactory::Create(const std::string & name)
 {
+	StageNumber* stageNum = FindGameObject<StageNumber>();
 	if (name == "TITLE")
 	{
 		return new TitleScene();
@@ -26,25 +24,21 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	{
 		return new MainmenuScene();
 	}
-	if (name == "PLAY0")
+	if (stageNum->stagenum == 1)
 	{
-		return new PlayScene0();
+		return new PlayScene();
 	}
-	if (name == "PLAY1")
+	if (stageNum->stagenum == 2)
 	{
-		return new PlayScene1();
+		return new PlayScene();
 	}
-	if (name == "PLAY2")
+	if (stageNum->stagenum == 3)
 	{
-		return new PlayScene2();
+		return new PlayScene();
 	}
-	if (name == "PLAY3")
+	if (stageNum->stagenum == 4)
 	{
-		return new PlayScene3();
-	}
-	if (name == "PLAY4")
-	{
-		return new PlayScene4();
+		return new PlayScene();
 	}
 	MessageBox(NULL, ("éüÇÃÉVÅ[ÉìÇÕÇ†ÇËÇ‹ÇπÇÒ\n" + name).c_str(), "SceneFactory", MB_ICONERROR | MB_OK);
 	assert(false);
