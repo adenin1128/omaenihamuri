@@ -16,6 +16,8 @@ public:
 	~Player();
 	void Update() override;
 	void Draw() override;
+	void Reset();
+	void Reset(int x, int y);
 	int PlayerHP;
 	VECTOR2 GetPosition() { return VECTOR2(x, y); }
 	VECTOR2 GetColliderLeftTop() { return VECTOR2(x + colliderOffset, y + colliderOffset); }
@@ -59,6 +61,7 @@ private:
 	static const int ANIM_FRAME_INTERVAL = 4;   //  アニメーション間隔(frame)
 	static const int WALK_SPEED = 4;            //  移動速度(dot/frame)
 
+	int resetX, resetY;
 	int animImage;      //  アニメーション用画像ハンドル
 	int animIndex;      //  どこのコマを表示するか
 	int animFrame;      //  アニメーション間隔

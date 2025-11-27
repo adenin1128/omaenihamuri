@@ -8,6 +8,7 @@ public:
 	~Nyoki();
 	void Update() override;
 	void Draw() override;
+	void Reset();
 	
 	int HitCheckDown(int px, int py);
 	int HitCheckLeft(int px, int py);
@@ -15,6 +16,7 @@ public:
 	int HitCheckRight(int px, int py);
 
 private:
+	int resetX, resetY;
 	float nx, ny;
 	int nyokiImage;
 	int size;
