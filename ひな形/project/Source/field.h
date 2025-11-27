@@ -30,6 +30,7 @@ public:
 	float NyokiStop();
 	bool Jetpack(int px, int py);
 	bool IsGate(int px, int py);
+	int IsBelt(int px, int py);
 	int Movefloor(int px, int py);
 	/*int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);
@@ -71,6 +72,7 @@ private:
 	int easyImage;
 	int HGimage;
 	int DL;
+	int BeltHit;
 	bool one;
 	bool two;
 };
