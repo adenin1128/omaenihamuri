@@ -11,8 +11,21 @@ Nyoki::Nyoki(int px, int py)
 {
 	nyokiImage = LoadGraph("data/image/nyoblo.png");
 	assert(nyokiImage > 0);
-	nx = px;
-	ny = py;
+	resetX = px;
+	resetY = py;
+
+	Reset();
+}
+
+Nyoki::~Nyoki()
+{
+	DeleteGraph(nyokiImage);
+}
+
+void Nyoki::Reset()
+{
+	nx = resetX;
+	ny = resetY;
 	size = 64;
 	move = 0;
 	count = 0;
@@ -20,11 +33,6 @@ Nyoki::Nyoki(int px, int py)
 	a = false;
 	currentMoveX = 0;
 	maxMoveX = 0;
-}
-
-Nyoki::~Nyoki()
-{
-	DeleteGraph(nyokiImage);
 }
 
 void Nyoki::Update()

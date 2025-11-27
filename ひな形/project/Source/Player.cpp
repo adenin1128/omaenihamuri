@@ -22,12 +22,39 @@ int boomGraphs[36];
 
 
 Player::Player(float startX, float startY)
-	: x(startX), y(startY), velocity(0.0f), onGround(false)
+	: resetX(startX), resetY(startY), velocity(0.0f), onGround(false)
 {
 	animImage = LoadGraph("data/image/おまえ歩き.png");
 	BOOMImage = LoadGraph("data/image/BOOM!!.png");
 	LoadDivGraph("data/image/BOOM!!.png", 37, 37, 1, 64, 64, boomGraphs);
 	loseImage = LoadGraph("data/image/you lose.png");
+
+	Reset();
+}
+
+//コンストラクター
+//最初に一回だけ必ず呼ばれる
+
+//デストラクター
+//最後に一度だけ必ず呼ばれる
+Player::~Player()
+{
+
+}
+
+void Player::Reset(int px, int py)
+{
+	resetX = px;
+	resetY = py;
+	Reset();
+}
+
+void Player::Reset()
+{
+	x = resetX;
+	y = resetY;
+	velocity = 0.0f;
+	onGround = false;
 	posX = 100;
 	posY = 100;
 	jumpcount = 0;
@@ -41,20 +68,11 @@ Player::Player(float startX, float startY)
 	boomAnimIndex = 0;
 	boomFrame = 0;
 	Boomtime = 0;
+	new Debug();
 	/*x = 500;
 	y = 200;*/
-	new Debug();
 }
 
-//コンストラクター
-//最初に一回だけ必ず呼ばれる
-
-//デストラクター
-//最後に一度だけ必ず呼ばれる
-Player::~Player()
-{
-
-}
 //計算するところ
 void Player::Update()
 {

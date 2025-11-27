@@ -12,6 +12,7 @@
 #include "Gravity.h"
 #include "NeoGravity.h"
 #include "downdraft.h"
+#include "Gameover.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -179,8 +180,41 @@ Field::~Field()
 
 void Field::Update()
 {
-
 	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
+#if true	
+		{
+			hit = false;
+			deathcount++;
+		}
+		{
+			GameOver* obj = FindGameObject<GameOver>();
+			if (obj != nullptr)
+				obj->DestroyMe();
+		}
+		{
+			auto objs = FindGameObjects<Player>();
+			for (auto obj : objs) {
+				for (int y = 0; y < saveMaps.size(); y++) {
+					for (int x = 0; x < saveMaps[y].size(); x++) {
+						if (saveMaps[y][x] == 2) {
+							obj->Reset(x * 64, y * 64);
+						}
+					}
+				}
+			}
+		}
+		{
+			auto objs = FindGameObjects<Nyoki>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+		{
+			auto objs = FindGameObjects<trap>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+
+#else
 		hit = false;
 		int freme = 0;
 		for (auto& trap : traps) {
@@ -199,10 +233,10 @@ void Field::Update()
 
 				// trap再生成
 				//if (freme >= 1) {
-					if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
-						GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
-						freme = 0;
-					}
+				if (saveMaps[y][x] > 100 && saveMaps[y][x] < 200) {
+					GenerateTrap(x * 64, y * 64, saveMaps[y][x]);
+					freme = 0;
+				}
 				//}
 				/*if (saveMaps[y][x] == 11) {
 					FindGameObject<Skeleton>()->DestroyMe();
@@ -215,8 +249,8 @@ void Field::Update()
 				}*/
 			}
 		}
+#endif
 	}
-	//	scrollX += 1; //強制スクロールの場合
 }
 
 void Field::Draw()
@@ -405,18 +439,20 @@ void Field::ChangeMapChip(int x, int y, int type)
 void Field::ChangeRespawnPoint(int x, int y)
 {
 	Player* player = FindGameObject<Player>();
-	if (player->GetState() == STATE_NORMAL) {
-		if (maps[y][x] == 4) {
-			// リスポーンポイントの削除
-			for (int my = 0; my < saveMaps.size(); my++) {
-				for (int mx = 0; mx < saveMaps[my].size(); mx++) {
-					if (saveMaps[my][mx] == 2) {
-						saveMaps[my][mx] = 0;
+	if (player != nullptr) {
+		if (player->GetState() == STATE_NORMAL) {
+			if (maps[y][x] == 4) {
+				// リスポーンポイントの削除
+				for (int my = 0; my < saveMaps.size(); my++) {
+					for (int mx = 0; mx < saveMaps[my].size(); mx++) {
+						if (saveMaps[my][mx] == 2) {
+							saveMaps[my][mx] = 0;
+						}
 					}
 				}
+				// saveMaps[y][x]をリスポーンポイントに設定
+				ChangeMapChip(x, y, 2);
 			}
-			// saveMaps[y][x]をリスポーンポイントに設定
-			ChangeMapChip(x, y, 2);
 		}
 	}
 }

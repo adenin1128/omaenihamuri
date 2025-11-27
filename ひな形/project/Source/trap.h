@@ -8,6 +8,7 @@ public:
 	void Update() override;
 	void Draw() override;
 	void Active();
+	void Reset();
 	enum Direction {
 		TOP,  //0
 		RIGHT,//1
@@ -15,6 +16,12 @@ public:
 		LEFT  //3
 	};
 private:
+	int resetPx;
+	int resetPy;
+	int resetI;
+	int resetD;
+	int resetTx;
+	int resetTy;
 	int hariImage;
 	float x, y;
 	
