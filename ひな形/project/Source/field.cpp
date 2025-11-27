@@ -13,6 +13,7 @@
 #include "NeoGravity.h"
 #include "downdraft.h"
 #include "MoveFloor.h"
+#include "Gameover.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
