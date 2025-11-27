@@ -174,12 +174,9 @@ Field::Field(int stage)
 			if (maps[y][x] == 30) {
 				new MoveFloor(x * 64, y * 64);
 			}
-			/*if (maps[y][x] == 23) {
+			if (maps[y][x] == 23) {
 				new BeltConveyor(x * 64, y * 64);
-			}*/
-			/*if (maps[y][x] == 24) {
-				new BeltConveyor(x * 64, y * 64);
-			}*/
+			}
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
 			}*/
@@ -359,6 +356,7 @@ void Field::Draw()
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "Gate::%d", DL);
+	DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
 	if(hit == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 	if(jet == true)
@@ -572,7 +570,7 @@ int Field::IsBelt(int px, int py)
 	if (maps[y][x] == 23) {
 		BeltHit = 23;
 	}
-	if (maps[y][x] == 24) {
+	else if (maps[y][x] == 24) {
 		BeltHit = 24;
 	}
 	else {

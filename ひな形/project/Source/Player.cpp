@@ -7,6 +7,7 @@
 #include "Nyoki.h"
 #include "skeleton.h"
 #include "Clear.h"
+#include "BeltConveyor.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Debug.h"
@@ -68,7 +69,8 @@ void Player::Reset()
 	boomAnimIndex = 0;
 	boomFrame = 0;
 	Boomtime = 0;
-	speed = 0;
+	speed = 3;
+	spd = 3;
 	new Debug();
 	/*x = 500;
 	y = 200;*/
@@ -78,6 +80,9 @@ void Player::Reset()
 void Player::Update()
 {
 	Field* field = FindGameObject<Field>();
+	field->Istrap(x + 32, y + 32);
+	field->IsNyoki(x + 32, y + 32);
+	field->Jetpack(x, y);
 	field->IsGate(x, y);
 	field->IsBelt(x, y);
 	// Nyokiの左右判定
@@ -112,42 +117,58 @@ void Player::Update()
 
 		if (CheckHitKey(KEY_INPUT_D))
 		{
-			x += 3.0f + speed; // 右に進む 
+			// Field判定
+			Field* field = FindGameObject<Field>();
+			BeltConveyor* belt = FindGameObject<BeltConveyor>();
+			if (field->GetBeltHit() == 23) {
+				x += 3.0 + belt->GetSpeed();
+			}
+			else if (field->GetBeltHit() == 24) {
+				x += 3.0 + belt->GetSpeed();
+			}
+			else {
+				x += 3.0; // 右に進む 
+			}
 			direction = false;
 			moveX += 2.0f;
 			
-			// Field判定
-			Field* field = FindGameObject<Field>();
 			int push1 = field->HitCheckRight(x + 55, y + 5);
 			int push2 = field->HitCheckRight(x + 55, y + 61);
 			int push3 = field->HitCheckRight(x + 55, y + 28);
 			x -= max(push1, push2, push3);
-			field->Istrap(x + 32, y + 32);
+			/*field->Istrap(x + 32, y + 32);
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
 			field->IsGate(x, y);
-			field->IsBelt(x, y);
-			speed = 0;
+			field->IsBelt(x, y);*/
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
-			x -= 3.0f + speed;
+			// Field判定
+			Field* field = FindGameObject<Field>();
+			BeltConveyor* belt = FindGameObject<BeltConveyor>();
+			if (field->GetBeltHit() == 23) {
+				x -= 3.0 - belt->GetSpeed();
+			}
+			else if (field->GetBeltHit() == 24) {
+				x -= 3.0 - belt->GetSpeed();
+			}
+			else {
+				x -= 3.0;
+			}
 			direction = true;
 			moveX -= 2.0f;
 
-			// Field判定
-			Field* field = FindGameObject<Field>();
 			int push1 = field->HitCheckLeft(x + 9, y + 5);
 			int push2 = field->HitCheckLeft(x + 9, y + 61);
 			int push3 = field->HitCheckLeft(x + 9, y + 28);
 
 			x -= max(push1, push2, push3);
-			field->Istrap(x + 32, y + 32);
+			/*field->Istrap(x + 32, y + 32);
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
 			field->IsGate(x, y);
-			field->IsBelt(x, y);
-			speed = 0;
+			field->IsBelt(x, y);*/
 		}
 
 		Field* j = FindGameObject<Field>();
@@ -353,11 +374,6 @@ void Player::Move(int vx, int vy)
 {
 	x += vx;
 	y += vy;
-}
-
-void Player::MoveSpeed(int s)
-{
-	speed = s;
 }
 
 void Player::VerocityUp()

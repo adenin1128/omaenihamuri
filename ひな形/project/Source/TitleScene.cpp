@@ -24,7 +24,7 @@ void TitleScene::Update()
 		SceneManager::Exit();
 	}
 	if (thikathika < 60) {
-		DrawExtendFormatStringToHandle(1920 / 3 - 128, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
+		DrawExtendFormatStringToHandle(1920 / 3 - 198, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
 
 	}
 	if (thikathika == 100)
