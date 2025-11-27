@@ -68,6 +68,7 @@ void Player::Reset()
 	boomAnimIndex = 0;
 	boomFrame = 0;
 	Boomtime = 0;
+	speed = 0;
 	new Debug();
 	/*x = 500;
 	y = 200;*/
@@ -76,6 +77,9 @@ void Player::Reset()
 //計算するところ
 void Player::Update()
 {
+	Field* field = FindGameObject<Field>();
+	field->IsGate(x, y);
+	field->IsBelt(x, y);
 	// Nyokiの左右判定
 	Nyoki* nyoki = FindGameObject<Nyoki>();
 	if (nyoki != nullptr) {
@@ -108,7 +112,7 @@ void Player::Update()
 
 		if (CheckHitKey(KEY_INPUT_D))
 		{
-			x += 3.0f; // 右に進む 
+			x += 3.0f + speed; // 右に進む 
 			direction = false;
 			moveX += 2.0f;
 			
@@ -122,10 +126,12 @@ void Player::Update()
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
 			field->IsGate(x, y);
+			field->IsBelt(x, y);
+			speed = 0;
 		}
 
 		if (CheckHitKey(KEY_INPUT_A)) {
-			x -= 3.0f;
+			x -= 3.0f + speed;
 			direction = true;
 			moveX -= 2.0f;
 
@@ -140,6 +146,8 @@ void Player::Update()
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
 			field->IsGate(x, y);
+			field->IsBelt(x, y);
+			speed = 0;
 		}
 
 		Field* j = FindGameObject<Field>();
@@ -347,6 +355,11 @@ void Player::Move(int vx, int vy)
 	y += vy;
 }
 
+void Player::MoveSpeed(int s)
+{
+	speed = s;
+}
+
 void Player::VerocityUp()
 {
 	Gravity = -0.2;
@@ -356,7 +369,6 @@ void Player::VerocityDown()
 {
 	Gravity = 0.4;
 }
-
 
 void Player::VerocitySITA()
 {

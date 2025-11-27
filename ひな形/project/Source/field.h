@@ -31,6 +31,7 @@ public:
 	float NyokiStop();
 	bool Jetpack(int px, int py);
 	bool IsGate(int px, int py);
+	int IsBelt(int px, int py);
 	/*int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);
 	int HitCheckUpTrap(int px, int py);
@@ -39,6 +40,7 @@ public:
 	void ChangeRespawnPoint(int x, int y);
 	void ChangeClearPoint(int x, int y);
 	int GetDeathCount() { return deathcount; }
+	int GetBeltHit() { return BeltHit; }
 	ClearState state;
 	ClearState GetState() const { return state; }
 	void SetState(ClearState s) { state = s; }
@@ -68,4 +70,5 @@ private:
 	int easyImage;
 	int HGimage;
 	int DL;
+	int BeltHit;
 };

@@ -14,6 +14,7 @@
 #include "downdraft.h"
 #include "MoveFloor.h"
 #include "Gameover.h"
+#include "BeltConveyor.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -130,6 +131,7 @@ Field::Field(int stage)
 	hit = false;
 	jet = false;
 	DL = 0;
+	BeltHit = 0;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -171,6 +173,12 @@ Field::Field(int stage)
 			if (maps[y][x] == 20) {
 				new MoveFloor(x, y);
 			}
+			/*if (maps[y][x] == 23) {
+				new BeltConveyor(x * 64, y * 64);
+			}*/
+			/*if (maps[y][x] == 24) {
+				new BeltConveyor(x * 64, y * 64);
+			}*/
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
 			}*/
@@ -550,6 +558,24 @@ bool Field::IsGate(int px, int py)
 	}
 	if (maps[y][x] == 22) {
 		DL = 22;
+	}
+	return false;
+}
+
+int Field::IsBelt(int px, int py)
+{
+	int x = (px + 32) / 64;
+	int y = (py + 32) / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 23) {
+		BeltHit = 23;
+	}
+	if (maps[y][x] == 24) {
+		BeltHit = 24;
+	}
+	else {
+		BeltHit = 0;
 	}
 	return false;
 }

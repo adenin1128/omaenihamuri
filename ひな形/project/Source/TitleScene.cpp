@@ -23,10 +23,10 @@ void TitleScene::Update()
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		SceneManager::Exit();
 	}
-	/*if (thikathika < 60) {
-		DrawExtendFormatStringToHandle(1920 / 3 - 128, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");*/
+	if (thikathika < 60) {
+		DrawExtendFormatStringToHandle(1920 / 3 - 128, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
 
-	//}
+	}
 	if (thikathika == 100)
 	{
 		thikathika = 0;
@@ -39,10 +39,10 @@ void TitleScene::Update()
 
 
 }
-	//if (thikathika > 100) {
-	//	DrawExtendFormatStringToHandle(850, 560, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
-	//	thikathika = 0;
-	//}
+	/*if (thikathika > 100) {
+		DrawExtendFormatStringToHandle(850, 560, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
+		thikathika = 0;
+	}*/
 
 
 
