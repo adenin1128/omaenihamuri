@@ -563,6 +563,25 @@ bool Field::IsGate(int px, int py)
 	return false;
 }
 
+int Field::IsBelt(int px, int py)
+{
+	int x = (px + 32) / 64;
+	int y = (py + 32) / 64;
+	if (y >= maps.size())
+		return 0;
+	if (maps[y][x] == 23) {
+		BeltHit = 23;
+	}
+	if (maps[y][x] == 24) {
+		BeltHit = 24;
+	}
+	else {
+		BeltHit = 0;
+	}
+	return false;
+}
+
+
 int Field::Movefloor(int px, int py)
 {
 	int x = px;
