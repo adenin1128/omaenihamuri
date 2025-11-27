@@ -7,6 +7,7 @@ BeltConveyor::BeltConveyor(int px, int py)
 	ConveyorImage = LoadGraph("data/image/bird.png");
 	x = px;
 	y = py;
+	speed = 0;
 }
 
 BeltConveyor::~BeltConveyor()
@@ -17,24 +18,19 @@ void BeltConveyor::Update()
 {
 	Field* field = FindGameObject<Field>();
 	Player* player = FindGameObject<Player>();
-	int speed = 0;
 	if (field->GetBeltHit() == 23) {
-		speed = 2;
-		player->MoveSpeed(speed);
-		speed = 0;
-		return;
+		speed = 5;
 	}
-	if (field->GetBeltHit() == 24) {
-		speed = -2;
-		player->MoveSpeed(speed);
-		speed = 0;
-		return;
+	else if (field->GetBeltHit() == 24) {
+		speed = -5;
 	}
-	speed = 0;
+	else {
+		speed = 0;
+	}
 	return;
 }
 
 void BeltConveyor::Draw()
 {
-	DrawGraph(x, y, ConveyorImage, TRUE);
+	DrawGraph(x, y + 64, ConveyorImage, TRUE);
 }

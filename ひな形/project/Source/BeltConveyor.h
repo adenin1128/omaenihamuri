@@ -8,7 +8,9 @@ public:
 	~BeltConveyor();
 	void Update() override;
 	void Draw() override;
+	int GetSpeed() { return speed; }
 private:
 	int ConveyorImage;
 	int x, y;
+	int speed;
 };
