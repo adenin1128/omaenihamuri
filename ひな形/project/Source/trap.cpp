@@ -2,6 +2,7 @@
 #include "field.h"
 #include "Player.h"
 #include "Gameover.h"
+#include "StageNumber.h"
 #include <cmath> // 平方根を呼び出すやつ
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -117,7 +118,10 @@ void trap::Update()
         float unitY = dy / length;
 
         // 2. プレイヤーに初速を設定し、状態をSTATE_BOOMにする
-        player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+        StageNumber* stageNumber = FindGameObject<StageNumber>();
+        if (stageNumber->Death = true) {
+            player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+        }
     }
 
     if (isActive) {
