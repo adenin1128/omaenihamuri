@@ -26,6 +26,12 @@ VECTOR2 RotatePoint(VECTOR2 vec, double rot)
 
 trap::trap(int px, int py, int i, int d, int tx, int ty)
 {
+    resetPx = px;
+    resetPy = py;
+    resetI = i;
+    resetD = d;
+    resetTx = tx;
+    resetTy = ty;
     dir = (Direction)d;
     hariImage = LoadGraph("data/image/hari.png");
     x = px;
@@ -34,6 +40,21 @@ trap::trap(int px, int py, int i, int d, int tx, int ty)
     vx = tx;
 	vy = ty;
 
+    Reset();
+}
+
+trap::~trap()
+{
+    DeleteGraph(hariImage);
+}
+
+void trap::Reset()
+{
+    x = resetPx;
+    y = resetPy;
+
+    vx = resetTx;
+    vy = resetTy;
 
     isActive = false;
     isGameover = false;
@@ -48,11 +69,6 @@ trap::trap(int px, int py, int i, int d, int tx, int ty)
     colliderPoints[0] = VECTOR2(x, y) + RotatePoint(VECTOR2(32, 0), rot);
     colliderPoints[1] = VECTOR2(x, y) + RotatePoint(VECTOR2(0, 64), rot);
     colliderPoints[2] = VECTOR2(x, y) + RotatePoint(VECTOR2(64, 64), rot);
-}
-
-trap::~trap()
-{
-    DeleteGraph(hariImage);
 }
 
 void trap::Update()
@@ -112,6 +128,7 @@ void trap::Update()
 void trap::Active() {
     isActive = true;
 }
+
 void trap::Draw()
 {
     for (auto point : colliderPoints) {
