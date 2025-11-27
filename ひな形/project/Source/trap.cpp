@@ -125,9 +125,9 @@ void trap::Update()
     }
 
     if (isActive) {
-		x += vx;
-		y += vy;
-        }
+        x += vx;
+        y += vy;
+    }
 }
 void trap::Active() {
     isActive = true;

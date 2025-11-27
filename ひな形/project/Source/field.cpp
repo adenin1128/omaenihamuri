@@ -14,6 +14,7 @@
 #include "downdraft.h"
 #include "MoveFloor.h"
 #include "Gameover.h"
+#include "BeltConveyor.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -173,6 +174,12 @@ Field::Field(int stage)
 			if (maps[y][x] == 30) {
 				new MoveFloor(x * 64, y * 64);
 			}
+			/*if (maps[y][x] == 23) {
+				new BeltConveyor(x * 64, y * 64);
+			}*/
+			/*if (maps[y][x] == 24) {
+				new BeltConveyor(x * 64, y * 64);
+			}*/
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
 			}*/

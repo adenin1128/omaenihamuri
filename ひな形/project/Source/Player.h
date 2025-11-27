@@ -42,6 +42,7 @@ public:
 	// Player.h の public: セクションに仮定で追加
 	bool IsBOOM() const { return state == STATE_BOOM; }
 	void Move(int vx, int vy); // プレイヤーの移動処理
+	void MoveSpeed(int s); // プレイヤーの移動速度設定
 	void VerocityUp();
 	void VerocityDown();
 	void VerocitySITA();
@@ -81,6 +82,7 @@ private:
 	bool onGround;
 	int jumpcount;
 	int Maxjumpcount;
+	int speed;
 
 	int colliderOffset = 8;
 };

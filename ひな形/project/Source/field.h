@@ -3,9 +3,9 @@
 #include "Player.h"
 
 enum ClearState {
-	STATE_0,    // ƒhƒA‘Ò‹@ó‘Ô
-	STATE_1,    // ƒhƒA•Â‚ß‚Ä‚é
-	STATE_2     // ƒhƒA•Â‚Ü‚Á‚Ä‚éó‘Ô
+	STATE_0,    // ãƒ‰ã‚¢å¾…æ©ŸçŠ¶æ…‹
+	STATE_1,    // ãƒ‰ã‚¢é–‰ã‚ã¦ã‚‹
+	STATE_2     // ãƒ‰ã‚¢é–‰ã¾ã£ã¦ã‚‹çŠ¶æ…‹
 };
 
 class Field : public GameObject
@@ -39,6 +39,7 @@ public:
 	void ChangeRespawnPoint(int x, int y);
 	void ChangeClearPoint(int x, int y);
 	int GetDeathCount() { return deathcount; }
+	int GetBeltHit() { return BeltHit; }
 	ClearState state;
 	ClearState GetState() const { return state; }
 	void SetState(ClearState s) { state = s; }

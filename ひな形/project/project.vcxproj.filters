@@ -108,6 +108,9 @@
     <ClCompile Include="Source\MoveFloor.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BeltConveyor.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -228,6 +231,9 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\MoveFloor.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BeltConveyor.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
