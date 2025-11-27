@@ -119,7 +119,7 @@ void trap::Update()
 
         // 2. プレイヤーに初速を設定し、状態をSTATE_BOOMにする
         StageNumber* stageNumber = FindGameObject<StageNumber>();
-        if (stageNumber->Death = true) {
+        if (stageNumber->noDeath != true) {
             player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
         }
     }

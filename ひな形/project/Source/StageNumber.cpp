@@ -5,13 +5,13 @@ StageNumber::StageNumber()
 {
 	DontDestroyOnSceneChange();
 	stagenum = -1;
-	Death = true;
+	noDeath = false;
 }
 
 void StageNumber::Draw()
 {
 	ImGui::Begin("StageNumber");
 	ImGui::InputInt("StageNumber", &stagenum);
-	ImGui::Checkbox("Death", &Death);
+	ImGui::Checkbox("NoDeath", &noDeath);
 	ImGui::End();
 }

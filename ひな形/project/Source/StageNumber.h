@@ -7,5 +7,5 @@ public:
 	StageNumber();
 	void Draw() override;
 	int stagenum;
-	bool Death;
+	bool noDeath;
 };
