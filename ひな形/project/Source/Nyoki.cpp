@@ -55,11 +55,11 @@ void Nyoki::Update()
 		maxMoveX = field->NyokiStop();
 		if (currentMoveX < maxMoveX) {
 			currentMoveX += 10;
-			nx += 10;
+			nx += 11;
 		}
 		if (currentMoveX > maxMoveX) {
 			currentMoveX -= 10;
-			nx -= 10;
+			nx -= 11;
 		}
 	}
 }
