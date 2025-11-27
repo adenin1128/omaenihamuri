@@ -163,6 +163,7 @@
     <ClInclude Include="Source\GameOver.h" />
     <ClInclude Include="Source\Gravity.h" />
     <ClInclude Include="Source\Mainmenu.h" />
+    <ClInclude Include="Source\MoveFloor.h" />
     <ClInclude Include="Source\NeoGravity.h" />
     <ClInclude Include="Source\Nyoki.h" />
     <ClInclude Include="Source\Player.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Source\GameOver.cpp" />
     <ClCompile Include="Source\Gravity.cpp" />
     <ClCompile Include="Source\Mainmenu.cpp" />
+    <ClCompile Include="Source\MoveFloor.cpp" />
     <ClCompile Include="Source\NeoGravity.cpp" />
     <ClCompile Include="Source\Nyoki.cpp" />
     <ClCompile Include="Source\Player.cpp" />
