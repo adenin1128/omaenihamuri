@@ -3,9 +3,9 @@
 #include "Player.h"
 
 enum ClearState {
-	STATE_0,    // ƒhƒA‘Ò‹@ó‘Ô
-	STATE_1,    // ƒhƒA•Â‚ß‚Ä‚é
-	STATE_2     // ƒhƒA•Â‚Ü‚Á‚Ä‚éó‘Ô
+	STATE_0,    // ãƒ‰ã‚¢å¾…æ©ŸçŠ¶æ…‹
+	STATE_1,    // ãƒ‰ã‚¢é–‰ã‚ã¦ã‚‹
+	STATE_2     // ãƒ‰ã‚¢é–‰ã¾ã£ã¦ã‚‹çŠ¶æ…‹
 };
 
 class Field : public GameObject
@@ -17,7 +17,6 @@ public:
 	void Draw() override;
 
 	void CheckTrap(int x, int y);
-	void Checkbol(int x, int y);
 	int HitCheckRight(int px, int py);
 	int HitCheckLeft(int px, int py);
 	int HitCheckUp(int px, int py);
@@ -31,7 +30,7 @@ public:
 	float NyokiStop();
 	bool Jetpack(int px, int py);
 	bool IsGate(int px, int py);
-	int IsBelt(int px, int py);
+	int Movefloor(int px, int py);
 	/*int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);
 	int HitCheckUpTrap(int px, int py);
@@ -49,6 +48,8 @@ public:
 	}
 	int GetJetpack() { return jet; }
 	int GetGateHit() { return DL; }
+	bool GetHit() { return one; }
+	bool GetHita() { return two; }
 private:
 	int hImage;
 	float x, y;
@@ -70,5 +71,6 @@ private:
 	int easyImage;
 	int HGimage;
 	int DL;
-	int BeltHit;
+	bool one;
+	bool two;
 };

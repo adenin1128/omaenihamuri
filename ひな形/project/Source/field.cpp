@@ -131,7 +131,8 @@ Field::Field(int stage)
 	hit = false;
 	jet = false;
 	DL = 0;
-	BeltHit = 0;
+	one = false;
+	two = false;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -170,8 +171,8 @@ Field::Field(int stage)
 			if (maps[y][x] == 18) {
 				new NeoGravity(x * 64, y * 64);
 			}
-			if (maps[y][x] == 20) {
-				new MoveFloor(x, y);
+			if (maps[y][x] == 30) {
+				new MoveFloor(x * 64, y * 64);
 			}
 			/*if (maps[y][x] == 23) {
 				new BeltConveyor(x * 64, y * 64);
@@ -199,7 +200,7 @@ void Field::Update()
 			deathcount++;
 		}
 		{
-			GameOver* obj = FindGameObject<GameOver>();
+			GameOver*obj = FindGameObject<GameOver>();
 			if (obj != nullptr)
 				obj->DestroyMe();
 		}
@@ -562,24 +563,77 @@ bool Field::IsGate(int px, int py)
 	return false;
 }
 
-int Field::IsBelt(int px, int py)
+int Field::Movefloor(int px, int py)
 {
-	int x = (px + 32) / 64;
-	int y = (py + 32) / 64;
-	if (y >= maps.size())
-		return 0;
-	if (maps[y][x] == 23) {
-		BeltHit = 23;
-	}
-	if (maps[y][x] == 24) {
-		BeltHit = 24;
-	}
-	else {
-		BeltHit = 0;
-	}
-	return false;
-}
+	int x = px;
+	int y = py;
+	int mfx = -1;
+	int mx = -1;
+	MoveFloor* mf = FindGameObject<MoveFloor>();
+	if (mf->GetState() == STATE_A) {
+		for (int y = 0; y < maps.size(); y++) {
+			for (int x = 0; x < maps[y].size(); x++) {
+				if (maps[y][x] == 30) {
+					mfx = x;
+				}
+				else if (maps[y][x] == 31) {
+					mx = x;
+				}
+			}
+		}
+		// どちらか見つからなかった時の防御
+		if (mfx < 0 || mx < 0) return 0.0f;
 
+		return static_cast<float>(mx - mfx) * 64;
+	}
+	if (maps[y][x] == 31) {
+		one = true;
+		mf->SetMoveB();
+	}
+	one = false;
+
+	if(mf->GetState() == STATE_B){
+		for (int y = 0; y < maps.size(); y++) {
+			for (int x = 0; x < maps[y].size(); x++) {
+				if (maps[y][x] == 31) {
+					mfx = x;
+				}
+				else if (maps[y][x] == 32) {
+					mx = x;
+				}
+			}
+		}
+		// どちらか見つからなかった時の防御
+		if (mfx < 0 || mx < 0) return 0.0f;
+
+		return static_cast<float>(mx - mfx) * 64;
+	}
+	if (maps[y][x] == 32) {
+		two = true;
+		mf->SetMoveC();
+	}
+	two = false;
+	if (mf->GetState() == STATE_C) {
+		for (int y = 0; y < maps.size(); y++) {
+			for (int x = 0; x < maps[y].size(); x++) {
+				if (maps[y][x] == 31) {
+					mfx = x;
+				}
+				else if (maps[y][x] == 32) {
+					mx = x;
+				}
+			}
+		}
+		// どちらか見つからなかった時の防御
+		if (mfx < 0 || mx < 0) return 0.0f;
+
+		return static_cast<float>(mx - mfx) * 64;
+	}
+	if (maps[y][x] == 31) {
+		mf->SetMoveB();
+	}
+	return 0;
+}
 
 
 //int Field::HitCheckRightTrap(int px, int py)
