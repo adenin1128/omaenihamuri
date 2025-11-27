@@ -2,6 +2,7 @@
 #include "field.h"
 #include "Player.h"
 #include "Gameover.h"
+#include "StageNumber.h"
 #include <cmath> // 平方根を呼び出すやつ
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -26,6 +27,12 @@ VECTOR2 RotatePoint(VECTOR2 vec, double rot)
 
 trap::trap(int px, int py, int i, int d, int tx, int ty)
 {
+    resetPx = px;
+    resetPy = py;
+    resetI = i;
+    resetD = d;
+    resetTx = tx;
+    resetTy = ty;
     dir = (Direction)d;
     hariImage = LoadGraph("data/image/hari.png");
     x = px;
@@ -34,6 +41,21 @@ trap::trap(int px, int py, int i, int d, int tx, int ty)
     vx = tx;
 	vy = ty;
 
+    Reset();
+}
+
+trap::~trap()
+{
+    DeleteGraph(hariImage);
+}
+
+void trap::Reset()
+{
+    x = resetPx;
+    y = resetPy;
+
+    vx = resetTx;
+    vy = resetTy;
 
     isActive = false;
     isGameover = false;
@@ -48,11 +70,6 @@ trap::trap(int px, int py, int i, int d, int tx, int ty)
     colliderPoints[0] = VECTOR2(x, y) + RotatePoint(VECTOR2(32, 0), rot);
     colliderPoints[1] = VECTOR2(x, y) + RotatePoint(VECTOR2(0, 64), rot);
     colliderPoints[2] = VECTOR2(x, y) + RotatePoint(VECTOR2(64, 64), rot);
-}
-
-trap::~trap()
-{
-    DeleteGraph(hariImage);
 }
 
 void trap::Update()
@@ -101,7 +118,10 @@ void trap::Update()
         float unitY = dy / length;
 
         // 2. プレイヤーに初速を設定し、状態をSTATE_BOOMにする
-        player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+        StageNumber* stageNumber = FindGameObject<StageNumber>();
+        if (stageNumber->Death = true) {
+            player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+        }
     }
 
     if (isActive) {
@@ -112,6 +132,7 @@ void trap::Update()
 void trap::Active() {
     isActive = true;
 }
+
 void trap::Draw()
 {
     for (auto point : colliderPoints) {

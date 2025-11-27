@@ -105,6 +105,9 @@
     <ClCompile Include="Source\PlayScene.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MoveFloor.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -222,6 +225,9 @@
     </ClInclude>
     <ClInclude Include="Source\StageNumber.h" />
     <ClInclude Include="Source\PlayScene.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MoveFloor.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
