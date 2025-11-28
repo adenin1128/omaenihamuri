@@ -375,7 +375,6 @@ void Player::Move(int vx, int vy)
 	x += vx;
 	y += vy;
 }
-
 void Player::VerocityUp()
 {
 	Gravity = -0.2;

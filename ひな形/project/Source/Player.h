@@ -45,6 +45,14 @@ public:
 	void VerocityUp();
 	void VerocityDown();
 	void VerocitySITA();
+
+// Player.h ÇÃ public: Ç…í«â¡Åiç≈è¨ç∑ï™Åj
+	void SetX(float nx) { x = nx; }
+				   void SetY(float ny) { y = ny; }
+
+				   int GetWidth()  const { return CHARACTER_WIDTH; }   // 64
+				   int GetHeight()  const { return CHARACTER_HEIGHT; }   // 64
+
 private:
 
 	static const int CHARACTER_WIDTH = 64;
