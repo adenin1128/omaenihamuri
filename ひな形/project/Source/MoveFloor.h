@@ -22,6 +22,8 @@ public:
     void SetState(MoveFloorState s) { state = s; }
 
 private:
+    int frame;
+    int timer;
     // À•WE•`‰æ
     float x, y;
     int   fImage;

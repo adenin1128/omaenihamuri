@@ -59,6 +59,7 @@ int kaiheiGraphs[9];
 int EasyGraphs[8];
 int HGgraphs[8];
 int WGgraphs[5];
+//int suiGraphs[2];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -120,7 +121,9 @@ Field::Field(int stage)
 	LoadDivGraph("data/image/HardGate.png", 8, 8, 1, 768, 768, HGgraphs);
 	gokunobanImage = LoadGraph("data/image/AonoOkonomiyaki.png");
 	LoadDivGraph("data/image/AonoOkonomiyaki.png", 5, 5, 1, 128, 128, WGgraphs);
-	assert(gokunobanImage > 0);
+	//fImage = LoadGraph("data/image/すい.png");
+	//LoadDivGraph("data/image/すい.png", 2, 2, 1, 640, 640, suiGraphs);
+	//assert(fImage > 0);
 
 	x = 0;
 	y = 1080-64;
@@ -313,7 +316,7 @@ void Field::Draw()
 		{
 			if (timer % 10 == 0) {
 				frame[2]++;
-				if (frame[2] >= 4) {
+				if (frame[2] >= 5) {
 					frame[2] = 0;
 				}
 			}
@@ -325,6 +328,21 @@ void Field::Draw()
 				}
 			}
 		}
+	/*	{
+			if (timer % 10 == 0) {
+				frame[5]++;
+				if (frame[5] >= 2) {
+					frame[5] = 0;
+				}
+			}
+			for (int y = 0; y < maps.size(); y++) {
+				for (int x = 0; x < maps[y].size(); x++) {
+					if (maps[y][x] == 30) {
+						DrawRotaGraph(x * 64, y * 64, 1, 0, suiGraphs[frame[5]], TRUE, FALSE);
+					}
+				}
+			}
+		}*/
 	}
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {

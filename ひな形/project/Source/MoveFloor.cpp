@@ -5,9 +5,12 @@
 #include <assert.h>
 #include <cmath> // std::fabs
 
+int suiGraphs[2];
+
 MoveFloor::MoveFloor(int px, int py)
 {
-    fImage = LoadGraph("data/image/bird.png");
+    fImage = LoadGraph("data/image/‚·‚¢.png");
+    LoadDivGraph("data/image/‚·‚¢.png", 2, 2, 1, 640, 640, suiGraphs);
     assert(fImage > 0);
 
     x = static_cast<float>(px);
@@ -19,6 +22,9 @@ MoveFloor::MoveFloor(int px, int py)
 
     state = STATE_A;
     activatedA = false;
+
+    frame = 0;
+    timer = 0;
 }
 
 MoveFloor::~MoveFloor()
@@ -140,5 +146,16 @@ void MoveFloor::Update()
 
 void MoveFloor::Draw()
 {
-    DrawGraph(static_cast<int>(x), static_cast<int>(y), fImage, TRUE);
+    //DrawGraph(static_cast<int>(x), static_cast<int>(y), fImage, TRUE);
+
+    timer++;
+    {
+        if (timer % 10 == 0) {
+            frame++;
+            if (frame >= 2) {
+                frame = 0;
+            }
+        }
+        DrawRotaGraph(static_cast<int>(x) + 32, static_cast<int>(y) + 32, 0.2, 0, suiGraphs[frame], TRUE, FALSE);
+    }
 }
