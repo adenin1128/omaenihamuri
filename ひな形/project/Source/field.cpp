@@ -58,6 +58,7 @@ int doorGraphs[7];
 int kaiheiGraphs[9];
 int EasyGraphs[8];
 int HGgraphs[8];
+int WGgraphs[5];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -117,7 +118,9 @@ Field::Field(int stage)
 	LoadDivGraph("data/image/EasyGate.png", 8, 8, 1, 518, 518, EasyGraphs);
 	HGimage = LoadGraph("data/image/HardGate.png");
 	LoadDivGraph("data/image/HardGate.png", 8, 8, 1, 768, 768, HGgraphs);
-	assert(HGimage > 0);
+	gokunobanImage = LoadGraph("data/image/AonoOkonomiyaki.png");
+	LoadDivGraph("data/image/AonoOkonomiyaki.png", 5, 5, 1, 128, 128, WGgraphs);
+	assert(gokunobanImage > 0);
 
 	x = 0;
 	y = 1080-64;
@@ -126,7 +129,9 @@ Field::Field(int stage)
 	deathcount = 1;
 	size = 2;
 	timer = 0;
-	fream = 0;
+	for (int& f : frame) {
+		f = 0;
+	}
 	state = STATE_0;
 	hit = false;
 	jet = false;
@@ -273,65 +278,86 @@ void Field::Draw()
 			}
 		}
 	}
-
-	for (int y = 0; y < maps.size(); y++) {
-		for (int x = 0; x < maps[y].size(); x++) {
-			if (maps[y][x] == 21) {
-				if (timer % 10 == 0) {
-					fream++;
-					if (fream >= 8) {
-						fream = 0;
+	{
+		timer++;
+		{
+			if (timer % 10 == 0) {
+				frame[0]++;
+				if (frame[0] >= 8) {
+					frame[0] = 0;
+				}
+			}
+			for (int y = 0; y < maps.size(); y++) {
+				for (int x = 0; x < maps[y].size(); x++) {
+					if (maps[y][x] == 21) {
+						DrawRotaGraph(x * 64 + 35, y * 64 + 34, 0.5, 0, EasyGraphs[frame[0]], TRUE, FALSE);
 					}
 				}
-				timer++;
-				DrawRotaGraph(x * 64 + 35, y * 64 + 34, 0.5, 0, EasyGraphs[fream], TRUE, FALSE);
+			}
+		}
+		{
+			if (timer % 10 == 0) {
+				frame[1]++;
+				if (frame[1] >= 8) {
+					frame[1] = 0;
+				}
+			}
+			for (int y = 0; y < maps.size(); y++) {
+				for (int x = 0; x < maps[y].size(); x++) {
+					if (maps[y][x] == 22) {
+						DrawRotaGraph(x * 64 + 32, y * 64 - 32, 0.35, 0, HGgraphs[frame[1]], TRUE, FALSE);
+					}
+				}
+			}
+		}
+		{
+			if (timer % 10 == 0) {
+				frame[2]++;
+				if (frame[2] >= 4) {
+					frame[2] = 0;
+				}
+			}
+			for (int y = 0; y < maps.size(); y++) {
+				for (int x = 0; x < maps[y].size(); x++) {
+					if (maps[y][x] == 20) {
+						DrawRotaGraph(x * 64 + 32, y * 64 + 32, 0.75, 0, WGgraphs[frame[2]], TRUE, FALSE);
+					}
+				}
 			}
 		}
 	}
-
-	for (int y = 0; y < maps.size(); y++) {
-		for (int x = 0; x < maps[y].size(); x++) {
-			if (maps[y][x] == 22) {
-				if (timer % 10 == 0) {
-					fream++;
-					if (fream >= 8) {
-						fream = 0;
-					}
-				}
-				timer++;
-				DrawRotaGraph(x * 64 + 32, y * 64 - 32, 0.35, 0, HGgraphs[fream], TRUE, FALSE);
-			}
-		}
-	}
-
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 7) {
-				if (state == STATE_0) {
+				{
+					timer++;
 					if (timer % 10 == 0) {
-						fream++;
+						frame[3]++;
 
-						if (fream >= 7) {
-							fream = 0;
+						if (frame[3] >= 7) {
+							frame[3] = 0;
 						}
 					}
-					timer++;
-					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, doorGraphs[fream], TRUE, FALSE);
+					if (state == STATE_0) {
+						DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, doorGraphs[frame[3]], TRUE, FALSE);
+					}
 				}
-				if (state == STATE_1) {
-					if (fream < 8) {
+				{
+					if (frame[4] < 8) {
 						if (timer % 15 == 0) {
-							fream++;
+							frame[4]++;
 						}
 						timer++;
 					}
-					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[fream], TRUE, FALSE);
-					if(fream >= 8) {
-						state = STATE_2;
+					if (state == STATE_1) {
+						DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[frame[4]], TRUE, FALSE);
+						if (frame[4] >= 8) {
+							state = STATE_2;
+						}
 					}
 				}
 
-				if(state == STATE_2) {
+				if (state == STATE_2) {
 					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[8], TRUE, FALSE);
 				}
 			}
@@ -357,9 +383,9 @@ void Field::Draw()
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "Gate::%d", DL);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
-	if(hit == true)
+	if (hit == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
-	if(jet == true)
+	if (jet == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 }
 
