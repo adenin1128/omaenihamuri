@@ -61,12 +61,13 @@ private:
 	int harisitaimage;
 	int doorimage;
 	int kaiheiimage;
+	int gokunobanImage;
 	int HIT_TRAP = 0;
 	int deathcount;
 	bool clear;
 	int size;
 	int timer;
-	int fream;
+	int frame[5];
 	int hit;
 	bool jet;
 	int easyImage;
