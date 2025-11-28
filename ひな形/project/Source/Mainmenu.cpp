@@ -24,7 +24,7 @@ void MainmenuScene::Update()
 	StageNumber* stageNum = FindGameObject<StageNumber>();
 	Field* f = FindGameObject<Field>();
 
-	if (CheckHitKey(KEY_INPUT_0)) {
+	if (f->GetGateHit() == 21) {
 		random_device rnd;
 		mt19937 mt(rnd());
 		uniform_int_distribution<>rand100(1, 4);
