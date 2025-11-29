@@ -1,6 +1,9 @@
 #pragma once
 #include "../Library/GameObject.h"
+#include "Skeleton.h"
 #include "Player.h"
+#include <vector>
+#include <memory>
 
 enum ClearState {
 	STATE_0,    // ドア待機状態
@@ -49,11 +52,13 @@ public:
 	void SetClear() {
 		state = STATE_1;
 	}
+
 	int GetJetpack() { return jet; }
 	int GetGateHit() { return DL; }
 	bool GetHit() { return one; }
 	bool GetHita() { return two; }
 private:
+	std::vector<std::unique_ptr<Skeleton>> skeletons;
 	int hImage;
 	float x, y;
 	int scrollX;
