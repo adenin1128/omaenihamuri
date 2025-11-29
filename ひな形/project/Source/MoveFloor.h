@@ -18,15 +18,19 @@ public:
     void Update() override;
     void Draw() override;
 
+    int HitCheckDown(int px, int py);
+
     MoveFloorState GetState() const { return state; }
     void SetState(MoveFloorState s) { state = s; }
 
 private:
     int frame;
     int timer;
+
     // 座標・描画
     float x, y;
     int   fImage;
+    int size;
 
     // 速度・区間管理
     float moveSpeed;          // px/フレーム
