@@ -37,7 +37,6 @@ trap::trap(int px, int py, int i, int d, int tx, int ty)
     hariImage = LoadGraph("data/image/hari.png");
     x = px;
     y = py;
-
     vx = tx;
 	vy = ty;
 
@@ -56,6 +55,11 @@ void trap::Reset()
 
     vx = resetTx;
     vy = resetTy;
+
+	frame = 0;
+
+	unitX = 0.0f;
+	unitY = 0.0f;
 
     isActive = false;
     isGameover = false;
@@ -114,15 +118,20 @@ void trap::Update()
             dx = 1.0f; dy = 0.0f; // 例外処理
         }
 
-        float unitX = dx / length;
-        float unitY = dy / length;
+        unitX = dx / length;
+        unitY = dy / length;
 
         // 2. プレイヤーに初速を設定し、状態をSTATE_BOOMにする
         StageNumber* stageNumber = FindGameObject<StageNumber>();
         if (stageNumber->noDeath != true) {
-        player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+            player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+            //frame++;
         }
     }
+    /*if (frame > 15) {
+        player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+		frame = 0;
+    }*/
 
     if (isActive) {
         x += vx;

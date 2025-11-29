@@ -13,4 +13,6 @@ private:
 	int ConveyorImage;
 	int x, y;
 	int speed;
+	int timer;
+	int frame;
 };

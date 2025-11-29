@@ -80,9 +80,6 @@
     <ClCompile Include="Source\Mainmenu.cpp">
       <Filter>Mainmenu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\skeleton.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Clear.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -114,7 +111,11 @@
     <ClCompile Include="Source\BeltConveyorL.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+
     <ClCompile Include="Source\Breath.cpp">
+
+    <ClCompile Include="Source\Skeleton.cpp">
+
       <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -211,9 +212,6 @@
     <ClInclude Include="Source\Mainmenu.h">
       <Filter>Mainmenu</Filter>
     </ClInclude>
-    <ClInclude Include="Source\skeleton.h">
-      <Filter>PlayScene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Clear.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
@@ -245,7 +243,11 @@
     <ClInclude Include="Source\BeltConveyorL.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+
     <ClInclude Include="Source\Breath.h">
+
+    <ClInclude Include="Source\Skeleton.h">
+
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

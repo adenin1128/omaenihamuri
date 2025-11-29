@@ -8,8 +8,14 @@ public:
 	~Skeleton();
 	void Update() override;
 	void Draw() override;
-	bool IsHit(int px, int py);
+
+	int HitCheckDown(int px, int py);
+	int HitCheckLeft(int px, int py);
+	int HitCheckUp(int px, int py);
+	int HitCheckRight(int px, int py);
+
 private:
 	float x, y;
+	int Image;
 	int size;
 };

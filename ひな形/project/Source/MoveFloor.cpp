@@ -13,8 +13,20 @@ MoveFloor::MoveFloor(int px, int py)
     LoadDivGraph("data/image/‚·‚¢.png", 2, 2, 1, 640, 640, suiGraphs);
     assert(fImage > 0);
 
-    x = static_cast<float>(px);
-    y = static_cast<float>(py);
+	resetX = px;
+	resetY = py;
+
+    Reset();
+}
+
+MoveFloor::~MoveFloor()
+{
+}
+
+void MoveFloor::Reset()
+{
+    x = static_cast<float>(resetX);
+    y = static_cast<float>(resetY);
 
     moveSpeed = 3.0f;
     maxSegmentLength = 0.0f;
@@ -28,11 +40,6 @@ MoveFloor::MoveFloor(int px, int py)
 
     size = 64;
 }
-
-MoveFloor::~MoveFloor()
-{
-}
-
 bool MoveFloor::IsPlayerOn(const Player* p) const
 {
     if (!p) return false;

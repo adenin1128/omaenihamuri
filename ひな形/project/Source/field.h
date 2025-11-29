@@ -28,6 +28,7 @@ public:
 	bool IsGoal(int px, int py);
 	bool IsNyoki(int px, int py);
 	float NyokiStop();
+	bool IsSkeleton(int px, int py);
 	bool Jetpack(int px, int py);
 	bool IsGate(int px, int py);
 	int IsBelt(int px, int py);
@@ -76,6 +77,7 @@ private:
 	int HGimage;
 	int DL;
 	int BeltHit;
+	bool skHit;
 	bool one;
 	bool two;
 };
