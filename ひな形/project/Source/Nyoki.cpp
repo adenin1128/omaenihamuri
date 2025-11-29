@@ -37,11 +37,11 @@ void Nyoki::Reset()
 
 void Nyoki::Update()
 {
-	Field* field = FindGameObject<Field>();
+	/*Field* field = FindGameObject<Field>();
 	if (CheckHitKey(KEY_INPUT_R)) {
 		DestroyMe();
 		return;
-	}
+	}*/
 	if (loop > 0) {
 		count += 1;
 		if (count >= 10) {
@@ -55,11 +55,11 @@ void Nyoki::Update()
 		maxMoveX = field->NyokiStop();
 		if (currentMoveX < maxMoveX) {
 			currentMoveX += 10;
-			nx += 11;
+			nx += 10;
 		}
 		if (currentMoveX > maxMoveX) {
 			currentMoveX -= 10;
-			nx -= 11;
+			nx -= 10;
 		}
 	}
 }

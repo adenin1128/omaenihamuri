@@ -16,5 +16,6 @@ public:
 
 private:
 	float x, y;
+	int Image;
 	int size;
 };

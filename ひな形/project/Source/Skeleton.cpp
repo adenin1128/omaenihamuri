@@ -4,6 +4,7 @@
 
 Skeleton::Skeleton(int px, int py)
 {
+	Image = LoadGraph("data/image/bird.png");
 	x = px;
 	y = py;
 	size = 64;
@@ -19,6 +20,7 @@ void Skeleton::Update()
 
 void Skeleton::Draw()
 {
+	DrawGraph(x, y, Image, TRUE);
 }
 
 // プレイヤーの下判定用

@@ -84,6 +84,7 @@ void Player::Update()
 	Field* field = FindGameObject<Field>();
 	field->Istrap(x + 32, y + 32);
 	field->IsNyoki(x + 32, y + 32);
+	field->IsSkeleton(x, y);
 	field->Jetpack(x, y);
 	field->IsGate(x, y);
 	field->IsBelt(x, y);
