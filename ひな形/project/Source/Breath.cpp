@@ -1,4 +1,5 @@
 #include "Breath.h"
+#include "BOAAAA.h"
 #include <assert.h>
 
 int buraGraphs[2];
@@ -25,7 +26,6 @@ void Breath::Update()
 void Breath::Draw()
 {
 	if (state == STATE_START) {
-		int size = 64;
 		timer2++;
 		{
 			if (timer2>= 120) {
@@ -38,6 +38,6 @@ void Breath::Draw()
 
 	if (state == STATE_GO) {
 		DrawRotaGraph(x * 64 + 32, y * 64 + 32, 4, 0, buraGraphs[frame2], TRUE, FALSE);
-
+		new Boaaa(x, y);
 	}
 }
