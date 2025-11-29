@@ -24,11 +24,14 @@ private:
 	int resetTy;
 	int hariImage;
 	float x, y;
-	
+
 	bool isActive;// ƒgƒ‰ƒbƒv‚ª”­“®‚µ‚½‚©
 	bool isGameover;
-	
+
 	float vx, vy;
+	int frame;
+	float unitX;
+	float unitY;
 	Direction dir;
 	double rot;
 	std::vector<VECTOR2> colliderPoints;
