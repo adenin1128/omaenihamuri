@@ -25,6 +25,8 @@ MoveFloor::MoveFloor(int px, int py)
 
     frame = 0;
     timer = 0;
+
+    size = 64;
 }
 
 MoveFloor::~MoveFloor()
@@ -158,4 +160,17 @@ void MoveFloor::Draw()
         }
         DrawRotaGraph(static_cast<int>(x) + 32, static_cast<int>(y) + 32, 0.2, 0, suiGraphs[frame], TRUE, FALSE);
     }
+}
+
+// プレイヤーの下判定用
+int MoveFloor::HitCheckDown(int px, int py) {
+    // Nyokiの横範囲内かチェック
+    if (px < static_cast<int>(x) || px >= static_cast<int>(x) + size) return 0;
+
+    // ブロックの上面とプレイヤーの足元の距離
+    int push = py - static_cast<int>(y);
+    if (push >= 0 && push < 16) {  // ブロックの上面付近なら押し出す
+        return push;
+    }
+    return 0;
 }

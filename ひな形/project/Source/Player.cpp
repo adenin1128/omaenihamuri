@@ -9,6 +9,7 @@
 #include "Clear.h"
 #include "BeltConveyor.h"
 #include "BeltConveyorL.h"
+#include "MoveFloor.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Debug.h"
@@ -224,6 +225,14 @@ void Player::Update()
 				push1 = max(push1, nyoki->HitCheckDown(x + 9, y + 64));
 				push2 = max(push2, nyoki->HitCheckDown(x + 55, y + 64));
 				push3 = max(push3, nyoki->HitCheckDown(x + 28, y + 64));
+			}
+
+			//MoveFloor”»’è‚ð’Ç‰Á
+			MoveFloor* mf = FindGameObject<MoveFloor>();
+			if (mf != nullptr) {
+				push1 = max(push1, mf->HitCheckDown(x + 9, y + 64));
+				push2 = max(push2, mf->HitCheckDown(x + 55, y + 64));
+				push3 = max(push3, mf->HitCheckDown(x + 28, y + 64));
 			}
 
 			int push = max(push1, push2, push3);
