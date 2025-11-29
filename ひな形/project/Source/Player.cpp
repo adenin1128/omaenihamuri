@@ -5,6 +5,7 @@
 #include "Gameover.h"
 #include "trap.h"
 #include "Nyoki.h"
+#include "Skeleton.h"
 #include "Clear.h"
 #include "BeltConveyor.h"
 #include "BeltConveyorL.h"
@@ -96,6 +97,18 @@ void Player::Update()
 		
 		push1 = nyoki->HitCheckLeft(x + 9, y + 9);
 		push2 = nyoki->HitCheckLeft(x + 9, y + 55);
+		x -= min(push1, push2);
+	}
+	//Skeleton‚Ì¶‰E”»’è
+	Skeleton* sktn = FindGameObject<Skeleton>();
+	if (sktn != nullptr) {
+		int push1, push2;
+		push1 = sktn->HitCheckRight(x + 55, y + 9);
+		push2 = sktn->HitCheckRight(x + 55, y + 55);
+		x -= max(push1, push2);
+
+		push1 = sktn->HitCheckLeft(x + 9, y + 9);
+		push2 = sktn->HitCheckLeft(x + 9, y + 55);
 		x -= min(push1, push2);
 	}
 
@@ -234,6 +247,13 @@ void Player::Update()
 				push3 = max(push3, mf->HitCheckDown(x + 28, y + 64));
 			}
 
+			//Skeleton”»’è‚ğ’Ç‰Á
+			Skeleton* sktn = FindGameObject<Skeleton>();
+			if (sktn != nullptr) {
+				push1 = max(push1, sktn->HitCheckDown(x + 9, y + 64));
+				push2 = max(push2, sktn->HitCheckDown(x + 55, y + 64));
+				push3 = max(push3, sktn->HitCheckDown(x + 28, y + 64));
+			}
 			int push = max(push1, push2, push3);
 			if (push > 0) {
 				y -= push - 1;
@@ -260,6 +280,13 @@ void Player::Update()
 				push3 = max(push3, nyoki->HitCheckUp(x + 28, y + 5));
 			}
 
+			//Skeleton”»’è‚ğ’Ç‰Á
+			Skeleton* sktn = FindGameObject<Skeleton>();
+			if (sktn != nullptr) {
+				push1 = max(push1, sktn->HitCheckUp(x + 9, y + 5));
+				push2 = max(push2, sktn->HitCheckUp(x + 55, y + 5));
+				push3 = max(push3, sktn->HitCheckUp(x + 28, y + 5));
+			}
 			int push = max(push1, push2, push3);
 			if (push > 0) {
 				y += push;
