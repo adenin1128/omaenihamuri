@@ -25,7 +25,7 @@ using namespace std;
 //vector<vector<int>> maps = {
 //	//199は固定針！動かしたらあかん
 //	//0:空白 1:地面（ブロック） 4:中間 5:すり抜けブロック 6:透明ブロック 7:Goal 
-//  //9:Nyoki発動 10:Nyoki 12:NyokiStop
+//  //9:Nyoki発動 10:Nyoki 12:NyokiStop 13:透明ブロック生成
 //  //15:上昇気流 16:上昇解除 17:Jetpack 19:Jetpack解除
 //  //18:低速落下 20:ランダムワープゲート 21:簡単ゲート 22:難しゲート
 //  //23:コンベア右 24:コンベア左
@@ -125,6 +125,7 @@ Field::Field(int stage)
 	DL = 0;
 	one = false;
 	two = false;
+	skHit = false;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -147,9 +148,6 @@ Field::Field(int stage)
 			}
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
-			}
-			if (maps[y][x] == 6) {
-				new Skeleton(x * 64, y * 64);
 			}
 			if(maps[y][x] == 15) {
 				new Updraft(x * 64, y * 64);
@@ -188,6 +186,7 @@ void Field::Update()
 	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
 #if true	
 		{
+			skHit = false;
 			hit = false;
 			deathcount++;
 		}
@@ -320,21 +319,6 @@ void Field::Draw()
 				}
 			}
 		}
-	/*	{
-			if (timer % 10 == 0) {
-				frame[5]++;
-				if (frame[5] >= 2) {
-					frame[5] = 0;
-				}
-			}
-			for (int y = 0; y < maps.size(); y++) {
-				for (int x = 0; x < maps[y].size(); x++) {
-					if (maps[y][x] == 30) {
-						DrawRotaGraph(x * 64, y * 64, 1, 0, suiGraphs[frame[5]], TRUE, FALSE);
-					}
-				}
-			}
-		}*/
 	}
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
@@ -397,6 +381,8 @@ void Field::Draw()
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 	if (jet == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
+	if (skHit == true)
+		DrawString(0, 320, "skHit", GetColor(255, 255, 255));
 }
 
 void Field::CheckTrap(int x, int y) {
@@ -540,7 +526,9 @@ bool Field::IsNyoki(int px, int py)
 			}
 		}
 	}
-	return false;
+	else {
+		return false;
+	}
 }
 
 float Field::NyokiStop()
@@ -565,6 +553,24 @@ float Field::NyokiStop()
 
 	return static_cast<float>(nsx - nx) * 64;
 	return 0.0f;
+}
+
+bool Field::IsSkeleton(int px, int py)
+{
+	int x = px / 64;
+	int y = py / 64;
+	if (maps[y][x] == 13 && !skHit) {
+		for (int y = 0; y < maps.size(); y++) {
+			for (int x = 0; x < maps[y].size(); x++) {
+				if (maps[y][x] == 6) {
+					new Skeleton(x * 64, y * 64);
+					skHit = true;
+					return true;
+				}
+			}
+		}
+	}
+	return false;
 }
 
 bool Field::Jetpack(int px, int py)
