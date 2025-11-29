@@ -19,7 +19,7 @@ void PlayScene::Update()
 		SceneManager::ChangeScene("TITLE");
 	}
 	if (CheckHitKey(KEY_INPUT_M)) {
-		SceneManager::ChangeScene("MANU");
+		SceneManager::ChangeScene("MENU");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		SceneManager::Exit();

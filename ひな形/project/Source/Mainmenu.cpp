@@ -81,6 +81,9 @@ void MainmenuScene::Update()
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		SceneManager::ChangeScene("PlayScene");
 	}
+	if (CheckHitKey(KEY_INPUT_T)) {
+		SceneManager::ChangeScene("TITLE");
+	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		SceneManager::Exit();
 	}
