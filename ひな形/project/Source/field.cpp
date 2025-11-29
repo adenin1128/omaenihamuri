@@ -6,7 +6,6 @@
 #include "Trigger.h"
 #include "CsvReader.h"
 #include "Nyoki.h"
-#include "skeleton.h"
 #include "Clear.h"
 #include "updraft.h"
 #include "Gravity.h"
@@ -147,9 +146,6 @@ Field::Field(int stage)
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
 			}
-			if (maps[y][x] == 11) {
-				new Skeleton(x * 64, y * 64);
-			}
 			if(maps[y][x] == 15) {
 				new Updraft(x * 64, y * 64);
 			}
@@ -214,6 +210,11 @@ void Field::Update()
 		}
 		{
 			auto objs = FindGameObjects<trap>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+		{
+			auto objs = FindGameObjects<MoveFloor>();
 			for (auto obj : objs)
 				obj->Reset();
 		}

@@ -80,9 +80,6 @@
     <ClCompile Include="Source\Mainmenu.cpp">
       <Filter>Mainmenu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\skeleton.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Clear.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -207,9 +204,6 @@
     </ClInclude>
     <ClInclude Include="Source\Mainmenu.h">
       <Filter>Mainmenu</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\skeleton.h">
-      <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\Clear.h">
       <Filter>PlayScene</Filter>
