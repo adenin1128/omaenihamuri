@@ -1,5 +1,6 @@
 #include "field.h"
 #include <vector>
+#include <memory>
 #include "Player.h"
 #include "trap.h"
 #include "respawn.h"
@@ -399,7 +400,7 @@ int Field::HitCheckRight(int px, int py)
 {
 	int x = px / 64;
 	int y = py/ 64;
-	if (y >= maps.size())
+	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
 	if (maps[y][x] == 1)
@@ -413,7 +414,7 @@ int Field::HitCheckLeft(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
 	if (maps[y][x] == 1)
@@ -427,7 +428,7 @@ int Field::HitCheckUp(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
 	if (maps[y][x] == 1)
@@ -439,7 +440,7 @@ int Field::HitCheckDown(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x,y))
 		return 0;
 	CheckTrap(x, y);
 	if (maps[y][x] == 1)
@@ -447,11 +448,13 @@ int Field::HitCheckDown(int px, int py)
 	return 0;
 }
 
-bool Field::OutOfMap(int px, int py)
+
+bool Field::OutOfMap(int x, int y)
 {
-	if (py < 400 + 64 * maps.size()) {
-		return 0;
+	if (y >= maps.size() || y < 0 || x >= maps[0].size() || x < 0) {
+		return true;
 	}
+	return false;
 }
 
 bool Field::Istrap(int px, int py)
@@ -461,8 +464,6 @@ bool Field::Istrap(int px, int py)
 	}
 	int x = px / 64;
 	int y = (py - 400) / 64;
-	if (y >= maps.size())
-		return 0;
 	if (y >= maps.size())
 		return 0;
 	return false;
@@ -501,7 +502,7 @@ bool Field::IsGoal(int px, int py)
 	}
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x,y))
 		return 0;
 	if (maps[y][x] == 7) {
 		return true;
@@ -516,7 +517,7 @@ bool Field::IsNyoki(int px, int py)
 	}
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x,y))
 		return 0;
 
 	if (maps[y][x] == 9 && !hit) {
@@ -559,29 +560,35 @@ float Field::NyokiStop()
 	return 0.0f;
 }
 
-bool Field::IsSkeleton(int px, int py)
-{
+bool Field::IsSkeleton(int px, int py) {
 	int x = px / 64;
 	int y = py / 64;
+
+	// 境界チェック
+	if (y < 0 || y >= maps.size()) return false;
+	if (x < 0 || x >= maps[y].size()) return false;
+
+	// 13タイルに入ったら一度だけ全6タイルに配置
 	if (maps[y][x] == 13 && !skHit) {
-		for (int y = 0; y < maps.size(); y++) {
-			for (int x = 0; x < maps[y].size(); x++) {
-				if (maps[y][x] == 6) {
-					new Skeleton(x * 64, y * 64);
-					skHit = true;
-					return true;
+		for (int iy = 0; iy < maps.size(); ++iy) {
+			for (int ix = 0; ix < maps[iy].size(); ++ix) {
+				if (maps[iy][ix] == 6) {
+					skeletons.emplace_back(std::make_unique<Skeleton>(ix * 64, iy * 64));
 				}
 			}
 		}
+		skHit = true;
 	}
 	return false;
 }
+
+
 
 bool Field::Jetpack(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x, y))
 		return 0;
 	if (maps[y][x] == 17) {
 		jet = true;
@@ -596,7 +603,7 @@ bool Field::IsGate(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x,y))
 		return 0;
 	if (maps[y][x] == 20) {
 		DL = 20;
@@ -614,7 +621,7 @@ int Field::IsBelt(int px, int py)
 {
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
-	if (y >= maps.size())
+	if (OutOfMap(x,y))
 		return 0;
 	if (maps[y][x] == 23) {
 		BeltHit = 23;
