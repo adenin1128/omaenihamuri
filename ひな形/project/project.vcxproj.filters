@@ -111,7 +111,11 @@
     <ClCompile Include="Source\BeltConveyorL.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+
+    <ClCompile Include="Source\Breath.cpp">
+
     <ClCompile Include="Source\Skeleton.cpp">
+
       <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -239,7 +243,11 @@
     <ClInclude Include="Source\BeltConveyorL.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+
+    <ClInclude Include="Source\Breath.h">
+
     <ClInclude Include="Source\Skeleton.h">
+
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
