@@ -32,6 +32,7 @@ public:
 	bool IsGate(int px, int py);
 	int IsBelt(int px, int py);
 	int Movefloor(int px, int py);
+	int IsBreath(int px, int py);
 	/*int HitCheckRightTrap(int px, int py);
 	int HitCheckLeftTrap(int px, int py);
 	int HitCheckUpTrap(int px, int py);

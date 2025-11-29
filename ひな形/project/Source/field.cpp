@@ -16,6 +16,7 @@
 #include "Gameover.h"
 #include "BeltConveyor.h"
 #include "BeltConveyorL.h"
+#include "Breath.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -170,6 +171,9 @@ Field::Field(int stage)
 			}
 			if(maps[y][x] == 24) {
 				new BeltConveyorL(x * 64, y * 64);
+			}
+			if (maps[y][x] == 8) {
+				new Breath(x, y);
 			}
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
@@ -652,6 +656,13 @@ int Field::Movefloor(int px, int py)
 }
 
 
+
+int Field::IsBreath(int px, int py) {
+	/*if (maps[y][x] == 8) {
+
+	}*/
+	return 0;
+}
 
 //int Field::HitCheckRightTrap(int px, int py)
 //{
