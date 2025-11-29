@@ -17,6 +17,7 @@ public:
     ~MoveFloor();
     void Update() override;
     void Draw() override;
+    void Reset();
 
     int HitCheckDown(int px, int py);
 
@@ -28,6 +29,7 @@ private:
     int timer;
 
     // ç¿ïWÅEï`âÊ
+    int resetX, resetY;
     float x, y;
     int   fImage;
     int size;

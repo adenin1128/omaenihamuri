@@ -5,7 +5,6 @@
 #include "Gameover.h"
 #include "trap.h"
 #include "Nyoki.h"
-#include "skeleton.h"
 #include "Clear.h"
 #include "BeltConveyor.h"
 #include "BeltConveyorL.h"
