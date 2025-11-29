@@ -13,6 +13,7 @@
 #include "downdraft.h"
 #include "MoveFloor.h"
 #include "Gameover.h"
+#include "Skeleton.h"
 #include "BeltConveyor.h"
 #include "BeltConveyorL.h"
 #define _USE_MATH_DEFINES
@@ -23,7 +24,7 @@ using namespace std;
 
 //vector<vector<int>> maps = {
 //	//199は固定針！動かしたらあかん
-//	//0:空白 1:地面（ブロック） 4:中間 5:すり抜けブロック 7:Goal 
+//	//0:空白 1:地面（ブロック） 4:中間 5:すり抜けブロック 6:透明ブロック 7:Goal 
 //  //9:Nyoki発動 10:Nyoki 12:NyokiStop
 //  //15:上昇気流 16:上昇解除 17:Jetpack 19:Jetpack解除
 //  //18:低速落下 20:ランダムワープゲート 21:簡単ゲート 22:難しゲート
@@ -146,6 +147,9 @@ Field::Field(int stage)
 			}
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
+			}
+			if (maps[y][x] == 6) {
+				new Skeleton(x * 64, y * 64);
 			}
 			if(maps[y][x] == 15) {
 				new Updraft(x * 64, y * 64);

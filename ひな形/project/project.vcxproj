@@ -173,6 +173,7 @@
     <ClInclude Include="Source\respawn.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\SceneFactory.h" />
+    <ClInclude Include="Source\Skeleton.h" />
     <ClInclude Include="Source\StageNumber.h" />
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\trap.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\respawn.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
+    <ClCompile Include="Source\Skeleton.cpp" />
     <ClCompile Include="Source\StageNumber.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\trap.cpp" />
