@@ -8,6 +8,7 @@
 #include "skeleton.h"
 #include "Clear.h"
 #include "BeltConveyor.h"
+#include "BeltConveyorL.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Debug.h"
@@ -100,6 +101,17 @@ void Player::Update()
 
 	if (state == STATE_NORMAL) {
 		int moveX = 0;
+		{
+			Field* field = FindGameObject<Field>();
+			BeltConveyor* belt = FindGameObject<BeltConveyor>();
+			BeltConveyorL* beltL = FindGameObject<BeltConveyorL>();
+			if (field->GetBeltHit() == 23) {
+				x += belt->GetSpeed();
+			}
+			else if (field->GetBeltHit() == 24) {
+				x += beltL->GetSpeed();
+			}
+		}
 
 		if (onGround == true) {
 			if (jumpcount < Maxjumpcount) {
@@ -120,12 +132,13 @@ void Player::Update()
 			// FieldîªíË
 			Field* field = FindGameObject<Field>();
 			BeltConveyor* belt = FindGameObject<BeltConveyor>();
+			BeltConveyorL* beltL = FindGameObject<BeltConveyorL>();
 			if (field->GetBeltHit() == 23) {
 				x += 3.0 + belt->GetSpeed();
 			}
-			else if (field->GetBeltHit() == 24) {
-				x += 3.0 + belt->GetSpeed();
-			}
+			/*else if (field->GetBeltHit() == 24) {
+				x += 3.0 + beltL->GetSpeed();
+			}*/
 			else {
 				x += 3.0; // âEÇ…êiÇﬁ 
 			}
@@ -147,11 +160,12 @@ void Player::Update()
 			// FieldîªíË
 			Field* field = FindGameObject<Field>();
 			BeltConveyor* belt = FindGameObject<BeltConveyor>();
-			if (field->GetBeltHit() == 23) {
+			BeltConveyorL* beltL = FindGameObject<BeltConveyorL>();
+			/*if (field->GetBeltHit() == 23) {
 				x -= 3.0 - belt->GetSpeed();
 			}
-			else if (field->GetBeltHit() == 24) {
-				x -= 3.0 - belt->GetSpeed();
+			else */if (field->GetBeltHit() == 24) {
+				x -= 3.0 - beltL->GetSpeed();
 			}
 			else {
 				x -= 3.0;

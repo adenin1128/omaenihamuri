@@ -15,6 +15,7 @@
 #include "MoveFloor.h"
 #include "Gameover.h"
 #include "BeltConveyor.h"
+#include "BeltConveyorL.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -105,9 +106,7 @@ Field::Field(int stage)
 	LoadDivGraph("data/image/HardGate.png", 8, 8, 1, 768, 768, HGgraphs);
 	gokunobanImage = LoadGraph("data/image/AonoOkonomiyaki.png");
 	LoadDivGraph("data/image/AonoOkonomiyaki.png", 5, 5, 1, 128, 128, WGgraphs);
-	//fImage = LoadGraph("data/image/すい.png");
-	//LoadDivGraph("data/image/すい.png", 2, 2, 1, 640, 640, suiGraphs);
-	//assert(fImage > 0);
+	assert(gokunobanImage > 0);
 
 	x = 0;
 	y = 1080-64;
@@ -168,6 +167,9 @@ Field::Field(int stage)
 			}
 			if (maps[y][x] == 23) {
 				new BeltConveyor(x * 64, y * 64);
+			}
+			if(maps[y][x] == 24) {
+				new BeltConveyorL(x * 64, y * 64);
 			}
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);

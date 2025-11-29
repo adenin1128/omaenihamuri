@@ -1,8 +1,8 @@
-#include "BeltConveyor.h"
+#include "BeltConveyorL.h"
 #include "field.h"
 #include "Player.h"
 
-BeltConveyor::BeltConveyor(int px, int py)
+BeltConveyorL::BeltConveyorL(int px, int py)
 {
 	ConveyorImage = LoadGraph("data/image/bird.png");
 	x = px;
@@ -10,16 +10,16 @@ BeltConveyor::BeltConveyor(int px, int py)
 	speed = 0;
 }
 
-BeltConveyor::~BeltConveyor()
+BeltConveyorL::~BeltConveyorL()
 {
 }
 
-void BeltConveyor::Update()
+void BeltConveyorL::Update()
 {
 	Field* field = FindGameObject<Field>();
 	Player* player = FindGameObject<Player>();
-	if (field->GetBeltHit() == 23) {
-		speed = 5;
+	if (field->GetBeltHit() == 24) {
+		speed = -5;
 	}
 	else {
 		speed = 0;
@@ -27,7 +27,7 @@ void BeltConveyor::Update()
 	return;
 }
 
-void BeltConveyor::Draw()
+void BeltConveyorL::Draw()
 {
 	DrawGraph(x, y + 64, ConveyorImage, TRUE);
 }
