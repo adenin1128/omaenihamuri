@@ -4,12 +4,16 @@
 #include <assert.h>
 #include "CsvReader.h"
 #include <vector>
+#include <cmath>
 
-//vector<vector<int>> maps;
+using namespace std;
+
+int NyokiGraphs[5];
 
 Nyoki::Nyoki(int px, int py)
 {
 	nyokiImage = LoadGraph("data/image/nyoblo.png");
+	LoadDivGraph("data/image/nyoblo.png", 5, 5, 1, 64, 64*4, NyokiGraphs);
 	assert(nyokiImage > 0);
 	resetX = px;
 	resetY = py;
@@ -24,6 +28,7 @@ Nyoki::~Nyoki()
 
 void Nyoki::Reset()
 {
+	state == STATE_NEW;
 	nx = resetX;
 	ny = resetY;
 	size = 64;
@@ -31,8 +36,27 @@ void Nyoki::Reset()
 	count = 0;
 	loop = 4;//4にしたらニョキニョキする
 	a = false;
+
 	currentMoveX = 0;
 	maxMoveX = 0;
+	nyokiSpeed = 10;
+
+}
+
+void Nyoki::MoveOneStep(float dir)
+{
+	const float dx = nyokiSpeed * dir;
+
+	// 残距離に合わせて丸める（行き過ぎ防止）
+	const float remaining = fabs(maxMoveX) - currentMoveX;
+	float step = dx;
+	if (fabs(dx) > remaining) {
+		step = (dx > 0 ? +remaining : -remaining);
+	}
+
+	// 床移動
+	nx += step;
+	currentMoveX += fabs(step);
 }
 
 void Nyoki::Update()
@@ -42,34 +66,85 @@ void Nyoki::Update()
 		DestroyMe();
 		return;
 	}
-	if (loop > 0) {
+
+	maxMoveX = field->NyokiMove(nx, ny);
+	if (maxMoveX == 0.0f)return;
+
+	switch (state) {
+	case STATE_NEW: {
+		if (loop == 0) {
+			state = STATE_MOVE1;
+		}
+		break;
+	}
+	case STATE_MOVE1: {
+		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
+		MoveOneStep(dir);
+
+		if (currentMoveX > fabs(maxMoveX)) {
+			state = STATE_MOVE2;
+			currentMoveX = 0.0f;
+		}
+		break;
+	}
+	case STATE_MOVE2: {
+		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
+		MoveOneStep(dir);
+
+		if (currentMoveX > fabs(maxMoveX)) {
+			state = STATE_MOVE3;
+			currentMoveX = 0.0f;
+		}
+		break;
+	}
+	case STATE_MOVE3: {
+		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
+		MoveOneStep(dir);
+
+		if (currentMoveX > fabs(maxMoveX)) {
+			state = STATE_STOP;
+			currentMoveX = 0.0f;
+		}
+		break;
+	}
+	case STATE_STOP: {
+		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
+		MoveOneStep(dir);
+
+		if (currentMoveX > fabs(maxMoveX)) {
+			nx = field->NyokiMove(nx, ny);
+			currentMoveX = 0.0f;
+		}
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+void Nyoki::Draw()
+{
+	/*if (loop > 0) {
 		count += 1;
 		if (count >= 10) {
 			count = 0;
 			move = (move + 4) % 17;
 			loop--;
 		}
-	}
-	if (loop == 0) {
-		Field* field = FindGameObject<Field>();
-		maxMoveX = field->NyokiStop();
-		if (currentMoveX < maxMoveX) {
-			currentMoveX += 10;
-			nx += 10;
+		DrawRectGraph(nx, ny, size* move, 0, size, size * 4, nyokiImage, TRUE);
+	}*/
+	if(loop > 0){
+		count++;
+		if (count % 10 == 0) {
+			count = 0;
+			move++;
+			if (move >= 5) {
+				move = 4;
+			}
 		}
-		if (currentMoveX > maxMoveX) {
-			currentMoveX -= 10;
-			nx -= 10;
-		}
+		DrawRotaGraph(nx * 64, ny * 64, 1, 0, NyokiGraphs[move], TRUE, FALSE);
 	}
-}
-
-void Nyoki::Draw()
-{
-	DrawRectGraph(nx, ny, size * move, 0, size, size * 4, nyokiImage, TRUE);
-	DrawFormatString(0, 240, GetColor(255, 255, 255), "count:: %d", count);
-	DrawFormatString(0, 280, GetColor(255, 255, 255), "move:: %d", move);
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "loop:: %d", loop);
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "state:: %d", state);
 }
 
 // プレイヤーの下判定用
