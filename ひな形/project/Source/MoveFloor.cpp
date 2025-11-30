@@ -40,6 +40,7 @@ void MoveFloor::Reset()
 
     size = 64;
 }
+
 bool MoveFloor::IsPlayerOn(const Player* p) const
 {
     if (!p) return false;

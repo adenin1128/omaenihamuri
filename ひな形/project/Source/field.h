@@ -30,7 +30,7 @@ public:
 	bool Istrap(int px, int py);
 	bool IsGoal(int px, int py);
 	bool IsNyoki(int px, int py);
-	float NyokiStop();
+	int NyokiMove(int px, int py);
 	bool IsSkeleton(int px, int py);
 	bool Jetpack(int px, int py);
 	bool IsGate(int px, int py);

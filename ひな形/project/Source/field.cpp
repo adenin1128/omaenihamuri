@@ -27,8 +27,8 @@ using namespace std;
 //vector<vector<int>> maps = {
 //	//199は固定針！動かしたらあかん
 //	//0:空白 1:地面（ブロック） 4:中間 5:すり抜けブロック 6:透明ブロック 7:Goal 
-//  //9:Nyoki発動 10:Nyoki 12:NyokiStop 13:透明ブロック生成
-//  //15:上昇気流 16:上昇解除 17:Jetpack 19:Jetpack解除
+//  //9:Nyoki発動 10:Nyoki1 11:Nyoki2 12:Nyoki3 14:Nyokistop
+//  //13:透明ブロック生成 15:上昇気流 16:上昇解除 17:Jetpack 19:Jetpack解除
 //  //18:低速落下 20:ランダムワープゲート 21:簡単ゲート 22:難しゲート
 //  //23:コンベア右 24:コンベア左
 //  //30:動く床開始 31:動く床中間1 32:動く床中間2 33:動く床終点
@@ -380,7 +380,6 @@ void Field::Draw()
 	}*/
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
-	DrawFormatString(0, 240, GetColor(255, 255, 255), "Gate::%d", DL);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
 	if (hit == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
@@ -536,28 +535,41 @@ bool Field::IsNyoki(int px, int py)
 	}
 }
 
-float Field::NyokiStop()
+int Field::NyokiMove(int px, int py)
 {
-	int nsx = -1;   // 12 の x
-	int nx = -1;   // 10 の x
+	Nyoki* nk = FindGameObject<Nyoki>();
+	if (!nk) return 0;
 
-	for (int y = 0; y < maps.size(); y++) {
-		for (int x = 0; x < maps[y].size(); x++) {
+	int x10 = -1, x11 = -1, x12 = -1, x14 = -1;
 
-			if (maps[y][x] == 12) {
-				nsx = x;
-			}
-			if (maps[y][x] == 10) {
-				nx = x;
-			}
+	for (int y = 0; y < (int)maps.size(); y++) {
+		for (int x = 0; x < (int)maps.size(); x++) {
+			if (maps[y][x] == 10)        x10 = x;
+			else if (maps[y][x] == 11)   x11 = x;
+			else if (maps[y][x] == 12)   x12 = x;
+			else if (maps[y][x] == 14)   x14 = x;
 		}
 	}
 
-	// どちらか見つからなかった時の防御
-	if (nsx < 0 || nx < 0) return 0.0f;
+	switch (nk->GetState()) {
+	case STATE_MOVE1: // 11 -> 12
+		if (x10 < 0 || x11 < 0) return 0;
+		return (x11 - x10) * 64;
 
-	return static_cast<float>(nsx - nx) * 64;
-	return 0.0f;
+	case STATE_MOVE2: // 12 -> 14
+		if (x11 < 0 || x12 < 0) return 0;
+		return (x12 - x11) * 64;
+
+	case STATE_MOVE3: // 14 -> 33
+		if (x12 < 0 || x14 < 0) return 0;
+		return (x14 - x12) * 64;
+
+	case STATE_STOP:
+		if (x14 < 0) return 0;
+		return x14 * 64;
+	}
+
+	return 0;
 }
 
 bool Field::IsSkeleton(int px, int py) {
