@@ -8,6 +8,7 @@ public:
 	~Skeleton();
 	void Update() override;
 	void Draw() override;
+	void Reset();
 
 	int HitCheckDown(int px, int py);
 	int HitCheckLeft(int px, int py);
@@ -15,6 +16,7 @@ public:
 	int HitCheckRight(int px, int py);
 
 private:
+	float ResetX, ResetY;
 	float x, y;
 	int Image;
 	int size;
