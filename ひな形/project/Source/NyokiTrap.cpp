@@ -130,7 +130,6 @@ void NyokiTrap::Update()
 			//player->SetDead();
 		}
 	}
-
 }
 
 

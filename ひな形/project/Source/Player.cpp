@@ -382,7 +382,6 @@ void Player::Update()
 
 }
 
-
 //•\Ž¦‚·‚é‚Æ‚±‚ë
 void Player::Draw()
 {

@@ -25,4 +25,5 @@ private:
 	float moveSpeed;   // 上昇スピード
 
 	void Activate();   // プレイヤーが踏んだときに発動
+
 };
