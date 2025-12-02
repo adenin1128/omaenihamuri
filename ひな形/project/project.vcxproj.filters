@@ -42,6 +42,7 @@
     <ClCompile Include="Source\Trigger.cpp" />
     <ClCompile Include="Source\updraft.cpp" />
     <ClCompile Include="Source\BOAAAA.cpp" />
+    <ClCompile Include="Source\NyokiTrap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImGui\imconfig.h" />
@@ -90,5 +91,6 @@
     <ClInclude Include="Source\Trigger.h" />
     <ClInclude Include="Source\updraft.h" />
     <ClInclude Include="Source\BOAAAA.h" />
+    <ClInclude Include="Source\NyokiTrap.h" />
   </ItemGroup>
 </Project>
