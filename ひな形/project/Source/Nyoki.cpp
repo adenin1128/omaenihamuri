@@ -72,6 +72,17 @@ void Nyoki::Update()
 
 	switch (state) {
 	case STATE_NEW: {
+		if (loop > 0) {
+			count++;
+			if (count % 10 == 0) {
+				count = 0;
+				move++;
+				loop--;
+				if (move >= 4) {
+					move = 4;
+				}
+			}
+		}
 		if (loop == 0) {
 			state = STATE_MOVE1;
 		}
@@ -133,18 +144,8 @@ void Nyoki::Draw()
 		}
 		DrawRectGraph(nx, ny, size* move, 0, size, size * 4, nyokiImage, TRUE);
 	}*/
-	if(loop > 0){
-		count++;
-		if (count % 10 == 0) {
-			count = 0;
-			move++;
-			if (move >= 5) {
-				move = 4;
-			}
-		}
-		DrawRotaGraph(nx * 64, ny * 64, 1, 0, NyokiGraphs[move], TRUE, FALSE);
-	}
-	DrawFormatString(0, 240, GetColor(255, 255, 255), "state:: %d", state);
+	DrawRotaGraph(nx * 64, ny * 64, 1, 0, NyokiGraphs[move], TRUE, FALSE);
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "loop:: %d", loop);
 }
 
 // プレイヤーの下判定用

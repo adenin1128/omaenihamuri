@@ -172,9 +172,9 @@ Field::Field(int stage)
 			if(maps[y][x] == 24) {
 				new BeltConveyorL(x * 64, y * 64);
 			}
-			if (maps[y][x] == 8) {
+			/*if (maps[y][x] == 8) {
 				new Breath(x, y);
-			}
+			}*/
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
 			}*/
@@ -509,15 +509,12 @@ bool Field::IsGoal(int px, int py)
 	return false;
 }
 
-bool Field::IsNyoki(int px, int py)
+int Field::NyokiMove(int px, int py)
 {
-	if (py < 0) {
-		return 0;
-	}
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
-	if (OutOfMap(x,y))
-		return 0;
+	Nyoki* nk = FindGameObject<Nyoki>();
+	if (!nk) return 0;
 
 	if (maps[y][x] == 9 && !hit) {
 		for (int y = 0; y < maps.size(); y++) {
@@ -530,15 +527,6 @@ bool Field::IsNyoki(int px, int py)
 			}
 		}
 	}
-	else {
-		return false;
-	}
-}
-
-int Field::NyokiMove(int px, int py)
-{
-	Nyoki* nk = FindGameObject<Nyoki>();
-	if (!nk) return 0;
 
 	int x10 = -1, x11 = -1, x12 = -1, x14 = -1;
 

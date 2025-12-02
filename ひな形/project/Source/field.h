@@ -29,7 +29,6 @@ public:
 	bool OutOfMap(int px, int py);
 	bool Istrap(int px, int py);
 	bool IsGoal(int px, int py);
-	bool IsNyoki(int px, int py);
 	int NyokiMove(int px, int py);
 	bool IsSkeleton(int px, int py);
 	bool Jetpack(int px, int py);
