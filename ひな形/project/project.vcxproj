@@ -170,6 +170,7 @@
     <ClInclude Include="Source\MoveFloor.h" />
     <ClInclude Include="Source\NeoGravity.h" />
     <ClInclude Include="Source\Nyoki.h" />
+    <ClInclude Include="Source\NyokiTrap.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\respawn.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="Source\MoveFloor.cpp" />
     <ClCompile Include="Source\NeoGravity.cpp" />
     <ClCompile Include="Source\Nyoki.cpp" />
+    <ClCompile Include="Source\NyokiTrap.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\respawn.cpp" />
