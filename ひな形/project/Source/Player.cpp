@@ -84,7 +84,7 @@ void Player::Update()
 {
 	Field* field = FindGameObject<Field>();
 	field->Istrap(x + 32, y + 32);
-	field->IsNyoki(x + 32, y + 32);
+	field->NyokiMove(x/* + 32*/, y/* + 32*/);
 	field->IsSkeleton(x, y);
 	field->Jetpack(x, y);
 	field->IsGate(x, y);
@@ -341,9 +341,6 @@ void Player::Update()
 			state = STATE_CLEAR;
 			field->SetClear();
 			DeleteGraph(animImage);
-		}
-		if (field->IsNyoki(x, y)) {
-
 		}
 	}
 	if (state == STATE_BOOM) {
