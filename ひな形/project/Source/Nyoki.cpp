@@ -13,7 +13,7 @@ int NyokiGraphs[5];
 Nyoki::Nyoki(int px, int py)
 {
 	nyokiImage = LoadGraph("data/image/nyoblo.png");
-	LoadDivGraph("data/image/nyoblo.png", 5, 5, 1, 64, 64*4, NyokiGraphs);
+	LoadDivGraph("data/image/nyoblo.png", 5, 5, 1, 64, 64 * 4, NyokiGraphs);
 	assert(nyokiImage > 0);
 	resetX = px;
 	resetY = py;
