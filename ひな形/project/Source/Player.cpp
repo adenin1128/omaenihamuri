@@ -13,6 +13,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Debug.h"
+#include <vector>
 
 static float Gravity = 0.4;
 static const float v0 = -10.0;
@@ -100,18 +101,7 @@ void Player::Update()
 		push2 = nyoki->HitCheckLeft(x + 9, y + 55);
 		x -= min(push1, push2);
 	}
-	//Skeleton‚Ì¶‰E”»’è
-	Skeleton* sktn = FindGameObject<Skeleton>();
-	if (sktn != nullptr) {
-		int push1, push2;
-		push1 = sktn->HitCheckRight(x + 55, y + 9);
-		push2 = sktn->HitCheckRight(x + 55, y + 55);
-		x -= max(push1, push2);
-
-		push1 = sktn->HitCheckLeft(x + 9, y + 9);
-		push2 = sktn->HitCheckLeft(x + 9, y + 55);
-		x -= min(push1, push2);
-	}
+	
 
 	if (state == STATE_NORMAL) {
 		int moveX = 0;
@@ -163,6 +153,21 @@ void Player::Update()
 			int push2 = field->HitCheckRight(x + 55, y + 61);
 			int push3 = field->HitCheckRight(x + 55, y + 28);
 			x -= max(push1, push2, push3);
+
+			//Skeleton‚Ì¶‰E”»’è
+			std::list<Skeleton*> sktns = FindGameObjects<Skeleton>();
+			for (auto& sktn : sktns) {
+				if (sktn != nullptr) {
+					int push1, push2;
+					push1 = sktn->HitCheckRight(x + 55, y + 9);
+					push2 = sktn->HitCheckRight(x + 55, y + 55);
+					x -= max(push1, push2);
+
+					push1 = sktn->HitCheckLeft(x + 9, y + 9);
+					push2 = sktn->HitCheckLeft(x + 9, y + 55);
+					x -= min(push1, push2);
+				}
+			}
 			/*field->Istrap(x + 32, y + 32);
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
@@ -192,6 +197,21 @@ void Player::Update()
 			int push3 = field->HitCheckLeft(x + 9, y + 28);
 
 			x -= max(push1, push2, push3);
+
+			//Skeleton‚Ì¶‰E”»’è
+			std::list<Skeleton*> sktns = FindGameObjects<Skeleton>();
+			for (auto& sktn : sktns) {
+				if (sktn != nullptr) {
+					int push1, push2;
+					push1 = sktn->HitCheckRight(x + 55, y + 9);
+					push2 = sktn->HitCheckRight(x + 55, y + 55);
+					x -= max(push1, push2);
+
+					push1 = sktn->HitCheckLeft(x + 9, y + 9);
+					push2 = sktn->HitCheckLeft(x + 9, y + 55);
+					x -= min(push1, push2);
+				}
+			}
 			/*field->Istrap(x + 32, y + 32);
 			field->IsNyoki(x + 32, y + 32);
 			field->Jetpack(x, y);
@@ -249,11 +269,13 @@ void Player::Update()
 			}
 
 			//Skeleton”»’è‚ğ’Ç‰Á
-			Skeleton* sktn = FindGameObject<Skeleton>();
-			if (sktn != nullptr) {
-				push1 = max(push1, sktn->HitCheckDown(x + 9, y + 64));
-				push2 = max(push2, sktn->HitCheckDown(x + 55, y + 64));
-				push3 = max(push3, sktn->HitCheckDown(x + 28, y + 64));
+			std::list<Skeleton*> sktns = FindGameObjects<Skeleton>();
+			for (auto& sktn : sktns) {
+				if (sktn != nullptr) {
+					push1 = max(push1, sktn->HitCheckDown(x + 9, y + 64));
+					push2 = max(push2, sktn->HitCheckDown(x + 55, y + 64));
+					push3 = max(push3, sktn->HitCheckDown(x + 28, y + 64));
+				}
 			}
 			int push = max(push1, push2, push3);
 			if (push > 0) {
@@ -282,11 +304,13 @@ void Player::Update()
 			}
 
 			//Skeleton”»’è‚ğ’Ç‰Á
-			Skeleton* sktn = FindGameObject<Skeleton>();
-			if (sktn != nullptr) {
-				push1 = max(push1, sktn->HitCheckUp(x + 9, y + 5));
-				push2 = max(push2, sktn->HitCheckUp(x + 55, y + 5));
-				push3 = max(push3, sktn->HitCheckUp(x + 28, y + 5));
+			std::list<Skeleton*> sktns = FindGameObjects<Skeleton>();
+			for (auto& sktn : sktns) {
+				if (sktn != nullptr) {
+					push1 = max(push1, sktn->HitCheckUp(x + 9, y + 5));
+					push2 = max(push2, sktn->HitCheckUp(x + 55, y + 5));
+					push3 = max(push3, sktn->HitCheckUp(x + 28, y + 5));
+				}
 			}
 			int push = max(push1, push2, push3);
 			if (push > 0) {

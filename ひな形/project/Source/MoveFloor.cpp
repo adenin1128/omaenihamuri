@@ -76,9 +76,9 @@ void MoveFloor::MoveOneStep(float dir, Player* p)
     progressed += std::fabs(step);
 
     // æ‚Á‚Ä‚¢‚ê‚Î“¯‚¶‚¾‚¯ƒvƒŒƒCƒ„[‚à“®‚©‚·
-    if (p && IsPlayerOn(p)) {
+    /*if (p && IsPlayerOn(p)) {
         p->SetX(p->GetX() + step);
-    }
+    }*/
 }
 
 void MoveFloor::Update()
