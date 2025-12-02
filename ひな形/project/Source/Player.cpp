@@ -262,10 +262,13 @@ void Player::Update()
 
 			//MoveFloor”»’è‚ð’Ç‰Á
 			MoveFloor* mf = FindGameObject<MoveFloor>();
-			if (mf != nullptr) {
-				push1 = max(push1, mf->HitCheckDown(x + 9, y + 64));
-				push2 = max(push2, mf->HitCheckDown(x + 55, y + 64));
-				push3 = max(push3, mf->HitCheckDown(x + 28, y + 64));
+			std::list<MoveFloor*> mfs = FindGameObjects<MoveFloor>();
+			for (auto& mf : mfs) {
+				if (mf != nullptr) {
+					push1 = max(push1, mf->HitCheckDown(x + 9, y + 64));
+					push2 = max(push2, mf->HitCheckDown(x + 55, y + 64));
+					push3 = max(push3, mf->HitCheckDown(x + 28, y + 64));
+				}
 			}
 
 			//Skeleton”»’è‚ð’Ç‰Á
