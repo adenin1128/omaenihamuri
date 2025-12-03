@@ -1,14 +1,19 @@
 #include "BOAAAA.h"
 #include "Breath.h"
+#include <cstdlib>
 
 //int boaGraphs[1];
 
 Boaaa::Boaaa(int px, int py)
 {
-	boaimage= LoadGraph("data/image/BOAAA.png");
+	//boaimage= LoadGraph("data/image/BOAAA.png");
 	//LoadDivGraph("data/image/BOAAA.png", 1, 1, 1, 64, 64, boaGraphs);
     x = px;
     y = py;
+    length = 2000;        // レーザーの長さ
+    baseThickness = 25;
+    changeThickness = 2;
+    buretimer = 0;
 }
 
 Boaaa::~Boaaa()
@@ -17,14 +22,27 @@ Boaaa::~Boaaa()
 
 void Boaaa::Update()
 {
+    thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
+    buretimer++;
+
 }
 
 
 void Boaaa::Draw()
 {
     Breath* breath = FindGameObject<Breath>();
-
+    // ブラスターが見える条件
     if (breath && breath->GetState() == STATE_GO) {
-        DrawRotaGraph(x * 64 + 128, y * 64 + 54,8, 0, boaimage, TRUE, FALSE);
+        // 口の位置
+        bx = x * 64 + 128;
+        by = y * 64 + 54;
+        // アルファいじれる
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
+        // レーザーの色
+        color = GetColor(255, 255, 255);
+        // 横レーザー
+
+        DrawBoxAA(bx, by - thickness, bx + length, by + thickness, color, TRUE);
+        SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
     }
 }

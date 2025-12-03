@@ -14,30 +14,48 @@ Breath::Breath(int px, int py)
 	y = py;
 	frame2 = 0;
 	timer2 = 0;
+	angle = 0;//DX_PI_F/4:45‹
+	                //DX_PI_F/2: 90‹
+                    //DX_PI_F: 180‹
+					//DX_PI_F*3/2 :270 
+					//DX_PI_F*2 :360
+	boaaa = nullptr;
 }
 
 Breath::~Breath()
 {
+	//DeleteGraph(buraimage);
 }
 void Breath::Update()
 {
+		if (state == STATE_START) {
+			timer2++;
+			{
+				if (timer2 >= 120) {
+					frame2 = 1;
+					state = STATE_GO;
+					boaaa = new Boaaa(x, y);
+				}
+			}
+		}
+
+		if (boaaa != nullptr) {
+			boaaa->Update();//‚±‚ê‚È‚¢‚ÆƒNƒ‰ƒbƒVƒ…
+		}
+		//if (state == STATE_FIN) {
+		//	DestroyMe();
+		//}
 }
 
 void Breath::Draw()
 {
+	int frame2 = 0;
 	if (state == STATE_START) {
-		timer2++;
-		{
-			if (timer2>= 120) {
-				frame2 = 1;
-				state = STATE_GO;
-			}
-			DrawRotaGraph(x * 64 + 32, y * 64 + 32, 4, 0, buraGraphs[frame2], TRUE, FALSE);
-		}
+		frame2 = 0;
 	}
 
 	if (state == STATE_GO) {
-		DrawRotaGraph(x * 64 + 32, y * 64 + 32, 4, 0, buraGraphs[frame2], TRUE, FALSE);
-		new Boaaa(x, y);
+		frame2 = 1;
 	}
+	DrawRotaGraph(x * 64 + 32, y * 64 + 32, 4, angle, buraGraphs[frame2], TRUE, FALSE);
 }
