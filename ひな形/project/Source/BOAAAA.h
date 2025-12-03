@@ -14,4 +14,11 @@ private:
 	int x, y;
 	int frame3;
 	int timer3;
+	int length;
+	int color;
+	int baseThickness;
+	int changeThickness;
+	int thickness;
+	int bx, by;
+	int buretimer;
 };
