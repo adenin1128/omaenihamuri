@@ -176,6 +176,9 @@ Field::Field(int stage)
 			/*if (maps[y][x] == 8) {
 				new Breath(x, y);
 			}*/
+			if(maps[y][x] == 80) {
+				new NyokiTrap(x * 64, y * 64 + 64);
+			}
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
 			}*/
