@@ -25,8 +25,10 @@ void Boaaa::Update()
     Breath* breath = FindGameObject<Breath>();
     thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
     buretimer++;
-    if (buretimer < 420) {
-        (breath->SetState(STATE_FIN));
+    if (buretimer > 420) {
+        if (breath) {
+            breath->SetState(STATE_FIN);
+        }
     }
 }
 
