@@ -1,96 +1,290 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ImGui\imgui.cpp" />
-    <ClCompile Include="ImGui\imgui_draw.cpp" />
-    <ClCompile Include="ImGui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="ImGui\imgui_impl_dx9.cpp" />
-    <ClCompile Include="ImGui\imgui_impl_win32.cpp" />
-    <ClCompile Include="ImGui\imgui_ja_gryph_ranges.cpp" />
-    <ClCompile Include="ImGui\imgui_tables.cpp" />
-    <ClCompile Include="ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="Library\App.cpp" />
-    <ClCompile Include="Library\main.cpp" />
-    <ClCompile Include="Library\ObjectManager.cpp" />
-    <ClCompile Include="Library\SceneManager.cpp" />
-    <ClCompile Include="Library\Time.cpp" />
-    <ClCompile Include="Source\BeltConveyor.cpp" />
-    <ClCompile Include="Source\BeltConveyorL.cpp" />
-    <ClCompile Include="Source\BootScene.cpp" />
-    <ClCompile Include="Source\Box.cpp" />
-    <ClCompile Include="Source\Breath.cpp" />
-    <ClCompile Include="Source\Clear.cpp" />
-    <ClCompile Include="Source\Collider.cpp" />
-    <ClCompile Include="Source\csvReader.cpp" />
-    <ClCompile Include="Source\Debug.cpp" />
-    <ClCompile Include="Source\downdraft.cpp" />
-    <ClCompile Include="Source\Field.cpp" />
-    <ClCompile Include="Source\GameOver.cpp" />
-    <ClCompile Include="Source\Gravity.cpp" />
-    <ClCompile Include="Source\Mainmenu.cpp" />
-    <ClCompile Include="Source\MoveFloor.cpp" />
-    <ClCompile Include="Source\NeoGravity.cpp" />
-    <ClCompile Include="Source\Nyoki.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\PlayScene.cpp" />
-    <ClCompile Include="Source\respawn.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
-    <ClCompile Include="Source\Skeleton.cpp" />
     <ClCompile Include="Source\StageNumber.cpp" />
-    <ClCompile Include="Source\TitleScene.cpp" />
-    <ClCompile Include="Source\trap.cpp" />
-    <ClCompile Include="Source\Trigger.cpp" />
-    <ClCompile Include="Source\updraft.cpp" />
-    <ClCompile Include="Source\BOAAAA.cpp" />
-    <ClCompile Include="Source\NyokiTrap.cpp" />
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx9.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_ja_gryph_ranges.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BootScene.cpp">
+      <Filter>BootScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\App.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collider.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\main.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\ObjectManager.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\SceneManager.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Time.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Debug.cpp">
+      <Filter>PlayScene\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Field.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayScene.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mainmenu.cpp">
+      <Filter>Mainmenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TitleScene.cpp">
+      <Filter>TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Trigger.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Clear.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\csvReader.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\downdraft.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameOver.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gravity.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NeoGravity.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\respawn.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\updraft.cpp">
+      <Filter>PlayScene\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Nyoki.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BeltConveyor.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BeltConveyorL.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MoveFloor.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Skeleton.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BOAAAA.cpp">
+      <Filter>PlayScene\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Breath.cpp">
+      <Filter>PlayScene\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NyokiTrap.cpp">
+      <Filter>PlayScene\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\trap.cpp">
+      <Filter>PlayScene\Trap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ImGui\imconfig.h" />
-    <ClInclude Include="ImGui\imgui.h" />
-    <ClInclude Include="ImGui\imgui_impl_dx11.h" />
-    <ClInclude Include="ImGui\imgui_impl_dx9.h" />
-    <ClInclude Include="ImGui\imgui_impl_dxlib.hpp" />
-    <ClInclude Include="ImGui\imgui_impl_win32.h" />
-    <ClInclude Include="ImGui\imgui_internal.h" />
-    <ClInclude Include="ImGui\imstb_rectpack.h" />
-    <ClInclude Include="ImGui\imstb_textedit.h" />
-    <ClInclude Include="ImGui\imstb_truetype.h" />
-    <ClInclude Include="Library\App.h" />
-    <ClInclude Include="Library\GameObject.h" />
-    <ClInclude Include="Library\myDxLib.h" />
-    <ClInclude Include="Library\ObjectManager.h" />
-    <ClInclude Include="Library\SceneBase.h" />
-    <ClInclude Include="Library\SceneManager.h" />
-    <ClInclude Include="Library\Time.h" />
-    <ClInclude Include="Source\BeltConveyor.h" />
-    <ClInclude Include="Source\BeltConveyorL.h" />
-    <ClInclude Include="Source\BootScene.h" />
-    <ClInclude Include="Source\Box.h" />
-    <ClInclude Include="Source\Breath.h" />
-    <ClInclude Include="Source\Clear.h" />
-    <ClInclude Include="Source\Collider.h" />
-    <ClInclude Include="Source\CsvReader.h" />
-    <ClInclude Include="Source\Debug.h" />
-    <ClInclude Include="Source\downdraft.h" />
-    <ClInclude Include="Source\Field.h" />
-    <ClInclude Include="Source\GameOver.h" />
-    <ClInclude Include="Source\Gravity.h" />
-    <ClInclude Include="Source\Mainmenu.h" />
-    <ClInclude Include="Source\MoveFloor.h" />
-    <ClInclude Include="Source\NeoGravity.h" />
-    <ClInclude Include="Source\Nyoki.h" />
-    <ClInclude Include="Source\Player.h" />
-    <ClInclude Include="Source\PlayScene.h" />
-    <ClInclude Include="Source\respawn.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\SceneFactory.h" />
-    <ClInclude Include="Source\Skeleton.h" />
     <ClInclude Include="Source\StageNumber.h" />
-    <ClInclude Include="Source\TitleScene.h" />
-    <ClInclude Include="Source\trap.h" />
-    <ClInclude Include="Source\Trigger.h" />
-    <ClInclude Include="Source\updraft.h" />
-    <ClInclude Include="Source\BOAAAA.h" />
-    <ClInclude Include="Source\NyokiTrap.h" />
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx9.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx11.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dxlib.hpp">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BootScene.h">
+      <Filter>BootScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\App.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collider.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\GameObject.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\myDxLib.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\ObjectManager.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\SceneBase.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\SceneManager.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Time.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Debug.h">
+      <Filter>PlayScene\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Field.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayScene.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mainmenu.h">
+      <Filter>Mainmenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TitleScene.h">
+      <Filter>TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Trigger.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Clear.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CsvReader.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\downdraft.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameOver.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Gravity.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NeoGravity.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\respawn.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\updraft.h">
+      <Filter>PlayScene\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BeltConveyor.h">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BeltConveyorL.h">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MoveFloor.h">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Nyoki.h">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Skeleton.h">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BOAAAA.h">
+      <Filter>PlayScene\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Breath.h">
+      <Filter>PlayScene\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NyokiTrap.h">
+      <Filter>PlayScene\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\trap.h">
+      <Filter>PlayScene\Trap</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{93c597a7-5496-49e3-b34f-54ac5fab7db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BootScene">
+      <UniqueIdentifier>{74ff0b3c-b417-4794-9252-2ed687cb9774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library">
+      <UniqueIdentifier>{d7ddbba2-1032-414a-b080-641edbf381b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene">
+      <UniqueIdentifier>{0137fb1e-2b3c-4cb7-b090-4bf7c625c1e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\Debug">
+      <UniqueIdentifier>{56896bab-061b-4e6f-9d4d-fa67fc9d5ce2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mainmenu">
+      <UniqueIdentifier>{27bee47d-cd7f-44b9-9fe1-a20d394b1557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TitleScene">
+      <UniqueIdentifier>{c770a69b-57fa-40e7-a178-6913af997cc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\System">
+      <UniqueIdentifier>{668a4531-2e66-424a-be6c-647f232167fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\FieldObj">
+      <UniqueIdentifier>{26301de9-356c-4778-a72a-2d221c421a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\Trap">
+      <UniqueIdentifier>{34d8ef7a-1302-4f58-b561-e7f139562303}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
