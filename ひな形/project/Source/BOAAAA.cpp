@@ -26,7 +26,7 @@ void Boaaa::Update()
     thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
     buretimer++;
     if (buretimer < 420) {
-        (breath->SetState(STATE_FIN));
+        //(breath->SetState(STATE_FIN));
     }
 }
 
