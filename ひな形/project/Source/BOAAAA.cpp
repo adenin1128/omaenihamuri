@@ -22,16 +22,20 @@ Boaaa::~Boaaa()
 
 void Boaaa::Update()
 {
+    Breath* breath = FindGameObject<Breath>();
     thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
     buretimer++;
-
+    if (buretimer < 420) {
+        (breath->SetState(STATE_FIN));
+    }
 }
 
 
 void Boaaa::Draw()
 {
-    Breath* breath = FindGameObject<Breath>();
+    
     // ブラスターが見える条件
+    Breath* breath = FindGameObject<Breath>();
     if (breath && breath->GetState() == STATE_GO) {
         // 口の位置
         bx = x * 64 + 128;

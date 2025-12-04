@@ -17,7 +17,7 @@ public:
 	void Draw() override;
 	buraState state;   //	breath‚Ìó‘ÔŠÇ—
 	buraState GetState() const { return state; }
-//void SetState(buraState s) { state = s; }
+    void SetState(buraState s) { state = s; }
 
 private:
 	int buraimage;

@@ -106,7 +106,6 @@ void Player::Update()
 	if (state == STATE_NORMAL) {
 		int moveX = 0;
 		{
-			Field* field = FindGameObject<Field>();
 			BeltConveyor* belt = FindGameObject<BeltConveyor>();
 			BeltConveyorL* beltL = FindGameObject<BeltConveyorL>();
 			if (field->GetBeltHit() == 23) {

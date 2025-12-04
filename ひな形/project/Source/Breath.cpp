@@ -24,7 +24,7 @@ Breath::Breath(int px, int py)
 
 Breath::~Breath()
 {
-	//DeleteGraph(buraimage);
+	DeleteGraph(buraimage);
 }
 void Breath::Update()
 {
@@ -42,9 +42,9 @@ void Breath::Update()
 		if (boaaa != nullptr) {
 			boaaa->Update();//‚±‚ê‚È‚¢‚ÆƒNƒ‰ƒbƒVƒ…
 		}
-		//if (state == STATE_FIN) {
-		//	DestroyMe();
-		//}
+		if (state == STATE_FIN) {
+			DestroyMe();
+		}
 }
 
 void Breath::Draw()
