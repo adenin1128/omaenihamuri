@@ -10,7 +10,7 @@ Boaaa::Boaaa(int px, int py)
 	//LoadDivGraph("data/image/BOAAA.png", 1, 1, 1, 64, 64, boaGraphs);
     x = px;
     y = py;
-    length = 2000;        // ƒŒ[ƒU[‚Ì’·‚³
+    length = 2000;        // ãƒ¬ãƒ¼ã‚¶ãƒ¼ã®é•·ã•
     baseThickness = 25;
     changeThickness = 2;
     buretimer = 0;
@@ -24,9 +24,12 @@ void Boaaa::Update()
 {
     Breath* breath = FindGameObject<Breath>();
     thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
-    buretimer++;
-    if (buretimer < 420) {
-        //(breath->SetState(STATE_FIN));
+
+    if (buretimer > 420) {
+        if (breath) {
+            breath->SetState(STATE_FIN);
+        }
+
     }
 }
 
@@ -34,17 +37,17 @@ void Boaaa::Update()
 void Boaaa::Draw()
 {
     
-    // ƒuƒ‰ƒXƒ^[‚ªŒ©‚¦‚éğŒ
+    // ãƒ–ãƒ©ã‚¹ã‚¿ãƒ¼ãŒè¦‹ãˆã‚‹æ¡ä»¶
     Breath* breath = FindGameObject<Breath>();
     if (breath && breath->GetState() == STATE_GO) {
-        // Œû‚ÌˆÊ’u
+        // å£ã®ä½ç½®
         bx = x * 64 + 128;
         by = y * 64 + 54;
-        // ƒAƒ‹ƒtƒ@‚¢‚¶‚ê‚é
+        // ã‚¢ãƒ«ãƒ•ã‚¡ã„ã˜ã‚Œã‚‹
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-        // ƒŒ[ƒU[‚ÌF
+        // ãƒ¬ãƒ¼ã‚¶ãƒ¼ã®è‰²
         color = GetColor(255, 255, 255);
-        // ‰¡ƒŒ[ƒU[
+        // æ¨ªãƒ¬ãƒ¼ã‚¶ãƒ¼
 
         DrawBoxAA(bx, by - thickness, bx + length, by + thickness, color, TRUE);
         SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
