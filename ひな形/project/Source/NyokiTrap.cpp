@@ -17,15 +17,10 @@ const float BOOM_FORCE = 200.0f; // 吹っ飛びの勢い
 NyokiTrap::NyokiTrap(int sx, int sy)
 {
 	hImage = LoadGraph("data/image/hari.png"); // 針画像
-	x = sx;
-	y = sy;
-	width = 64;
-	height = 64;
+	resetx = sx;
+	resety = sy;
 
-	offsetY = 0.0f;
-	isActive = false;
-	isExtended = false;
-	moveSpeed = 10.0f; // 上にせり出すスピード
+	Reset();
 }
 
 //--------------------------------------
@@ -36,6 +31,19 @@ NyokiTrap::~NyokiTrap()
 	DeleteGraph(hImage);
 }
 
+void NyokiTrap::Reset() 
+{
+	x = resetx;
+	y = resety;
+
+	width = 64;
+	height = 64;
+
+	offsetY = 0.0f;
+	isActive = false;
+	isExtended = false;
+	moveSpeed = 10.0f; // 上にせり出すスピード
+}
 //--------------------------------------
 // 円と線分の当たり判定
 //--------------------------------------

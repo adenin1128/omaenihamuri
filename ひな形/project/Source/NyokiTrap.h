@@ -9,6 +9,7 @@ public:
 	~NyokiTrap();
 	void Update() override;
 	void Draw() override;
+	void Reset();
 
 	// --- 衝突判定用（使っていなければ消してもOK） ---
 	bool CheckHit(int px, int py, int pw, int ph); // プレイヤー矩形と当たっているか？
@@ -20,6 +21,7 @@ private:
 	int   height;    // 高さ
 	float unitX;
 	float unitY;
+	float resetx, resety;
 
 	// --- 動き制御用 ---
 	float moveSpeed;   // 上昇スピード
