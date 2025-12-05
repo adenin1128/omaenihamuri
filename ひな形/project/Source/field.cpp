@@ -234,6 +234,11 @@ void Field::Update()
 			for (auto obj : objs)
 				obj->Reset();
 		}
+		{
+			auto objs = FindGameObjects<NyokiTrap>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
 
 #else
 		hit = false;
