@@ -28,7 +28,7 @@ Nyoki::~Nyoki()
 
 void Nyoki::Reset()
 {
-	state == STATE_NEW;
+	state = STATE_NEW;
 	nx = resetX;
 	ny = resetY;
 	size = 64;
