@@ -179,6 +179,9 @@ Field::Field(int stage)
 			if(maps[y][x] == 80) {
 				new NyokiTrap(x * 64, y * 64 + 64);
 			}
+			if (maps[y][x] == 10) {
+				new Nyoki(x * 64, y * 64);
+			}
 			/*if (maps[y][x] == 10) {
 				new Nyoki(x * 64, y * 64);
 			}*/
@@ -410,6 +413,9 @@ int Field::HitCheckRight(int px, int py)
 	{ // 当たってる 
 		return px % 64 + 1;
 	}
+	if (maps[y][x] == 6) {
+		return px % 64 + 1;
+	}
 	return 0;
 }
 
@@ -424,6 +430,9 @@ int Field::HitCheckLeft(int px, int py)
 	{ // 当たってる 
 		return px % 64 - 64;
 	}
+	if (maps[y][x] == 6) {
+		return px % 64 - 64;
+	}
 	return 0;
 }
 
@@ -436,6 +445,9 @@ int Field::HitCheckUp(int px, int py)
 	CheckTrap(x, y);
 	if (maps[y][x] == 1)
 		return 64 - py % 64;
+	if (maps[y][x] == 6) {
+		return 64 - py % 64;
+	}
 	return 0;
 }
 
@@ -448,6 +460,9 @@ int Field::HitCheckDown(int px, int py)
 	CheckTrap(x, y);
 	if (maps[y][x] == 1)
 		return py  % 64 + 1;
+	if (maps[y][x] == 6) {
+		return px % 64 + 1;
+	}
 	return 0;
 }
 
