@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "../Library/GameObject.h"
+#include <vector>
 
 class NyokiTrap : public GameObject
 {
@@ -17,6 +18,8 @@ private:
 	float x, y;      // 座標（針が生える床の位置）
 	int   width;     // 幅（画像サイズ）
 	int   height;    // 高さ
+	float unitX;
+	float unitY;
 
 	// --- 動き制御用 ---
 	float moveSpeed;   // 上昇スピード
@@ -25,4 +28,5 @@ private:
 	bool  isExtended;  // 出きった状態（出し切った後）
 
 	void Activate();   // プレイヤーが踏んだときに発動
+	std::vector<VECTOR2> colliderPoints;
 };

@@ -1,6 +1,15 @@
 #include <DxLib.h>
 #include "NyokiTrap.h"
 #include "Player.h"
+#include "StageNumber.h"
+#include <cmath> // 平方根を呼び出すやつ
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+// 当たり判定ライブラリ
+#include "Collider.h"
+using namespace ColliderLibrary;
+const float BOOM_FORCE = 200.0f; // 吹っ飛びの勢い
 
 //--------------------------------------
 // コンストラクタ
@@ -96,6 +105,9 @@ bool HitCheck_Circle_Triangle(
 //--------------------------------------
 // Update
 //--------------------------------------
+//--------------------------------------
+// Update
+//--------------------------------------
 void NyokiTrap::Update()
 {
 	Player* player = FindGameObject<Player>();
@@ -110,16 +122,14 @@ void NyokiTrap::Update()
 
 	//----------------------------------
 	// プレイヤーが「上のブロック」を踏んだら発動
-	// （針の真上 1マス分を判定エリアとする）
 	//----------------------------------
 	if (!isActive && !isExtended)
 	{
-		float triggerTop = y - height; // 針の真上の1マス上
-		float triggerBottom = y;          // 針の床高さ
-		float playerFootY = py + ph;    // プレイヤーの足元
+		float triggerTop = y - height;
+		float triggerBottom = y;
+		float playerFootY = py + ph;
 
 		bool inX = (px + pw > x) && (px < x + width);
-
 		bool inY = (playerFootY > triggerTop) && (playerFootY <= triggerBottom);
 
 		if (inX && inY)
@@ -138,27 +148,67 @@ void NyokiTrap::Update()
 		{
 			offsetY = (float)height;
 			isActive = false;
-			isExtended = true;   // 出きった
+			isExtended = true;
 		}
 	}
 
-	//----------------------------------
-	// 当たり判定（出ている間だけ）
-	//----------------------------------
-	if (isExtended)
+	//--------------------------------------
+	// ▼▼▼ 三角形コライダー更新 ▼▼▼
+	//--------------------------------------
+	colliderPoints.resize(3);
+	float tipX = x + 32;             // 針の中心
+	float tipY = y - offsetY;        // 上にせり上がる
+
+	colliderPoints[0] = VECTOR2(tipX, tipY - 32); // 上の頂点
+	colliderPoints[1] = VECTOR2(tipX - 32, tipY + 32); // 左下
+	colliderPoints[2] = VECTOR2(tipX + 32, tipY + 32); // 右下
+
+	//--------------------------------------
+	// ▼▼▼ 三角形の当たり判定（完全に trap と同じ）▼▼▼
+	//--------------------------------------
+	if (isExtended) // 針が出ている間だけ判定
 	{
-		float baseY = y - offsetY;
+		if (!hittest_point_polygon_2d(
+			colliderPoints[0], colliderPoints[1], colliderPoints[2],
+			player->GetColliderLeftTop()) ||
 
-		// 三角形の頂点（画面上の座標）
-		VECTOR tri1 = VGet(x, baseY + height, 0); // 左下
-		VECTOR tri2 = VGet(x + width, baseY + height, 0); // 右下
-		VECTOR tri3 = VGet(x + width / 2, baseY, 0); // 上の先端
+			!hittest_point_polygon_2d(
+				colliderPoints[0], colliderPoints[1], colliderPoints[2],
+				player->GetColliderLeftBottom()) ||
 
-		// プレイヤーの「円形当たり判定」
-		// ※プレイヤー側で GetRadius() を定義しておくこと
-		VECTOR center = VGet(px + pw / 2, py + ph / 2, 0);
-		float radiusx = player->GetWidth();
-		float radiusy = player->GetHeight();
+			!hittest_point_polygon_2d(
+				colliderPoints[0], colliderPoints[1], colliderPoints[2],
+				player->GetColliderRightTop()) ||
+
+			!hittest_point_polygon_2d(
+				colliderPoints[0], colliderPoints[1], colliderPoints[2],
+				player->GetColliderRightBottom()))
+		{
+			//----------------------------------
+			// ヒット時の吹っ飛び処理（trap と同じ）
+			//----------------------------------
+			float playerX = player->GetX();
+			float playerY = player->GetY();
+
+			float dx = playerX - (x + 32);
+			float dy = playerY - (y + 32 - offsetY);
+
+			float length = std::sqrt(dx * dx + dy * dy);
+			if (length == 0.0f) {
+				length = 1.0f;
+				dx = 1.0f;
+				dy = 0.0f;
+			}
+
+			unitX = dx / length;
+			unitY = dy / length;
+
+			StageNumber* stageNumber = FindGameObject<StageNumber>();
+			if (stageNumber->noDeath != true)
+			{
+				player->SetBOOM(unitX * BOOM_FORCE, unitY * BOOM_FORCE);
+			}
+		}
 	}
 }
 
@@ -183,7 +233,6 @@ void NyokiTrap::Draw()
 		hImage,
 		TRUE
 	);
-
 	DrawFormatString(0, 300, GetColor(255, 255, 255), "針 = %.2f", y);
 }
 
