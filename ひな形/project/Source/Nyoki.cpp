@@ -9,15 +9,20 @@
 using namespace std;
 
 int NyokiGraphs[5];
+int blockImage;
+float moveX;
+int moveCount;
 
-Nyoki::Nyoki(int px, int py)
+Nyoki::Nyoki(int px, int py, int mx, int count)
 {
-	nyokiImage = LoadGraph("data/image/nyoblo.png");
-	LoadDivGraph("data/image/nyoblo.png", 5, 5, 1, 64, 64 * 4, NyokiGraphs);
-	assert(nyokiImage > 0);
+	blockImage = LoadGraph("data/image/New blo.png");
+	//nyokiImage = LoadGraph("data/image/nyoblo.png");
+	//LoadDivGraph("data/image/nyoblo.png", 5, 5, 1, 64, 64 * 4, NyokiGraphs);
+	assert(blockImage > 0);
 	resetX = px;
 	resetY = py;
-
+	moveX = mx;
+	moveCount = count;
 	Reset();
 }
 
@@ -67,8 +72,8 @@ void Nyoki::Update()
 		return;
 	}
 
-	maxMoveX = field->NyokiMove(nx, ny);
-	if (maxMoveX == 0.0f)return;
+	//maxMoveX = field->NyokiMove(nx, ny);
+	//if (maxMoveX == 0.0f)return;
 
 	switch (state) {
 	case STATE_NEW: {
@@ -89,43 +94,32 @@ void Nyoki::Update()
 		break;
 	}
 	case STATE_MOVE1: {
-		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
-		MoveOneStep(dir);
-
-		if (currentMoveX > fabs(maxMoveX)) {
-			state = STATE_MOVE2;
-			currentMoveX = 0.0f;
+		if (moveCount == 0) break;
+		if (moveCount % 2 == 0) {
+			float deltaMoveX = moveX / nyokiSpeed * Time::DeltaTime();
+			currentMoveX += deltaMoveX;
+			nx += deltaMoveX;
+		}
+		else{
+			float deltaMoveX = moveX / nyokiSpeed * Time::DeltaTime();
+			currentMoveX += deltaMoveX;
+			nx -= deltaMoveX;
+		}
+		
+		if (abs(currentMoveX) >= abs(moveX)) {
+			if (moveCount % 2 == 0) {
+				nx = resetX + moveX;
+			}
+			else {
+				nx = resetX;
+			}
+			moveCount -= 1;
+			currentMoveX = 0;
 		}
 		break;
 	}
-	case STATE_MOVE2: {
-		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
-		MoveOneStep(dir);
-
-		if (currentMoveX > fabs(maxMoveX)) {
-			state = STATE_MOVE3;
-			currentMoveX = 0.0f;
-		}
-		break;
-	}
-	case STATE_MOVE3: {
-		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
-		MoveOneStep(dir);
-
-		if (currentMoveX > fabs(maxMoveX)) {
-			state = STATE_STOP;
-			currentMoveX = 0.0f;
-		}
-		break;
-	}
+	
 	case STATE_STOP: {
-		const float dir = (maxMoveX >= 0.0f) ? +1.0f : -1.0f;
-		MoveOneStep(dir);
-
-		if (currentMoveX > fabs(maxMoveX)) {
-			nx = field->NyokiMove(nx, ny);
-			currentMoveX = 0.0f;
-		}
 		break;
 	}
 	default:
@@ -144,7 +138,10 @@ void Nyoki::Draw()
 		}
 		DrawRectGraph(nx, ny, size* move, 0, size, size * 4, nyokiImage, TRUE);
 	}*/
-	DrawRotaGraph(nx * 64, ny * 64, 1, 0, NyokiGraphs[move], TRUE, FALSE);
+	for (int i = 0; i < move; i++) {
+		DrawGraph(nx, ny + i * 64, blockImage, TRUE);
+	}
+	//DrawRotaGraph(nx * 64, ny * 64, 1, 0, NyokiGraphs[move], TRUE, FALSE);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "loop:: %d", loop);
 }
 

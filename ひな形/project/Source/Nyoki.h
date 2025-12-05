@@ -12,7 +12,7 @@ enum NyokiState {
 class Nyoki : public GameObject
 {
 public:
-	Nyoki(int px, int py);
+	Nyoki(int px, int py, int mx, int count);
 	~Nyoki();
 	void Update() override;
 	void Draw() override;
