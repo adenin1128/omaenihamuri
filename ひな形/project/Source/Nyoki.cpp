@@ -44,7 +44,7 @@ void Nyoki::Reset()
 
 	currentMoveX = 0;
 	maxMoveX = 0;
-	nyokiSpeed = 10;
+	nyokiSpeed = 3;
 
 }
 
