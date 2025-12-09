@@ -537,6 +537,8 @@ int Field::NyokiMove(int px, int py)
 {
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
+	if (OutOfMap(x,y))
+		return 0;
 	Nyoki* nk = FindGameObject<Nyoki>();
 	if (nk != nullptr) return 0;
 
@@ -581,7 +583,7 @@ int Field::NyokiMove(int px, int py)
 	//	return x14 * 64;
 	//}
 
-	//return 0;
+	return 0;
 }
 
 bool Field::IsSkeleton(int px, int py) {
