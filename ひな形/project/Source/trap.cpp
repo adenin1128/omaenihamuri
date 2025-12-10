@@ -151,3 +151,4 @@ void trap::Draw()
     DrawRotaGraph(x + 32, y + 32, 1, rot, hariImage, true);
     //DrawRotaGraph(x + 32, y + 32, 1.0, M_PI, hariImage, true, false);
 }
+

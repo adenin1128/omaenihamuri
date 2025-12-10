@@ -1,6 +1,11 @@
 #pragma once
 #include "../Library/GameObject.h"
 #include "Breath.h"
+#include <cstdlib>
+#include <cmath>
+#include "Player.h"
+#include "StageNumber.h"
+
 
 class Boaaa : public GameObject {
 
@@ -9,6 +14,7 @@ public:
 	~Boaaa();
 	void Update() override;
 	void Draw() override;
+	bool CheckHit(Player* player);
 private:
 	int boaimage;
 	int x, y;

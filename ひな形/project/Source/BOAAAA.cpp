@@ -1,6 +1,9 @@
 #include "BOAAAA.h"
 #include "Breath.h"
 #include <cstdlib>
+#include <cmath>
+#include "Player.h"
+#include "StageNumber.h"
 
 //int boaGraphs[1];
 
@@ -11,7 +14,7 @@ Boaaa::Boaaa(int px, int py)
     x = px;
     y = py;
     length = 2000;        // レーザーの長さ
-    baseThickness = 25;
+    baseThickness = 35;
     changeThickness = 2;
     buretimer = 0;
 }
@@ -22,34 +25,66 @@ Boaaa::~Boaaa()
 
 void Boaaa::Update()
 {
-    Breath* breath = FindGameObject<Breath>();
-    thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
+        Breath* breath = FindGameObject<Breath>();
+        Player* player = FindGameObject<Player>();
+        StageNumber* stageNumber = FindGameObject<StageNumber>(); 
+        thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
+        buretimer++;
 
-    if (buretimer > 420) {
-        if (breath) {
-            breath->SetState(STATE_FIN);
+        if (buretimer > 5000) {
+            if (breath) {
+                breath->SetState(STATE_FIN);
+            }
         }
 
-    }
+        if (breath && breath->GetState() == STATE_GO && player) {
+
+            if (CheckHit(player)) {
+                if (!(stageNumber && stageNumber->noDeath)) {
+                    player->SetState(PlayerState::STATE_BOOM);
+                }
+            }
+        }
 }
+
 
 
 void Boaaa::Draw()
 {
-    
-    // ブラスターが見える条件
     Breath* breath = FindGameObject<Breath>();
-    if (breath && breath->GetState() == STATE_GO) {
-        // 口の位置
+    if (breath && breath->GetState() == STATE_GO)
+    {
         bx = x * 64 + 128;
         by = y * 64 + 54;
-        // アルファいじれる
+
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-        // レーザーの色
         color = GetColor(255, 255, 255);
-        // 横レーザー
 
         DrawBoxAA(bx, by - thickness, bx + length, by + thickness, color, TRUE);
+
         SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
     }
+}
+
+bool Boaaa::CheckHit(Player* player)
+{
+    Breath* breath = FindGameObject<Breath>();
+    if (!(breath && breath->GetState() == STATE_GO)) {
+        return false;
+    }
+    bx = x * 64 + 128;
+    by = y * 64 + 54;
+	//AABB 判定用プレイヤー座標取得
+    float left = player->GetColliderLeftTop().x;
+    float right = player->GetColliderRightTop().x;
+    float top = player->GetColliderLeftTop().y;
+    float bottom = player->GetColliderLeftBottom().y;
+
+	// AABB 判定
+    if (right < bx) return false;                 // プレイヤーがレーザーより左
+    if (left > bx + length) return false;         // プレイヤーが右
+    if (bottom < by - thickness) return false;    // プレイヤーが上
+    if (top > by + thickness) return false;       // プレイヤーが下
+
+    return true;
 }
