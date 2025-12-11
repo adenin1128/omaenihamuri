@@ -1,12 +1,14 @@
 #include "PlayScene.h"
 #include "field.h"
 #include "StageNumber.h"
+#include "HAIKEI.h"
 
 PlayScene::PlayScene()
 {
 	StageNumber* stagenum = FindGameObject< StageNumber >();
 	int sn = stagenum->stagenum;
 	new Field(sn);
+	new HAIKEI();
 }
 
 PlayScene::~PlayScene()

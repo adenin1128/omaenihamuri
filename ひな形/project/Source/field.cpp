@@ -96,7 +96,7 @@ Field::Field(int stage)
 	delete csv;
 
 	saveMaps = maps;
-	haikeimage = LoadGraph("data/image/kabe.png");
+	SetDrawOrder(100);
 	hImage = LoadGraph("data/image/New blo.png");
 	harimage = LoadGraph("data/image/hari.png");
 	hataimage = LoadGraph("data/image/hata.png");
