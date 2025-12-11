@@ -89,6 +89,7 @@ void Player::Update()
 	field->Jetpack(x, y);
 	field->IsGate(x, y);
 	field->IsBelt(x, y);
+	field->IsBC(x, y);
 	// Nyoki‚Ì¶‰E”»’è
 	Nyoki* nyoki = FindGameObject<Nyoki>();
 	if (nyoki != nullptr) {

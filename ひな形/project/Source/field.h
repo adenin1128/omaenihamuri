@@ -34,6 +34,7 @@ public:
 	bool Jetpack(int px, int py);
 	bool IsGate(int px, int py);
 	int IsBelt(int px, int py);
+	int IsBC(int px, int py);
 	int Movefloor(int px, int py);
 	int IsBreath(int px, int py);
 	// 指定した番号(id)の座標を ox, oy に入れて返す関数
@@ -47,6 +48,7 @@ public:
 	void ChangeClearPoint(int x, int y);
 	int GetDeathCount() { return deathcount; }
 	int GetBeltHit() { return BeltHit; }
+	int GetBCHit() { return BCHit; }
 	ClearState state;
 	ClearState GetState() const { return state; }
 	void SetState(ClearState s) { state = s; }
@@ -83,6 +85,7 @@ private:
 	int HGimage;
 	int DL;
 	int BeltHit;
+	int BCHit;
 	bool skHit;
 	bool one;
 	bool two;
