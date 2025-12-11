@@ -38,6 +38,9 @@ void BC::Update()
 	if (field->GetBCHit() == 26) {
 		hanten = TRUE;
 	}
+	else {
+		hanten = FALSE;
+	}
 }
 
 void BC::Draw()
