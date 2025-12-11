@@ -177,7 +177,7 @@ Field::Field(int stage)
 				new Breath(x, y);
 			}
 			if(maps[y][x] == 80) {
-				new NyokiTrap(x * 64, y * 64 + 64);
+				new NyokiTrap(x * 64 - 64, y * 64);
 			}
 		}
 	}
@@ -700,6 +700,22 @@ int Field::Movefloor(int px, int py)
 	}
 
 	return 0;
+}
+// 指定したマップチップ番号(id)の場所を探して、ox, oyに座標(pixel)を代入する
+bool Field::GetPointPos(int id, int* ox, int* oy)
+{
+	// マップ全体を走査
+	for (int y = 0; y < (int)maps.size(); ++y) {
+		for (int x = 0; x < (int)maps[y].size(); ++x) {
+			if (maps[y][x] == id) {
+				// 見つかったら座標を計算 (チップサイズ64倍)
+				*ox = x * 64;
+				*oy = y * 64;
+				return true; // 見つかった
+			}
+		}
+	}
+	return false; // 見つからなかった
 }
 
 
