@@ -17,6 +17,7 @@
 #include "Skeleton.h"
 #include "BeltConveyor.h"
 #include "BeltConveyorL.h"
+#include "BC.h"
 #include "Breath.h"
 #include "NyokiTrap.h"
 #define _USE_MATH_DEFINES
@@ -31,7 +32,7 @@ using namespace std;
 //  //9:Nyoki発動 10:Nyoki1 11:Nyoki2 12:Nyoki3 14:Nyokistop
 //  //13:透明ブロック生成 15:上昇気流 16:上昇解除 17:Jetpack 19:Jetpack解除
 //  //18:低速落下 20:ランダムワープゲート 21:簡単ゲート 22:難しゲート
-//  //23:コンベア右 24:コンベア左
+//  //23:コンベア右 24:コンベア左 25:コンベア反転　26:反転起動
 //  //30:動く床開始 31:動く床中間1 32:動く床中間2 33:動く床終点
 //	//101～199:トラップの針 201～299:トラップを動かすための場所
 //};
@@ -172,6 +173,9 @@ Field::Field(int stage)
 			}
 			if(maps[y][x] == 24) {
 				new BeltConveyorL(x * 64, y * 64);
+			}
+			if (maps[y][x] == 25) {
+				new BC(x * 64, y * 64);
 			}
 			if (maps[y][x] == 8) {
 				new Breath(x, y);
@@ -657,10 +661,25 @@ int Field::IsBelt(int px, int py)
 	else if (maps[y][x] == 24) {
 		BeltHit = 24;
 	}
+	else if (maps[y][x] == 25) {
+		BeltHit = 24;
+	}
 	else {
 		BeltHit = 0;
 	}
 	return false;
+}
+
+int Field::IsBC(int px, int py)
+{
+	int x = (px + 32) / 64;
+	int y = (py + 32) / 64;
+	if (OutOfMap(x, y))
+		return 0;
+	if (maps[y][x] == 26) {
+		BCHit = 26;
+	}
+	return 0;
 }
 
 

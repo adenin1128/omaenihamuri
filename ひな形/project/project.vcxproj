@@ -152,6 +152,7 @@
     <ClInclude Include="Library\SceneBase.h" />
     <ClInclude Include="Library\SceneManager.h" />
     <ClInclude Include="Library\Time.h" />
+    <ClInclude Include="Source\BC.h" />
     <ClInclude Include="Source\BeltConveyor.h" />
     <ClInclude Include="Source\BeltConveyorL.h" />
     <ClInclude Include="Source\BOAAAA.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Library\ObjectManager.cpp" />
     <ClCompile Include="Library\SceneManager.cpp" />
     <ClCompile Include="Library\Time.cpp" />
+    <ClCompile Include="Source\BC.cpp" />
     <ClCompile Include="Source\BeltConveyor.cpp" />
     <ClCompile Include="Source\BeltConveyorL.cpp" />
     <ClCompile Include="Source\BOAAAA.cpp" />

@@ -120,6 +120,9 @@
     <ClCompile Include="Source\trap.cpp">
       <Filter>PlayScene\Trap</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BC.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="Source\trap.h">
       <Filter>PlayScene\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BC.h">
+      <Filter>PlayScene\FieldObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
