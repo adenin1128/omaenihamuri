@@ -165,6 +165,7 @@
     <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\GameOver.h" />
     <ClInclude Include="Source\Gravity.h" />
+    <ClInclude Include="Source\HAIKEI.h" />
     <ClInclude Include="Source\Mainmenu.h" />
     <ClInclude Include="Source\MoveFloor.h" />
     <ClInclude Include="Source\NeoGravity.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="Source\Field.cpp" />
     <ClCompile Include="Source\GameOver.cpp" />
     <ClCompile Include="Source\Gravity.cpp" />
+    <ClCompile Include="Source\HAIKEI.cpp" />
     <ClCompile Include="Source\Mainmenu.cpp" />
     <ClCompile Include="Source\MoveFloor.cpp" />
     <ClCompile Include="Source\NeoGravity.cpp" />

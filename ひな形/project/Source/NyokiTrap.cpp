@@ -22,7 +22,7 @@ NyokiTrap::NyokiTrap(int sx, int sy)
 
 	Reset();
 
-	SetDrawOrder(100);
+	SetDrawOrder(1000);
 }
 
 //--------------------------------------
