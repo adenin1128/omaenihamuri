@@ -26,6 +26,7 @@ private:
 	// --- 動き制御用 ---
 	float moveSpeed;   // 上昇スピード
 	float offsetY;     // にょきっと出る量（0〜height）
+	float offsetX;  // にょきっと量（height）
 	bool  isActive;    // 発動中かどうか（上昇アニメ中）
 	bool  isExtended;  // 出きった状態（出し切った後）
 
