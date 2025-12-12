@@ -123,7 +123,9 @@
     <ClCompile Include="Source\BC.cpp">
       <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HAIKEI.cpp" />
+    <ClCompile Include="Source\HAIKEI.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -260,7 +262,7 @@
     </ClInclude>
     <ClInclude Include="Source\BC.h">
       <Filter>PlayScene\FieldObj</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Source\HAIKEI.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
