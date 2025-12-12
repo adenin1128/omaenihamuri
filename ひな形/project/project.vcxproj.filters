@@ -124,6 +124,15 @@
       <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
     <ClCompile Include="Source\HAIKEI.cpp" />
+    <ClCompile Include="Source\NyokiTrap2.cpp">
+      <Filter>PlayScene\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NyokiTrap3.cpp">
+      <Filter>PlayScene\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NyokiTrap4.cpp">
+      <Filter>PlayScene\Trap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -260,9 +269,18 @@
     </ClInclude>
     <ClInclude Include="Source\BC.h">
       <Filter>PlayScene\FieldObj</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Source\HAIKEI.h">
       <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NyokiTrap2.h">
+      <Filter>PlayScene\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NyokiTrap3.h">
+      <Filter>PlayScene\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NyokiTrap4.h">
+      <Filter>PlayScene\Trap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
