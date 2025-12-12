@@ -260,6 +260,7 @@
     </ClInclude>
     <ClInclude Include="Source\BC.h">
       <Filter>PlayScene\FieldObj</Filter>
+	</ClInclude>
     <ClInclude Include="Source\HAIKEI.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
