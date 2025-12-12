@@ -94,12 +94,12 @@ void Player::Update()
 	Nyoki* nyoki = FindGameObject<Nyoki>();
 	if (nyoki != nullptr) {
 		int push1, push2;
-		push1 = nyoki->HitCheckRight(x + 55, y + 9);
-		push2 = nyoki->HitCheckRight(x + 55, y + 55);
+		push1 = nyoki->HitCheckRight(x + 58, y + 9);
+		push2 = nyoki->HitCheckRight(x + 58, y + 55);
 		x -= max(push1, push2);
 		
-		push1 = nyoki->HitCheckLeft(x + 9, y + 9);
-		push2 = nyoki->HitCheckLeft(x + 9, y + 55);
+		push1 = nyoki->HitCheckLeft(x + 6, y + 9);
+		push2 = nyoki->HitCheckLeft(x + 6, y + 55);
 		x -= min(push1, push2);
 	}
 	
@@ -255,9 +255,9 @@ void Player::Update()
 			// Nyoki”»’è‚ð’Ç‰Á
 			Nyoki* nyoki = FindGameObject<Nyoki>();
 			if (nyoki != nullptr) {
-				push1 = max(push1, nyoki->HitCheckDown(x + 9, y + 64));
-				push2 = max(push2, nyoki->HitCheckDown(x + 55, y + 64));
-				push3 = max(push3, nyoki->HitCheckDown(x + 28, y + 64));
+				push1 = max(push1, nyoki->HitCheckDown(x + 10, y + 64));
+				push2 = max(push2, nyoki->HitCheckDown(x + 56, y + 64));
+				push3 = max(push3, nyoki->HitCheckDown(x + 29, y + 64));
 			}
 
 			//MoveFloor”»’è‚ð’Ç‰Á

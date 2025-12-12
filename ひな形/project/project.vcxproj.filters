@@ -123,6 +123,8 @@
     <ClCompile Include="Source\BC.cpp">
       <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HAIKEI.cpp">
+      <Filter>PlayScene</Filter>
     <ClCompile Include="Source\HAIKEI.cpp" />
     <ClCompile Include="Source\NyokiTrap2.cpp">
       <Filter>PlayScene\Trap</Filter>
