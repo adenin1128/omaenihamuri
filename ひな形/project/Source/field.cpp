@@ -20,6 +20,9 @@
 #include "BC.h"
 #include "Breath.h"
 #include "NyokiTrap.h"
+#include "NyokiTrap2.h"
+#include "NyokiTrap3.h"
+#include "NyokiTrap4.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -180,8 +183,17 @@ Field::Field(int stage)
 			if (maps[y][x] == 8) {
 				new Breath(x, y);
 			}
-			if(maps[y][x] == 80) {
+			if(maps[y][x] == 80) { //右向き
 				new NyokiTrap(x * 64 - 64, y * 64);
+			}
+			if (maps[y][x] == 81) {//左向き
+				new NyokiTrap2(x * 64 + 64, y * 64);
+			}
+			if (maps[y][x] == 82) {//上向き
+				new NyokiTrap3(x * 64, y * 64 + 64);
+			}
+			if (maps[y][x] == 83) {//下向き
+				new NyokiTrap4(x * 64, y * 64 - 64);
 			}
 		}
 	}
@@ -237,6 +249,22 @@ void Field::Update()
 			for (auto obj : objs)
 				obj->Reset();
 		}
+		{
+			auto objs = FindGameObjects<NyokiTrap2>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+		{
+			auto objs = FindGameObjects<NyokiTrap3>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+		{
+			auto objs = FindGameObjects<NyokiTrap4>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+
 
 #else
 		hit = false;

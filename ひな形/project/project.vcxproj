@@ -172,6 +172,9 @@
     <ClInclude Include="Source\NeoGravity.h" />
     <ClInclude Include="Source\Nyoki.h" />
     <ClInclude Include="Source\NyokiTrap.h" />
+    <ClInclude Include="Source\NyokiTrap2.h" />
+    <ClInclude Include="Source\NyokiTrap3.h" />
+    <ClInclude Include="Source\NyokiTrap4.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\respawn.h" />
@@ -218,6 +221,9 @@
     <ClCompile Include="Source\NeoGravity.cpp" />
     <ClCompile Include="Source\Nyoki.cpp" />
     <ClCompile Include="Source\NyokiTrap.cpp" />
+    <ClCompile Include="Source\NyokiTrap2.cpp" />
+    <ClCompile Include="Source\NyokiTrap3.cpp" />
+    <ClCompile Include="Source\NyokiTrap4.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\respawn.cpp" />
