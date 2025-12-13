@@ -8,11 +8,11 @@ Clear::Clear()
 	clearImage =  LoadGraph("data/image/culear.png");
 	Field* field = FindGameObject<Field>();
 	deathCount = field->GetDeathCount();
-
 }
 
 Clear::~Clear()
-{    
+{
+	DeleteGraph(clearImage);
 }
 
 void Clear::Update()
