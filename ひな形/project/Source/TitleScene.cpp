@@ -2,12 +2,15 @@
 #include "Trigger.h"
 #include "Player.h"
 #include "field.h"
+#include "Fader.h"
 
 TitleScene::TitleScene()
 {
 	titleimage = LoadGraph("data/image/OMAENOLOGO.png");
 	new Field(0);
 	thikathika = 0;
+	Fader* fader = FindGameObject<Fader>();
+	fader->FadeIn(0.1f);
 }
 
 TitleScene::~TitleScene()    

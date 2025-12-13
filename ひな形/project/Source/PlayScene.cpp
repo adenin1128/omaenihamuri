@@ -8,6 +8,8 @@ PlayScene::PlayScene()
 {
 	StageNumber* stagenum = FindGameObject< StageNumber >();
 	int sn = stagenum->stagenum;
+	Fader* fader = FindGameObject<Fader>();
+	fader->FadeIn(0.1f);
 	new Field(sn);
 	new HAIKEI();
 }
@@ -18,13 +20,17 @@ PlayScene::~PlayScene()
 
 void PlayScene::Update()
 {
+	Fader* fader = FindGameObject<Fader>();
 	if (CheckHitKey(KEY_INPUT_T)) {
+		fader->FadeOut(0.1f);
 		SceneManager::ChangeScene("TITLE");
 	}
 	if (CheckHitKey(KEY_INPUT_M)) {
+		fader->FadeOut(0.1f);
 		SceneManager::ChangeScene("MENU");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		fader->FadeOut(0.1f);
 		SceneManager::Exit();
 	}
 }
