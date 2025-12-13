@@ -5,21 +5,24 @@
 #include "field.h"
 #include "StageNumber.h"
 #include "Fader.h"
+#include "HAIKEI.h"
 using namespace std;
 
 //extern const char* Version();
 
 MainmenuScene::MainmenuScene()
 {
-	menuImage = LoadGraph("data/image/menu.png"); // メニュー用の画像いつか用意する
 	rand = 0;
 	new Field(5);
+	new HAIKEI(3);
 	Fader* fader = FindGameObject<Fader>();
 	fader->FadeIn(0.1f);
 }
 
 MainmenuScene::~MainmenuScene()
 {
+	HAIKEI* h = FindGameObject<HAIKEI>();
+	h->DestroyMe();
 }
 
 void MainmenuScene::Update()
@@ -108,7 +111,6 @@ void MainmenuScene::Update()
 
 void MainmenuScene::Draw()
 {
-	DrawRectGraph(0, 0, 0, 0, 1920, 1080, menuImage, 1);
 	DrawString(100, 400, "stage1 press to 1 key ", GetColor(255, 255, 255));
 	DrawString(100, 420, "stage2 press to 2 key", GetColor(255, 255, 255));
 	DrawString(100, 440, "stage3 press to 3 key", GetColor(255, 255, 255));

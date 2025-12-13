@@ -11,11 +11,13 @@ PlayScene::PlayScene()
 	Fader* fader = FindGameObject<Fader>();
 	fader->FadeIn(0.1f);
 	new Field(sn);
-	new HAIKEI();
+	new HAIKEI(1);
 }
 
 PlayScene::~PlayScene()
 {
+	HAIKEI* h = FindGameObject<HAIKEI>();
+	h->DestroyMe();
 }
 
 void PlayScene::Update()
