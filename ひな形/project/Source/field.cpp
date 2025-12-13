@@ -23,6 +23,7 @@
 #include "NyokiTrap2.h"
 #include "NyokiTrap3.h"
 #include "NyokiTrap4.h"
+#include "Fader.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -54,7 +55,6 @@ int kaiheiGraphs[9];
 int EasyGraphs[8];
 int HGgraphs[8];
 int WGgraphs[5];
-//int suiGraphs[2];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -66,6 +66,7 @@ void GenerateTrap(int posx, int posy, int id) {
 		}
 	}
 	traps[id - 101] = new trap(posx, posy, id, direction, tx, ty);
+
 }
 ;
 void Field::GenerateBreath(int posx, int posy, int id)
@@ -86,6 +87,7 @@ void Field::GenerateBreath(int posx, int posy, int id)
 		breathCount++;
 	}
 }
+
 
 
 Field::Field(int stage)
@@ -143,9 +145,6 @@ Field::Field(int stage)
 	saveMaps = maps;
 	SetDrawOrder(100);
 	hImage = LoadGraph("data/image/New blo.png");
-	harimage = LoadGraph("data/image/hari.png");
-	hataimage = LoadGraph("data/image/hata.png");
-	harisitaimage = LoadGraph("data/image/harisita.png");
 	doorimage = LoadGraph("data/image/GOOOOOOOOOOAL.png");
 	LoadDivGraph("data/image/GOOOOOOOOOOAL.png", 7, 7, 1, 64, 64, doorGraphs);
 	kaiheiimage = LoadGraph("data/image/GOOOOOOOOAL/png");
@@ -243,6 +242,12 @@ Field::Field(int stage)
 
 Field::~Field()
 {
+	DeleteGraph(hImage);
+	DeleteGraph(doorimage);
+	DeleteGraph(kaiheiimage);
+	DeleteGraph(easyImage);
+	DeleteGraph(HGimage);
+	DeleteGraph(gokunobanImage);
 }
 
 void Field::Update()
@@ -258,6 +263,10 @@ void Field::Update()
 			GameOver*obj = FindGameObject<GameOver>();
 			if (obj != nullptr)
 				obj->DestroyMe();
+		}
+		{
+			Fader* fader = FindGameObject<Fader>();
+			fader->FadeOut(0.3f);
 		}
 		{
 			auto objs = FindGameObjects<Player>();
@@ -307,6 +316,11 @@ void Field::Update()
 				obj->Reset();
 		}
 
+
+		{
+			Fader* fader = FindGameObject<Fader>();
+			fader->FadeIn(0.3f);
+		}
 
 #else
 		hit = false;
@@ -629,36 +643,6 @@ int Field::NyokiMove(int px, int py)
 			}
 		}
 	}
-
-	//int x10 = -1, x11 = -1, x12 = -1, x14 = -1;
-
-	//for (int y = 0; y < (int)maps.size(); y++) {
-	//	for (int x = 0; x < (int)maps.size(); x++) {
-	//		if (maps[y][x] == 10)        x10 = x;
-	//		else if (maps[y][x] == 11)   x11 = x;
-	//		else if (maps[y][x] == 12)   x12 = x;
-	//		else if (maps[y][x] == 14)   x14 = x;
-	//	}
-	//}
-
-	//switch (nk->GetState()) {
-	//case STATE_MOVE1: // 11 -> 12
-	//	if (x10 < 0 || x11 < 0) return 0;
-	//	return (x11 - x10) * 64;
-
-	//case STATE_MOVE2: // 12 -> 14
-	//	if (x11 < 0 || x12 < 0) return 0;
-	//	return (x12 - x11) * 64;
-
-	//case STATE_MOVE3: // 14 -> 33
-	//	if (x12 < 0 || x14 < 0) return 0;
-	//	return (x14 - x12) * 64;
-
-	//case STATE_STOP:
-	//	if (x14 < 0) return 0;
-	//	return x14 * 64;
-	//}
-
 	return 0;
 }
 

@@ -3,10 +3,13 @@
 
 class HAIKEI : public GameObject {
 public:
-		HAIKEI();
-		~HAIKEI();
-		void Update() override;
-		void Draw() override;
+	HAIKEI(int num);
+	~HAIKEI();
+	void Update() override;
+	void Draw() override;
 private:
 	int hImage;
+	int dImage;
+	int mImage;
+	int number;
 };

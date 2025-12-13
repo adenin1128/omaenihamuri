@@ -2,16 +2,23 @@
 #include "Trigger.h"
 #include "Player.h"
 #include "field.h"
+#include "Fader.h"
+#include "HAIKEI.h"
 
 TitleScene::TitleScene()
 {
 	titleimage = LoadGraph("data/image/OMAENOLOGO.png");
 	new Field(0);
+	new HAIKEI(2);
 	thikathika = 0;
+	Fader* fader = FindGameObject<Fader>();
+	fader->FadeIn(0.1f);
 }
 
 TitleScene::~TitleScene()    
 {
+	HAIKEI* h = FindGameObject<HAIKEI>();
+	h->DestroyMe();
 }
 
 void TitleScene::Update()
