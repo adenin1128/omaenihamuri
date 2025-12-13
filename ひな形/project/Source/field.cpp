@@ -101,9 +101,6 @@ Field::Field(int stage)
 	saveMaps = maps;
 	SetDrawOrder(100);
 	hImage = LoadGraph("data/image/New blo.png");
-	harimage = LoadGraph("data/image/hari.png");
-	hataimage = LoadGraph("data/image/hata.png");
-	harisitaimage = LoadGraph("data/image/harisita.png");
 	doorimage = LoadGraph("data/image/GOOOOOOOOOOAL.png");
 	LoadDivGraph("data/image/GOOOOOOOOOOAL.png", 7, 7, 1, 64, 64, doorGraphs);
 	kaiheiimage = LoadGraph("data/image/GOOOOOOOOAL/png");
@@ -201,6 +198,12 @@ Field::Field(int stage)
 
 Field::~Field()
 {
+	DeleteGraph(hImage);
+	DeleteGraph(doorimage);
+	DeleteGraph(kaiheiimage);
+	DeleteGraph(easyImage);
+	DeleteGraph(HGimage);
+	DeleteGraph(gokunobanImage);
 }
 
 void Field::Update()

@@ -125,7 +125,7 @@
     </ClCompile>
     <ClCompile Include="Source\HAIKEI.cpp">
       <Filter>PlayScene</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="Source\NyokiTrap2.cpp">
       <Filter>PlayScene\Trap</Filter>
     </ClCompile>
@@ -135,6 +135,7 @@
     <ClCompile Include="Source\NyokiTrap4.cpp">
       <Filter>PlayScene\Trap</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Fader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -284,6 +285,7 @@
     <ClInclude Include="Source\NyokiTrap4.h">
       <Filter>PlayScene\Trap</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Fader.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
