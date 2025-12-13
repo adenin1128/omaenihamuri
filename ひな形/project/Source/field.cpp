@@ -272,6 +272,7 @@ void Field::Update()
 				obj->Reset();
 		}
 
+
 		{
 			Fader* fader = FindGameObject<Fader>();
 			fader->FadeIn(0.3f);
@@ -598,36 +599,6 @@ int Field::NyokiMove(int px, int py)
 			}
 		}
 	}
-
-	//int x10 = -1, x11 = -1, x12 = -1, x14 = -1;
-
-	//for (int y = 0; y < (int)maps.size(); y++) {
-	//	for (int x = 0; x < (int)maps.size(); x++) {
-	//		if (maps[y][x] == 10)        x10 = x;
-	//		else if (maps[y][x] == 11)   x11 = x;
-	//		else if (maps[y][x] == 12)   x12 = x;
-	//		else if (maps[y][x] == 14)   x14 = x;
-	//	}
-	//}
-
-	//switch (nk->GetState()) {
-	//case STATE_MOVE1: // 11 -> 12
-	//	if (x10 < 0 || x11 < 0) return 0;
-	//	return (x11 - x10) * 64;
-
-	//case STATE_MOVE2: // 12 -> 14
-	//	if (x11 < 0 || x12 < 0) return 0;
-	//	return (x12 - x11) * 64;
-
-	//case STATE_MOVE3: // 14 -> 33
-	//	if (x12 < 0 || x14 < 0) return 0;
-	//	return (x14 - x12) * 64;
-
-	//case STATE_STOP:
-	//	if (x14 < 0) return 0;
-	//	return x14 * 64;
-	//}
-
 	return 0;
 }
 
