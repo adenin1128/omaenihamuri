@@ -6,21 +6,25 @@ int buraGraphs[2];
 
 Breath::Breath(int px, int py)
 {
-	buraimage= LoadGraph("data/image/BreathHead.png");
+	buraimage = LoadGraph("data/image/BreathHead.png");
 	LoadDivGraph("data/image/BreathHead.png", 2, 2, 1, 64, 64, buraGraphs);
 	assert(buraimage > 0);
+
 	state = STATE_START;
 	x = px;
 	y = py;
+
 	frame2 = 0;
 	timer2 = 0;
-	angle = 0;//DX_PI_F/4:45Åã
-	                //DX_PI_F/2: 90Åã
-                    //DX_PI_F: 180Åã
-					//DX_PI_F*3/2 :270 
-					//DX_PI_F*2 :360
+	angle = 0;
+
+	dir = 0;
+	moveX = 0;
+	moveY = 0;
+
 	boaaa = nullptr;
 }
+
 
 Breath::~Breath()
 {
@@ -58,4 +62,12 @@ void Breath::Draw()
 		frame2 = 1;
 	}
 	DrawRotaGraph(x * 64 + 32, y * 64 + 32, 4, angle, buraGraphs[frame2], TRUE, FALSE);
+}
+
+Breath::Breath(int px, int py, int direction, int tx, int ty)
+	: Breath(px, py)   // Å© Ç±Ç±Ç™àÍî‘ëÂéñ
+{
+	dir = direction;
+	moveX = tx;
+	moveY = ty;
 }

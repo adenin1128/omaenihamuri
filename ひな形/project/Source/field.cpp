@@ -43,9 +43,11 @@ using namespace std;
 vector<vector<int>> maps;
 vector<vector<int>> saveMaps;
 vector<vector<int>> trapDatas;
+vector<vector<int>> breathDatas;
+
 
 trap* traps[99];
-
+Breath* breaths[99];
 
 int doorGraphs[7];
 int kaiheiGraphs[9];
@@ -66,6 +68,26 @@ void GenerateTrap(int posx, int posy, int id) {
 	traps[id - 101] = new trap(posx, posy, id, direction, tx, ty);
 }
 ;
+void Field::GenerateBreath(int posx, int posy, int id)
+{
+	int direction = 0, tx = 0, ty = 0;
+
+	for (int y = 0; y < breathDatas.size(); y++) {
+		if (breathDatas[y][0] == id) {
+			direction = breathDatas[y][1];
+			tx = breathDatas[y][2];
+			ty = breathDatas[y][3];
+			break;
+		}
+	}
+
+	if (breathCount < 99) {
+		breaths[breathCount] = new Breath(posx, posy, direction, tx, ty);
+		breathCount++;
+	}
+}
+
+
 Field::Field(int stage)
 {
 	clear = false;
@@ -96,7 +118,27 @@ Field::Field(int stage)
 			trapDatas[y][x] = num;
 		}
 	}
+
+	sprintf_s<60>(filename, "data/breath%02d.csv", stage);
+	csv = new CsvReader(filename);
+
+    lines = csv->GetLines();
+	breathDatas.resize(lines);
+	for (int y = 0; y < lines; y++) {
+		int cols = csv->GetColumns(y);
+		breathDatas[y].resize(cols);
+		for (int x = 0; x < cols; x++) {
+			breathDatas[y][x] = csv->GetInt(y, x);
+		}
+	}
+
 	delete csv;
+
+	for (int i = 0; i < 99; i++) {
+		breaths[i] = nullptr;
+
+	}
+	breathCount = 0;
 
 	saveMaps = maps;
 	SetDrawOrder(100);
@@ -181,7 +223,7 @@ Field::Field(int stage)
 				new BC(x * 64, y * 64);
 			}
 			if (maps[y][x] == 8) {
-				new Breath(x, y);
+				GenerateBreath(x * 64, y * 64, 8);
 			}
 			if(maps[y][x] == 80) { //右向き
 				new NyokiTrap(x * 64 - 64, y * 64);
