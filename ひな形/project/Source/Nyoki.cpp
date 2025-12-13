@@ -16,8 +16,6 @@ int moveCount;
 Nyoki::Nyoki(int px, int py, int mx, int count)
 {
 	blockImage = LoadGraph("data/image/New blo.png");
-	//nyokiImage = LoadGraph("data/image/nyoblo.png");
-	//LoadDivGraph("data/image/nyoblo.png", 5, 5, 1, 64, 64 * 4, NyokiGraphs);
 	assert(blockImage > 0);
 	resetX = px;
 	resetY = py;
