@@ -222,7 +222,7 @@ void Field::Update()
 		}
 		{
 			Fader* fader = FindGameObject<Fader>();
-			fader->FadeIn(0.3f);
+			fader->FadeOut(0.3f);
 		}
 		{
 			auto objs = FindGameObjects<Player>();
@@ -272,6 +272,10 @@ void Field::Update()
 				obj->Reset();
 		}
 
+		{
+			Fader* fader = FindGameObject<Fader>();
+			fader->FadeIn(0.3f);
+		}
 
 #else
 		hit = false;

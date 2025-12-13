@@ -4,6 +4,7 @@
 #include <iostream>
 #include "field.h"
 #include "StageNumber.h"
+#include "Fader.h"
 using namespace std;
 
 //extern const char* Version();
@@ -13,6 +14,8 @@ MainmenuScene::MainmenuScene()
 	menuImage = LoadGraph("data/image/menu.png"); // メニュー用の画像いつか用意する
 	rand = 0;
 	new Field(5);
+	Fader* fader = FindGameObject<Fader>();
+	fader->FadeIn(0.1f);
 }
 
 MainmenuScene::~MainmenuScene()
@@ -23,6 +26,7 @@ void MainmenuScene::Update()
 {
 	StageNumber* stageNum = FindGameObject<StageNumber>();
 	Field* f = FindGameObject<Field>();
+	Fader* fader = FindGameObject<Fader>();
 
 	if (f->GetGateHit() == 20) {
 		random_device rnd;
@@ -32,59 +36,72 @@ void MainmenuScene::Update()
 
 		if (rand == 1) {
 			// 処理 1
+			fader->FadeOut(0.1f);
 			stageNum->stagenum = 1;
 			SceneManager::ChangeScene("PlayScene");
 		}
 		else if (rand == 2) {
 			// 処理 2
+			fader->FadeOut(0.1f);
 			stageNum->stagenum = 2;
 			SceneManager::ChangeScene("PlayScene");
 
 		}
 		else if (rand == 3) {
 			// 処理 3
+			fader->FadeOut(0.1f);
 			stageNum->stagenum = 3;
 			SceneManager::ChangeScene("PlayScene");
 
 		}
 		else if (rand == 4) {
 			// 処理 4
+			fader->FadeOut(0.1f);
 			stageNum->stagenum = 4;
 			SceneManager::ChangeScene("PlayScene");
 
 		}
 	}
 	if (CheckHitKey(KEY_INPUT_1)) {
+		fader->FadeOut(0.1f);
 		stageNum->stagenum = 1;
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (f->GetGateHit() == 21) {
+		fader->FadeOut(0.1f);
 		stageNum->stagenum = 1;
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_2)) {
+		fader->FadeOut(0.1f);
 		stageNum->stagenum = 2;
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (f->GetGateHit() == 22) {
+		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_3)) {
+		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_4)) {
+		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
+		fader->FadeOut(0.1f);
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_T)) {
+		fader->FadeOut(0.1f);
 		SceneManager::ChangeScene("TITLE");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		fader->FadeOut(0.1f);
 		SceneManager::Exit();
 	}
 }
