@@ -5,21 +5,14 @@
 Skeleton::Skeleton(int px, int py)
 {
 	Image = LoadGraph("data/image/bird.png");
-	ResetX = px;
-	ResetY = py;
-
-	Reset();
+	x = px;
+	y = py;
+	size = 64;
 }
 
 Skeleton::~Skeleton()
 {
-}
-
-void Skeleton::Reset()
-{
-	x = ResetX;
-	y = ResetY;
-	size = 64;
+	DeleteGraph(Image);
 }
 
 void Skeleton::Update()
