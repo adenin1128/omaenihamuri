@@ -2,6 +2,7 @@
 #include "field.h"
 #include "StageNumber.h"
 #include "HAIKEI.h"
+#include "Fader.h"
 
 PlayScene::PlayScene()
 {

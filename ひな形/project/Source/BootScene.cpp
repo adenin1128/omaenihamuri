@@ -1,9 +1,11 @@
 #include "BootScene.h"
 #include "StageNumber.h"
+#include "Fader.h"
 
 BootScene::BootScene()
 {
 	new StageNumber(); // ステージ番号管理クラスのインスタンスを生成
+	new Fader();
 }
 
 BootScene::~BootScene()

@@ -23,6 +23,7 @@
 #include "NyokiTrap2.h"
 #include "NyokiTrap3.h"
 #include "NyokiTrap4.h"
+#include "Fader.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -52,7 +53,6 @@ int kaiheiGraphs[9];
 int EasyGraphs[8];
 int HGgraphs[8];
 int WGgraphs[5];
-//int suiGraphs[2];
 
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
@@ -64,8 +64,8 @@ void GenerateTrap(int posx, int posy, int id) {
 		}
 	}
 	traps[id - 101] = new trap(posx, posy, id, direction, tx, ty);
-}
-;
+};
+
 Field::Field(int stage)
 {
 	clear = false;
@@ -219,6 +219,10 @@ void Field::Update()
 			GameOver*obj = FindGameObject<GameOver>();
 			if (obj != nullptr)
 				obj->DestroyMe();
+		}
+		{
+			Fader* fader = FindGameObject<Fader>();
+			fader->FadeIn(0.3f);
 		}
 		{
 			auto objs = FindGameObjects<Player>();
