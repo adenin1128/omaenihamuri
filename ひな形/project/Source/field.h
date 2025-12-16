@@ -21,6 +21,7 @@ public:
 	void Draw() override;
 
 	void CheckTrap(int x, int y);
+	void CheckBreath(int x, int y);
 	int HitCheckRight(int px, int py);
 	int HitCheckLeft(int px, int py);
 	int HitCheckUp(int px, int py);

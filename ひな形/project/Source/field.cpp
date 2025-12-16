@@ -80,10 +80,9 @@ void GenerateBreath(int posx, int posy, int id) {
 			ty = breathDatas[y][3];
 		}
 	}
-	int index = id - 301;
+	int index = id - 401;
 	if (index >= 0 && index < 99) {
 		breaths[index] = new Breath(posx, posy, id, direction, tx, ty);
-		breaths[index]->Active();
 	}
 }
 
@@ -185,7 +184,7 @@ Field::Field(int stage)
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
 				GenerateTrap(x * 64, y * 64, maps[y][x]);
 			}
-			if (maps[y][x] > 300 && maps[y][x] < 400) {
+			if (maps[y][x] >= 401 && maps[y][x] < 500) {
 				GenerateBreath(x * 64, y * 64, maps[y][x]);
 			}
 			if (maps[y][x] == 4) {
@@ -483,6 +482,29 @@ void Field::CheckTrap(int x, int y) {
 	}
 }
 
+void Field::CheckBreath(int x, int y)
+{
+	int id = maps[y][x];
+
+	// トリガー（501～599)Breath を起動
+	if (id >= 501 && id < 600) {
+		int index = id - 501;
+		if (index >= 0 && index < 99 && breaths[index] != nullptr) {
+			breaths[index]->Active();
+		}
+	}
+
+	// 直接踏んだ場合
+	if (id >= 401 && id < 500) {
+		int index = id - 401;
+		if (index >= 0 && index < 99 && breaths[index] != nullptr) {
+			breaths[index]->Active();
+		}
+	}
+}
+
+
+
 int Field::HitCheckRight(int px, int py)
 {
 	int x = px / 64;
@@ -490,6 +512,7 @@ int Field::HitCheckRight(int px, int py)
 	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
+	CheckBreath(x, y);
 	if (maps[y][x] == 1)
 	{ // 当たってる 
 		return px % 64 + 1;
@@ -509,6 +532,7 @@ int Field::HitCheckLeft(int px, int py)
 	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
+	CheckBreath(x, y);
 	if (maps[y][x] == 1)
 	{ // 当たってる 
 		return px % 64 - 64;
@@ -528,6 +552,7 @@ int Field::HitCheckUp(int px, int py)
 	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
+	CheckBreath(x, y);
 	if (maps[y][x] == 1)
 		return 64 - py % 64;
 	if (skHit == true) {
@@ -545,6 +570,7 @@ int Field::HitCheckDown(int px, int py)
 	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
+	CheckBreath(x, y);
 	if (maps[y][x] == 1)
 		return py % 64 + 1;
 	if (skHit == true) {

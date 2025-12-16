@@ -36,26 +36,17 @@ Boaaa::~Boaaa()
 
 void Boaaa::Update()
 {
-        Breath* breath = FindGameObject<Breath>();
-        Player* player = FindGameObject<Player>();
-        StageNumber* stageNumber = FindGameObject<StageNumber>(); 
-        thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
-        buretimer++;
+    Player* player = FindGameObject<Player>();
+    StageNumber* stageNumber = FindGameObject<StageNumber>();
 
-        if (buretimer > 5000) {
-            if (breath) {
-                breath->SetState(STATE_FIN);
-            }
+    thickness = baseThickness
+        + (rand() % (changeThickness * 2 + 1) - changeThickness);
+
+    if (player && CheckHit(player)) {
+        if (!(stageNumber && stageNumber->noDeath)) {
+            player->SetState(PlayerState::STATE_BOOM);
         }
-
-        if (breath && breath->GetState() == STATE_GO && player) {
-
-            if (CheckHit(player)) {
-                if (!(stageNumber && stageNumber->noDeath)) {
-                    player->SetState(PlayerState::STATE_BOOM);
-                }
-            }
-        }
+    }
 }
 
 
