@@ -24,6 +24,7 @@
 #include "NyokiTrap3.h"
 #include "NyokiTrap4.h"
 #include "Fader.h"
+#include "SuiUGOKU.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -235,6 +236,9 @@ Field::Field(int stage)
 			}
 			if (maps[y][x] == 83) {//下向き
 				new NyokiTrap4(x * 64, y * 64 - 64);
+			}
+			if (maps[y][x] == 84) {
+				new SuiUGOKU(x * 64, y * 64);
 			}
 		}
 	}
