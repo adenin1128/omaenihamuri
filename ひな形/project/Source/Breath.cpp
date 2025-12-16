@@ -29,6 +29,7 @@ Breath::Breath(int px, int py, int i, int d, int tx, int ty) : GameObject()
 	boaaa = nullptr;
 }
 
+
 Breath::~Breath()
 {
 	DeleteGraph(buraimage);
@@ -37,18 +38,18 @@ void Breath::Update()
 {
 	if (!isActive) return;
 
-	if (state == STATE_START) {
-		timer2++;
-		if (timer2 >= 120) {
-			frame2 = 1;
-			state = STATE_GO;
-			boaaa = new Boaaa(x, y);
-		}
+	timer++;
+
+	if (state == STATE_START && timer > startTime) {
+		state = STATE_GO;
+		boaaa = new Boaaa(x, y, dir, 2000);
 	}
 
-	if (boaaa != nullptr) {
-		boaaa->Update();//‚±‚ê‚È‚¢‚ÆƒNƒ‰ƒbƒVƒ…
+	if (state == STATE_GO && timer > maxTime) {
+		state = STATE_FIN;
+		if (boaaa) boaaa->DestroyMe();
 	}
+
 	if (state == STATE_FIN) {
 		DestroyMe();
 	}
@@ -56,6 +57,7 @@ void Breath::Update()
 
 void Breath::Draw()
 {
+	if (!isActive) return;
 
 	int frame2 = 0;
 	if (state == STATE_START) {

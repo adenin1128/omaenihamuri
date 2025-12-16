@@ -19,6 +19,7 @@ public:
 	buraState GetState() const { return state; }
     void SetState(buraState s) { state = s; }
 	void Active();
+
 private:
 	int buraimage;
 	int x, y;
@@ -30,4 +31,8 @@ private:
 	int moveX;   // X•ûŒü‚Ì—ÍEˆÚ“®—Ê
 	int moveY;   // Y•ûŒü‚Ì—ÍEˆÚ“®—Ê
 	bool isActive;
+	int timer;
+	int startTime = 60; // breath‚ª”­Ë‚³‚ê‚é‚Ü‚Å‚ÌŠÔ
+	int maxTime = 300;  // breath‚ª‘¶İ‚·‚éÅ‘åŠÔ
+
 };

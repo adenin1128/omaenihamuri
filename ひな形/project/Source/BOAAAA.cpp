@@ -7,84 +7,120 @@
 
 //int boaGraphs[1];
 
-Boaaa::Boaaa(int px, int py)
+//Boaaa::Boaaa(int px, int py)
+//{
+//	//boaimage= LoadGraph("data/image/BOAAA.png");
+//	//LoadDivGraph("data/image/BOAAA.png", 1, 1, 1, 64, 64, boaGraphs);
+//    x = px;
+//    y = py;
+//    length = 2000;        // レーザーの長さ
+//    baseThickness = 35;
+//    changeThickness = 2;
+//    buretimer = 0;
+//}
+
+Boaaa::Boaaa(int px, int py, int d, int len)
 {
-	//boaimage= LoadGraph("data/image/BOAAA.png");
-	//LoadDivGraph("data/image/BOAAA.png", 1, 1, 1, 64, 64, boaGraphs);
     x = px;
     y = py;
-    length = 2000;        // レーザーの長さ
+    dir = d;
+    length = len;
+
     baseThickness = 35;
     changeThickness = 2;
     buretimer = 0;
 }
-
 Boaaa::~Boaaa()
 {
 }
 
 void Boaaa::Update()
 {
-        Breath* breath = FindGameObject<Breath>();
-        Player* player = FindGameObject<Player>();
-        StageNumber* stageNumber = FindGameObject<StageNumber>(); 
-        thickness = baseThickness + (rand() % (changeThickness * 2 + 1) - changeThickness);
-        buretimer++;
+    Player* player = FindGameObject<Player>();
+    StageNumber* stageNumber = FindGameObject<StageNumber>();
 
-        if (buretimer > 5000) {
-            if (breath) {
-                breath->SetState(STATE_FIN);
-            }
+    thickness = baseThickness
+        + (rand() % (changeThickness * 2 + 1) - changeThickness);
+
+    if (player && CheckHit(player)) {
+        if (!(stageNumber && stageNumber->noDeath)) {
+            player->SetState(PlayerState::STATE_BOOM);
         }
-
-        if (breath && breath->GetState() == STATE_GO && player) {
-
-            if (CheckHit(player)) {
-                if (!(stageNumber && stageNumber->noDeath)) {
-                    player->SetState(PlayerState::STATE_BOOM);
-                }
-            }
-        }
+    }
 }
 
 
 
 void Boaaa::Draw()
 {
-    Breath* breath = FindGameObject<Breath>();
-    if (breath && breath->GetState() == STATE_GO)
-    {
-        bx = x * 64 + 128;
-        by = y * 64 + 54;
+    int bx = x + 32;
+    int by = y + 32;
 
-        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-        color = GetColor(255, 255, 255);
-
-        DrawBoxAA(bx, by - thickness, bx + length, by + thickness, color, TRUE);
-
-        SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+    int dx = 0, dy = 0;
+    switch (dir) {
+    case 0: dy = -1; break; // 上
+    case 1: dx = 1; break;  // 右
+    case 2: dy = 1; break;  // 下
+    case 3: dx = -1; break; // 左
     }
+
+    int ex = bx + dx * length;
+    int ey = by + dy * length;
+
+    DrawLineAA(bx, by, ex, ey, GetColor(255, 255, 255), thickness);
 }
+
 
 bool Boaaa::CheckHit(Player* player)
 {
-    Breath* breath = FindGameObject<Breath>();
-    if (!(breath && breath->GetState() == STATE_GO)) {
+    float pL = player->GetColliderLeftTop().x;
+    float pR = player->GetColliderRightTop().x;
+    float pT = player->GetColliderLeftTop().y;
+    float pB = player->GetColliderLeftBottom().y;
+
+    int cx = x + 32;
+    int cy = y + 32;
+
+    float l, r, t, b;
+
+    switch (dir) {
+    case 0: // 上
+        l = cx - thickness;
+        r = cx + thickness;
+        t = cy - length;
+        b = cy;
+        break;
+
+    case 1: // 右
+        l = cx;
+        r = cx + length;
+        t = cy - thickness;
+        b = cy + thickness;
+        break;
+
+    case 2: // 下
+        l = cx - thickness;
+        r = cx + thickness;
+        t = cy;
+        b = cy + length;
+        break;
+
+    case 3: // 左
+        l = cx - length;
+        r = cx;
+        t = cy - thickness;
+        b = cy + thickness;
+        break;
+
+    default:
         return false;
     }
-    bx = x * 64 + 128;
-    by = y * 64 + 54;
-	//AABB 判定用プレイヤー座標取得
-    float left = player->GetColliderLeftTop().x;
-    float right = player->GetColliderRightTop().x;
-    float top = player->GetColliderLeftTop().y;
-    float bottom = player->GetColliderLeftBottom().y;
 
-	// AABB 判定
-    if (right < bx) return false;                 // プレイヤーがレーザーより左
-    if (left > bx + length) return false;         // プレイヤーが右
-    if (bottom < by - thickness) return false;    // プレイヤーが上
-    if (top > by + thickness) return false;       // プレイヤーが下
+    // AABB vs AABB
+    if (r < pL) return false;
+    if (l > pR) return false;
+    if (b < pT) return false;
+    if (t > pB) return false;
 
     return true;
 }
