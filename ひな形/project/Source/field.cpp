@@ -83,9 +83,8 @@ void GenerateBreath(int posx, int posy, int id) {
 	int index = id - 301;
 	if (index >= 0 && index < 99) {
 		breaths[index] = new Breath(posx, posy, id, direction, tx, ty);
-		breaths[index]->Active();   // ← 必須
+		breaths[index]->Active();
 	}
-	breaths[id - 301]->Active();
 }
 
 

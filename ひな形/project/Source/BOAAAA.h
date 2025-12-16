@@ -6,16 +6,15 @@
 #include "Player.h"
 #include "StageNumber.h"
 
-
 class Boaaa : public GameObject {
-
 public:
-	Boaaa(int px, int py);
+	Boaaa(int px, int py, int dir, int length);
 	~Boaaa();
 	void Update() override;
 	void Draw() override;
 	bool CheckHit(Player* player);
 private:
+	int dir;
 	int boaimage;
 	int x, y;
 	int frame3;
