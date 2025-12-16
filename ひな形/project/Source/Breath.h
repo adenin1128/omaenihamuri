@@ -11,14 +11,14 @@ enum buraState {
 };
 class Breath : public GameObject {
 public:
-	Breath(int px, int py);
+	Breath(int px, int py, int i, int d, int tx, int ty);
 	~Breath();
 	void Update() override;
 	void Draw() override;
 	buraState state;   //	breath‚Ìó‘ÔŠÇ—
 	buraState GetState() const { return state; }
     void SetState(buraState s) { state = s; }
-	Breath(int x, int y, int direction, int tx, int ty);
+	void Active();
 private:
 	int buraimage;
 	int x, y;
@@ -29,4 +29,5 @@ private:
 	int dir;     // Œü‚«
 	int moveX;   // X•ûŒü‚Ì—ÍEˆÚ“®—Ê
 	int moveY;   // Y•ûŒü‚Ì—ÍEˆÚ“®—Ê
+	bool isActive;
 };

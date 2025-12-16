@@ -61,7 +61,6 @@ public:
 	int GetGateHit() { return DL; }
 	bool GetHit() { return one; }
 	bool GetHita() { return two; }
-	void GenerateBreath(int posx, int posy, int id);
 private:
 	Breath* breaths[99];
 	std::vector<std::unique_ptr<Skeleton>> skeletons;

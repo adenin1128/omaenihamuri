@@ -4,12 +4,16 @@
 
 int buraGraphs[2];
 
-Breath::Breath(int px, int py)
+
+
+Breath::Breath(int px, int py, int i, int d, int tx, int ty) : GameObject()
 {
 	buraimage = LoadGraph("data/image/BreathHead.png");
 	LoadDivGraph("data/image/BreathHead.png", 2, 2, 1, 64, 64, buraGraphs);
 	assert(buraimage > 0);
 
+
+	isActive = false;
 	state = STATE_START;
 	x = px;
 	y = py;
@@ -19,12 +23,11 @@ Breath::Breath(int px, int py)
 	angle = 0;
 
 	dir = 0;
-	moveX = 0;
-	moveY = 0;
+	moveX = tx;
+	moveY = ty;
 
 	boaaa = nullptr;
 }
-
 
 Breath::~Breath()
 {
@@ -32,27 +35,28 @@ Breath::~Breath()
 }
 void Breath::Update()
 {
-		if (state == STATE_START) {
-			timer2++;
-			{
-				if (timer2 >= 120) {
-					frame2 = 1;
-					state = STATE_GO;
-					boaaa = new Boaaa(x, y);
-				}
-			}
-		}
+	if (!isActive) return;
 
-		if (boaaa != nullptr) {
-			boaaa->Update();//これないとクラッシュ
+	if (state == STATE_START) {
+		timer2++;
+		if (timer2 >= 120) {
+			frame2 = 1;
+			state = STATE_GO;
+			boaaa = new Boaaa(x, y);
 		}
-		if (state == STATE_FIN) {
-			DestroyMe();
-		}
+	}
+
+	if (boaaa != nullptr) {
+		boaaa->Update();//これないとクラッシュ
+	}
+	if (state == STATE_FIN) {
+		DestroyMe();
+	}
 }
 
 void Breath::Draw()
 {
+
 	int frame2 = 0;
 	if (state == STATE_START) {
 		frame2 = 0;
@@ -61,13 +65,18 @@ void Breath::Draw()
 	if (state == STATE_GO) {
 		frame2 = 1;
 	}
-	DrawRotaGraph(x * 64 + 32, y * 64 + 32, 4, angle, buraGraphs[frame2], TRUE, FALSE);
+	DrawRotaGraph(x + 32, y + 32, 4, angle, buraGraphs[frame2], TRUE, FALSE);
 }
 
-Breath::Breath(int px, int py, int direction, int tx, int ty)
-	: Breath(px, py)   // ← ここが一番大事
-{
-	dir = direction;
-	moveX = tx;
-	moveY = ty;
+void Breath::Active() {
+	isActive = true;
 }
+
+
+//Breath::Breath(int px, int py, int direction, int tx, int ty)
+//	: Breath(int px, int py, int i, int d, int tx, int ty)   // ← ここが一番大事
+//{
+//	dir = direction;
+//	moveX = tx;
+//	moveY = ty;
+//}

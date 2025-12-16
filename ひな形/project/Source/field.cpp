@@ -70,8 +70,7 @@ void GenerateTrap(int posx, int posy, int id) {
 
 }
 ;
-void Field::GenerateBreath(int posx, int posy, int id)
-{
+void GenerateBreath(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
 
 	for (int y = 0; y < breathDatas.size(); y++) {
@@ -79,14 +78,14 @@ void Field::GenerateBreath(int posx, int posy, int id)
 			direction = breathDatas[y][1];
 			tx = breathDatas[y][2];
 			ty = breathDatas[y][3];
-			break;
 		}
 	}
-
-	if (breathCount < 99) {
-		breaths[breathCount] = new Breath(posx, posy, direction, tx, ty);
-		breathCount++;
+	int index = id - 301;
+	if (index >= 0 && index < 99) {
+		breaths[index] = new Breath(posx, posy, id, direction, tx, ty);
+		breaths[index]->Active();   // ← 必須
 	}
+	breaths[id - 301]->Active();
 }
 
 
@@ -113,7 +112,7 @@ Field::Field(int stage)
 	csv = new CsvReader(filename);
 	lines = csv->GetLines();
 	trapDatas.resize(lines);
-	for(int y = 0; y < lines; y++) {
+	for (int y = 0; y < lines; y++) {
 		int cols = csv->GetColumns(y);
 		trapDatas[y].resize(cols);
 		for (int x = 0; x < cols; x++) {
@@ -124,24 +123,16 @@ Field::Field(int stage)
 
 	sprintf_s<60>(filename, "data/breath%02d.csv", stage);
 	csv = new CsvReader(filename);
-
-    lines = csv->GetLines();
+	lines = csv->GetLines();
 	breathDatas.resize(lines);
 	for (int y = 0; y < lines; y++) {
 		int cols = csv->GetColumns(y);
 		breathDatas[y].resize(cols);
 		for (int x = 0; x < cols; x++) {
-			breathDatas[y][x] = csv->GetInt(y, x);
+			int num = csv->GetInt(y, x);
+			breathDatas[y][x] = num;
 		}
 	}
-
-	delete csv;
-
-	for (int i = 0; i < 99; i++) {
-		breaths[i] = nullptr;
-
-	}
-	breathCount = 0;
 
 	saveMaps = maps;
 	SetDrawOrder(100);
@@ -159,8 +150,8 @@ Field::Field(int stage)
 	assert(gokunobanImage > 0);
 
 	x = 0;
-	y = 1080-64;
-	scrollX = 0; 
+	y = 1080 - 64;
+	scrollX = 0;
 	HIT_TRAP = 0;
 	deathcount = 1;
 	size = 2;
@@ -195,13 +186,16 @@ Field::Field(int stage)
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
 				GenerateTrap(x * 64, y * 64, maps[y][x]);
 			}
+			if (maps[y][x] > 300 && maps[y][x] < 400) {
+				GenerateBreath(x * 64, y * 64, maps[y][x]);
+			}
 			if (maps[y][x] == 4) {
 				new respawn(x * 64, y * 64);
 			}
-			if(maps[y][x] == 15) {
+			if (maps[y][x] == 15) {
 				new Updraft(x * 64, y * 64);
 			}
-			if(maps[y][x] == 16) {
+			if (maps[y][x] == 16) {
 				new Gravity(x * 64, y * 64);
 			}
 			if (maps[y][x] == 17) {
@@ -216,16 +210,13 @@ Field::Field(int stage)
 			if (maps[y][x] == 23) {
 				new BeltConveyor(x * 64, y * 64);
 			}
-			if(maps[y][x] == 24) {
+			if (maps[y][x] == 24) {
 				new BeltConveyorL(x * 64, y * 64);
 			}
 			if (maps[y][x] == 25) {
 				new BC(x * 64, y * 64);
 			}
-			if (maps[y][x] == 8) {
-				GenerateBreath(x * 64, y * 64, 8);
-			}
-			if(maps[y][x] == 80) { //右向き
+			if (maps[y][x] == 80) { //右向き
 				new NyokiTrap(x * 64 - 64, y * 64);
 			}
 			if (maps[y][x] == 81) {//左向き
@@ -264,7 +255,7 @@ void Field::Update()
 			deathcount++;
 		}
 		{
-			GameOver*obj = FindGameObject<GameOver>();
+			GameOver* obj = FindGameObject<GameOver>();
 			if (obj != nullptr)
 				obj->DestroyMe();
 		}
@@ -496,7 +487,7 @@ void Field::CheckTrap(int x, int y) {
 int Field::HitCheckRight(int px, int py)
 {
 	int x = px / 64;
-	int y = py/ 64;
+	int y = py / 64;
 	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
@@ -552,11 +543,11 @@ int Field::HitCheckDown(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
-	if (OutOfMap(x,y))
+	if (OutOfMap(x, y))
 		return 0;
 	CheckTrap(x, y);
 	if (maps[y][x] == 1)
-		return py  % 64 + 1;
+		return py % 64 + 1;
 	if (skHit == true) {
 		if (maps[y][x] == 6) {
 			return px % 64 + 1;
@@ -619,7 +610,7 @@ bool Field::IsGoal(int px, int py)
 	}
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
-	if (OutOfMap(x,y))
+	if (OutOfMap(x, y))
 		return 0;
 	if (maps[y][x] == 7) {
 		return true;
@@ -631,7 +622,7 @@ int Field::NyokiMove(int px, int py)
 {
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
-	if (OutOfMap(x,y))
+	if (OutOfMap(x, y))
 		return 0;
 	Nyoki* nk = FindGameObject<Nyoki>();
 	if (nk != nullptr) return 0;
@@ -693,7 +684,7 @@ bool Field::IsGate(int px, int py)
 {
 	int x = px / 64;
 	int y = py / 64;
-	if (OutOfMap(x,y))
+	if (OutOfMap(x, y))
 		return 0;
 	if (maps[y][x] == 20) {
 		DL = 20;
@@ -711,7 +702,7 @@ int Field::IsBelt(int px, int py)
 {
 	int x = (px + 32) / 64;
 	int y = (py + 32) / 64;
-	if (OutOfMap(x,y))
+	if (OutOfMap(x, y))
 		return 0;
 	if (maps[y][x] == 23) {
 		BeltHit = 23;
@@ -748,7 +739,7 @@ int Field::Movefloor(int px, int py)
 	MoveFloor* mf = FindGameObject<MoveFloor>();
 	if (!mf) return 0;
 
-	int x30 = -1, x31 = -1, x32 = -1,x33 = -1;
+	int x30 = -1, x31 = -1, x32 = -1, x33 = -1;
 
 	for (int yy = 0; yy < (int)maps.size(); ++yy) {
 		for (int xx = 0; xx < (int)maps[yy].size(); ++xx) {
