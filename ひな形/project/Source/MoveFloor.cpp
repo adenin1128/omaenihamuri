@@ -1,6 +1,6 @@
 #include "MoveFloor.h"
 #include "Player.h"
-#include "Field.h" // "field.h" ‚Ì‘å•¶š¬•¶š‚ÍŠÂ‹«‚É‡‚í‚¹‚Ä‚­‚¾‚³‚¢
+#include "Field.h"
 #include <assert.h>
 #include <cmath> // std::sqrt, std::fabs
 
