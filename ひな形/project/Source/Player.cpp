@@ -276,10 +276,10 @@ void Player::Update()
 			SuiUGOKU* su = FindGameObject<SuiUGOKU>();
 			std::list<SuiUGOKU*> sus = FindGameObjects<SuiUGOKU>();
 			for (auto& su : sus) {
-				if (mf != nullptr) {
-					push1 = max(push1, mf->HitCheckDown(x + 9, y + 64));
-					push2 = max(push2, mf->HitCheckDown(x + 55, y + 64));
-					push3 = max(push3, mf->HitCheckDown(x + 28, y + 64));
+				if (su != nullptr) {
+					push1 = max(push1, su->HitCheckDown(x + 9, y + 64));
+					push2 = max(push2, su->HitCheckDown(x + 55, y + 64));
+					push3 = max(push3, su->HitCheckDown(x + 28, y + 64));
 				}
 			}
 			//Skeleton”»’è‚ð’Ç‰Á

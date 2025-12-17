@@ -14,6 +14,7 @@ public:
 
     void Reset();
 
+    int HitCheckDown(int px, int py);
 private:
     int sImage;
     int suiGraphs[2]; // ‰æ‘œƒnƒ“ƒhƒ‹
@@ -29,4 +30,6 @@ private:
 
     int frame;
     int timer;
+
+    int size;
 };

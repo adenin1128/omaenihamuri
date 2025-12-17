@@ -15,6 +15,8 @@ SuiUGOKU::SuiUGOKU(int px, int py)
 
     // 画像が正しく読めたかチェック
     assert(sImage > 0);
+
+    Reset();
 }
 
 SuiUGOKU::~SuiUGOKU()
@@ -39,6 +41,7 @@ void SuiUGOKU::Reset()
     // アニメーション用
     frame = 0;
     timer = 0;
+    size = 64;
 }
 
 // ---------------------------------------------------------
@@ -90,8 +93,19 @@ void SuiUGOKU::Draw()
     // 描画
     // 画像の中心を基準に回転描画する場合、座標を調整
     // widthが64なら、中心は+32
-    DrawRotaGraph(static_cast<int>(x) + 32, static_cast<int>(y) + 32, 0.2, 0.0, suiGraphs[frame], TRUE, FALSE);
+    DrawRotaGraph(x + 32, y + 32, 0.2, 0.0, suiGraphs[frame], TRUE, FALSE);
 
     // デバッグ用：当たり判定の枠を表示（動作確認用）
     // DrawBox((int)x, (int)y, (int)(x + width), (int)(y + height), GetColor(255, 0, 0), FALSE);
+}
+
+// プレイヤーの下判定用
+int SuiUGOKU::HitCheckDown(int px, int py) {
+    if (px < static_cast<int>(x) || px >= static_cast<int>(x) + size) return 0;
+
+    int push = py - static_cast<int>(y);
+    if (push >= 0 && push < 16) {
+        return push;
+    }
+    return 0;
 }
