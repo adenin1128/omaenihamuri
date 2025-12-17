@@ -223,7 +223,7 @@ void Player::Update()
 		Field* j = FindGameObject<Field>();
 		if (j->GetJetpack() == true) {
 			if (CheckHitKey(KEY_INPUT_SPACE)) {
-				velocity = v0;
+				velocity = v0 + 3;
 			}
 		}
 		else if (j->GetJetpack() == false) {

@@ -5,22 +5,10 @@
 SuiUGOKU::SuiUGOKU(int px, int py)
 {
     // 座標の初期化
-    x = static_cast<float>(px);
-    y = static_cast<float>(py);
+    ResetX = static_cast<float>(px);
+    ResetY = static_cast<float>(py);
 
-    // 当たり判定サイズの設定
-    // ※画像の描画倍率(0.2倍など)に合わせて調整してください
-    // ここでは前回のコードを参考に64pxとしています
-    width = 64.0f;
-    height = 64.0f;
-
-    // 上昇スピード
-    moveSpeed = 2.0f;
-
-    // アニメーション用
-    frame = 0;
-    timer = 0;
-
+    
     // 画像読み込み
     sImage = LoadGraph("data/image/すい.png");
     LoadDivGraph("data/image/すい.png", 2, 2, 1, 640, 640, suiGraphs);
@@ -32,6 +20,25 @@ SuiUGOKU::SuiUGOKU(int px, int py)
 SuiUGOKU::~SuiUGOKU()
 {
     // 必要であれば画像やリソースの削除処理
+}
+
+void SuiUGOKU::Reset()
+{
+    x = ResetX;
+    y = ResetY;
+
+    // 当たり判定サイズの設定
+ // ※画像の描画倍率(0.2倍など)に合わせて調整してください
+ // ここでは前回のコードを参考に64pxとしています
+    width = 64.0f;
+    height = 64.0f;
+
+    // 上昇スピード
+    moveSpeed = 2.0f;
+
+    // アニメーション用
+    frame = 0;
+    timer = 0;
 }
 
 // ---------------------------------------------------------

@@ -308,7 +308,11 @@ void Field::Update()
 			for (auto obj : objs)
 				obj->Reset();
 		}
-
+		{
+			auto objs = FindGameObjects<SuiUGOKU>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
 
 		{
 			Fader* fader = FindGameObject<Fader>();

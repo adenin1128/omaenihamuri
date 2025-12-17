@@ -136,7 +136,9 @@
       <Filter>PlayScene\Trap</Filter>
     </ClCompile>
     <ClCompile Include="Source\Fader.cpp" />
-    <ClCompile Include="Source\SuiUGOKU.cpp" />
+    <ClCompile Include="Source\SuiUGOKU.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />

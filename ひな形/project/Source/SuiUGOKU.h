@@ -12,11 +12,15 @@ public:
     void Update(float& plX, float& plY, float plW, float plH, float& plVY);
     void Draw();
 
+    void Reset();
+
 private:
     int sImage;
     int suiGraphs[2]; // 画像ハンドル
 
     // 座標とサイズ
+    float ResetX, ResetY;
+
     float x, y;
     float width, height;
 
