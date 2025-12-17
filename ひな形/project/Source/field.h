@@ -38,6 +38,7 @@ public:
 	int IsBelt(int px, int py);
 	int IsBC(int px, int py);
 	int Movefloor(int px, int py);
+	int Suiugoku(int px, int py);
 	int IsBreath(int px, int py);
 	// 指定した番号(id)の座標を ox, oy に入れて返す関数
 	bool GetPointPos(int id, int* ox, int* oy);

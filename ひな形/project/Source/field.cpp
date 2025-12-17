@@ -226,7 +226,7 @@ Field::Field(int stage)
 			if (maps[y][x] == 83) {//下向き
 				new NyokiTrap4(x * 64, y * 64 - 64);
 			}
-			if (maps[y][x] == 84) {
+			if (maps[y][x] == 40) {
 				new SuiUGOKU(x * 64, y * 64);
 			}
 		}
@@ -768,6 +768,43 @@ int Field::Movefloor(int px, int py)
 	MoveFloor* mf = FindGameObject<MoveFloor>();
 	if (!mf) return 0;
 
+	int x40 = -1, x41 = -1, x42 = -1, x43 = -1;
+
+	for (int yy = 0; yy < (int)maps.size(); ++yy) {
+		for (int xx = 0; xx < (int)maps[yy].size(); ++xx) {
+			if (maps[yy][xx] == 40)      x40 = xx;
+			else if (maps[yy][xx] == 41) x41 = xx;
+			else if (maps[yy][xx] == 42) x42 = xx;
+			else if (maps[yy][xx] == 43) x43 = xx;
+		}
+	}
+
+	switch (mf->GetState()) {
+	case STATE_A: // 30 -> 31
+		if (x40 < 0 || x41 < 0) return 0;
+		return (x41 - x40) * 64;
+
+	case STATE_B: // 31 -> 32
+		if (x41 < 0 || x42 < 0) return 0;
+		return (x42 - x41) * 64;
+
+	case STATE_C: // 32 -> 33
+		if (x42 < 0 || x43 < 0) return 0;
+		return (x43 - x42) * 64;
+	case STATE_D: // 33 -> 31
+		if (x43 < 0 || x41 < 0) return 0;
+		return (x41 - x43) * 64;
+	}
+
+	return 0;
+}
+// 距離計算用関数 (SuiUGOKUを取得するように変更)
+int Field::Suiugoku(int px, int py)
+{
+	// ★SuiUGOKUのヘッダーをインクルードしていないとここでエラーになります
+	SuiUGOKU* mf = FindGameObject<SuiUGOKU>();
+	if (!mf) return 0;
+
 	int x30 = -1, x31 = -1, x32 = -1, x33 = -1;
 
 	for (int yy = 0; yy < (int)maps.size(); ++yy) {
@@ -779,43 +816,41 @@ int Field::Movefloor(int px, int py)
 		}
 	}
 
+	// ★変更：Enum名を新しいものに
 	switch (mf->GetState()) {
-	case STATE_A: // 30 -> 31
+	case SUI_STATE_A: // 30 -> 31
 		if (x30 < 0 || x31 < 0) return 0;
 		return (x31 - x30) * 64;
 
-	case STATE_B: // 31 -> 32
+	case SUI_STATE_B: // 31 -> 32
 		if (x31 < 0 || x32 < 0) return 0;
 		return (x32 - x31) * 64;
 
-	case STATE_C: // 32 -> 33
+	case SUI_STATE_C: // 32 -> 33
 		if (x32 < 0 || x33 < 0) return 0;
 		return (x33 - x32) * 64;
-	case STATE_D: // 33 -> 31
+	case SUI_STATE_D: // 33 -> 31
 		if (x33 < 0 || x31 < 0) return 0;
 		return (x31 - x33) * 64;
 	}
 
 	return 0;
 }
-// 指定したマップチップ番号(id)の場所を探して、ox, oyに座標(pixel)を代入する
+
+// ★この関数も忘れずに Field.cpp にある必要があります
 bool Field::GetPointPos(int id, int* ox, int* oy)
 {
-	// マップ全体を走査
 	for (int y = 0; y < (int)maps.size(); ++y) {
 		for (int x = 0; x < (int)maps[y].size(); ++x) {
 			if (maps[y][x] == id) {
-				// 見つかったら座標を計算 (チップサイズ64倍)
 				*ox = x * 64;
 				*oy = y * 64;
-				return true; // 見つかった
+				return true;
 			}
 		}
 	}
-	return false; // 見つからなかった
+	return false;
 }
-
-
 
 int Field::IsBreath(int px, int py) {
 	/*if (maps[y][x] == 8) {
@@ -823,6 +858,7 @@ int Field::IsBreath(int px, int py) {
 	}*/
 	return 0;
 }
+
 
 //int Field::HitCheckRightTrap(int px, int py)
 //{
