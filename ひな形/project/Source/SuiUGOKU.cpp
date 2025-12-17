@@ -1,87 +1,129 @@
 #include "SuiUGOKU.h"
-#include <cmath>    // std::abs 等を使用する場合
-#include <assert.h> // 画像読み込みチェック用
+#include "Player.h"
+#include "Field.h"
+#include <assert.h>
+#include <cmath>
+
+static int suiGraphs[2];
 
 SuiUGOKU::SuiUGOKU(int px, int py)
 {
-    // 座標の初期化
-    ResetX = static_cast<float>(px);
-    ResetY = static_cast<float>(py);
-
-    
-    // 画像読み込み
     sImage = LoadGraph("data/image/すい.png");
     LoadDivGraph("data/image/すい.png", 2, 2, 1, 640, 640, suiGraphs);
-
-    // 画像が正しく読めたかチェック
     assert(sImage > 0);
+
+    resetX = px;
+    resetY = py;
 
     Reset();
 }
 
 SuiUGOKU::~SuiUGOKU()
 {
-    // 必要であれば画像やリソースの削除処理
 }
 
 void SuiUGOKU::Reset()
 {
-    x = ResetX;
-    y = ResetY;
+    x = static_cast<float>(resetX);
+    y = static_cast<float>(resetY);
 
-    // 当たり判定サイズの設定
- // ※画像の描画倍率(0.2倍など)に合わせて調整してください
- // ここでは前回のコードを参考に64pxとしています
-    width = 64.0f;
-    height = 64.0f;
+    moveSpeed = 3.0f;
 
-    // 上昇スピード
-    moveSpeed = 2.0f;
+    // ★変更
+    state = SUI_STATE_A;
+    activatedA = false;
 
-    // アニメーション用
     frame = 0;
     timer = 0;
     size = 64;
 }
 
-// ---------------------------------------------------------
-// Update
-// 引数でプレイヤーの情報(座標や速度)を受け取り、直接書き換える
-// ---------------------------------------------------------
-void SuiUGOKU::Update(float& plX, float& plY, float plW, float plH, float& plVY)
+bool SuiUGOKU::IsPlayerOn(const Player* p) const
 {
-    // --- 1. 当たり判定（プレイヤーが上に乗っているか？） ---
+    if (!p) return false;
 
-    float plBottom = plY + plH; // プレイヤーの足元のY座標
+    const float px = p->GetX();
+    const float py = p->GetY();
+    const float pw = static_cast<float>(p->GetWidth());
+    const float ph = static_cast<float>(p->GetHeight());
 
-    // X軸の重なりチェック
-    // 「プレイヤーの左端 < 床の右端」 かつ 「プレイヤーの右端 > 床の左端」
-    bool xOverlap = (plX < x + width) && (plX + plW > x);
+    const float playerBottom = py + ph;
+    const bool xOverlap = (px < x + size) && (px + pw > x);
+    const bool onTop = std::fabs(playerBottom - y) <= 8.0f;
 
-    // Y軸の接触チェック
-    // プレイヤーの足元と、床の上端(y)との距離が近いか（10.0fは許容範囲）
-    // かつ、プレイヤーが落下中(plVY >= 0)であること
-    bool yContact = (std::abs(plBottom - y) <= 10.0f) && (plVY >= 0);
+    return xOverlap && onTop;
+}
 
-    // --- 2. 乗っている場合の処理 ---
-    if (xOverlap && yContact)
-    {
-        // A. 床を上昇させる
-        y -= moveSpeed;
+void SuiUGOKU::MoveOneStep(float moveX, float moveY, Player* p)
+{
+    x += moveX;
+    y += moveY;
 
-        // B. プレイヤーも一緒に上昇させる（重要）
-        // プレイヤーの足元(plBottom)を、床の新しいY位置(y)にぴったり合わせる
-        // これにより、置いてけぼりにならず、めり込みも防げます
-        plY = y - plH;
+    if (p && IsPlayerOn(p)) {
+        p->SetX(p->GetX() + moveX);
+        p->SetY(p->GetY() + moveY);
+    }
+}
 
-        // C. プレイヤーの落下速度を0にする（着地状態にする）
-        plVY = 0.0f;
+void SuiUGOKU::Update()
+{
+    Field* field = FindGameObject<Field>();
+    Player* player = FindGameObject<Player>();
+    if (!field) return;
+
+    int targetBlockID = -1;
+
+    // ★変更：Enum名を新しいものに
+    switch (state) {
+    case SUI_STATE_A: targetBlockID = 41; break;
+    case SUI_STATE_B: targetBlockID = 42; break;
+    case SUI_STATE_C: targetBlockID = 43; break;
+    case SUI_STATE_D: targetBlockID = 41; break;
+    default: break;
+    }
+
+    int tx = 0, ty = 0;
+    if (field->GetPointPos(targetBlockID, &tx, &ty) == false) {
+        return;
+    }
+
+    float targetX = static_cast<float>(tx);
+    float targetY = static_cast<float>(ty);
+
+    // ★変更：Enum名を新しいものに
+    if (state == SUI_STATE_A && !activatedA) {
+        if (IsPlayerOn(player)) {
+            activatedA = true;
+        }
+        else {
+            return;
+        }
+    }
+
+    float diffX = targetX - x;
+    float diffY = targetY - y;
+    float distance = std::sqrt(diffX * diffX + diffY * diffY);
+
+    if (distance <= moveSpeed) {
+        MoveOneStep(diffX, diffY, player);
+
+        // ★変更：Enum名を新しいものに
+        switch (state) {
+        case SUI_STATE_A: state = SUI_STATE_B; break;
+        case SUI_STATE_B: state = SUI_STATE_C; break;
+        case SUI_STATE_C: state = SUI_STATE_D; break;
+        case SUI_STATE_D: state = SUI_STATE_B; break;
+        }
+    }
+    else {
+        float moveX = (diffX / distance) * moveSpeed;
+        float moveY = (diffY / distance) * moveSpeed;
+        MoveOneStep(moveX, moveY, player);
     }
 }
 
 void SuiUGOKU::Draw()
 {
-    // アニメーション制御
     timer++;
     if (timer % 10 == 0) {
         frame++;
@@ -89,17 +131,9 @@ void SuiUGOKU::Draw()
             frame = 0;
         }
     }
-
-    // 描画
-    // 画像の中心を基準に回転描画する場合、座標を調整
-    // widthが64なら、中心は+32
-    DrawRotaGraph(x + 32, y + 32, 0.2, 0.0, suiGraphs[frame], TRUE, FALSE);
-
-    // デバッグ用：当たり判定の枠を表示（動作確認用）
-    // DrawBox((int)x, (int)y, (int)(x + width), (int)(y + height), GetColor(255, 0, 0), FALSE);
+    DrawRotaGraph(static_cast<int>(x) + 32, static_cast<int>(y) + 32, 0.2, 0, suiGraphs[frame], TRUE, FALSE);
 }
 
-// プレイヤーの下判定用
 int SuiUGOKU::HitCheckDown(int px, int py) {
     if (px < static_cast<int>(x) || px >= static_cast<int>(x) + size) return 0;
 
