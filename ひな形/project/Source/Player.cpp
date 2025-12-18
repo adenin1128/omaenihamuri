@@ -11,6 +11,7 @@
 #include "BeltConveyorL.h"
 #include "MoveFloor.h"
 #include "SuiUGOKU.h"
+#include "SuiUGOKU2.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Debug.h"
@@ -280,6 +281,16 @@ void Player::Update()
 					push1 = max(push1, su->HitCheckDown(x + 9, y + 64));
 					push2 = max(push2, su->HitCheckDown(x + 55, y + 64));
 					push3 = max(push3, su->HitCheckDown(x + 28, y + 64));
+				}
+			}
+			//SuiUGOKU2”»’è‚ð’Ç‰Á
+			SuiUGOKU2* sut = FindGameObject<SuiUGOKU2>();
+			std::list<SuiUGOKU2*> suts = FindGameObjects<SuiUGOKU2>();
+			for (auto& sut : suts) {
+				if (su != nullptr) {
+					push1 = max(push1, sut->HitCheckDown(x + 9, y + 64));
+					push2 = max(push2, sut->HitCheckDown(x + 55, y + 64));
+					push3 = max(push3, sut->HitCheckDown(x + 28, y + 64));
 				}
 			}
 			//Skeleton”»’è‚ð’Ç‰Á

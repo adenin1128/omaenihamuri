@@ -6,6 +6,7 @@
 #include "StageNumber.h"
 #include "Fader.h"
 #include "HAIKEI.h"
+#include "Timer.h"
 using namespace std;
 
 //extern const char* Version();
@@ -30,6 +31,7 @@ void MainmenuScene::Update()
 	StageNumber* stageNum = FindGameObject<StageNumber>();
 	Field* f = FindGameObject<Field>();
 	Fader* fader = FindGameObject<Fader>();
+	Timer* timer = FindGameObject<Timer>();
 
 	if (f->GetGateHit() == 20) {
 		random_device rnd;
@@ -41,12 +43,14 @@ void MainmenuScene::Update()
 			// 処理 1
 			fader->FadeOut(0.1f);
 			stageNum->stagenum = 1;
+			timer->StartTimer();
 			SceneManager::ChangeScene("PlayScene");
 		}
 		else if (rand == 2) {
 			// 処理 2
 			fader->FadeOut(0.1f);
 			stageNum->stagenum = 2;
+			timer->StartTimer();
 			SceneManager::ChangeScene("PlayScene");
 
 		}
@@ -54,6 +58,7 @@ void MainmenuScene::Update()
 			// 処理 3
 			fader->FadeOut(0.1f);
 			stageNum->stagenum = 3;
+			timer->StartTimer();
 			SceneManager::ChangeScene("PlayScene");
 
 		}
@@ -61,6 +66,7 @@ void MainmenuScene::Update()
 			// 処理 4
 			fader->FadeOut(0.1f);
 			stageNum->stagenum = 4;
+			timer->StartTimer();
 			SceneManager::ChangeScene("PlayScene");
 
 		}
@@ -68,35 +74,42 @@ void MainmenuScene::Update()
 	if (CheckHitKey(KEY_INPUT_1)) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 1;
+		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (f->GetGateHit() == 21) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 1;
+		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_2)) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 2;
+		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (f->GetGateHit() == 22) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
+		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_3)) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
+		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_4)) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
+		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		fader->FadeOut(0.1f);
+		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
 	if (CheckHitKey(KEY_INPUT_T)) {

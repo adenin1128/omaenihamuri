@@ -25,6 +25,8 @@
 #include "NyokiTrap4.h"
 #include "Fader.h"
 #include "SuiUGOKU.h"
+#include "Timer.h"
+#include "SuiUGOKU2.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -229,6 +231,9 @@ Field::Field(int stage)
 			if (maps[y][x] == 40) {
 				new SuiUGOKU(x * 64, y * 64);
 			}
+			if (maps[y][x] == 50) {
+				new SuiUGOKU2(x * 64, y * 64);
+			}
 		}
 	}
 }
@@ -319,6 +324,10 @@ void Field::Update()
 				obj->Reset();
 		}
 
+			auto objs = FindGameObjects<SuiUGOKU2>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
 
 		{
 			Fader* fader = FindGameObject<Fader>();
@@ -479,6 +488,8 @@ void Field::Draw()
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
+	Timer* timer = FindGameObject<Timer>();
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "Time::%.3f", (timer->GetTime())/60);
 	if (hit == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 	if (jet == true)
@@ -839,6 +850,45 @@ int Field::Suiugoku(int px, int py)
 	case SUI_STATE_D: // 33 -> 31
 		if (x33 < 0 || x31 < 0) return 0;
 		return (x31 - x33) * 64;
+	}
+
+	return 0;
+}
+
+// 距離計算用関数 (SuiUGOKUを取得するように変更)
+int Field::Suiugoku2(int px, int py)
+{
+	// ★SuiUGOKUのヘッダーをインクルードしていないとここでエラーになります
+	SuiUGOKU2* mf = FindGameObject<SuiUGOKU2>();
+	if (!mf) return 0;
+
+	int x50 = -1, x51 = -1, x52 = -1, x53 = -1;
+
+	for (int yy = 0; yy < (int)maps.size(); ++yy) {
+		for (int xx = 0; xx < (int)maps[yy].size(); ++xx) {
+			if (maps[yy][xx] == 50)      x50 = xx;
+			else if (maps[yy][xx] == 51) x51 = xx;
+			else if (maps[yy][xx] == 52) x52 = xx;
+			else if (maps[yy][xx] == 53) x53 = xx;
+		}
+	}
+
+	// ★変更：Enum名を新しいものに
+	switch (mf->GetState()) {
+	case SUI_STATE_A: // 30 -> 31
+		if (x50 < 0 || x51 < 0) return 0;
+		return (x51 - x50) * 64;
+
+	case SUI_STATE_B: // 31 -> 32
+		if (x51 < 0 || x52 < 0) return 0;
+		return (x52 - x51) * 64;
+
+	case SUI_STATE_C: // 32 -> 33
+		if (x52 < 0 || x53 < 0) return 0;
+		return (x53 - x52) * 64;
+	case SUI_STATE_D: // 33 -> 31
+		if (x53 < 0 || x51 < 0) return 0;
+		return (x51 - x53) * 64;
 	}
 
 	return 0;
