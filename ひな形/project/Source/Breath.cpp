@@ -12,21 +12,13 @@ Breath::Breath(int px, int py, int i, int d, int tx, int ty) : GameObject()
 	LoadDivGraph("data/image/BreathHead.png", 2, 2, 1, 64, 64, buraGraphs);
 	assert(buraimage > 0);
 
+	ResetX = px;
+	ResetY = py;
 
-	isActive = false;
-	state = STATE_START;
-	x = px;
-	y = py;
-
-	frame2 = 0;
-	timer2 = 0;
-	angle = 0;
-
-	dir = 0;
+	dir = d;
 	moveX = tx;
 	moveY = ty;
-
-	boaaa = nullptr;
+	Reset();
 }
 
 
@@ -34,6 +26,25 @@ Breath::~Breath()
 {
 	DeleteGraph(buraimage);
 }
+
+void Breath::Reset()
+{
+	isActive = false;
+	state = STATE_START;
+	x = ResetX;
+	y = ResetY;
+
+	frame2 = 0;
+	timer2 = 0;
+	angle = 0;
+	timer = 0;
+	dir = 0;
+	moveX = 0;
+	moveY = 0;
+
+	boaaa = nullptr;
+}
+
 void Breath::Update()
 {
 	if (!isActive) return;
@@ -73,7 +84,6 @@ void Breath::Draw()
 void Breath::Active() {
 	isActive = true;
 }
-
 
 //Breath::Breath(int px, int py, int direction, int tx, int ty)
 //	: Breath(int px, int py, int i, int d, int tx, int ty)   // Å© Ç±Ç±Ç™àÍî‘ëÂéñ

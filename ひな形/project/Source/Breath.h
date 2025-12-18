@@ -19,8 +19,9 @@ public:
 	buraState GetState() const { return state; }
     void SetState(buraState s) { state = s; }
 	void Active();
-
+	void Reset();
 private:
+	int ResetX, ResetY;
 	int buraimage;
 	int x, y;
 	int frame2;
