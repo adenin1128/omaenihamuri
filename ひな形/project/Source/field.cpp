@@ -482,6 +482,8 @@ void Field::Draw()
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
+	Timer* timer = FindGameObject<Timer>();
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "Time::%.3f", (timer->GetTime())/60);
 	if (hit == true)
 		DrawString(0, 320, "hit", GetColor(255, 255, 255));
 	if (jet == true)
