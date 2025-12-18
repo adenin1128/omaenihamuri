@@ -28,16 +28,19 @@ void PlayScene::Update()
 
 	if (CheckHitKey(KEY_INPUT_T)) {
 		fader->FadeOut(0.1f);
+		timer->StopTimer();
 		timer->ResetTimer();
 		SceneManager::ChangeScene("TITLE");
 	}
 	if (CheckHitKey(KEY_INPUT_M)) {
 		fader->FadeOut(0.1f);
+		timer->StopTimer();
 		timer->ResetTimer();
 		SceneManager::ChangeScene("MENU");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 		fader->FadeOut(0.1f);
+		timer->StopTimer();
 		timer->ResetTimer();
 		SceneManager::Exit();
 	}

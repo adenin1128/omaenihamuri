@@ -37,6 +37,5 @@ void Clear::Draw()
 	DrawExtendFormatStringToHandle(950, 600, 3.5, 3.5, GetColor(0, 0, 0), GetDefaultFontHandle(), "•‰‚¯‚½‰ñ” %d‰ñ", deathCount - 1);
 	DrawExtendFormatStringToHandle(970, 750, 3, 3, GetColor(0, 0, 0), GetDefaultFontHandle(), "Press R to Menu");
 	Timer* timer = FindGameObject<Timer>();
-	timer->GetTime();
-	DrawExtendFormatStringToHandle(900, 750, 1, 1, GetColor(0, 0, 0), GetDefaultFontHandle(), "‚©‚©‚Á‚½ŠÔ %d•b", timer->GetTime());
+	DrawExtendFormatStringToHandle(900, 750, 1, 1, GetColor(0, 0, 0), GetDefaultFontHandle(), "‚©‚©‚Á‚½ŠÔ %.3f•b", (timer->GetTime())/60);
 }
