@@ -84,6 +84,13 @@ void MoveFloor::Update()
     if (!field) return;
 
     // ----------------------------------------------------
+    // ★追加: プレイヤーが乗っていないときは動きを止める
+    // ----------------------------------------------------
+    if (!IsPlayerOn(player)) {
+        return; // ここで関数を抜けるため、下の移動処理が実行されません
+    }
+
+    // ----------------------------------------------------
     // 目指すべきブロックの番号(ID)を決める
     // ----------------------------------------------------
     int targetBlockID = -1;
@@ -100,10 +107,8 @@ void MoveFloor::Update()
     // Fieldから目標地点の座標(targetX, targetY)を取得
     // ----------------------------------------------------
     int tx = 0, ty = 0;
-
-    // ★さっきFieldに追加した関数を使います
     if (field->GetPointPos(targetBlockID, &tx, &ty) == false) {
-        return; // 目標が見つからない場合は動かない
+        return;
     }
 
     float targetX = static_cast<float>(tx);
@@ -113,43 +118,32 @@ void MoveFloor::Update()
     // 移動ロジック
     // ----------------------------------------------------
 
-    // STATE_A の開始待機処理（プレイヤーが乗るまで待つ）
+    // ※ activatedA の判定は、上の IsPlayerOn チェックに包括されるため、
+    // 実質的にこの「STATE_A かつ !activatedA」のブロックは削除しても動作します。
     if (state == STATE_A && !activatedA) {
-        if (IsPlayerOn(player)) {
-            activatedA = true;
-        }
-        else {
-            return; // 乗るまで動かない
-        }
+        activatedA = true;
     }
 
     // 現在地から目標へのベクトル（差分）
     float diffX = targetX - x;
     float diffY = targetY - y;
 
-    // 残りの距離を計算 (三平方の定理)
+    // 残りの距離を計算
     float distance = std::sqrt(diffX * diffX + diffY * diffY);
 
-    // もう到着している（移動スピードより近い）なら到着とみなす
     if (distance <= moveSpeed) {
-        // 最後の一歩をぴったり合わせる（ズレ防止）
         MoveOneStep(diffX, diffY, player);
 
-        // 次の状態へ遷移
         switch (state) {
         case STATE_A: state = STATE_B; break;
         case STATE_B: state = STATE_C; break;
         case STATE_C: state = STATE_D; break;
-        case STATE_D: state = STATE_B; break; // 31に戻ったらB(32へ向かう)にする
+        case STATE_D: state = STATE_B; break;
         }
     }
     else {
-        // まだ到着していないので、moveSpeed分だけ進む
-
-        // ベクトルの正規化（長さを1にする）してスピードを掛ける
         float moveX = (diffX / distance) * moveSpeed;
         float moveY = (diffY / distance) * moveSpeed;
-
         MoveOneStep(moveX, moveY, player);
     }
 }
