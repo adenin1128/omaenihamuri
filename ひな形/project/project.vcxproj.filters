@@ -141,6 +141,9 @@
     </ClCompile>
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\SuiUGOKU2.cpp" />
+    <ClCompile Include="Source\Result.cpp">
+      <Filter>Result</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -298,6 +301,9 @@
     <ClInclude Include="Source\SuiUGOKU2.h">
       <Filter>PlayScene\FieldObj</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Result.h">
+      <Filter>Result</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
@@ -329,6 +335,9 @@
     </Filter>
     <Filter Include="PlayScene\Trap">
       <UniqueIdentifier>{34d8ef7a-1302-4f58-b561-e7f139562303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Result">
+      <UniqueIdentifier>{9f153f9d-784f-43ad-b925-aede89fec7fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
