@@ -139,6 +139,7 @@
     <ClCompile Include="Source\SuiUGOKU.cpp">
       <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SuiUGOKU2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -290,6 +291,9 @@
     </ClInclude>
     <ClInclude Include="Source\Fader.h" />
     <ClInclude Include="Source\SuiUGOKU.h">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SuiUGOKU2.h">
       <Filter>PlayScene\FieldObj</Filter>
     </ClInclude>
   </ItemGroup>
