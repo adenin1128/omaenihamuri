@@ -140,6 +140,7 @@
       <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
     <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\SuiUGOKU2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -294,6 +295,9 @@
       <Filter>PlayScene\FieldObj</Filter>
     </ClInclude>
     <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\SuiUGOKU2.h">
+      <Filter>PlayScene\FieldObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
