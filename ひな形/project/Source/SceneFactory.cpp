@@ -4,6 +4,7 @@
 #include "BootScene.h"
 #include "TitleScene.h"
 #include "PlayScene.h"
+#include "Result.h"
 #include "StageNumber.h"
 #include "../Source/Mainmenu.h"
 
@@ -23,6 +24,10 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	if (name == "MENU")
 	{
 		return new MainmenuScene();
+	}
+	if(name == "RESULT")
+	{
+		return new Result();
 	}
 	if (stageNum->stagenum == 1)
 	{
