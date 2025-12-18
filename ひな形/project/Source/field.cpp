@@ -319,6 +319,11 @@ void Field::Update()
 				obj->Reset();
 		}
 		{
+			auto objs = FindGameObjects<Breath>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+
 			auto objs = FindGameObjects<SuiUGOKU2>();
 			for (auto obj : objs)
 				obj->Reset();
@@ -328,7 +333,8 @@ void Field::Update()
 			Fader* fader = FindGameObject<Fader>();
 			fader->FadeIn(0.3f);
 		}
-
+		
+	}
 #else
 		hit = false;
 		int freme = 0;
@@ -365,8 +371,8 @@ void Field::Update()
 			}
 		}
 #endif
-	}
-}
+	
+};
 
 void Field::Draw()
 {
