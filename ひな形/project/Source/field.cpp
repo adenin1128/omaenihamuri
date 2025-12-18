@@ -25,6 +25,7 @@
 #include "NyokiTrap4.h"
 #include "Fader.h"
 #include "SuiUGOKU.h"
+#include "Timer.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>

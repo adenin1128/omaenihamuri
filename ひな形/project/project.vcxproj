@@ -184,6 +184,7 @@
     <ClInclude Include="Source\Skeleton.h" />
     <ClInclude Include="Source\StageNumber.h" />
     <ClInclude Include="Source\SuiUGOKU.h" />
+    <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\trap.h" />
     <ClInclude Include="Source\Trigger.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="Source\Skeleton.cpp" />
     <ClCompile Include="Source\StageNumber.cpp" />
     <ClCompile Include="Source\SuiUGOKU.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\trap.cpp" />
     <ClCompile Include="Source\Trigger.cpp" />

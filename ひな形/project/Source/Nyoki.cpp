@@ -8,7 +8,6 @@
 
 using namespace std;
 
-int NyokiGraphs[5];
 int blockImage;
 float moveX;
 int moveCount;
@@ -26,7 +25,7 @@ Nyoki::Nyoki(int px, int py, int mx, int count)
 
 Nyoki::~Nyoki()
 {
-	DeleteGraph(nyokiImage);
+	DeleteGraph(blockImage);
 }
 
 void Nyoki::Reset()
