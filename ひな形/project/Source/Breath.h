@@ -19,10 +19,14 @@ public:
 	buraState GetState() const { return state; }
     void SetState(buraState s) { state = s; }
 	void Active();
+	void Reset();
 
 private:
+	bool used;
 	int buraimage;
 	int x, y;
+	int ResetX, ResetY;
+	int Rdir, RmoveX, RmoveY;
 	int frame2;
 	int timer2;
 	float angle;
