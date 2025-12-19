@@ -14,6 +14,7 @@ public:
 	int HitCheckUp(int px, int py);
 	int HitCheckRight(int px, int py);
 
+	void Reset();
 private:
 	float ResetX, ResetY;
 	float x, y;

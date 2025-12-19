@@ -25,8 +25,7 @@ void Clear::Update()
 	timer->GetTime();
 	if (player->GetState() != STATE_CLEAR) {
 		if (CheckHitKey(KEY_INPUT_R)) {
-			SceneManager::ChangeScene("MENU");
-			DestroyMe();
+			SceneManager::ChangeScene("RESULT");
 		}
 	}
 }

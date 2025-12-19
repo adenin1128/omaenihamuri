@@ -279,6 +279,11 @@ void Field::Update()
 			}
 		}
 		{
+			auto objs = FindGameObjects<Skeleton>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+		{
 			auto objs = FindGameObjects<Nyoki>();
 			for (auto obj : objs)
 				obj->Reset();
@@ -695,7 +700,9 @@ bool Field::IsSkeleton(int px, int py) {
 		for (int iy = 0; iy < maps.size(); ++iy) {
 			for (int ix = 0; ix < maps[iy].size(); ++ix) {
 				if (maps[iy][ix] == 6) {
-					skeletons.emplace_back(std::make_unique<Skeleton>(ix * 64, iy * 64));
+					skeletons.resize(skeletons.size() + 1);
+					//skeletons.emplace_back(std::make_unique<Skeleton>(ix * 64, iy * 64));
+					skeletons.push_back(new Skeleton(ix * 64, iy * 64));
 				}
 			}
 		}
