@@ -27,7 +27,7 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	}
 	if(name == "RESULT")
 	{
-		//return new Result();
+		return new Result();
 	}
 	if (stageNum->stagenum == 1)
 	{

@@ -65,7 +65,7 @@ public:
 	bool GetHit() { return one; }
 	bool GetHita() { return two; }
 private:
-	std::vector<std::unique_ptr<Skeleton>> skeletons;
+	std::vector<Skeleton*> skeletons;
 	int hImage;
 	float x, y;
 	int scrollX;
