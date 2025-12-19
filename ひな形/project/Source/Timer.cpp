@@ -5,6 +5,7 @@ Timer::Timer()
 	DontDestroyOnSceneChange();
 	timer = 0.0f;
 	stopwatch = false;
+	Deathcount = 0;
 }
 
 Timer::~Timer()
@@ -32,4 +33,9 @@ void Timer::StopTimer()
 void Timer::ResetTimer()
 {
 	timer = 0.0f;
+}
+
+void Timer::deathcount()
+{
+	Deathcount++;
 }

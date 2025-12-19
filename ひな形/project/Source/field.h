@@ -50,7 +50,6 @@ public:
 	void ChangeMapChip(int x, int y, int type);
 	void ChangeRespawnPoint(int x, int y);
 	void ChangeClearPoint(int x, int y);
-	int GetDeathCount() { return deathcount; }
 	int GetBeltHit() { return BeltHit; }
 	int GetBCHit() { return BCHit; }
 	ClearState state;
@@ -78,7 +77,6 @@ private:
 	int gokunobanImage;
 	int fImage;
 	int HIT_TRAP = 0;
-	int deathcount;
 	bool clear;
 	int size;
 	int timer;
