@@ -19,6 +19,7 @@
 #include "BeltConveyorL.h"
 #include "BC.h"
 #include "Breath.h"
+#include "BOAAAA.h"
 #include "NyokiTrap.h"
 #include "NyokiTrap2.h"
 #include "NyokiTrap3.h"
@@ -328,8 +329,12 @@ void Field::Update()
 			for (auto obj : objs)
 				obj->Reset();
 		}
-
 		{
+			auto objs = FindGameObjects<Breath>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
+		{//これ一番下にしといて
 			Fader* fader = FindGameObject<Fader>();
 			fader->FadeIn(0.3f);
 		}
@@ -512,6 +517,8 @@ void Field::CheckBreath(int x, int y)
 		int index = id - 501;
 		if (index >= 0 && index < 99 && breaths[index] != nullptr) {
 			breaths[index]->Active();
+			int direction = 0, tx = 0, ty = 0;
+			new Breath(tx, ty, id, direction, tx, ty);
 		}
 	}
 

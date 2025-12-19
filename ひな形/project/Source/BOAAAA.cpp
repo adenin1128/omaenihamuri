@@ -26,8 +26,8 @@ Boaaa::Boaaa(int px, int py, int d, int len)
     dir = d;
     length = len;
 
-    baseThickness = 35;
-    changeThickness = 2;
+    baseThickness = 45;
+    changeThickness = 3;
     buretimer = 0;
 }
 Boaaa::~Boaaa()
@@ -39,8 +39,12 @@ void Boaaa::Update()
     Player* player = FindGameObject<Player>();
     StageNumber* stageNumber = FindGameObject<StageNumber>();
 
-    thickness = baseThickness
+      thickness = baseThickness
         + (rand() % (changeThickness * 2 + 1) - changeThickness);
+    if (CheckHitKey(KEY_INPUT_R)) {
+        DestroyMe();
+        buretimer = 0;
+    }
 
     if (player && CheckHit(player)) {
         if (!(stageNumber && stageNumber->noDeath)) {
