@@ -66,7 +66,7 @@ public:
 	bool GetHita() { return two; }
 private:
 	Breath* breaths[99];
-	std::vector<std::unique_ptr<Skeleton>> skeletons;
+	std::vector<Skeleton*> skeletons;
 	int hImage;
 	float x, y;
 	int scrollX;

@@ -11,7 +11,12 @@ Result::~Result()
 
 void Result::Update()
 {
-
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		SceneManager::ChangeScene("TITEL");
+	}
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		SceneManager::Exit();
+	}
 }
 
 void Result::Draw()

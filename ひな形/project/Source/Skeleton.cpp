@@ -5,9 +5,10 @@
 Skeleton::Skeleton(int px, int py)
 {
 	Image = LoadGraph("data/image/bird.png");
-	x = px;
-	y = py;
-	size = 64;
+	ResetX = px;
+	ResetY = py;
+
+	Reset();
 }
 
 Skeleton::~Skeleton()
@@ -21,6 +22,12 @@ void Skeleton::Update()
 		DestroyMe();
 		return;
 	}
+}
+
+void Skeleton::Reset() {
+	x = ResetX;
+	y = ResetY;
+	size = 64;
 }
 
 void Skeleton::Draw()
