@@ -12,7 +12,10 @@ public:
 	void StartTimer();
 	void StopTimer();
 	void ResetTimer();
+	void deathcount();
+	int GetDeathCount() { return Deathcount; }
 private:
 	float timer;
 	bool stopwatch;
+	int Deathcount;
 };

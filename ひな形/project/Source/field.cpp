@@ -153,7 +153,6 @@ Field::Field(int stage)
 	y = 1080 - 64;
 	scrollX = 0;
 	HIT_TRAP = 0;
-	deathcount = 1;
 	size = 2;
 	timer = 0;
 	for (int& f : frame) {
@@ -255,7 +254,8 @@ void Field::Update()
 		{
 			skHit = false;
 			hit = false;
-			deathcount++;
+			Timer* timer = FindGameObject<Timer>();
+			timer->deathcount();
 		}
 		{
 			GameOver* obj = FindGameObject<GameOver>();
@@ -485,7 +485,6 @@ void Field::Draw()
 		}
 	}*/
 	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
-	DrawFormatString(0, 220, GetColor(255, 255, 255), "deathcount::%d", deathcount);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
 	Timer* timer = FindGameObject<Timer>();
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "Time::%.3f", (timer->GetTime())/60);

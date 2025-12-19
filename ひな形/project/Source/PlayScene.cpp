@@ -4,6 +4,7 @@
 #include "HAIKEI.h"
 #include "Fader.h"
 #include "Timer.h"
+#include "Clear.h"
 
 PlayScene::PlayScene()
 {
@@ -19,6 +20,10 @@ PlayScene::~PlayScene()
 {
 	HAIKEI* h = FindGameObject<HAIKEI>();
 	h->DestroyMe();
+	Clear* clear = FindGameObject<Clear>();
+	if (clear != nullptr) {
+		clear->DestroyMe();
+	}
 }
 
 void PlayScene::Update()

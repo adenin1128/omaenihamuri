@@ -6,11 +6,11 @@
 
 Clear::Clear()
 {
+	deathCount = 0;
 	clearImage =  LoadGraph("data/image/culear.png");
-	Field* field = FindGameObject<Field>();
-	deathCount = field->GetDeathCount();
 	Timer* timer = FindGameObject<Timer>();
 	timer->StopTimer();
+	deathCount = timer->GetDeathCount();
 }
 
 Clear::~Clear()
