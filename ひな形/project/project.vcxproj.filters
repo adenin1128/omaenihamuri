@@ -140,9 +140,11 @@
       <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
     <ClCompile Include="Source\Timer.cpp" />
-    <ClCompile Include="Source\SuiUGOKU2.cpp" />
     <ClCompile Include="Source\Result.cpp">
       <Filter>Result</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SuiUGOKU2.cpp">
+      <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
