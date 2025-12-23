@@ -15,5 +15,5 @@ private:
 	int speed;
 	int timer;
 	int frame;
-	int hanten;
+	bool hanten;
 };

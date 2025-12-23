@@ -20,13 +20,11 @@ BC::BC(int px, int py)
 
 BC::~BC()
 {
+	DeleteGraph(ConveyorImage);
 }
 
 void BC::Update()
 {
-	if (CheckHitKey(KEY_INPUT_R)) {
-		hanten = FALSE;
-	}
 	Field* field = FindGameObject<Field>();
 	Player* player = FindGameObject<Player>();
 	if (field->GetBeltHit() == 24) {
@@ -38,7 +36,7 @@ void BC::Update()
 	if (field->GetBCHit() == 26) {
 		hanten = TRUE;
 	}
-	else {
+	if (CheckHitKey(KEY_INPUT_R)) {
 		hanten = FALSE;
 	}
 }
