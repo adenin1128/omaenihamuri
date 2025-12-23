@@ -166,6 +166,7 @@ Field::Field(int stage)
 	one = false;
 	two = false;
 	skHit = false;
+	BCHit = -1;
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 2) {
@@ -255,8 +256,7 @@ void Field::Update()
 		{
 			skHit = false;
 			hit = false;
-			Timer* timer = FindGameObject<Timer>();
-			timer->deathcount();
+			BCHit = -1;
 		}
 		{
 			GameOver* obj = FindGameObject<GameOver>();
