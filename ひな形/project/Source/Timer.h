@@ -13,6 +13,7 @@ public:
 	void StopTimer();
 	void ResetTimer();
 	void deathcount();
+	void ResetDeathcount();
 	int GetDeathCount() { return Deathcount; }
 private:
 	float timer;

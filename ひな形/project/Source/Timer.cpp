@@ -39,3 +39,8 @@ void Timer::deathcount()
 {
 	Deathcount++;
 }
+
+void Timer::ResetDeathcount()
+{
+	Deathcount = 0;
+}
