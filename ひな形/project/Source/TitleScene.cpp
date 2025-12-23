@@ -30,7 +30,7 @@ void TitleScene::Update()
     // --- 1. タイトル画像を降ろす処理 ---
     if (!isArrived) {
         // イージング（滑らかに止まる）
-        float speed = (targetY - posY) * 0.5f;
+        float speed = (targetY - posY) * 0.05f;
         posY += speed;
 
         // 目標地点に十分近づいたら固定
