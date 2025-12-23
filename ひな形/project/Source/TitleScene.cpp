@@ -7,60 +7,76 @@
 
 TitleScene::TitleScene()
 {
-	titleimage = LoadGraph("data/image/OMAENOLOGO.png");
-	new Field(0);
-	new HAIKEI(2);
-	thikathika = 0;
-	Fader* fader = FindGameObject<Fader>();
-	fader->FadeIn(0.1f);
+    titleimage = LoadGraph("data/image/OMAENOLOGO.png");
+    new Field(0);
+    new HAIKEI(2);
+
+    thikathika = 0;
+    posY = -500.0f;     // 画面より上の位置からスタート
+    isArrived = false;  // 最初は未到着
+
+    Fader* fader = FindGameObject<Fader>();
+    fader->FadeIn(0.1f);
 }
 
-TitleScene::~TitleScene()    
+TitleScene::~TitleScene()
 {
-	HAIKEI* h = FindGameObject<HAIKEI>();
-	h->DestroyMe();
+    HAIKEI* h = FindGameObject<HAIKEI>();
+    if (h) h->DestroyMe();
 }
 
 void TitleScene::Update()
 {
-	thikathika += 1;
-	if (KeyTrigger::CheckTrigger(KEY_INPUT_M)) {
-		SceneManager::ChangeScene("MENU");
-	}
-	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		SceneManager::Exit();
-	}
-	if (thikathika < 60) {
-		DrawExtendFormatStringToHandle(1920 / 3 - 198, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
+    // --- 1. タイトル画像を降ろす処理 ---
+    if (!isArrived) {
+        // イージング（滑らかに止まる）
+        float speed = (targetY - posY) * 0.5f;
+        posY += speed;
 
-	}
-	if (thikathika == 100)
-	{
-		thikathika = 0;
-	}
-	if (thikathika < 50)
-	{
-		SetFontSize(20);
-		DrawExtendFormatStringToHandle(1920 / 3 - 198, 820, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
-	}
+        // 目標地点に十分近づいたら固定
+        if (targetY - posY < 1.0f) {
+            posY = targetY;
+            isArrived = true;
+        }
+    }
 
+    // --- 2. 到着後の点滅カウンタ更新 ---
+    if (isArrived) {
+        thikathika++;
+        if (thikathika >= 100) {
+            thikathika = 0;
+        }
+    }
 
+    // --- 3. 入力処理 ---
+    if (KeyTrigger::CheckTrigger(KEY_INPUT_M)) {
+        SceneManager::ChangeScene("MENU");
+    }
+    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+        SceneManager::Exit();
+    }
 }
-	/*if (thikathika > 100) {
-		DrawExtendFormatStringToHandle(850, 560, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
-		thikathika = 0;
-	}*/
-
-
 
 void TitleScene::Draw()
-{	
-	DrawString(100, 400, "Push Space To Menu", GetColor(0, 0, 0));
-	DrawRotaGraph(1920/2, 1080/2-128,7,0 ,titleimage, 1);
-	extern const char* Version();
-	DrawString(0, 20, Version(), GetColor(255,255,255));
-	DrawString(0, 0, "TITLE SCENE", GetColor(255,255,255));
-	DrawFormatString(100, 100, GetColor(255,255,255), "%4.1f", 1.0f / Time::DeltaTime());
-	DrawFormatString(100, 30, GetColor(255, 255, 255), "%4.1f", thikathika);
+{
+    // タイトル画像の描画（現在のposYを使用）
+    DrawRotaGraph(1920 / 2, (int)posY, 7, 0, titleimage, 1);
 
+    // --- 4. 到着済み、かつ点滅タイミングの時だけ文字を表示 ---
+    if (isArrived) {
+        if (thikathika < 60) {
+            SetFontSize(20); // フォントサイズの設定
+            DrawExtendFormatStringToHandle(1920 / 3 - 198, 820, 4, 4,
+                GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
+        }
+    }
+
+    // デバッグ情報やシステム情報の表示
+    extern const char* Version();
+    DrawString(0, 20, Version(), GetColor(255, 255, 255));
+    DrawString(0, 0, "TITLE SCENE", GetColor(255, 255, 255));
+    DrawFormatString(100, 100, GetColor(255, 255, 255), "FPS:%4.1f", 1.0f / Time::DeltaTime());
+
+    // ガイド用
+    DrawString(100, 400, "Push Space To Menu", GetColor(0, 0, 0));
 }
