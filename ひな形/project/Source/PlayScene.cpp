@@ -5,6 +5,7 @@
 #include "Fader.h"
 #include "Timer.h"
 #include "Clear.h"
+#include "Screen.h"
 
 PlayScene::PlayScene()
 {
@@ -56,6 +57,8 @@ void PlayScene::Update()
 
 void PlayScene::Draw()
 {
-	DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
-	DrawString(100, 400, "Push [T]Key To Title", GetColor(255, 255, 255));
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
+		DrawString(100, 400, "Push [T]Key To Title", GetColor(255, 255, 255));
+	}
 }

@@ -33,8 +33,4 @@ void Clear::Update()
 void Clear::Draw()
 {
 	DrawRotaGraph(990, 540, 0.5, 0., clearImage, TRUE, FALSE);
-	DrawExtendFormatStringToHandle(950, 600, 3.5, 3.5, GetColor(0, 0, 0), GetDefaultFontHandle(), "ïâÇØÇΩâÒêî %dâÒ", deathCount - 1);
-	DrawExtendFormatStringToHandle(970, 750, 3, 3, GetColor(0, 0, 0), GetDefaultFontHandle(), "Press R to Menu");
-	Timer* timer = FindGameObject<Timer>();
-	DrawExtendFormatStringToHandle(900, 750, 1, 1, GetColor(0, 0, 0), GetDefaultFontHandle(), "Ç©Ç©Ç¡ÇΩéûä‘ %.3fïb", (timer->GetTime())/60);
 }

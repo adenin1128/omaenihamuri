@@ -13,4 +13,6 @@ namespace Screen
 	static const char* WINDOW_NAME = "project";
 	static const float WINDOW_EXTEND = 1.0f;
 	static const float FRAME_RATE = 60.0f;
+
+	static const BOOL DEVELOPER_MODE = TRUE;
 };

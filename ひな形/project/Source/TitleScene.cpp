@@ -4,6 +4,7 @@
 #include "field.h"
 #include "Fader.h"
 #include "HAIKEI.h"
+#include "Screen.h"
 
 TitleScene::TitleScene()
 {
@@ -71,6 +72,7 @@ void TitleScene::Draw()
         }
     }
 
+    if (Screen::DEVELOPER_MODE == TRUE) {
     // デバッグ情報やシステム情報の表示
     extern const char* Version();
     DrawString(0, 20, Version(), GetColor(255, 255, 255));
@@ -79,4 +81,5 @@ void TitleScene::Draw()
 
     // ガイド用
     DrawString(100, 400, "Push Space To Menu", GetColor(0, 0, 0));
+}
 }

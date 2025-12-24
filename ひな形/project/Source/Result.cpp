@@ -11,6 +11,7 @@ Result::Result()
 
 Result::~Result()
 {
+	DeleteGraph(TyImage);
 }
 
 void Result::Update()
@@ -27,8 +28,8 @@ void Result::Draw()
 {
 	Timer* timer = FindGameObject<Timer>();
 	DrawBox(0, 0, Screen::WIDTH, Screen::HEIGHT, GetColor(255, 255, 255),TRUE);
-	DrawGraph(0, 0, TyImage, TRUE);
-	DrawExtendFormatStringToHandle(950, 600, 3.5, 3.5, GetColor(0, 0, 0), GetDefaultFontHandle(), "•‰‚¯‚½‰ñ” %d‰ñ", (timer->GetDeathCount()) - 1);
+	DrawGraph(370, 240, TyImage, TRUE);
+	DrawExtendFormatStringToHandle(950, 600, 3.5, 3.5, GetColor(0, 0, 0), GetDefaultFontHandle(), "•‰‚¯‚½‰ñ” %d‰ñ", timer->GetDeathCount());
 	DrawExtendFormatStringToHandle(970, 750, 3, 3, GetColor(0, 0, 0), GetDefaultFontHandle(), "Press R to Menu");
 	DrawExtendFormatStringToHandle(900, 750, 1, 1, GetColor(0, 0, 0), GetDefaultFontHandle(), "‚©‚©‚Á‚½ŽžŠÔ %.3f•b", (timer->GetTime()) / 60);
 

@@ -1,6 +1,7 @@
 #include "Skeleton.h"
 #include "field.h"
 #include "Player.h"
+#include "Screen.h"
 
 Skeleton::Skeleton(int px, int py)
 {
@@ -32,7 +33,9 @@ void Skeleton::Reset() {
 
 void Skeleton::Draw()
 {
-	DrawGraph(x, y, Image, TRUE);
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		DrawGraph(x, y, Image, TRUE);
+	}
 }
 
 // プレイヤーの下判定用

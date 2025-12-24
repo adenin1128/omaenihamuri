@@ -1,17 +1,22 @@
 #include "StageNumber.h"
 #include "../ImGui/imgui.h"
+#include "Screen.h"
 
 StageNumber::StageNumber()
 {
 	DontDestroyOnSceneChange();
 	stagenum = -1;
 	noDeath = false;
+	Clear = false;
 }
 
 void StageNumber::Draw()
 {
-	ImGui::Begin("StageNumber");
-	ImGui::InputInt("StageNumber", &stagenum);
-	ImGui::Checkbox("NoDeath", &noDeath);
-	ImGui::End();
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		ImGui::Begin("StageNumber");
+		ImGui::InputInt("StageNumber", &stagenum);
+		ImGui::Checkbox("NoDeath", &noDeath);
+		ImGui::Checkbox("Clear", &Clear);
+		ImGui::End();
+	}
 }
