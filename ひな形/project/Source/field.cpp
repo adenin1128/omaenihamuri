@@ -28,6 +28,7 @@
 #include "SuiUGOKU.h"
 #include "Timer.h"
 #include "SuiUGOKU2.h"
+#include "Screen.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -489,16 +490,18 @@ void Field::Draw()
 			}
 		}
 	}*/
-	DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
-	DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
-	Timer* timer = FindGameObject<Timer>();
-	DrawFormatString(0, 240, GetColor(255, 255, 255), "Time::%.3f", (timer->GetTime())/60);
-	if (hit == true)
-		DrawString(0, 320, "hit", GetColor(255, 255, 255));
-	if (jet == true)
-		DrawString(0, 320, "hit", GetColor(255, 255, 255));
-	if (skHit == true)
-		DrawString(0, 320, "skHit", GetColor(255, 255, 255));
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
+		DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
+		Timer* timer = FindGameObject<Timer>();
+		DrawFormatString(0, 240, GetColor(255, 255, 255), "Time::%.3f", (timer->GetTime()) / 60);
+		if (hit == true)
+			DrawString(0, 320, "hit", GetColor(255, 255, 255));
+		if (jet == true)
+			DrawString(0, 320, "hit", GetColor(255, 255, 255));
+		if (skHit == true)
+			DrawString(0, 320, "skHit", GetColor(255, 255, 255));
+	}
 }
 
 void Field::CheckTrap(int x, int y) {

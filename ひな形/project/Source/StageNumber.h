@@ -8,4 +8,5 @@ public:
 	void Draw() override;
 	int stagenum;
 	bool noDeath;
+	bool Clear;
 };

@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Gameover.h"
 #include "StageNumber.h"
+#include "Screen.h"
 #include <cmath> // •½•ûª‚ğŒÄ‚Ño‚·‚â‚Â
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -144,8 +145,10 @@ void trap::Active() {
 
 void trap::Draw()
 {
-    for (auto point : colliderPoints) {
-        DrawCircle((int)point.x, (int)point.y, 3, GetColor(255, 0, 0), true);
+    if (Screen::DEVELOPER_MODE == TRUE) {
+        for (auto point : colliderPoints) {
+            DrawCircle((int)point.x, (int)point.y, 3, GetColor(255, 0, 0), true);
+        }
     }
 
     DrawRotaGraph(x + 32, y + 32, 1, rot, hariImage, true);

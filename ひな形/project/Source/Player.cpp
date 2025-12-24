@@ -1,4 +1,5 @@
 #include "player.h"
+#include "Screen.h"
 #include "Field.h"
 #include "DxLib.h"
 #include "Trigger.h"
@@ -358,11 +359,13 @@ void Player::Update()
 			animIndex = 0; // アニメーションのコマを最初のコマ (静止画) に固定する
 		}
 		Field* field = FindGameObject<Field>();
-		if (field->IsGoal(x, y)) {
+		StageNumber* sn = FindGameObject<StageNumber>();
+		if (field->IsGoal(x, y) || sn->Clear == true) {
 			new Clear();
 			state = STATE_CLEAR;
 			field->SetClear();
 			DeleteGraph(animImage);
+			sn->Clear = false;
 		}
 	}
 	if (state == STATE_BOOM) {
@@ -439,7 +442,7 @@ void Player::Draw()
 			rad = M_PI / 2;
 			displayY = y - (size + 1) * 32;
 		}
-		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE,FALSE);
+		DrawRotaGraph(displayX, displayY, size, rad, boomGraphs[boomAnimIndex], TRUE, FALSE);
 		//new GameOver();
 	}
 	else {
@@ -449,20 +452,23 @@ void Player::Draw()
 		DrawRotaGraph(x , y, size, M_PI / 2, boomGraphs[boomAnimIndex], TRUE, FALSE);*/
 		//DrawRotaGraph(x+32, y+32, 3.f, 3.14, boomGraphs[10], TRUE);
 	}
-	// デバッグ用情報表示
-	DrawFormatString(0, 100, GetColor(255, 255, 255), "X::%4f", x);
-	DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);
-	DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);
-	DrawFormatString(0, 160, GetColor(255, 255, 255), "PlayerHP::%d", PlayerHP);
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "PlayerState::%d", state);
-	DrawFormatString(0, 260, GetColor(255, 255, 255), "Boomtime::%d", Boomtime);
+
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		// デバッグ用情報表示
+		DrawFormatString(0, 100, GetColor(255, 255, 255), "X::%4f", x);
+		DrawFormatString(0, 120, GetColor(255, 255, 255), "y::%4f", y);
+		DrawFormatString(0, 140, GetColor(255, 255, 255), "jumpcount::%d", jumpcount);
+		DrawFormatString(0, 160, GetColor(255, 255, 255), "PlayerHP::%d", PlayerHP);
+		DrawFormatString(0, 200, GetColor(255, 255, 255), "PlayerState::%d", state);
+		DrawFormatString(0, 260, GetColor(255, 255, 255), "Boomtime::%d", Boomtime);
 
 
-	// デバッグ用当たり判定表示
-	DrawCircle(GetColliderLeftTop().x, GetColliderLeftTop().y, 2, GetColor(0, 255, 0), true);
-	DrawCircle(GetColliderLeftBottom().x, GetColliderLeftBottom().y, 2, GetColor(0, 255, 0), true);
-	DrawCircle(GetColliderRightTop().x, GetColliderRightTop().y, 2, GetColor(0, 255, 0), true);
-	DrawCircle(GetColliderRightBottom().x, GetColliderRightBottom().y, 2, GetColor(0, 255, 0), true);
+		// デバッグ用当たり判定表示
+		DrawCircle(GetColliderLeftTop().x, GetColliderLeftTop().y, 2, GetColor(0, 255, 0), true);
+		DrawCircle(GetColliderLeftBottom().x, GetColliderLeftBottom().y, 2, GetColor(0, 255, 0), true);
+		DrawCircle(GetColliderRightTop().x, GetColliderRightTop().y, 2, GetColor(0, 255, 0), true);
+		DrawCircle(GetColliderRightBottom().x, GetColliderRightBottom().y, 2, GetColor(0, 255, 0), true);
+	}
 }
 
 void Player::Move(int vx, int vy)
