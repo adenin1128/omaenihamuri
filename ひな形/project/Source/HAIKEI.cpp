@@ -6,7 +6,7 @@ HAIKEI::HAIKEI(int num)
 	SetDrawOrder(10000);
 	hImage = LoadGraph("data/image/kabe.png");
 	dImage = LoadGraph("data/image/doukutu.png");
-	mImage = LoadGraph("data/image/menu.png");
+	mImage = LoadGraph("data/image/aka.png");
 	number = num;
 }
 

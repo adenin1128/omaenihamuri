@@ -6,6 +6,11 @@
 /// 
 /// タイトルを表示して、キーを押したらプレイシーンに移行する。
 /// </summary>
+enum medaruState {
+	STAGE1, 
+	STAGE2,
+	STAGE3,
+};
 class MainmenuScene : public SceneBase
 {
 public:
@@ -15,8 +20,22 @@ public:
 	void Draw() override;
 	int menuImage;
 	int GetStageNum() { return rand; }
+	medaruState state;   //	breathの状態管理
+	medaruState GetState() const { return state; }
+	void SetState(medaruState s) { state = s; }
 
 private:
 	int rand;
+	int nanidobarimage;
+	int nanidotyoimage;
+	int medaruimage;
+	int migiimage;
+	int hidariimage;
+	int setumeiimage;
+	int playerimage;
+	int medarustage;
+	int medatimer;
+	bool migi;
+	bool hidari;
 };
 
