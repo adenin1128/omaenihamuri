@@ -60,7 +60,7 @@ public:
 	}
 
 	int GetJetpack() { return jet; }
-	int GetGateHit() { return DL; }
+	//int GetGateHit() { return DL; }
 	bool GetHit() { return one; }
 	bool GetHita() { return two; }
 private:
