@@ -10,4 +10,6 @@ public:
 	void Draw() override;
 private:
 	int TyImage;
+	int Default;
+	int size;
 };
