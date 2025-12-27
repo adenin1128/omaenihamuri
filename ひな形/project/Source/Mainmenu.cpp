@@ -123,44 +123,23 @@ void MainmenuScene::Update()
 			SceneManager::ChangeScene("PlayScene");
 		}
 		else if (medarustage == 3) {
-			fader->FadeOut(0.1f);
-			stageNum->stagenum = 3;
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
+		if (rand == 3) {
+		// 処理 3
+		fader->FadeOut(0.1f);
+		stageNum->stagenum = 3;
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+
+				}
+		else if (rand == 4) {
+		// 処理 4
+		fader->FadeOut(0.1f);
+		stageNum->stagenum = 4;
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+				}
 		}
 	}
-		//	if (rand == 1) {
-		//		// 処理 1
-		//		fader->FadeOut(0.1f);
-		//		stageNum->stagenum = 1;
-		//		timer->StartTimer();
-		//		SceneManager::ChangeScene("PlayScene");
-		//	}
-		//	else if (rand == 2) {
-		//		// 処理 2
-		//		fader->FadeOut(0.1f);
-		//		stageNum->stagenum = 2;
-		//		timer->StartTimer();
-		//		SceneManager::ChangeScene("PlayScene");
-
-		//	}
-		//	else if (rand == 3) {
-		//		// 処理 3
-		//		fader->FadeOut(0.1f);
-		//		stageNum->stagenum = 3;
-		//		timer->StartTimer();
-		//		SceneManager::ChangeScene("PlayScene");
-
-		//	}
-		//	else if (rand == 4) {
-		//		// 処理 4
-		//		fader->FadeOut(0.1f);
-		//		stageNum->stagenum = 4;
-		//		timer->StartTimer();
-		//		SceneManager::ChangeScene("PlayScene");
-
-		//	}
-		//}
 		if (CheckHitKey(KEY_INPUT_1)) {
 			fader->FadeOut(0.1f);
 			stageNum->stagenum = 1;
