@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "Screen.h"
 #include <assert.h>
+
 using namespace std;
 
 //extern const char* Version();
@@ -16,6 +17,8 @@ int medaruGraphs[3];
 
 MainmenuScene::MainmenuScene()
 {
+	headx = 1500;
+	heady = 400;
 	rand = 0;
 	medatimer = 0;
 	migi = false;
@@ -29,12 +32,14 @@ MainmenuScene::MainmenuScene()
 	migiimage = LoadGraph("data/image/migi.png");
 	hidariimage = LoadGraph("data/image/hidari.png");
 	setumeiimage = LoadGraph("data/image/explanation.png");
-	playerimage = LoadGraph("data/image/omae.png");
+	headimage = LoadGraph("data/image/atama.png");
 	medaruimage = LoadGraph("data/image/medaru.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	assert(medaruimage > 0);
 	state = STAGE1;
-
+	ue = false;
+	randy1 = GetRand(10);
+	randy2 = GetRand(3);
 }
 
 MainmenuScene::~MainmenuScene()
@@ -45,6 +50,19 @@ MainmenuScene::~MainmenuScene()
 
 void MainmenuScene::Update()
 {
+	if (ue == false) {
+		heady += randy1;
+		if (heady > 450) {
+			ue = true;
+		}
+	}
+	else if (ue == true) {
+		heady -= randy2;
+		if (heady < 350) {
+			ue = false;
+		}
+	}
+
 	if (state == STAGE1) {
 		medarustage = 1;
 		migi = false;
@@ -194,7 +212,7 @@ void MainmenuScene::Update()
 
 void MainmenuScene::Draw()
 {
-	DrawRotaGraph(1500, 500, 12, 0, playerimage, TRUE);
+	DrawRotaGraph(headx, heady, 5.5, 0, headimage, TRUE);
 	DrawRotaGraph(400, 150, 7, 0, nanidobarimage, TRUE);
 	DrawRotaGraph(450, 150, 3, 0, nanidotyoimage, TRUE);
 	DrawRotaGraph(960, 900, 7.5, 0, setumeiimage, TRUE);

@@ -32,10 +32,15 @@ private:
 	int migiimage;
 	int hidariimage;
 	int setumeiimage;
-	int playerimage;
+	int headimage;
 	int medarustage;
 	int medatimer;
 	bool migi;
 	bool hidari;
+	int headx;
+	int heady;
+	bool ue;
+	int randy1;
+	int randy2;
 };
 
