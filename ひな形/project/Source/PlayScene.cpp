@@ -6,6 +6,7 @@
 #include "Timer.h"
 #include "Clear.h"
 #include "Screen.h"
+#include "Trigger.h"
 
 PlayScene::PlayScene()
 {
@@ -36,14 +37,12 @@ void PlayScene::Update()
 		fader->FadeOut(0.1f);
 		timer->StopTimer();
 		timer->ResetTimer();
-		timer->ResetDeathcount();
 		SceneManager::ChangeScene("TITLE");
 	}
 	if (CheckHitKey(KEY_INPUT_M)) {
 		fader->FadeOut(0.1f);
 		timer->StopTimer();
 		timer->ResetTimer();
-		timer->ResetDeathcount();
 		SceneManager::ChangeScene("MENU");
 	}
 	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
