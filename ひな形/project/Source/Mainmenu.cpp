@@ -34,7 +34,8 @@ MainmenuScene::MainmenuScene()
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	assert(medaruimage > 0);
 	state = STAGE1;
-
+	Timer* timer = FindGameObject<Timer>();
+	timer->ResetDeathcount();
 }
 
 MainmenuScene::~MainmenuScene()

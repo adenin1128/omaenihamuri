@@ -255,9 +255,11 @@ void Field::Update()
 	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
 #if true	
 		{
+			Timer* timer = FindGameObject<Timer>();
 			skHit = false;
 			hit = false;
 			BCHit = -1;
+			timer->deathcount();
 		}
 		{
 			GameOver* obj = FindGameObject<GameOver>();
@@ -494,6 +496,7 @@ void Field::Draw()
 		DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 		DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
 		Timer* timer = FindGameObject<Timer>();
+		DrawFormatString(0, 220, GetColor(255, 255, 255), "Deathcount::%d", timer->GetDeathCount());
 		DrawFormatString(0, 240, GetColor(255, 255, 255), "Time::%.3f", (timer->GetTime()) / 60);
 		if (hit == true)
 			DrawString(0, 320, "hit", GetColor(255, 255, 255));
