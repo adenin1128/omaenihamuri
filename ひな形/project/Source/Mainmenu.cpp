@@ -40,6 +40,8 @@ MainmenuScene::MainmenuScene()
 	ue = false;
 	randy1 = GetRand(10);
 	randy2 = GetRand(3);
+	Timer* timer = FindGameObject<Timer>();
+	timer->ResetDeathcount();
 }
 
 MainmenuScene::~MainmenuScene()

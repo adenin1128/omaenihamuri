@@ -5,6 +5,7 @@
 #include "Fader.h"
 #include "HAIKEI.h"
 #include "Screen.h"
+#include "Timer.h"
 
 TitleScene::TitleScene()
 {
@@ -18,6 +19,8 @@ TitleScene::TitleScene()
 
     Fader* fader = FindGameObject<Fader>();
     fader->FadeIn(0.1f);
+    Timer* timer = FindGameObject<Timer>();
+    timer->ResetDeathcount();
 }
 
 TitleScene::~TitleScene()
