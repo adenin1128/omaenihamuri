@@ -26,6 +26,7 @@ public:
 
 private:
 	int rand;
+	int ganmenimage;
 	int nanidobarimage;
 	int nanidotyoimage;
 	int medaruimage;
@@ -33,12 +34,22 @@ private:
 	int hidariimage;
 	int setumeiimage;
 	int headimage;
+	int douimage;
+	int asiimage;
+	int teimage;
+	int mukiimage;
 	int medarustage;
 	int medatimer;
 	bool migi;
 	bool hidari;
-	int headx;
-	int heady;
+	float headx;
+	float heady;
+	float doux;
+	float douy;
+	float asix;
+	float asiy;
+	float tex;
+	float tey;
 	bool ue;
 	int randy1;
 	int randy2;
