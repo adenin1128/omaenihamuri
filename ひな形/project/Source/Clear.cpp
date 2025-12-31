@@ -3,6 +3,7 @@
 #include "Gameover.h"
 #include "Player.h"
 #include "Timer.h"
+#include "StageNumber.h"
 
 Clear::Clear()
 {
@@ -22,8 +23,9 @@ void Clear::Update()
 {
 	Player* player = FindGameObject<Player>();
 	Timer* timer = FindGameObject<Timer>();
+	StageNumber* sn = FindGameObject<StageNumber>();
 	timer->GetTime();
-	if (player->GetState() != STATE_CLEAR) {
+	if (player->GetState() != STATE_CLEAR||sn->Clear == true) {
 		if (CheckHitKey(KEY_INPUT_R)) {
 			SceneManager::ChangeScene("RESULT");
 		}
