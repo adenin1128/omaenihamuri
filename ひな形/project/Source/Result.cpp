@@ -7,13 +7,16 @@
 Result::Result()
 {
 	TyImage = LoadGraph("data/image/Ty.png");
-	Default = GetDefaultFontHandle();
 	size = 4;
+
+	Default = GetDefaultFontHandle();
 }
 
 Result::~Result()
 {
 	DeleteGraph(TyImage);
+	Timer* timer = FindGameObject<Timer>();
+	timer->ResetTimer();
 }
 
 void Result::Update()
