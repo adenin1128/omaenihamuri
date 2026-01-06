@@ -162,7 +162,7 @@ void MainmenuScene::Update()
 		}
 		else if (medarustage == 3) {
 		if (rand == 3) {
-		// å‡¦ç† 3
+		// ˆ— 3
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		timer->StartTimer();
@@ -170,7 +170,7 @@ void MainmenuScene::Update()
 
 				}
 		else if (rand == 4) {
-		// å‡¦ç† 4
+		// ˆ— 4
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		timer->StartTimer();
@@ -292,13 +292,13 @@ void MainmenuScene::Draw()
 
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ã“ã‚“ãªã®åºã®å£ã ã­ï¼");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚±‚ñ‚È‚Ì˜‚ÌŒû‚¾‚ËI");
 	}
-	if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ã‚¯ãƒªã‚¢ã§ãã‚‹ã®ã‚«ãƒŠï¼ï¼Ÿ");
+	else if (state == STAGE2) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ƒNƒŠƒA‚Å‚«‚é‚ÌƒJƒiIH");
 	}
-	if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ãŠå‰ã«ã¯ç„¡ç†ï¼ï¼");
+	else if (state == STAGE3) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚¨‘O‚É‚Í–³—II");
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
