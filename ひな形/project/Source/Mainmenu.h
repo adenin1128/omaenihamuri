@@ -28,6 +28,7 @@ private:
 	int rand;
 	int ganmenimage;
 	int kantanimage;
+	int fireimage;
 	int nanidobarimage;
 	int nanidotyoimage;
 	int medaruimage;

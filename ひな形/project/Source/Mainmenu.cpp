@@ -39,6 +39,7 @@ MainmenuScene::MainmenuScene()
 	ganmenimage = LoadGraph("data/image/ganmen.png");
 	kantanimage = LoadGraph("data/image/kantan.png");
 	muzuiimage = LoadGraph("data/image/2muzui.png");
+	fireimage = LoadGraph("data/image/fire.png");
 	gekimuzuimage = LoadGraph("data/image/gekimuzu.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	assert(medaruimage > 0);
@@ -234,6 +235,8 @@ void MainmenuScene::Update()
 
 void MainmenuScene::Draw()
 {
+	DrawRotaGraph(1920/2, 650, 1, 0, fireimage, TRUE);
+
 	if(state == STAGE1)
 	{
 		DrawRotaGraph(400, 300, 0.5, 0, kantanimage, TRUE);
