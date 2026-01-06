@@ -273,6 +273,10 @@ void MainmenuScene::Draw()
 	else if (state == STAGE3)
 	    DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
 
+	if (state == STAGE1) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "こんにちは HELLO");
+	}
+
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
 		DrawString(100, 400, "stage1 press to 1 key ", GetColor(255, 255, 255));
