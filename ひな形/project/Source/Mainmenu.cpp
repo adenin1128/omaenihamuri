@@ -14,9 +14,11 @@ using namespace std;
 
 //extern const char* Version();
 int medaruGraphs[3];
+int fireGraphs[15];
 
 MainmenuScene::MainmenuScene()
 {
+	timer = 0;
 	rand = 0;
 	medatimer = 0;
 	migi = false;
@@ -46,11 +48,13 @@ MainmenuScene::MainmenuScene()
 	A = LoadGraph("data/image/A.png");
 	D = LoadGraph("data/image/D.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
-	assert(medaruimage > 0);
+	fireimage = LoadGraph("data/image/ONFIRE.png");
+	LoadDivGraph("data/image/ONFIRE.png", 15, 15, 1, 1980, 1080, fireGraphs);
+	assert(fireimage > 0);
 	state = STAGE1;
 	ue = false;
-	Timer* timer = FindGameObject<Timer>();
-	timer->ResetDeathcount();
+	Timer* tm = FindGameObject<Timer>();
+	tm->ResetDeathcount();
 	doux = 1500;
 	douy = 450;
 	asix = 1500;
@@ -59,6 +63,7 @@ MainmenuScene::MainmenuScene()
 	heady = 440;
 	tex = 1500;
 	tey = 450;
+	frame = 0;
 }
 
 MainmenuScene::~MainmenuScene()
@@ -167,7 +172,7 @@ void MainmenuScene::Update()
 		}
 		else if (medarustage == 3) {
 		if (rand == 3) {
-		// ˆ— 3
+		// å‡¦ç† 3
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		timer->StartTimer();
@@ -175,7 +180,7 @@ void MainmenuScene::Update()
 
 				}
 		else if (rand == 4) {
-		// ˆ— 4
+		// å‡¦ç† 4
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		timer->StartTimer();
@@ -239,7 +244,19 @@ void MainmenuScene::Update()
 
 void MainmenuScene::Draw()
 {
-	DrawRotaGraph(1920/2, 650, 1, 0, fireimage, TRUE);
+	//DrawRotaGraph(1920/2, 650, 1, 0, fireimage, TRUE);
+
+	{
+		timer++;
+		if (timer % 7 == 0) {
+			frame++;
+
+			if (frame >= 15) {
+				frame = 0;
+			}
+		}
+			DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
+	}
 
 	if(state == STAGE1)
 	{
@@ -309,13 +326,13 @@ void MainmenuScene::Draw()
 
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚±‚ñ‚È‚Ì˜‚ÌŒû‚¾‚ËI");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ã“ã‚“ãªã®ä½™è£•ã ã­ï¼");
 	}
 	else if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ƒNƒŠƒA‚Å‚«‚é‚ÌƒJƒiIH");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ã‚¯ãƒªã‚¢ã§ãã‚‹ã®ã‚«ãƒŠï¼ï¼Ÿ");
 	}
 	else if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚¨‘O‚É‚Í–³—II");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ãŠå‰ã«ã¯ç„¡ç†ï¼ï¼");
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
