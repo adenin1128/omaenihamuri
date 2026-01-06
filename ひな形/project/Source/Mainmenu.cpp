@@ -274,7 +274,13 @@ void MainmenuScene::Draw()
 	    DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "こんにちは HELLO");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "こんなの序の口だね！");
+	}
+	if (state == STAGE2) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "クリアできるのカナ！？");
+	}
+	if (state == STAGE3) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "お前には無理！！");
 	}
 
 
