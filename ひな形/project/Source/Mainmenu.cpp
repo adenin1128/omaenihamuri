@@ -37,6 +37,9 @@ MainmenuScene::MainmenuScene()
 	mukiimage = LoadGraph("data/image/muki.png");
 	medaruimage = LoadGraph("data/image/medaru.png");
 	ganmenimage = LoadGraph("data/image/ganmen.png");
+	kantanimage = LoadGraph("data/image/kantan.png");
+	muzuiimage = LoadGraph("data/image/2muzui.png");
+	gekimuzuimage = LoadGraph("data/image/gekimuzu.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	assert(medaruimage > 0);
 	state = STAGE1;
@@ -159,7 +162,7 @@ void MainmenuScene::Update()
 		}
 		else if (medarustage == 3) {
 		if (rand == 3) {
-		// ˆ— 3
+		// å‡¦ç† 3
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		timer->StartTimer();
@@ -167,7 +170,7 @@ void MainmenuScene::Update()
 
 				}
 		else if (rand == 4) {
-		// ˆ— 4
+		// å‡¦ç† 4
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		timer->StartTimer();
@@ -231,6 +234,20 @@ void MainmenuScene::Update()
 
 void MainmenuScene::Draw()
 {
+	if(state == STAGE1)
+	{
+		DrawRotaGraph(400, 300, 0.5, 0, kantanimage, TRUE);
+	}
+	else if (state == STAGE2)
+	{
+		DrawRotaGraph(400, 300, 0.5, 0, muzuiimage, TRUE);
+	}
+	else if (state == STAGE3)
+	{
+		DrawRotaGraph(400, 300, 0.5, 0, gekimuzuimage, TRUE);
+	}
+
+
 	DrawRotaGraph(asix, asiy, 5.5, 0, asiimage, TRUE);
 	DrawRotaGraph(doux, douy, 5.5, 0, douimage, TRUE);
 	if (state == STAGE3) {
@@ -240,15 +257,13 @@ void MainmenuScene::Draw()
 		DrawRotaGraph(tex, tey+30, 5.5, 0, teimage, TRUE);
 	} 
 	if (state == STAGE3) {
-		DrawRotaGraph(headx, heady-200, 0.174, 0, ganmenimage, TRUE);
+		DrawRotaGraph(headx, heady-120, /*0.174*/0.14, 0, ganmenimage, TRUE);
 	}
 	else if(state != STAGE3){
 	DrawRotaGraph(headx, heady, 5.5, 0, headimage, TRUE);
     }
-
-
-	DrawRotaGraph(400, 150, 7, 0, nanidobarimage, TRUE);
-	DrawRotaGraph(450, 150, 3, 0, nanidotyoimage, TRUE);
+	DrawRotaGraph(450, 100, 7, 0, nanidobarimage, TRUE);
+	DrawRotaGraph(450, 100, 3, 0, nanidotyoimage, TRUE);
 	DrawRotaGraph(960, 900, 7.5, 0, setumeiimage, TRUE);
 	if (migi == true)
 	{
@@ -275,16 +290,16 @@ void MainmenuScene::Draw()
 	else if (state == STAGE3)
 	    DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
 
+
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚±‚ñ‚È‚Ì˜‚ÌŒû‚¾‚ËI");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ã“ã‚“ãªã®åºã®å£ã ã­ï¼");
 	}
 	if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ƒNƒŠƒA‚Å‚«‚é‚ÌƒJƒiIH");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ã‚¯ãƒªã‚¢ã§ãã‚‹ã®ã‚«ãƒŠï¼ï¼Ÿ");
 	}
 	if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚¨‘O‚É‚Í–³—II");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ãŠå‰ã«ã¯ç„¡ç†ï¼ï¼");
 	}
-
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
 		DrawString(100, 400, "stage1 press to 1 key ", GetColor(255, 255, 255));
