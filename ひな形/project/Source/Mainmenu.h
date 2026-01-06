@@ -57,5 +57,7 @@ private:
 	bool ue;
 	int randy1;
 	int randy2;
+	int timer;
+	int frame;
 };
 

@@ -14,9 +14,11 @@ using namespace std;
 
 //extern const char* Version();
 int medaruGraphs[3];
+int fireGraphs[15];
 
 MainmenuScene::MainmenuScene()
 {
+	timer = 0;
 	rand = 0;
 	medatimer = 0;
 	migi = false;
@@ -39,14 +41,15 @@ MainmenuScene::MainmenuScene()
 	ganmenimage = LoadGraph("data/image/ganmen.png");
 	kantanimage = LoadGraph("data/image/kantan.png");
 	muzuiimage = LoadGraph("data/image/2muzui.png");
-	fireimage = LoadGraph("data/image/fire.png");
 	gekimuzuimage = LoadGraph("data/image/gekimuzu.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
+	fireimage = LoadGraph("data/image/ONFIRE.png");
+	LoadDivGraph("data/image/ONFIRE.png", 4, 4, 1, 1980, 1980, fireGraphs);
 	assert(medaruimage > 0);
 	state = STAGE1;
 	ue = false;
-	Timer* timer = FindGameObject<Timer>();
-	timer->ResetDeathcount();
+	Timer* tm = FindGameObject<Timer>();
+	tm->ResetDeathcount();
 	doux = 1500;
 	douy = 450;
 	asix = 1500;
@@ -55,6 +58,7 @@ MainmenuScene::MainmenuScene()
 	heady = 440;
 	tex = 1500;
 	tey = 450;
+	frame = 0;
 }
 
 MainmenuScene::~MainmenuScene()
@@ -235,7 +239,21 @@ void MainmenuScene::Update()
 
 void MainmenuScene::Draw()
 {
-	DrawRotaGraph(1920/2, 650, 1, 0, fireimage, TRUE);
+	//DrawRotaGraph(1920/2, 650, 1, 0, fireimage, TRUE);
+
+	{
+		timer++;
+		if (timer % 10 == 0) {
+			frame++;
+
+			if (frame >= 7) {
+				frame = 0;
+			}
+		}
+		if (state == STATE_0) {
+			DrawRotaGraph(0, 0, 1, 0, fireGraphs[frame], TRUE, FALSE);
+		}
+	}
 
 	if(state == STAGE1)
 	{
