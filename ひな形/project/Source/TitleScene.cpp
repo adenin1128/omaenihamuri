@@ -56,8 +56,10 @@ void TitleScene::Update()
     if (KeyTrigger::CheckTrigger(KEY_INPUT_M)) {
         SceneManager::ChangeScene("MENU");
     }
-    if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-        SceneManager::Exit();
+    if (Screen::DEVELOPER_MODE == TRUE) {
+        if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+            SceneManager::Exit();
+        }
     }
 }
 
