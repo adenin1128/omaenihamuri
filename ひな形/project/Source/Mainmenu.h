@@ -42,8 +42,12 @@ private:
 	int mukiimage;
 	int muzuiimage;
 	int gekimuzuimage;
+	int okoimage;
+	int okoteimage;
 	int medarustage;
 	int medatimer;
+	int A;
+	int D;
 	bool migi;
 	bool hidari;
 	float headx;
