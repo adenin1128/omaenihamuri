@@ -220,9 +220,11 @@ void MainmenuScene::Update()
 			fader->FadeOut(0.1f);
 			SceneManager::ChangeScene("TITLE");
 		}
-		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-			fader->FadeOut(0.1f);
-			SceneManager::Exit();
+		if (Screen::DEVELOPER_MODE == TRUE) {
+			if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+				fader->FadeOut(0.1f);
+				SceneManager::Exit();
+			}
 		}
 
 }
