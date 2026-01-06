@@ -159,7 +159,7 @@ void MainmenuScene::Update()
 		}
 		else if (medarustage == 3) {
 		if (rand == 3) {
-		// Âá¶ÁêÜ 3
+		// èàóù 3
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		timer->StartTimer();
@@ -167,7 +167,7 @@ void MainmenuScene::Update()
 
 				}
 		else if (rand == 4) {
-		// Âá¶ÁêÜ 4
+		// èàóù 4
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		timer->StartTimer();
@@ -274,7 +274,7 @@ void MainmenuScene::Draw()
 	    DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "„Åì„Çì„Å´„Å°„ÅØ HELLO");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "Ç±ÇÒÇ…ÇøÇÕ HELLO");
 	}
 
 
