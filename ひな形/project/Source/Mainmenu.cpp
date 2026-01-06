@@ -44,8 +44,8 @@ MainmenuScene::MainmenuScene()
 	gekimuzuimage = LoadGraph("data/image/gekimuzu.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	fireimage = LoadGraph("data/image/ONFIRE.png");
-	LoadDivGraph("data/image/ONFIRE.png", 4, 4, 1, 1980, 1980, fireGraphs);
-	assert(medaruimage > 0);
+	LoadDivGraph("data/image/ONFIRE.png", 15, 15, 1, 1980, 1080, fireGraphs);
+	assert(fireimage > 0);
 	state = STAGE1;
 	ue = false;
 	Timer* tm = FindGameObject<Timer>();
@@ -243,16 +243,14 @@ void MainmenuScene::Draw()
 
 	{
 		timer++;
-		if (timer % 10 == 0) {
+		if (timer % 7 == 0) {
 			frame++;
 
-			if (frame >= 7) {
+			if (frame >= 15) {
 				frame = 0;
 			}
 		}
-		if (state == STATE_0) {
-			DrawRotaGraph(0, 0, 1, 0, fireGraphs[frame], TRUE, FALSE);
-		}
+			DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
 	}
 
 	if(state == STAGE1)
