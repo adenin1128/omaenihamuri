@@ -36,12 +36,17 @@ MainmenuScene::MainmenuScene()
 	douimage = LoadGraph("data/image/omaedou.png");
 	asiimage = LoadGraph("data/image/omaeasi.png");
 	teimage = LoadGraph("data/image/omaete.png");
+	okoteimage = LoadGraph("data/image/omaete2.png");
 	mukiimage = LoadGraph("data/image/muki.png");
 	medaruimage = LoadGraph("data/image/medaru.png");
 	ganmenimage = LoadGraph("data/image/ganmen.png");
 	kantanimage = LoadGraph("data/image/kantan.png");
 	muzuiimage = LoadGraph("data/image/2muzui.png");
+	fireimage = LoadGraph("data/image/fire.png");
+	okoimage = LoadGraph("data/image/okohead.png");
 	gekimuzuimage = LoadGraph("data/image/gekimuzu.png");
+	A = LoadGraph("data/image/A.png");
+	D = LoadGraph("data/image/D.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	fireimage = LoadGraph("data/image/ONFIRE.png");
 	LoadDivGraph("data/image/ONFIRE.png", 15, 15, 1, 1980, 1080, fireGraphs);
@@ -167,7 +172,7 @@ void MainmenuScene::Update()
 		}
 		else if (medarustage == 3) {
 		if (rand == 3) {
-		// èàóù 3
+		// Âá¶ÁêÜ 3
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		timer->StartTimer();
@@ -175,7 +180,7 @@ void MainmenuScene::Update()
 
 				}
 		else if (rand == 4) {
-		// èàóù 4
+		// Âá¶ÁêÜ 4
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		timer->StartTimer();
@@ -272,34 +277,44 @@ void MainmenuScene::Draw()
 	if (state == STAGE3) {
 		DrawRotaGraph(tex, tey, 0.91, 0, mukiimage, TRUE);
 	}
-	else if (state != STAGE3) {
-		DrawRotaGraph(tex, tey+30, 5.5, 0, teimage, TRUE);
-	} 
+	else if (state == STAGE2) {
+		DrawRotaGraph(tex, tey+30, 5.5, 0, okoteimage, TRUE);
+	}
+	else if (state == STAGE1) {
+		DrawRotaGraph(tex, tey + 30, 5.5, 0, teimage, TRUE);
+	}
 	if (state == STAGE3) {
 		DrawRotaGraph(headx, heady-120, /*0.174*/0.14, 0, ganmenimage, TRUE);
 	}
-	else if(state != STAGE3){
-	DrawRotaGraph(headx, heady, 5.5, 0, headimage, TRUE);
+	if(state == STAGE2){
+	DrawRotaGraph(headx, heady, 5.5, 0, okoimage, TRUE);
     }
+	if (state == STAGE1) {
+		DrawRotaGraph(headx, heady, 5.5, 0, headimage, TRUE);
+	}
 	DrawRotaGraph(450, 100, 7, 0, nanidobarimage, TRUE);
 	DrawRotaGraph(450, 100, 3, 0, nanidotyoimage, TRUE);
 	DrawRotaGraph(960, 900, 7.5, 0, setumeiimage, TRUE);
 	if (migi == true)
 	{
 		DrawRotaGraph(650, 550, 4, 0, migiimage, TRUE);
+		DrawRotaGraph(750, 550, 3, 0, D, TRUE);
 	}
 	else if (migi == false)
 	{
 		DrawRotaGraph(650, 550, 3, 0, migiimage, TRUE);
+		DrawRotaGraph(750, 550, 2, 0, D, TRUE);
 	}
 
 	if (hidari == true)
 	{
 		DrawRotaGraph(150, 550, 4, 0, hidariimage, TRUE);
+		DrawRotaGraph(50, 550, 3, 0, A, TRUE);
 
 	}else if (hidari == false)
 	{
 		DrawRotaGraph(150, 550, 3, 0, hidariimage, TRUE);
+		DrawRotaGraph(50, 550, 2, 0, A, TRUE);
 	}
 
 	if (state == STAGE1)
@@ -311,13 +326,13 @@ void MainmenuScene::Draw()
 
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "Ç±ÇÒÇ»ÇÃó]óTÇæÇÀÅI");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "„Åì„Çì„Å™„ÅÆ‰ΩôË£ï„Å†„Å≠ÔºÅ");
 	}
 	else if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ÉNÉäÉAÇ≈Ç´ÇÈÇÃÉJÉiÅIÅH");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "„ÇØ„É™„Ç¢„Åß„Åç„Çã„ÅÆ„Ç´„ÉäÔºÅÔºü");
 	}
 	else if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "Ç®ëOÇ…ÇÕñ≥óùÅIÅI");
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "„ÅäÂâç„Å´„ÅØÁÑ°ÁêÜÔºÅÔºÅ");
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
