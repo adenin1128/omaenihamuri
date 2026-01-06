@@ -223,9 +223,11 @@ void MainmenuScene::Update()
 			fader->FadeOut(0.1f);
 			SceneManager::ChangeScene("TITLE");
 		}
-		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-			fader->FadeOut(0.1f);
-			SceneManager::Exit();
+		if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
+			if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+				fader->FadeOut(0.1f);
+				SceneManager::Exit();
+			}
 		}
 
 }
@@ -287,6 +289,17 @@ void MainmenuScene::Draw()
 		DrawRotaGraph(400, 550, 3, 0, medaruGraphs[1], TRUE);
 	else if (state == STAGE3)
 	    DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
+
+
+	if (state == STAGE1) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "こんなの序の口だね！");
+	}
+	if (state == STAGE2) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "クリアできるのカナ！？");
+	}
+	if (state == STAGE3) {
+		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "お前には無理！！");
+	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
 		DrawString(100, 400, "stage1 press to 1 key ", GetColor(255, 255, 255));

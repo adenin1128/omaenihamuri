@@ -24,8 +24,10 @@ void Result::Update()
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		SceneManager::ChangeScene("TITLE");
 	}
-	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-		SceneManager::Exit();
+	if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
+		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+			SceneManager::Exit();
+		}
 	}
 }
 

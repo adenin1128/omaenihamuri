@@ -20,19 +20,21 @@ Debug::~Debug()
 
 void Debug::Update()
 {
-	if (CheckHitKey(KEY_INPUT_RCONTROL)) {
-		if (pressCounts[D_RCTRL] == 0) return;
-		pressCounts[D_RCTRL] = 0;
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		if (CheckHitKey(KEY_INPUT_RCONTROL)) {
+			if (pressCounts[D_RCTRL] == 0) return;
+			pressCounts[D_RCTRL] = 0;
 
-		isDebugMode = !isDebugMode;
-		Player* player = FindGameObject<Player>();
-		if (player != nullptr) {
-			x = player->GetX() / 64;
-			y = player->GetY() / 64;
+			isDebugMode = !isDebugMode;
+			Player* player = FindGameObject<Player>();
+			if (player != nullptr) {
+				x = player->GetX() / 64;
+				y = player->GetY() / 64;
+			}
 		}
-	}
-	else {
-		pressCounts[D_RCTRL] = 1;
+		else {
+			pressCounts[D_RCTRL] = 1;
+		}
 	}
 
 	if (!isDebugMode) return;
