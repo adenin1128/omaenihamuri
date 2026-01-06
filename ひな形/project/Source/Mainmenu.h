@@ -27,6 +27,7 @@ public:
 private:
 	int rand;
 	int ganmenimage;
+	int kantanimage;
 	int nanidobarimage;
 	int nanidotyoimage;
 	int medaruimage;
@@ -38,6 +39,8 @@ private:
 	int asiimage;
 	int teimage;
 	int mukiimage;
+	int muzuiimage;
+	int gekimuzuimage;
 	int medarustage;
 	int medatimer;
 	bool migi;
