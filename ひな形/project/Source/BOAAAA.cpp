@@ -26,8 +26,8 @@ Boaaa::Boaaa(int px, int py, int d, int len)
     dir = d;
     length = len;
 
-    baseThickness = 45;
-    changeThickness = 3;
+    baseThickness = 35;
+    changeThickness = 5;
     buretimer = 0;
 }
 Boaaa::~Boaaa()
