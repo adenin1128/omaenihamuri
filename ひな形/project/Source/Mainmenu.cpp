@@ -173,7 +173,7 @@ void MainmenuScene::Update()
 		}
 		else if (medarustage == 3) {
 		if (rand == 3) {
-		// ˆ— 3
+		// å‡¦ç† 3
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		timer->StartTimer();
@@ -181,7 +181,7 @@ void MainmenuScene::Update()
 
 				}
 		else if (rand == 4) {
-		// ˆ— 4
+		// å‡¦ç† 4
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		timer->StartTimer();
@@ -258,6 +258,9 @@ void MainmenuScene::Draw()
 		}
 			DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
 	}*/
+			//DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
+			DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
+	}
 
 	if(state == STAGE1)
 	{
@@ -328,13 +331,13 @@ void MainmenuScene::Draw()
 
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                ”äŠr“I‚©‚ñ‚½‚ñ\n•½‹ÏƒNƒŠƒAŠÔ\n•½‹ÏƒfƒX”\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                æ¯”è¼ƒçš„ã‹ã‚“ãŸã‚“\nå¹³å‡ã‚¯ãƒªã‚¢æ™‚é–“\nå¹³å‡ãƒ‡ã‚¹æ•°\n");
 	}
 	else if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                \n•½‹ÏƒNƒŠƒAŠÔ\n•½‹ÏƒfƒX”\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                \nå¹³å‡ã‚¯ãƒªã‚¢æ™‚é–“\nå¹³å‡ãƒ‡ã‚¹æ•°\n");
 	}
 	else if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚¨‘O‚É‚Í–³—II");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ãŠå‰ã«ã¯ç„¡ç†ï¼ï¼");
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
