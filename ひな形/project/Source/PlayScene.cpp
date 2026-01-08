@@ -34,7 +34,7 @@ void PlayScene::Update()
 	Fader* fader = FindGameObject<Fader>();
 	Timer* timer = FindGameObject<Timer>();
 
-	if (CheckHitKey(KEY_INPUT_T)) {
+	if (CheckHitKey(KEY_INPUT_O)) {
 		fader->FadeOut(0.1f);
 		timer->StopTimer();
 		timer->ResetTimer();
