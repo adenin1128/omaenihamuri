@@ -48,6 +48,7 @@ private:
 	int medatimer;
 	int A;
 	int D;
+	int speace;
 	bool migi;
 	bool hidari;
 	float headx;

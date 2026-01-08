@@ -527,13 +527,13 @@ void Field::CheckBreath(int x, int y)
 		}
 	}
 
-	// 直接踏んだ場合
-	if (id >= 401 && id < 500) {
-		int index = id - 401;
-		if (index >= 0 && index < 99 && breaths[index] != nullptr) {
-			breaths[index]->Active();
-		}
-	}
+	//// 直接踏んだ場合
+	//if (id >= 401 && id < 500) {
+	//	int index = id - 401;
+	//	if (index >= 0 && index < 99 && breaths[index] != nullptr) {
+	//		breaths[index]->Active();
+	//	}
+	//}
 }
 
 

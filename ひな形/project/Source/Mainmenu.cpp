@@ -47,6 +47,7 @@ MainmenuScene::MainmenuScene()
 	gekimuzuimage = LoadGraph("data/image/gekimuzu.png");
 	A = LoadGraph("data/image/A.png");
 	D = LoadGraph("data/image/D.png");
+	speace = LoadGraph("data/image/speace.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	fireimage = LoadGraph("data/image/ONFIRE.png");
 	LoadDivGraph("data/image/ONFIRE.png", 15, 15, 1, 1980, 1080, fireGraphs);
@@ -246,7 +247,7 @@ void MainmenuScene::Draw()
 {
 	//DrawRotaGraph(1920/2, 650, 1, 0, fireimage, TRUE);
 
-	{
+	/*{
 		timer++;
 		if (timer % 7 == 0) {
 			frame++;
@@ -256,7 +257,7 @@ void MainmenuScene::Draw()
 			}
 		}
 			DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
-	}
+	}*/
 
 	if(state == STAGE1)
 	{
@@ -271,6 +272,7 @@ void MainmenuScene::Draw()
 		DrawRotaGraph(400, 300, 0.5, 0, gekimuzuimage, TRUE);
 	}
 
+	DrawRotaGraph(400, 760, 5, 0, speace, TRUE);
 
 	DrawRotaGraph(asix, asiy, 5.5, 0, asiimage, TRUE);
 	DrawRotaGraph(doux, douy, 5.5, 0, douimage, TRUE);
@@ -294,7 +296,7 @@ void MainmenuScene::Draw()
 	}
 	DrawRotaGraph(450, 100, 7, 0, nanidobarimage, TRUE);
 	DrawRotaGraph(450, 100, 3, 0, nanidotyoimage, TRUE);
-	DrawRotaGraph(960, 900, 7.5, 0, setumeiimage, TRUE);
+	DrawRotaGraph(960, 950, 7.5, 0, setumeiimage, TRUE);
 	if (migi == true)
 	{
 		DrawRotaGraph(650, 550, 4, 0, migiimage, TRUE);
@@ -326,13 +328,13 @@ void MainmenuScene::Draw()
 
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "こんなの余裕だね！");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                比較的かんたん\n平均クリア時間\n平均デス数\n");
 	}
 	else if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "クリアできるのカナ！？");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                \n平均クリア時間\n平均デス数\n");
 	}
 	else if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(680, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "お前には無理！！");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "お前には無理！！");
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
