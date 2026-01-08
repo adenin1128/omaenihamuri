@@ -21,7 +21,7 @@ Result::~Result()
 
 void Result::Update()
 {
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
+	if (CheckHitKey(KEY_INPUT_SPACE) || CheckHitKey(KEY_INPUT_O)) {
 		SceneManager::ChangeScene("TITLE");
 	}
 	if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
