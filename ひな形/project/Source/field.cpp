@@ -177,12 +177,6 @@ Field::Field(int stage)
 	}
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
-			/*if (maps[y][x] == 101) {
-				trap1 = new trap(x * 64, y  * 64);
-			}
-			if (maps[y][x] == 5) {
-				trap2 = new trap(x * 64, y * 64);
-			}*/
 
 			//↓トラップ
 			if (maps[y][x] > 100 && maps[y][x] < 200) {
@@ -485,13 +479,7 @@ void Field::Draw()
 			}
 		}
 	}
-	/*for (int y = 0; y < maps.size(); y++) {
-		for (int x = 0; x < maps[y].size(); x++) {
-			if (maps[y][x] == 4) {
-				DrawGraph(x * 64, y * 64,hataimage, 1);
-			}
-		}
-	}*/
+
 	if (Screen::DEVELOPER_MODE == TRUE) {
 		DrawFormatString(0, 180, GetColor(255, 255, 255), "HITTRAP::%d", HIT_TRAP);
 		DrawFormatString(0, 280, GetColor(255, 255, 255), "BeltHit::%d", BeltHit);
@@ -527,13 +515,6 @@ void Field::CheckBreath(int x, int y)
 		}
 	}
 
-	//// 直接踏んだ場合
-	//if (id >= 401 && id < 500) {
-	//	int index = id - 401;
-	//	if (index >= 0 && index < 99 && breaths[index] != nullptr) {
-	//		breaths[index]->Active();
-	//	}
-	//}
 }
 
 
@@ -923,54 +904,6 @@ bool Field::GetPointPos(int id, int* ox, int* oy)
 }
 
 int Field::IsBreath(int px, int py) {
-	/*if (maps[y][x] == 8) {
-
-	}*/
 	return 0;
 }
 
-
-//int Field::HitCheckRightTrap(int px, int py)
-//{
-//	int x = px / 64;
-//	int y = py / 64;
-//	if (maps[y][x] > 100)
-//	{ // 当たってる 
-//		return px % 64 + 1;
-//	}
-//	return 0;
-//}
-//
-//int Field::HitCheckLeftTrap(int px, int py)
-//{
-//	int x = px / 64;
-//	int y = py / 64;
-//	if (maps[y][x] > 100)
-//	{ // 当たってる 
-//		return px % 64 - 64;
-//	}
-//	return 0;
-//}
-//
-//int Field::HitCheckUpTrap(int px, int py)
-//{
-//	int x = px / 64;
-//	int y = py / 64;
-//	if (maps[y][x] > 100)
-//		return 64 - py % 64;
-//	return 0;
-//}
-//
-//int Field::HitCheckDownTrap(int px, int py)
-//{
-//	int x = px / 64;
-//	int y = py / 64;
-//	if (maps[y][x] > 100)
-//		return py % 64 + 1;
-//	return 0;
-//}
-
-//二方向触れているとぐわぐわする
-//追加のインクルードディレクトの設定がわからない
-//↓これ追加のインクルードディレクトに入れないと
-// Libraryとこのプロジェクトのファイル（field.hとかなんかここにあるから）DxLIbの追加しないとのやつ
