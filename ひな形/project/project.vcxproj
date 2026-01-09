@@ -222,7 +222,7 @@
     <ClCompile Include="Source\GameOver.cpp" />
     <ClCompile Include="Source\Gravity.cpp" />
     <ClCompile Include="Source\HAIKEI.cpp" />
-    <ClCompile Include="Source\Mainmenu.cpp" />
+    <ClCompile Include="Source\MainMenu.cpp" />
     <ClCompile Include="Source\MoveFloor.cpp" />
     <ClCompile Include="Source\NeoGravity.cpp" />
     <ClCompile Include="Source\Nyoki.cpp" />
