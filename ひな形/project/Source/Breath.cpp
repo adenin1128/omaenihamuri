@@ -34,7 +34,8 @@ void Breath::Reset()
 	state = STATE_START;
 	x = ResetX;
 	y = ResetY;
-
+	startTime = 60;
+	maxTime = 100;
 	frame2 = 0;
 	timer = 0;
 	angle = 0;
@@ -54,7 +55,7 @@ void Breath::Update()
 
 	if (state == STATE_START && timer > startTime) {
 		state = STATE_GO;
-		boaaa = new Boaaa(x, y, dir, 2000);
+		boaaa = new Boaaa(x, y, dir, 1000);
 	}
 
 	if (state == STATE_GO && timer > maxTime || CheckHitKey(KEY_INPUT_R)) {
