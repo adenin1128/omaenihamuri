@@ -260,7 +260,7 @@ void MainmenuScene::Draw()
 	}*/
 			//DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
 			DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
-	}
+	
 
 	if(state == STAGE1)
 	{
@@ -331,13 +331,13 @@ void MainmenuScene::Draw()
 
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                比較的かんたん\n平均クリア時間\n平均デス数\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "比較的かんたん\n平均クリア時間\n平均デス数\n");
 	}
 	else if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "                \n平均クリア時間\n平均デス数\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "\n平均クリア時間\n平均デス数\n");
 	}
 	else if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "お前には無理！！");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "お前には無理！！\n");
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
