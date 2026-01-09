@@ -80,7 +80,7 @@ void MainmenuScene::Update()
 		douy += 0.3;
 		asiy += 0.2;
 		tey += 0.4;
-		if (heady > 460&&douy> 460&&asiy >460&&tey >460) {
+		if (heady > 460 && douy > 460 && asiy > 460 && tey > 460) {
 			ue = true;
 		}
 	}
@@ -89,7 +89,7 @@ void MainmenuScene::Update()
 		douy -= 0.3;
 		asiy -= 0.2;
 		tey -= 0.4;
-		if (heady < 440 && douy> 440 && asiy > 440&&tey >440) {
+		if (heady < 440 && douy> 440 && asiy > 440 && tey > 440) {
 			ue = false;
 		}
 	}
@@ -107,7 +107,7 @@ void MainmenuScene::Update()
 			}
 			if (CheckHitKey(KEY_INPUT_A)) {
 				state = STAGE3;
-				medatimer = 0;	
+				medatimer = 0;
 				hidari = true;
 			}
 		}
@@ -115,7 +115,7 @@ void MainmenuScene::Update()
 	else if (state == STAGE2) {
 		medarustage = 2;
 		migi = false;
-        hidari = false;
+		hidari = false;
 		medatimer++;
 		if (medatimer > 10) {
 			if (CheckHitKey(KEY_INPUT_D)) {
@@ -133,7 +133,7 @@ void MainmenuScene::Update()
 	else if (state == STAGE3) {
 		medarustage = 3;
 		migi = false;
-        hidari = false;
+		hidari = false;
 		medatimer++;
 		if (medatimer > 10) {
 			if (CheckHitKey(KEY_INPUT_D)) {
@@ -149,14 +149,14 @@ void MainmenuScene::Update()
 		}
 	}
 
-		StageNumber* stageNum = FindGameObject<StageNumber>();
-		Field* f = FindGameObject<Field>();
-		Fader* fader = FindGameObject<Fader>();
-		Timer* timer = FindGameObject<Timer>();
-		random_device rnd;
-		mt19937 mt(rnd());
-		uniform_int_distribution<>rand100(1, 4);
-		rand = rand100(mt);
+	StageNumber* stageNum = FindGameObject<StageNumber>();
+	Field* f = FindGameObject<Field>();
+	Fader* fader = FindGameObject<Fader>();
+	Timer* timer = FindGameObject<Timer>();
+	random_device rnd;
+	mt19937 mt(rnd());
+	uniform_int_distribution<>rand100(1, 4);
+	rand = rand100(mt);
 
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (medarustage == 1) {
@@ -172,74 +172,74 @@ void MainmenuScene::Update()
 			SceneManager::ChangeScene("PlayScene");
 		}
 		else if (medarustage == 3) {
-		if (rand == 3) {
-		// å‡¦ç† 3
+			if (rand == 3) {
+				// ˆ— 3
+				fader->FadeOut(0.1f);
+				stageNum->stagenum = 3;
+				timer->StartTimer();
+				SceneManager::ChangeScene("PlayScene");
+
+			}
+			else if (rand == 4) {
+				// ˆ— 4
+				fader->FadeOut(0.1f);
+				stageNum->stagenum = 4;
+				timer->StartTimer();
+				SceneManager::ChangeScene("PlayScene");
+			}
+		}
+	}
+	if (CheckHitKey(KEY_INPUT_1)) {
+		fader->FadeOut(0.1f);
+		stageNum->stagenum = 1;
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+	}
+	//if (f->GetGateHit() == 21) {
+	////	fader->FadeOut(0.1f);
+	////	stageNum->stagenum = 1;
+	////	timer->StartTimer();
+	////	SceneManager::ChangeScene("PlayScene");
+	////}
+	if (CheckHitKey(KEY_INPUT_2)) {
+		fader->FadeOut(0.1f);
+		stageNum->stagenum = 2;
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+	}
+	////if (f->GetGateHit() == 22) {
+	////	fader->FadeOut(0.1f);
+	////	stageNum->stagenum = 3;
+	////	timer->StartTimer();
+	////	SceneManager::ChangeScene("PlayScene");
+	////}
+	if (CheckHitKey(KEY_INPUT_3)) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 3;
 		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
-
-				}
-		else if (rand == 4) {
-		// å‡¦ç† 4
+	}
+	if (CheckHitKey(KEY_INPUT_4)) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 4;
 		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
-				}
+	}
+	if (CheckHitKey(KEY_INPUT_RETURN)) {
+		fader->FadeOut(0.1f);
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+	}
+	if (CheckHitKey(KEY_INPUT_O)) {
+		fader->FadeOut(0.1f);
+		SceneManager::ChangeScene("TITLE");
+	}
+	if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
+		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+			fader->FadeOut(0.1f);
+			SceneManager::Exit();
 		}
 	}
-		if (CheckHitKey(KEY_INPUT_1)) {
-			fader->FadeOut(0.1f);
-			stageNum->stagenum = 1;
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
-		}
-		//if (f->GetGateHit() == 21) {
-		////	fader->FadeOut(0.1f);
-		////	stageNum->stagenum = 1;
-		////	timer->StartTimer();
-		////	SceneManager::ChangeScene("PlayScene");
-		////}
-		if (CheckHitKey(KEY_INPUT_2)) {
-			fader->FadeOut(0.1f);
-			stageNum->stagenum = 2;
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
-		}
-		////if (f->GetGateHit() == 22) {
-		////	fader->FadeOut(0.1f);
-		////	stageNum->stagenum = 3;
-		////	timer->StartTimer();
-		////	SceneManager::ChangeScene("PlayScene");
-		////}
-		if (CheckHitKey(KEY_INPUT_3)) {
-			fader->FadeOut(0.1f);
-			stageNum->stagenum = 3;
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
-		}
-		if (CheckHitKey(KEY_INPUT_4)) {
-			fader->FadeOut(0.1f);
-			stageNum->stagenum = 4;
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
-		}
-		if (CheckHitKey(KEY_INPUT_RETURN)) {
-			fader->FadeOut(0.1f);
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
-		}
-		if (CheckHitKey(KEY_INPUT_O)) {
-			fader->FadeOut(0.1f);
-			SceneManager::ChangeScene("TITLE");
-		}
-		if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
-			if (CheckHitKey(KEY_INPUT_ESCAPE)) {
-				fader->FadeOut(0.1f);
-				SceneManager::Exit();
-			}
-		}
 
 }
 
@@ -258,11 +258,11 @@ void MainmenuScene::Draw()
 		}
 			DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
 	}*/
-			//DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
-			DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
-	
+	//DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
+	DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
 
-	if(state == STAGE1)
+
+	if (state == STAGE1)
 	{
 		DrawRotaGraph(400, 300, 0.5, 0, kantanimage, TRUE);
 	}
@@ -283,17 +283,17 @@ void MainmenuScene::Draw()
 		DrawRotaGraph(tex, tey, 0.91, 0, mukiimage, TRUE);
 	}
 	else if (state == STAGE2) {
-		DrawRotaGraph(tex, tey+30, 5.5, 0, okoteimage, TRUE);
+		DrawRotaGraph(tex, tey + 30, 5.5, 0, okoteimage, TRUE);
 	}
 	else if (state == STAGE1) {
 		DrawRotaGraph(tex, tey + 30, 5.5, 0, teimage, TRUE);
 	}
 	if (state == STAGE3) {
-		DrawRotaGraph(headx, heady-120, /*0.174*/0.14, 0, ganmenimage, TRUE);
+		DrawRotaGraph(headx, heady - 120, /*0.174*/0.14, 0, ganmenimage, TRUE);
 	}
-	if(state == STAGE2){
-	DrawRotaGraph(headx, heady, 5.5, 0, okoimage, TRUE);
-    }
+	if (state == STAGE2) {
+		DrawRotaGraph(headx, heady, 5.5, 0, okoimage, TRUE);
+	}
 	if (state == STAGE1) {
 		DrawRotaGraph(headx, heady, 5.5, 0, headimage, TRUE);
 	}
@@ -316,7 +316,8 @@ void MainmenuScene::Draw()
 		DrawRotaGraph(150, 550, 4, 0, hidariimage, TRUE);
 		DrawRotaGraph(50, 550, 3, 0, A, TRUE);
 
-	}else if (hidari == false)
+	}
+	else if (hidari == false)
 	{
 		DrawRotaGraph(150, 550, 3, 0, hidariimage, TRUE);
 		DrawRotaGraph(50, 550, 2, 0, A, TRUE);
@@ -327,17 +328,16 @@ void MainmenuScene::Draw()
 	else if (state == STAGE2)
 		DrawRotaGraph(400, 550, 3, 0, medaruGraphs[1], TRUE);
 	else if (state == STAGE3)
-	    DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
-
+		DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "æ¯”è¼ƒçš„ã‹ã‚“ãŸã‚“\nå¹³å‡ã‚¯ãƒªã‚¢æ™‚é–“\nå¹³å‡ãƒ‡ã‚¹æ•°\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "”äŠr“I‚©‚ñ‚½‚ñ\n•½‹ÏƒNƒŠƒAŠÔ\n•½‹ÏƒfƒX”\n");
 	}
 	else if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "\nå¹³å‡ã‚¯ãƒªã‚¢æ™‚é–“\nå¹³å‡ãƒ‡ã‚¹æ•°\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "\n•½‹ÏƒNƒŠƒAŠÔ\n•½‹ÏƒfƒX”\n");
 	}
 	else if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ãŠå‰ã«ã¯ç„¡ç†ï¼ï¼\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚¨‘O‚É‚Í–³—II\n");
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
