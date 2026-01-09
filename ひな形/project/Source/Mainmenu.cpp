@@ -33,7 +33,7 @@ MainmenuScene::MainmenuScene()
 	hidariimage = LoadGraph("data/image/hidari.png");
 	setumeiimage = LoadGraph("data/image/explanation.png");
 	headimage = LoadGraph("data/image/omaehead.png");
-	douimage = LoadGraph("data/image/omaedou.png");
+	douimage = LoadGraph("data/image/omaedou1.png");
 	asiimage = LoadGraph("data/image/omaeasi.png");
 	teimage = LoadGraph("data/image/omaete.png");
 	okoteimage = LoadGraph("data/image/omaete2.png");

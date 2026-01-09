@@ -13,8 +13,14 @@ public:
 	void Update() override;
 	void Draw() override;
 	bool CheckHit(Player* player);
+	enum Direction {
+		TOP,  //0
+		RIGHT,//1
+		UNDER,//2
+		LEFT  //3
+	};
 private:
-	int dir;
+
 	int boaimage;
 	int x, y;
 	int frame3;
@@ -26,4 +32,6 @@ private:
 	int thickness;
 	int bx, by;
 	int buretimer;
+	Direction dir;
+	double rot;
 };

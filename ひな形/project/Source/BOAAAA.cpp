@@ -23,7 +23,7 @@ Boaaa::Boaaa(int px, int py, int d, int len)
 {
     x = px;
     y = py;
-    dir = d;
+    dir = (Direction)d;
     length = len;
 
     baseThickness = 35;
@@ -36,6 +36,7 @@ Boaaa::~Boaaa()
 
 void Boaaa::Update()
 {
+    rot = 3.14 / 2 * dir;
     Player* player = FindGameObject<Player>();
     StageNumber* stageNumber = FindGameObject<StageNumber>();
 
