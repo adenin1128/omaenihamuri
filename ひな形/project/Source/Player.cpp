@@ -36,6 +36,11 @@ Player::Player(float startX, float startY)
 	LoadDivGraph("data/image/BOOM!!.png", 37, 37, 1, 64, 64, boomGraphs);
 	loseImage = LoadGraph("data/image/you lose.png");
 
+	// --- BGMの読み込みと再生を追加 ---
+   // 第2引数の DX_PLAYTYPE_LOOP でバックグラウンドでのループ再生になります
+	//SEHandle = LoadSoundMem("data/sound/JYANPU.mp3"); // パスは適宜調整してください
+	
+
 	Reset();
 }
 
@@ -46,7 +51,9 @@ Player::Player(float startX, float startY)
 //最後に一度だけ必ず呼ばれる
 Player::~Player()
 {
-
+	// 音楽を止めてメモリから削除
+	//StopSoundMem(SEHandle);
+	//DeleteSoundMem(SEHandle);
 }
 
 void Player::Reset(int px, int py)
@@ -226,6 +233,7 @@ void Player::Update()
 		if (j->GetJetpack() == true) {
 			if (CheckHitKey(KEY_INPUT_SPACE)) {
 				velocity = v0 + 3;
+				//PlaySoundMem(SEHandle, DX_PLAYTYPE_BACK);
 			}
 		}
 		else if (j->GetJetpack() == false) {
