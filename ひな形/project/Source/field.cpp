@@ -97,7 +97,6 @@ Field::Field(int stage)
 	clear = false;
 	char filename[60];
 	sprintf_s<60>(filename, "data/Stage%02d.csv", stage);
-
 	CsvReader* csv = new CsvReader(filename);
 	int lines = csv->GetLines();
 	maps.resize(lines);
