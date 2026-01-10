@@ -23,6 +23,7 @@ MainmenuScene::MainmenuScene()
 	medatimer = 0;
 	migi = false;
 	hidari = false;
+	goodhandimage;
 	new HAIKEI(3);
 	Fader* fader = FindGameObject<Fader>();
 	fader->FadeIn(0.1f);
@@ -45,6 +46,7 @@ MainmenuScene::MainmenuScene()
 	fireimage = LoadGraph("data/image/fire.png");
 	okoimage = LoadGraph("data/image/okohead.png");
 	gekimuzuimage = LoadGraph("data/image/gekimuzu.png");
+	goodhandimage = LoadGraph("data/image/omaegood.png");
 	A = LoadGraph("data/image/A.png");
 	D = LoadGraph("data/image/D.png");
 	speace = LoadGraph("data/image/speace.png");
@@ -65,6 +67,9 @@ MainmenuScene::MainmenuScene()
 	tex = 1500;
 	tey = 450;
 	frame = 0;
+	start = false;
+	suitime = 0;
+	on = false;
 }
 
 MainmenuScene::~MainmenuScene()
@@ -100,51 +105,58 @@ void MainmenuScene::Update()
 		hidari = false;
 		medatimer++;
 		if (medatimer > 10) {
-			if (CheckHitKey(KEY_INPUT_D)) {
-				state = STAGE2;
-				medatimer = 0;
-				migi = true;
-			}
-			if (CheckHitKey(KEY_INPUT_A)) {
-				state = STAGE3;
-				medatimer = 0;
-				hidari = true;
+			if (on == false) {
+
+				if (CheckHitKey(KEY_INPUT_D)) {
+					state = STAGE2;
+					medatimer = 0;
+					migi = true;
+				}
+				if (CheckHitKey(KEY_INPUT_A)) {
+					state = STAGE3;
+					medatimer = 0;
+					hidari = true;
+				}
 			}
 		}
 	}
-	else if (state == STAGE2) {
+	if (state == STAGE2) {
 		medarustage = 2;
 		migi = false;
 		hidari = false;
 		medatimer++;
 		if (medatimer > 10) {
-			if (CheckHitKey(KEY_INPUT_D)) {
-				state = STAGE3;
-				medatimer = 0;
-				migi = true;
-			}
-			if (CheckHitKey(KEY_INPUT_A)) {
-				state = STAGE1;
-				medatimer = 0;
-				hidari = true;
+			if (on == false) {
+				if (CheckHitKey(KEY_INPUT_D)) {
+					state = STAGE3;
+					medatimer = 0;
+					migi = true;
+				}
+				if (CheckHitKey(KEY_INPUT_A)) {
+					state = STAGE1;
+					medatimer = 0;
+					hidari = true;
+				}
 			}
 		}
 	}
-	else if (state == STAGE3) {
+	if (state == STAGE3) {
 		medarustage = 3;
 		migi = false;
 		hidari = false;
 		medatimer++;
 		if (medatimer > 10) {
-			if (CheckHitKey(KEY_INPUT_D)) {
-				state = STAGE1;
-				medatimer = 0;
-				migi = true;
-			}
-			if (CheckHitKey(KEY_INPUT_A)) {
-				state = STAGE2;
-				medatimer = 0;
-				hidari = true;
+			if (on == false) {
+				if (CheckHitKey(KEY_INPUT_D)) {
+					state = STAGE1;
+					medatimer = 0;
+					migi = true;
+				}
+				if (CheckHitKey(KEY_INPUT_A)) {
+					state = STAGE2;
+					medatimer = 0;
+					hidari = true;
+				}
 			}
 		}
 	}
@@ -158,34 +170,41 @@ void MainmenuScene::Update()
 	uniform_int_distribution<>rand100(1, 4);
 	rand = rand100(mt);
 
+	if (on == true) {
+		suitime++;
+		if (suitime > 60) {
+			fader->FadeOut(0.1f);
+			stageNum->stagenum = medarustage;
+			timer->StartTimer();
+			SceneManager::ChangeScene("PlayScene");
+			suitime = 0;
+			on = false;
+		}
+	}
+	
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (medarustage == 1) {
-			fader->FadeOut(0.1f);
-			stageNum->stagenum = 1;
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
+			on = true;
+			start = true;
+			
 		}
 		else if (medarustage == 2) {
-			fader->FadeOut(0.1f);
-			stageNum->stagenum = 2;
-			timer->StartTimer();
-			SceneManager::ChangeScene("PlayScene");
+			on = true;
+			start = true;
+
 		}
 		else if (medarustage == 3) {
 			if (rand == 3) {
 				// ˆ— 3
-				fader->FadeOut(0.1f);
-				stageNum->stagenum = 3;
-				timer->StartTimer();
-				SceneManager::ChangeScene("PlayScene");
+				on = true;
+				start = true;
 
 			}
 			else if (rand == 4) {
 				// ˆ— 4
-				fader->FadeOut(0.1f);
-				stageNum->stagenum = 4;
-				timer->StartTimer();
-				SceneManager::ChangeScene("PlayScene");
+				on = true;
+				start = true;
+
 			}
 		}
 	}
@@ -279,15 +298,20 @@ void MainmenuScene::Draw()
 
 	DrawRotaGraph(asix, asiy, 5.5, 0, asiimage, TRUE);
 	DrawRotaGraph(doux, douy, 5.5, 0, douimage, TRUE);
-	if (state == STAGE3) {
+	if (state == STAGE3&&start==false) {
 		DrawRotaGraph(tex, tey, 0.91, 0, mukiimage, TRUE);
+
 	}
-	else if (state == STAGE2) {
+	else if (state == STAGE2 && start == false) {
 		DrawRotaGraph(tex, tey + 30, 5.5, 0, okoteimage, TRUE);
 	}
-	else if (state == STAGE1) {
+	else if (state == STAGE1 && start == false) {
 		DrawRotaGraph(tex, tey + 30, 5.5, 0, teimage, TRUE);
+
+	}else if (start == true) {
+			DrawRotaGraph(tex, tey, 5.5, 0, goodhandimage, TRUE);
 	}
+
 	if (state == STAGE3) {
 		DrawRotaGraph(headx, heady - 120, /*0.174*/0.14, 0, ganmenimage, TRUE);
 	}

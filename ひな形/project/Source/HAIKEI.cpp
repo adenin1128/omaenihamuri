@@ -5,7 +5,7 @@ HAIKEI::HAIKEI(int num)
 	number = -1;
 	SetDrawOrder(10000);
 	hImage = LoadGraph("data/image/kabe.png");
-	dImage = LoadGraph("data/image/doukutu.png");
+	dImage = LoadGraph("data/image/orio.png");
 	mImage = LoadGraph("data/image/aka.png");
 	number = num;
 }
@@ -27,7 +27,7 @@ void HAIKEI::Draw()
 		DrawGraph(0, 0, hImage, TRUE);
 	}
 	else if (number == 2) {
-		DrawRotaGraph(64, 64, 7.5, 0, dImage, TRUE, FALSE);
+		DrawRotaGraph(1980/2, 1080/2, 2, 0, dImage, TRUE, FALSE);
 	}
 	else if (number == 3) {
 		DrawRotaGraph(64, 64, 7.5, 0, mImage, TRUE, FALSE);

@@ -42,10 +42,12 @@ private:
 	int asiimage;
 	int teimage;
 	int mukiimage;
+	bool on;
 	int muzuiimage;
 	int gekimuzuimage;
 	int okoimage;
 	int okoteimage;
+	int goodhandimage;
 	int medarustage;
 	int medatimer;
 	int A;
@@ -66,5 +68,7 @@ private:
 	int randy2;
 	int timer;
 	int frame;
+	bool start;
+	int suitime;
 };
 
