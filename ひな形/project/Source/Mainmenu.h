@@ -71,5 +71,6 @@ private:
 	int frame;
 	bool start;
 	int suitime;
+	int mukidouimage;
 };
 
