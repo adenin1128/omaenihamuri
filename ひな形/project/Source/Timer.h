@@ -4,7 +4,7 @@
 class Timer : public GameObject
 {
 public:
-	Timer(int stage);
+	Timer(/*int stage*/);
 	~Timer();
 	void Update() override;
 

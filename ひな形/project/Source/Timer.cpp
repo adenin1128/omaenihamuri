@@ -6,12 +6,12 @@ using namespace std;
 
 vector<vector<int>> Times;
 
-Timer::Timer(int stage)
+Timer::Timer(/*int stage*/)
 {
 	DontDestroyOnSceneChange();
 
 	char filename[60];
-	sprintf_s<60>(filename, "data/time%02d.csv", stage);
+	sprintf_s<60>(filename, "data/time%02d.csv"/*, stage*/);
 	CsvReader* csv = new CsvReader(filename);
 	csv = new CsvReader(filename);
 	int lines = csv->GetLines();
