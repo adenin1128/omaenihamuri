@@ -251,6 +251,12 @@ void MainmenuScene::Update()
 		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}
+	if (CheckHitKey(KEY_INPUT_6)) {
+		fader->FadeOut(0.1f);
+		stageNum->stagenum = 6;
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+	}
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		fader->FadeOut(0.1f);
 		timer->StartTimer();

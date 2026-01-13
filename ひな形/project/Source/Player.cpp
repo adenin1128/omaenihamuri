@@ -303,6 +303,7 @@ void Player::Update()
 				}
 			}
 			//Skeleton”»’è‚ð’Ç‰Á
+			Skeleton* sktn = FindGameObject<Skeleton>();
 			std::list<Skeleton*> sktns = FindGameObjects<Skeleton>();
 			for (auto& sktn : sktns) {
 				if (sktn != nullptr) {
