@@ -17,6 +17,7 @@ respawn::~respawn()
 	//// --- 追加: サウンドのメモリ解放 ---
 	//DeleteSoundMem(seHandle);
 }
+
 void respawn::Update()
 {
 	Player* player = FindGameObject<Player>();
