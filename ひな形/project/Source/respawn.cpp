@@ -17,7 +17,7 @@ respawn::~respawn()
 	//// --- ’Ç‰Á: ƒTƒEƒ“ƒh‚Ìƒƒ‚ƒŠ‰ğ•ú ---
 	//DeleteSoundMem(seHandle);
 }
-a
+
 void respawn::Update()
 {
 	Player* player = FindGameObject<Player>();

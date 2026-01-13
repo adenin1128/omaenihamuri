@@ -45,6 +45,10 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	{
 		return new PlayScene();
 	}
+	if (stageNum->stagenum == 6)
+	{
+		return new PlayScene();
+	}
 	MessageBox(NULL, ("Ÿ‚ÌƒV[ƒ“‚Í‚ ‚è‚Ü‚¹‚ñ\n" + name).c_str(), "SceneFactory", MB_ICONERROR | MB_OK);
 	assert(false);
 	return nullptr;

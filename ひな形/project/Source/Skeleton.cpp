@@ -44,8 +44,8 @@ int Skeleton::HitCheckDown(int px, int py) {
 	if (px < x || px >= x + size) return 0;
 
 	// ブロックの上面とプレイヤーの足元の距離
-	int push = py - y;
-	if (push >= 0 && push < 16) {  // ブロックの上面付近なら押し出す
+	int push = y - py;
+	if (push >= 0 && push < 2) {  // ブロックの上面付近なら押し出す
 		return push;
 	}
 	return 0;
