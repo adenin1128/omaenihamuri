@@ -18,6 +18,10 @@ int fireGraphs[15];
 
 MainmenuScene::MainmenuScene()
 {
+	// --- BGMの読み込みと再生を追加 ---
+	// 第2引数の DX_PLAYTYPE_LOOP でバックグラウンドでのループ再生になります
+	bgmHandle = LoadSoundMem("data/sound/MENU.mp3"); // パスは適宜調整してください
+	PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 	timer = 0;
 	rand = 0;
 	medatimer = 0;
@@ -74,6 +78,9 @@ MainmenuScene::MainmenuScene()
 
 MainmenuScene::~MainmenuScene()
 {
+	// 音楽を止めてメモリから削除
+	StopSoundMem(bgmHandle);
+	DeleteSoundMem(bgmHandle);
 	HAIKEI* h = FindGameObject<HAIKEI>();
 	h->DestroyMe();
 }

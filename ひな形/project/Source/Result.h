@@ -12,4 +12,5 @@ private:
 	int TyImage;
 	int size;
 	int Default;
+	int bgmHandle; // BGM—p‚Ìƒnƒ“ƒhƒ‹
 };

@@ -11,4 +11,5 @@ public:
 private:
 	int hataImage;
 	int x, y;
+	int seHandle;
 };

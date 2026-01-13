@@ -27,6 +27,7 @@ public:
 	void SetState(medaruState s) { state = s; }
 
 private:
+	int bgmHandle; // BGM—p‚Ìƒnƒ“ƒhƒ‹
 	int rand;
 	int ganmenimage;
 	int kantanimage;

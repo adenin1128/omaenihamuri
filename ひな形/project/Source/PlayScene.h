@@ -8,4 +8,6 @@ public:
 	~PlayScene();
 	void Update() override;
 	void Draw() override;
+private:
+	int bgmHandle; // BGM—p‚Ìƒnƒ“ƒhƒ‹
 };

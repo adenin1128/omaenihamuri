@@ -13,6 +13,11 @@ TitleScene::TitleScene()
     new Field(0);
     new HAIKEI(2);
 
+    // --- BGMの読み込みと再生を追加 ---
+    // 第2引数の DX_PLAYTYPE_LOOP でバックグラウンドでのループ再生になります
+    bgmHandle = LoadSoundMem("data/sound/TITLE.mp3"); // パスは適宜調整してください
+    PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
+
     thikathika = 0;
     posY = -500.0f;     // 画面より上の位置からスタート
     isArrived = false;  // 最初は未到着
@@ -25,6 +30,9 @@ TitleScene::TitleScene()
 
 TitleScene::~TitleScene()
 {
+    // 音楽を止めてメモリから削除
+    StopSoundMem(bgmHandle);
+    DeleteSoundMem(bgmHandle);
     HAIKEI* h = FindGameObject<HAIKEI>();
     if (h) h->DestroyMe();
 }

@@ -11,6 +11,10 @@
 
 PlayScene::PlayScene()
 {
+	// --- BGMの読み込みと再生を追加 ---
+   // 第2引数の DX_PLAYTYPE_LOOP でバックグラウンドでのループ再生になります
+	bgmHandle = LoadSoundMem("data/sound/PLAYSCENE.mp3"); // パスは適宜調整してください
+	PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 	StageNumber* stagenum = FindGameObject< StageNumber >();
 	int sn = stagenum->stagenum;
 	Fader* fader = FindGameObject<Fader>();
@@ -21,6 +25,9 @@ PlayScene::PlayScene()
 
 PlayScene::~PlayScene()
 {
+	// 音楽を止めてメモリから削除
+	StopSoundMem(bgmHandle);
+	DeleteSoundMem(bgmHandle);
 	HAIKEI* h = FindGameObject<HAIKEI>();
 	h->DestroyMe();
 	Clear* clear = FindGameObject<Clear>();

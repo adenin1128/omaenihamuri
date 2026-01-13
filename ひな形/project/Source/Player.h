@@ -91,6 +91,7 @@ private:
 	int Maxjumpcount;
 	int speed;
 	int spd;
+	int SEHandle;		//	SEƒnƒ“ƒhƒ‹
 
 	int colliderOffset = 8;
 };
