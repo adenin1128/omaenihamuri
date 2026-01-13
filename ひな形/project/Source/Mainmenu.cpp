@@ -38,7 +38,8 @@ MainmenuScene::MainmenuScene()
 	hidariimage = LoadGraph("data/image/hidari.png");
 	setumeiimage = LoadGraph("data/image/explanation.png");
 	headimage = LoadGraph("data/image/omaehead.png");
-	douimage = LoadGraph("data/image/omaedou1.png");
+	mukidouimage = LoadGraph("data/image/doumuki0.png");
+	douimage = LoadGraph("data/image/omaedou.png");
 	asiimage = LoadGraph("data/image/omaeasi.png");
 	teimage = LoadGraph("data/image/omaete.png");
 	okoteimage = LoadGraph("data/image/omaete2.png");
@@ -277,6 +278,7 @@ void MainmenuScene::Update()
 
 void MainmenuScene::Draw()
 {
+
 	//DrawRotaGraph(1920/2, 650, 1, 0, fireimage, TRUE);
 
 	/*{
@@ -310,19 +312,11 @@ void MainmenuScene::Draw()
 	DrawRotaGraph(400, 760, 5, 0, speace, TRUE);
 
 	DrawRotaGraph(asix, asiy, 5.5, 0, asiimage, TRUE);
-	DrawRotaGraph(doux, douy, 5.5, 0, douimage, TRUE);
-	if (state == STAGE3&&start==false) {
-		DrawRotaGraph(tex, tey, 0.91, 0, mukiimage, TRUE);
-
+	if (state == STAGE3) {
+		DrawRotaGraph(doux, douy+20, 1.57, 0, mukidouimage, TRUE);
 	}
-	else if (state == STAGE2 && start == false) {
-		DrawRotaGraph(tex, tey + 30, 5.5, 0, okoteimage, TRUE);
-	}
-	else if (state == STAGE1 && start == false) {
-		DrawRotaGraph(tex, tey + 30, 5.5, 0, teimage, TRUE);
-
-	}else if (start == true) {
-			DrawRotaGraph(tex, tey, 5.5, 0, goodhandimage, TRUE);
+	else if (state != STAGE3) {
+		DrawRotaGraph(doux, douy, 5.5, 0, douimage, TRUE);
 	}
 
 	if (state == STAGE3) {
@@ -375,6 +369,21 @@ void MainmenuScene::Draw()
 	}
 	else if (state == STAGE3) {
 		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "Ç®ëOÇ…ÇÕñ≥óùÅIÅI\n");
+	}
+
+	if (state == STAGE3 && start == false) {
+		DrawRotaGraph(tex+10, tey+45, 0.91, 0, mukiimage, TRUE);
+
+	}
+	else if (state == STAGE2 && start == false) {
+		DrawRotaGraph(tex, tey + 30, 5.5, 0, okoteimage, TRUE);
+	}
+	else if (state == STAGE1 && start == false) {
+		DrawRotaGraph(tex, tey + 30, 5.5, 0, teimage, TRUE);
+
+	}
+	else if (start == true) {
+		DrawRotaGraph(tex, tey, 5.5, 0, goodhandimage, TRUE);
 	}
 
 	if (Screen::DEVELOPER_MODE == TRUE) {
