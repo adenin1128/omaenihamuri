@@ -39,6 +39,13 @@ TitleScene::~TitleScene()
 
 void TitleScene::Update()
 {
+    StageNumber* sn = FindGameObject<StageNumber>();
+    if (sn->noSound == true) {
+        ChangeVolumeSoundMem(0, bgmHandle);
+    }
+    else {
+        ChangeVolumeSoundMem(255, bgmHandle);
+    }
     // --- 1. タイトル画像を降ろす処理 ---
     if (!isArrived) {
         // イージング（滑らかに止まる）

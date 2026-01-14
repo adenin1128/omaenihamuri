@@ -28,6 +28,13 @@ Result::~Result()
 
 void Result::Update()
 {
+	StageNumber* sn = FindGameObject<StageNumber>();
+	if (sn->noSound == true) {
+		ChangeVolumeSoundMem(0, bgmHandle);
+	}
+	else {
+		ChangeVolumeSoundMem(255, bgmHandle);
+	}
 	if (CheckHitKey(KEY_INPUT_SPACE) || CheckHitKey(KEY_INPUT_O)) {
 		SceneManager::ChangeScene("TITLE");
 	}

@@ -88,6 +88,13 @@ MainmenuScene::~MainmenuScene()
 
 void MainmenuScene::Update()
 {
+	StageNumber* sn = FindGameObject<StageNumber>();
+	if (sn->noSound == true) {
+		ChangeVolumeSoundMem(0,bgmHandle);
+	}
+	else{
+		ChangeVolumeSoundMem(255, bgmHandle);
+	}
 	if (ue == false) {
 		heady += 0.5;
 		douy += 0.3;
@@ -255,6 +262,12 @@ void MainmenuScene::Update()
 	if (CheckHitKey(KEY_INPUT_6)) {
 		fader->FadeOut(0.1f);
 		stageNum->stagenum = 6;
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+	}
+	if (CheckHitKey(KEY_INPUT_7)) {
+		fader->FadeOut(0.1f);
+		stageNum->stagenum = 7;
 		timer->StartTimer();
 		SceneManager::ChangeScene("PlayScene");
 	}

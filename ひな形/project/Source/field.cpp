@@ -330,6 +330,11 @@ void Field::Update()
 			for (auto obj : objs)
 				obj->Reset();
 		}
+		{
+			auto objs = FindGameObjects<Boaaa>();
+			for (auto obj : objs)
+				obj->Reset();
+		}
 		{//これ一番下にしといて
 			Fader* fader = FindGameObject<Fader>();
 			fader->FadeIn(0.3f);

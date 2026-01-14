@@ -9,4 +9,5 @@ public:
 	int stagenum;
 	bool noDeath;
 	bool Clear;
+	bool noSound;
 };

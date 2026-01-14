@@ -7,7 +7,6 @@
 #include "Clear.h"
 #include "Screen.h"
 #include "Trigger.h"
-#include "Screen.h"
 
 PlayScene::PlayScene()
 {
@@ -40,6 +39,14 @@ void PlayScene::Update()
 {
 	Fader* fader = FindGameObject<Fader>();
 	Timer* timer = FindGameObject<Timer>();
+	StageNumber* sn = FindGameObject<StageNumber>();
+
+	if (sn->noSound == true) {
+		ChangeVolumeSoundMem(0, bgmHandle);
+	}
+	else {
+		ChangeVolumeSoundMem(255, bgmHandle);
+	}
 
 	if (CheckHitKey(KEY_INPUT_O)) {
 		fader->FadeOut(0.1f);
