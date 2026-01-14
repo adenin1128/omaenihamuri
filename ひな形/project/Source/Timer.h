@@ -4,7 +4,7 @@
 class Timer : public GameObject
 {
 public:
-	Timer(/*int stage*/);
+	Timer();
 	~Timer();
 	void Update() override;
 
@@ -13,15 +13,9 @@ public:
 	void StopTimer();
 	void ResetTimer();
 
-	void AcerageTime();
-	float GetAverageTime() { return AT; }
-
 	void deathcount();
 	void ResetDeathcount();
 	int GetDeathCount() { return Deathcount; }
-
-	void AverageDeathCount();
-	float GetAverageDeathCount() { return AD; }
 
 private:
 	float timer;

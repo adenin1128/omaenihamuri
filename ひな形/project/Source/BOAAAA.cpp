@@ -21,17 +21,36 @@
 
 Boaaa::Boaaa(int px, int py, int d, int len)
 {
-    x = px;
+    ResetX = px;
+    ResetY = py;
+    ResetD = d;
+    ResetL = len;
+
+    Reset();
+
+  /*x = px;
     y = py;
     dir = (Direction)d;
     length = len;
 
     baseThickness = 35;
     changeThickness = 5;
-    buretimer = 0;
+    buretimer = 0;*/
 }
 Boaaa::~Boaaa()
 {
+}
+
+void Boaaa::Reset()
+{
+    x = ResetX;
+    y = ResetY;
+    dir = (Direction)ResetD;
+    length = ResetL;
+
+    baseThickness = 35;
+    changeThickness = 5;
+    buretimer = 0;
 }
 
 void Boaaa::Update()

@@ -8,6 +8,7 @@ StageNumber::StageNumber()
 	stagenum = -1;
 	noDeath = false;
 	Clear = false;
+	noSound = false;
 }
 
 void StageNumber::Draw()
@@ -17,6 +18,7 @@ void StageNumber::Draw()
 		ImGui::InputInt("StageNumber", &stagenum);
 		ImGui::Checkbox("NoDeath", &noDeath);
 		ImGui::Checkbox("Clear", &Clear);
+		ImGui::Checkbox("NoSound", &noSound);
 		ImGui::End();
 	}
 }

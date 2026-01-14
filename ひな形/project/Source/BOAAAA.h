@@ -10,6 +10,7 @@ class Boaaa : public GameObject {
 public:
 	Boaaa(int px, int py, int dir, int length);
 	~Boaaa();
+	void Reset();
 	void Update() override;
 	void Draw() override;
 	bool CheckHit(Player* player);
@@ -20,6 +21,9 @@ public:
 		LEFT  //3
 	};
 private:
+
+	int ResetX, ResetY;
+	int ResetD, ResetL;
 
 	int boaimage;
 	int x, y;
