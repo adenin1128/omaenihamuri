@@ -49,7 +49,7 @@ void Boaaa::Reset()
     length = ResetL;
 
     baseThickness = 35;
-    changeThickness = 5;
+    changeThickness = 0;
     buretimer = 0;
 }
 
