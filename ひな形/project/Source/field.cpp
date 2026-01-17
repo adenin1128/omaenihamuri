@@ -497,6 +497,17 @@ void Field::Draw()
 		if (skHit == true)
 			DrawString(0, 320, "skHit", GetColor(255, 255, 255));
 	}
+	// ★「JUMP UP!」の表示処理を追加
+	if (jumpUpTimer > 0) {
+		// タイマーに応じて上にふわっと浮かせる (1フレームごとに1ピクセル上昇)
+		int offsetY = (60 - jumpUpTimer);
+
+		// 黄色い文字で表示（座標はプレイヤーの少し上）
+		DrawString(jumpUpX - 20, jumpUpY - 40 - offsetY, "JUMP! JUMP!", GetColor(255, 255, 0));
+
+		// カウントダウン
+		jumpUpTimer--;
+	}
 }
 
 void Field::CheckTrap(int x, int y) {
@@ -716,7 +727,13 @@ bool Field::Jetpack(int px, int py)
 	int y = py / 64;
 	if (OutOfMap(x, y))
 		return 0;
+
 	if (maps[y][x] == 17) {
+		if (jet == false) {
+			jumpUpTimer = 60; // 約1秒間（60フレーム）表示
+			jumpUpX = px;     // 現在のプレイヤー位置を保存
+			jumpUpY = py;
+		}
 		jet = true;
 	}
 	else if (maps[y][x] == 19) {
@@ -724,7 +741,6 @@ bool Field::Jetpack(int px, int py)
 	}
 	return false;
 }
-
 bool Field::IsGate(int px, int py)
 {
 	int x = px / 64;
