@@ -92,4 +92,7 @@ private:
 	bool one;
 	bool two;
 	int breathCount;
+	int jumpUpTimer = 0; // 0より大きい間、文字を表示する
+	int jumpUpX = 0;     // 表示する位置（X）
+	int jumpUpY = 0;     // 表示する位置（Y）
 };
