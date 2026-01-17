@@ -45,10 +45,6 @@ SceneBase * SceneFactory::Create(const std::string & name)
 	{
 		return new PlayScene();
 	}
-	if (stageNum->stagenum == 6)
-	{
-		return new PlayScene();
-	}
 	if (stageNum->stagenum == 7)
 	{
 		return new PlayScene();
