@@ -10,7 +10,6 @@
 TitleScene::TitleScene()
 {
     titleimage = LoadGraph("data/image/OMAENOLOGO.png");
-    new Field(0);
     new HAIKEI(2);
 
     // --- BGMの読み込みと再生を追加 ---
@@ -68,7 +67,7 @@ void TitleScene::Update()
     }
 
     // --- 3. 入力処理 ---
-    if (KeyTrigger::CheckTrigger(KEY_INPUT_M)) {
+    if (KeyTrigger::CheckTrigger(KEY_INPUT_SPACE)) {
         SceneManager::ChangeScene("MENU");
     }
     if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
@@ -87,8 +86,8 @@ void TitleScene::Draw()
     if (isArrived) {
         if (thikathika < 60) {
             SetFontSize(20); // フォントサイズの設定
-            DrawExtendFormatStringToHandle(1920 / 3 - 198, 820, 4, 4,
-                GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE M KEY TO START");
+            DrawExtendFormatStringToHandle(1920 / 3 - 230, 820, 4, 4,
+                GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE SPACE KEY TO START");
         }
     }
 

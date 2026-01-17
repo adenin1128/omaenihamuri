@@ -90,9 +90,9 @@ void MainmenuScene::Update()
 {
 	StageNumber* sn = FindGameObject<StageNumber>();
 	if (sn->noSound == true) {
-		ChangeVolumeSoundMem(0,bgmHandle);
+		ChangeVolumeSoundMem(0, bgmHandle);
 	}
-	else{
+	else {
 		ChangeVolumeSoundMem(255, bgmHandle);
 	}
 	if (ue == false) {
@@ -196,12 +196,12 @@ void MainmenuScene::Update()
 			on = false;
 		}
 	}
-	
+
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (medarustage == 1) {
 			on = true;
 			start = true;
-			
+
 		}
 		else if (medarustage == 2) {
 			on = true;
@@ -223,58 +223,42 @@ void MainmenuScene::Update()
 			}
 		}
 	}
-	if (CheckHitKey(KEY_INPUT_1)) {
-		fader->FadeOut(0.1f);
-		stageNum->stagenum = 1;
-		timer->StartTimer();
-		SceneManager::ChangeScene("PlayScene");
-	}
-	//if (f->GetGateHit() == 21) {
-	////	fader->FadeOut(0.1f);
-	////	stageNum->stagenum = 1;
-	////	timer->StartTimer();
-	////	SceneManager::ChangeScene("PlayScene");
-	////}
-	if (CheckHitKey(KEY_INPUT_2)) {
-		fader->FadeOut(0.1f);
-		stageNum->stagenum = 2;
-		timer->StartTimer();
-		SceneManager::ChangeScene("PlayScene");
-	}
-	////if (f->GetGateHit() == 22) {
-	////	fader->FadeOut(0.1f);
-	////	stageNum->stagenum = 3;
-	////	timer->StartTimer();
-	////	SceneManager::ChangeScene("PlayScene");
-	////}
-	if (CheckHitKey(KEY_INPUT_3)) {
-		fader->FadeOut(0.1f);
-		stageNum->stagenum = 3;
-		timer->StartTimer();
-		SceneManager::ChangeScene("PlayScene");
-	}
-	if (CheckHitKey(KEY_INPUT_4)) {
-		fader->FadeOut(0.1f);
-		stageNum->stagenum = 4;
-		timer->StartTimer();
-		SceneManager::ChangeScene("PlayScene");
-	}
-	if (CheckHitKey(KEY_INPUT_6)) {
-		fader->FadeOut(0.1f);
-		stageNum->stagenum = 6;
-		timer->StartTimer();
-		SceneManager::ChangeScene("PlayScene");
-	}
-	if (CheckHitKey(KEY_INPUT_7)) {
-		fader->FadeOut(0.1f);
-		stageNum->stagenum = 7;
-		timer->StartTimer();
-		SceneManager::ChangeScene("PlayScene");
-	}
-	if (CheckHitKey(KEY_INPUT_RETURN)) {
-		fader->FadeOut(0.1f);
-		timer->StartTimer();
-		SceneManager::ChangeScene("PlayScene");
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		if (CheckHitKey(KEY_INPUT_1)) {
+			fader->FadeOut(0.1f);
+			stageNum->stagenum = 1;
+			timer->StartTimer();
+			SceneManager::ChangeScene("PlayScene");
+		}
+		if (CheckHitKey(KEY_INPUT_2)) {
+			fader->FadeOut(0.1f);
+			stageNum->stagenum = 2;
+			timer->StartTimer();
+			SceneManager::ChangeScene("PlayScene");
+		}
+		if (CheckHitKey(KEY_INPUT_3)) {
+			fader->FadeOut(0.1f);
+			stageNum->stagenum = 3;
+			timer->StartTimer();
+			SceneManager::ChangeScene("PlayScene");
+		}
+		if (CheckHitKey(KEY_INPUT_4)) {
+			fader->FadeOut(0.1f);
+			stageNum->stagenum = 4;
+			timer->StartTimer();
+			SceneManager::ChangeScene("PlayScene");
+		}
+		if (CheckHitKey(KEY_INPUT_7)) {
+			fader->FadeOut(0.1f);
+			stageNum->stagenum = 7;
+			timer->StartTimer();
+			SceneManager::ChangeScene("PlayScene");
+		}
+		if (CheckHitKey(KEY_INPUT_RETURN)) {
+			fader->FadeOut(0.1f);
+			timer->StartTimer();
+			SceneManager::ChangeScene("PlayScene");
+		}
 	}
 	if (CheckHitKey(KEY_INPUT_O)) {
 		fader->FadeOut(0.1f);
@@ -286,7 +270,6 @@ void MainmenuScene::Update()
 			SceneManager::Exit();
 		}
 	}
-
 }
 
 void MainmenuScene::Draw()
