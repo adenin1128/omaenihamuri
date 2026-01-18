@@ -149,6 +149,8 @@ Field::Field(int stage)
 	gokunobanImage = LoadGraph("data/image/AonoOkonomiyaki.png");
 	LoadDivGraph("data/image/AonoOkonomiyaki.png", 5, 5, 1, 128, 128, WGgraphs);
 	assert(gokunobanImage > 0);
+	kinoimage= LoadGraph("data/image/kinoko.png");
+	ganmenimage = LoadGraph("data/image/ganmen.png");
 
 	x = 0;
 	y = 1080 - 64;
@@ -381,6 +383,26 @@ void Field::Update()
 
 void Field::Draw()
 {
+	for (int y = 0; y < maps.size(); y++)
+	{
+		for (int x = 0; x < maps[y].size(); x++)
+		{
+			// ★ drawX / drawY はここで作る
+			int drawX = x * 64;
+			int drawY = y * 64;
+
+			// A（踏む前）
+			if (maps[y][x] == 600)
+			{
+				DrawGraph(drawX, drawY, kinoimage, TRUE);
+			}
+			// B（踏んだ後）
+			else if (maps[y][x] == 601)
+			{
+				DrawGraph(-550, -1700, ganmenimage, TRUE);
+			}
+		}
+	}
 	DrawRectGraph(0, 0, 0, 0, 1920, 1080, haikeimage, 1);
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
@@ -792,8 +814,19 @@ int Field::IsBC(int px, int py)
 	return 0;
 }
 
+void Field::ganmen(int px, int py)
+{
+	int x = px / 64;
+	int y = py / 64;
 
+	if (OutOfMap(x, y))
+		return;
 
+	if (maps[y][x] == 600)
+	{
+		maps[y][x] = 601; // A → B
+	}
+}
 
 int Field::Movefloor(int px, int py)
 {

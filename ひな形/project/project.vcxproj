@@ -164,7 +164,7 @@
     <ClInclude Include="Source\Debug.h" />
     <ClInclude Include="Source\downdraft.h" />
     <ClInclude Include="Source\Fader.h" />
-    <ClInclude Include="Source\Field.h" />
+    <ClInclude Include="Source\field.h" />
     <ClInclude Include="Source\GameOver.h" />
     <ClInclude Include="Source\Gravity.h" />
     <ClInclude Include="Source\HAIKEI.h" />
@@ -218,7 +218,7 @@
     <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\downdraft.cpp" />
     <ClCompile Include="Source\Fader.cpp" />
-    <ClCompile Include="Source\Field.cpp" />
+    <ClCompile Include="Source\field.cpp" />
     <ClCompile Include="Source\GameOver.cpp" />
     <ClCompile Include="Source\Gravity.cpp" />
     <ClCompile Include="Source\HAIKEI.cpp" />

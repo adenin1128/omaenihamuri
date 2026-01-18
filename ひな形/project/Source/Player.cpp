@@ -112,7 +112,7 @@ void Player::Update()
 		push2 = nyoki->HitCheckLeft(x + 6, y + 55);
 		x -= min(push1, push2);
 	}
-	
+	field->ganmen(x, y);
 
 	if (state == STATE_NORMAL) {
 		int moveX = 0;
