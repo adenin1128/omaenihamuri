@@ -50,9 +50,6 @@
     <ClCompile Include="Source\Debug.cpp">
       <Filter>PlayScene\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Field.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -135,7 +132,7 @@
       <Filter>PlayScene\FieldObj</Filter>
     </ClCompile>
     <ClCompile Include="Source\Result.cpp">
-      <Filter>Result</Filter>
+      <Filter>PlayScene\Result</Filter>
     </ClCompile>
     <ClCompile Include="Source\SuiUGOKU2.cpp">
       <Filter>PlayScene\FieldObj</Filter>
@@ -151,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="Source\MainMenu.cpp">
       <Filter>Mainmenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\field.cpp">
+      <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -215,9 +215,6 @@
     </ClInclude>
     <ClInclude Include="Source\Debug.h">
       <Filter>PlayScene\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Field.h">
-      <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
       <Filter>PlayScene</Filter>
@@ -304,7 +301,7 @@
       <Filter>PlayScene\FieldObj</Filter>
     </ClInclude>
     <ClInclude Include="Source\Result.h">
-      <Filter>Result</Filter>
+      <Filter>PlayScene\Result</Filter>
     </ClInclude>
     <ClInclude Include="Source\Fader.h">
       <Filter>COMMON</Filter>
@@ -317,6 +314,9 @@
     </ClInclude>
     <ClInclude Include="Source\Mainmenu.h">
       <Filter>Mainmenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\field.h">
+      <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -350,11 +350,11 @@
     <Filter Include="PlayScene\Trap">
       <UniqueIdentifier>{34d8ef7a-1302-4f58-b561-e7f139562303}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Result">
-      <UniqueIdentifier>{9f153f9d-784f-43ad-b925-aede89fec7fd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="COMMON">
       <UniqueIdentifier>{a40b6172-763b-46dc-b94e-1e081bd238d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\Result">
+      <UniqueIdentifier>{9f153f9d-784f-43ad-b925-aede89fec7fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
