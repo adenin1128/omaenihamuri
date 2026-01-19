@@ -247,8 +247,21 @@ Field::~Field()
 
 void Field::Update()
 {
+
 	if (KeyTrigger::CheckTrigger(KEY_INPUT_R)) {
-#if true	
+#if true
+		ganmenFade = false;
+		ganmenTimer = 0;
+		ganmenAlpha = 0;
+
+
+		for (int y = 0; y < maps.size(); y++) {
+			for (int x = 0; x < maps[y].size(); x++) {
+				if (maps[y][x] == 601) {
+					maps[y][x] = 600;
+				}
+			}
+		}
 		{
 			Timer* timer = FindGameObject<Timer>();
 			skHit = false;
@@ -399,7 +412,23 @@ void Field::Draw()
 			// B（踏んだ後）
 			else if (maps[y][x] == 601)
 			{
+				if (ganmenFade)
+				{
+					ganmenTimer++;
+
+
+					if (ganmenTimer > 120) { 
+						int t = ganmenTimer - 120;
+						ganmenAlpha = (100 * t) / 480;
+
+						if (ganmenAlpha > 100)
+							ganmenAlpha = 100;
+					}
+				}
+
+				SetDrawBlendMode(DX_BLENDMODE_ALPHA, ganmenAlpha);
 				DrawGraph(-550, -1700, ganmenimage, TRUE);
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 			}
 		}
 	}
@@ -824,7 +853,10 @@ void Field::ganmen(int px, int py)
 
 	if (maps[y][x] == 600)
 	{
-		maps[y][x] = 601; // A → B
+		maps[y][x] = 601;   
+		ganmenFade = true; 
+		ganmenTimer = 0;
+		ganmenAlpha = 0;
 	}
 }
 
@@ -959,4 +991,3 @@ bool Field::GetPointPos(int id, int* ox, int* oy)
 int Field::IsBreath(int px, int py) {
 	return 0;
 }
-

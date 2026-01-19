@@ -85,6 +85,9 @@ private:
 	int hit;
 	bool jet;
 	bool ganmenon;
+	int ganmenAlpha = 255;      // 255 = 不透明
+	bool ganmenFade = false;   // フェード開始フラグ
+	int ganmenTimer = 0;       // 経過フレーム
 	int kinoimage;
 	int ganmenimage;
 	int easyImage;
