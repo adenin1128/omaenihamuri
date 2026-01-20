@@ -11,6 +11,14 @@ StageNumber::StageNumber()
 	noSound = false;
 }
 
+void StageNumber::Update()
+{
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		if (CheckHitKey(KEY_INPUT_P)) {
+			Clear = true;
+		}
+	}
+}
 void StageNumber::Draw()
 {
 	if (Screen::DEVELOPER_MODE == TRUE) {

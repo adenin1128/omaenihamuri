@@ -16,6 +16,7 @@ BootScene::~BootScene()
 
 void BootScene::Update()
 {
+	SetFontSize(60);
 	SceneManager::ChangeScene("TITLE"); // ‹N“®‚ªI‚í‚Á‚½‚çTitle‚ğ•\¦
 }
 
