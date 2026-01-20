@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "Timer.h"
 #include "StageNumber.h"
+#include "Screen.h"
+#include <assert.h>
 
 Clear::Clear()
 {
@@ -12,7 +14,8 @@ Clear::Clear()
 	bgmHandle = LoadSoundMem("data/sound/birthday3.mp3"); // ƒpƒX‚Í“K‹X’²®‚µ‚Ä‚­‚¾‚³‚¢
 	PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 	deathCount = 0;
-	clearImage =  LoadGraph("data/image/culear.png");
+	clearImage =  LoadGraph("data/image/NEWClEAR.png");
+	assert(clearImage > 0);
 	Timer* timer = FindGameObject<Timer>();
 	timer->StopTimer();
 	deathCount = timer->GetDeathCount();
@@ -41,6 +44,6 @@ void Clear::Update()
 
 void Clear::Draw()
 {
-	DrawRotaGraph(990, 540, 0.5, 0., clearImage, TRUE, FALSE);
-	DrawExtendFormatStringToHandle(930, 600, 4, 4, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE R KEY", deathCount + 1);
+	DrawRotaGraph(Screen::WIDTH/2, Screen::HEIGHT/2, 1, 0., clearImage, TRUE, FALSE);
+	DrawExtendFormatStringToHandle(980, 600, 3, 3, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE R KEY", deathCount + 1);
 }

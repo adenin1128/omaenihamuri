@@ -5,6 +5,7 @@ class StageNumber : public GameObject
 {
 public:
 	StageNumber();
+	void Update() override;
 	void Draw() override;
 	int stagenum;
 	bool noDeath;

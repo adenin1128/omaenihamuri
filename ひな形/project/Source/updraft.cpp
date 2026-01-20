@@ -1,5 +1,6 @@
 #include "updraft.h"
 #include "player.h"
+#include "Screen.h"
 
 Updraft::Updraft(int px, int py)
 {
@@ -27,9 +28,11 @@ void Updraft::Update()
 
 void Updraft::Draw()
 {
-	if (Uphit == true) {
-		DrawString(0, 320, "hit", GetColor(255, 255, 255));
-		Uphit = false;
+	if (Screen::DEVELOPER_MODE == TRUE) {
+		if (Uphit == true) {
+			DrawString(0, 320, "hit", GetColor(255, 255, 255));
+			Uphit = false;
+		}
 	}
 }
 

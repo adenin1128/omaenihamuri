@@ -151,6 +151,7 @@ Field::Field(int stage)
 	assert(gokunobanImage > 0);
 	kinoimage= LoadGraph("data/image/kinoko.png");
 	ganmenimage = LoadGraph("data/image/ganmen.png");
+	dokanimage = LoadGraph("data/image/dokan.png");
 
 	x = 0;
 	y = 1080 - 64;
@@ -161,6 +162,7 @@ Field::Field(int stage)
 	for (int& f : frame) {
 		f = 0;
 	}
+	dokanON = false;
 	state = STATE_0;
 	hit = false;
 	jet = false;
@@ -396,6 +398,13 @@ void Field::Update()
 
 void Field::Draw()
 {
+	for (int y = 0; y < maps.size(); y++) {
+		for (int x = 0; x < maps[y].size(); x++) {
+			if (maps[y][x] == 700) {
+				DrawGraph(x * 64, y * 64, dokanimage, 1);
+			}
+		}
+	}
 	for (int y = 0; y < maps.size(); y++)
 	{
 		for (int x = 0; x < maps[y].size(); x++)
@@ -527,6 +536,7 @@ void Field::Draw()
 	}
 
 
+
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 5) {
@@ -597,6 +607,10 @@ int Field::HitCheckRight(int px, int py)
 	{ // 当たってる 
 		return px % 64 + 1;
 	}
+	if (maps[y][x] == 700)
+	{ // 当たってる 
+		return px % 64 + 1;
+	}
 	if (skHit == true) {
 		if (maps[y][x] == 6) {
 			return px % 64 + 1;
@@ -614,6 +628,10 @@ int Field::HitCheckLeft(int px, int py)
 	CheckTrap(x, y);
 	CheckBreath(x, y);
 	if (maps[y][x] == 1)
+	{ // 当たってる 
+		return px % 64 - 64;
+	}
+	if (maps[y][x] == 700)
 	{ // 当たってる 
 		return px % 64 - 64;
 	}
@@ -657,6 +675,10 @@ int Field::HitCheckDown(int px, int py)
 		if (maps[y][x] == 6) {
 			return px % 64 + 1;
 		}
+	}
+	if (maps[y][x] == 700) {
+		return py % 64 + 1;
+		dokanON = true;
 	}
 	return 0;
 }
@@ -859,6 +881,21 @@ void Field::ganmen(int px, int py)
 		ganmenAlpha = 0;
 	}
 }
+
+void Field::dokan(int px, int py)
+{
+	int x = px / 64;
+	int y = py / 64;
+
+	if (OutOfMap(x, y))
+		return;
+
+	if (maps[y][x] == 700)
+	{
+		maps[y][x] = 701;
+	}
+}
+
 
 int Field::Movefloor(int px, int py)
 {

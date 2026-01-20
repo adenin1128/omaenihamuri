@@ -55,7 +55,7 @@ void Breath::Update()
 
 	if (state == STATE_START && timer > startTime) {
 		state = STATE_GO;
-		boaaa = new Boaaa(x, y, dir, 1000);
+		boaaa = new Boaaa(x, y, dir, 1500);
 	}
 
 	if (state == STATE_GO && timer > maxTime || CheckHitKey(KEY_INPUT_R)) {

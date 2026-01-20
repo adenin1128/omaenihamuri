@@ -20,6 +20,7 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void Activate700(int px, int py);
 	void CheckTrap(int x, int y);
 	void CheckBreath(int x, int y);
 	int HitCheckRight(int px, int py);
@@ -42,6 +43,7 @@ public:
 	int Suiugoku2(int px, int py);
 	int IsBreath(int px, int py);
 	void ganmen(int px, int py);
+	void dokan(int px, int py);
 	// 指定した番号(id)の座標を ox, oy に入れて返す関数
 	bool GetPointPos(int id, int* ox, int* oy);
 	/*int HitCheckRightTrap(int px, int py);
@@ -83,11 +85,12 @@ private:
 	int timer;
 	int frame[6];
 	int hit;
+	int dokanimage;
 	bool jet;
 	bool ganmenon;
-	int ganmenAlpha = 255;      // 255 = 不透明
-	bool ganmenFade = false;   // フェード開始フラグ
-	int ganmenTimer = 0;       // 経過フレーム
+	int ganmenAlpha = 255;
+	bool ganmenFade = false; 
+	int ganmenTimer = 0;
 	int kinoimage;
 	int ganmenimage;
 	int easyImage;
@@ -95,6 +98,7 @@ private:
 	int DL;
 	int BeltHit;
 	int BCHit;
+	int dokanON;
 	bool skHit;
 	bool one;
 	bool two;
