@@ -7,6 +7,10 @@
 
 Clear::Clear()
 {
+	// --- BGMの読み込みと再生を追加 ---
+   // 第2引数の DX_PLAYTYPE_LOOP でバックグラウンドでのループ再生になります
+	bgmHandle = LoadSoundMem("data/sound/birthday3.mp3"); // パスは適宜調整してください
+	PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 	deathCount = 0;
 	clearImage =  LoadGraph("data/image/culear.png");
 	Timer* timer = FindGameObject<Timer>();
@@ -16,6 +20,9 @@ Clear::Clear()
 
 Clear::~Clear()
 {
+	// 音楽を止めてメモリから削除
+	StopSoundMem(bgmHandle);
+	DeleteSoundMem(bgmHandle);
 	DeleteGraph(clearImage);
 }
 
