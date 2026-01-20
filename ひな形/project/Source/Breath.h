@@ -38,5 +38,4 @@ private:
 	int timer;
 	int startTime = 60; // breath‚ª”­Ë‚³‚ê‚é‚Ü‚Å‚ÌŠÔ
 	int maxTime = 300;  // breath‚ª‘¶İ‚·‚éÅ‘åŠÔ
-
 };

@@ -10,4 +10,5 @@ public:
 private:
 	int clearImage;
 	int deathCount;
+	int bgmHandle; // BGM—p‚Ìƒnƒ“ƒhƒ‹
 };

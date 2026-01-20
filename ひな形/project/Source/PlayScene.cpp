@@ -7,6 +7,7 @@
 #include "Clear.h"
 #include "Screen.h"
 #include "Trigger.h"
+#include <DxLib.h>
 
 PlayScene::PlayScene()
 {
@@ -60,6 +61,7 @@ void PlayScene::Update()
 		timer->ResetTimer();
 		SceneManager::ChangeScene("MENU");
 	}
+
 	if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
 			fader->FadeOut(0.1f);

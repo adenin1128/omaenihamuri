@@ -38,4 +38,5 @@ private:
 	int buretimer;
 	Direction dir;
 	double rot;
+	int SEHandle; // SE—p‚Ìƒnƒ“ƒhƒ‹
 };
