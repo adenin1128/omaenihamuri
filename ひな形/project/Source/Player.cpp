@@ -145,6 +145,7 @@ void Player::Update()
 		{
 			// Field”»’è
 			Field* field = FindGameObject<Field>();
+			Field* dokan = FindGameObject<Field>();
 			BeltConveyor* belt = FindGameObject<BeltConveyor>();
 			BeltConveyorL* beltL = FindGameObject<BeltConveyorL>();
 			if (field->GetBeltHit() == 23) {
@@ -153,7 +154,7 @@ void Player::Update()
 			/*else if (field->GetBeltHit() == 24) {
 				x += 3.0 + beltL->GetSpeed();
 			}*/
-			else {
+			else if(dokan::dokanOn==false){
 				x += 3.0; // ‰E‚Éi‚Þ 
 			}
 			direction = false;
@@ -196,7 +197,7 @@ void Player::Update()
 			else */if (field->GetBeltHit() == 24) {
 				x -= 3.0 - beltL->GetSpeed();
 			}
-			else {
+			else  if (dokan::dokanOn == false) {
 				x -= 3.0;
 			}
 			direction = true;
@@ -376,6 +377,7 @@ void Player::Update()
 			DeleteGraph(animImage);
 			sn->Clear = false;
 		}
+
 	}
 	if (state == STATE_BOOM) {
 

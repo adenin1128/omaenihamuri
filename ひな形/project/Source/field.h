@@ -12,6 +12,9 @@ enum ClearState {
 	STATE_2     // ドア閉まってる状態
 };
 
+namespace dokan {
+	extern bool dokanOn;
+}
 class Field : public GameObject
 {
 public:
@@ -98,7 +101,6 @@ private:
 	int DL;
 	int BeltHit;
 	int BCHit;
-	int dokanON;
 	bool skHit;
 	bool one;
 	bool two;
