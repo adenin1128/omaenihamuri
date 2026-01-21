@@ -61,6 +61,10 @@ int EasyGraphs[8];
 int HGgraphs[8];
 int WGgraphs[5];
 
+namespace dokan {
+	bool dokanOn = false;
+}
+
 void GenerateTrap(int posx, int posy, int id) {
 	int direction = 0, tx = 0, ty = 0;
 	for (int y = 0; y < trapDatas.size(); y++) {
@@ -162,7 +166,7 @@ Field::Field(int stage)
 	for (int& f : frame) {
 		f = 0;
 	}
-	dokanON = false;
+	
 	state = STATE_0;
 	hit = false;
 	jet = false;
@@ -445,7 +449,7 @@ void Field::Draw()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 1) {
-				DrawGraph(x * 64, y * 64, hImage, 1);
+				DrawGraph(x * 64 - scrollX, y * 64, hImage, 1);
 			}
 		}
 	}
@@ -461,7 +465,7 @@ void Field::Draw()
 			for (int y = 0; y < maps.size(); y++) {
 				for (int x = 0; x < maps[y].size(); x++) {
 					if (maps[y][x] == 21) {
-						DrawRotaGraph(x * 64 + 35, y * 64 + 34, 0.5, 0, EasyGraphs[frame[0]], TRUE, FALSE);
+						DrawRotaGraph(x * 64 + 35 - scrollX, y * 64 + 34, 0.5, 0, EasyGraphs[frame[0]], TRUE, FALSE);
 					}
 				}
 			}
@@ -476,7 +480,7 @@ void Field::Draw()
 			for (int y = 0; y < maps.size(); y++) {
 				for (int x = 0; x < maps[y].size(); x++) {
 					if (maps[y][x] == 22) {
-						DrawRotaGraph(x * 64 + 32, y * 64 - 32, 0.35, 0, HGgraphs[frame[1]], TRUE, FALSE);
+						DrawRotaGraph(x * 64 + 32 - scrollX, y * 64 - 32, 0.35, 0, HGgraphs[frame[1]], TRUE, FALSE);
 					}
 				}
 			}
@@ -491,7 +495,7 @@ void Field::Draw()
 			for (int y = 0; y < maps.size(); y++) {
 				for (int x = 0; x < maps[y].size(); x++) {
 					if (maps[y][x] == 20) {
-						DrawRotaGraph(x * 64 + 32, y * 64 + 32, 0.75, 0, WGgraphs[frame[2]], TRUE, FALSE);
+						DrawRotaGraph(x * 64 + 32 - scrollX, y * 64 + 32, 0.75, 0, WGgraphs[frame[2]], TRUE, FALSE);
 					}
 				}
 			}
@@ -510,7 +514,7 @@ void Field::Draw()
 						}
 					}
 					if (state == STATE_0) {
-						DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, doorGraphs[frame[3]], TRUE, FALSE);
+						DrawRotaGraph(x * 64 + 32 - scrollX, y * 64 + 32, size, 0, doorGraphs[frame[3]], TRUE, FALSE);
 					}
 				}
 				{
@@ -521,7 +525,7 @@ void Field::Draw()
 						timer++;
 					}
 					if (state == STATE_1) {
-						DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[frame[4]], TRUE, FALSE);
+						DrawRotaGraph(x * 64 + 32 - scrollX, y * 64 + 32, size, 0, kaiheiGraphs[frame[4]], TRUE, FALSE);
 						if (frame[4] >= 8) {
 							state = STATE_2;
 						}
@@ -529,7 +533,7 @@ void Field::Draw()
 				}
 
 				if (state == STATE_2) {
-					DrawRotaGraph(x * 64 + 32, y * 64 + 32, size, 0, kaiheiGraphs[8], TRUE, FALSE);
+					DrawRotaGraph(x * 64 + 32 - scrollX, y * 64 + 32, size, 0, kaiheiGraphs[8], TRUE, FALSE);
 				}
 			}
 		}
@@ -540,7 +544,7 @@ void Field::Draw()
 	for (int y = 0; y < maps.size(); y++) {
 		for (int x = 0; x < maps[y].size(); x++) {
 			if (maps[y][x] == 5) {
-				DrawGraph(x * 64, y * 64, hImage, 1);
+				DrawGraph(x * 64 - scrollX, y * 64, hImage, 1);
 			}
 		}
 	}
@@ -597,7 +601,7 @@ void Field::CheckBreath(int x, int y)
 
 int Field::HitCheckRight(int px, int py)
 {
-	int x = px / 64;
+	int x = (px + scrollX) / 64;
 	int y = py / 64;
 	if (OutOfMap(x, y))
 		return 0;
@@ -621,7 +625,7 @@ int Field::HitCheckRight(int px, int py)
 
 int Field::HitCheckLeft(int px, int py)
 {
-	int x = px / 64;
+	int x = (px + scrollX) / 64;
 	int y = py / 64;
 	if (OutOfMap(x, y))
 		return 0;
@@ -645,7 +649,7 @@ int Field::HitCheckLeft(int px, int py)
 
 int Field::HitCheckUp(int px, int py)
 {
-	int x = px / 64;
+	int x = (px + scrollX) / 64;
 	int y = py / 64;
 	if (OutOfMap(x, y))
 		return 0;
@@ -663,7 +667,7 @@ int Field::HitCheckUp(int px, int py)
 
 int Field::HitCheckDown(int px, int py)
 {
-	int x = px / 64;
+	int x = (px + scrollX) / 64;
 	int y = py / 64;
 	if (OutOfMap(x, y))
 		return 0;
@@ -677,8 +681,11 @@ int Field::HitCheckDown(int px, int py)
 		}
 	}
 	if (maps[y][x] == 700) {
+		dokan::dokanOn = true;
+		scrollX = 1920;
 		return py % 64 + 1;
-		dokanON = true;
+		dokan::dokanOn = false;
+
 	}
 	return 0;
 }
@@ -697,7 +704,7 @@ bool Field::Istrap(int px, int py)
 	if (py < 400) {
 		return 0;
 	}
-	int x = px / 64;
+	int x = (px + scrollX) / 64;
 	int y = (py - 400) / 64;
 	if (y >= maps.size())
 		return 0;
@@ -758,7 +765,7 @@ int Field::NyokiMove(int px, int py)
 		for (int y = 0; y < maps.size(); y++) {
 			for (int x = 0; x < maps[y].size(); x++) {
 				if (maps[y][x] == 10) {
-					new Nyoki(x * 64, y * 64, -19 * 64, 4);
+					new Nyoki(x * 64+ scrollX, y * 64, -19 * 64, 4);
 					hit = true;
 					return true;
 				}
@@ -816,7 +823,7 @@ bool Field::Jetpack(int px, int py)
 }
 bool Field::IsGate(int px, int py)
 {
-	int x = px / 64;
+	int x = px + scrollX / 64;
 	int y = py / 64;
 	if (OutOfMap(x, y))
 		return 0;
@@ -892,7 +899,8 @@ void Field::dokan(int px, int py)
 
 	if (maps[y][x] == 700)
 	{
-		maps[y][x] = 701;
+		scrollX = 1000;
+
 	}
 }
 
