@@ -58,6 +58,8 @@ public:
 	void ChangeClearPoint(int x, int y);
 	int GetBeltHit() { return BeltHit; }
 	int GetBCHit() { return BCHit; }
+	float GetScrollX() const { return scrollX; }
+
 	ClearState state;
 	ClearState GetState() const { return state; }
 	void SetState(ClearState s) { state = s; }

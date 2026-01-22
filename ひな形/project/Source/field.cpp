@@ -891,7 +891,7 @@ void Field::ganmen(int px, int py)
 
 void Field::dokan(int px, int py)
 {
-	int x = px / 64;
+	int x = px / 64 - scrollX;
 	int y = py / 64;
 
 	if (OutOfMap(x, y))
