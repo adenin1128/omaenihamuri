@@ -14,7 +14,8 @@ using namespace std;
 
 //extern const char* Version();
 int medaruGraphs[3];
-int fireGraphs[15];
+int fireGraphs[4];
+int yowafireGraphs[4];
 
 MainmenuScene::MainmenuScene()
 {
@@ -56,8 +57,10 @@ MainmenuScene::MainmenuScene()
 	D = LoadGraph("data/image/D.png");
 	speace = LoadGraph("data/image/speace.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
-	fireimage = LoadGraph("data/image/ONFIRE.png");
-	LoadDivGraph("data/image/ONFIRE.png", 15, 15, 1, 1980, 1080, fireGraphs);
+	fireimage = LoadGraph("data/image/NEWONFIRE.png");
+	LoadDivGraph("data/image/NEWONFIRE.png", 4, 4, 1, 1980, 1080, fireGraphs);
+	yowafireimage = LoadGraph("data/image/yowafire.png");
+	LoadDivGraph("data/image/yowafire.png", 4, 4, 1, 1980, 1080, yowafireGraphs);
 	assert(fireimage > 0);
 	state = STAGE1;
 	ue = false;
@@ -289,16 +292,38 @@ void MainmenuScene::Draw()
 			DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
 	}*/
 	//DrawRotaGraph(Screen::WIDTH / 2, Screen::HEIGHT / 2+100, 1, 0, fireGraphs[frame], TRUE, FALSE);
-	DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
+	//DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
 
 
 	if (state == STAGE1)
 	{
 		DrawRotaGraph(400, 300, 0.5, 0, kantanimage, TRUE);
+		{
+			timer++;
+			if (timer % 7 == 0) {
+				frame++;
+
+				if (frame >= 4) {
+					frame = 0;
+				}
+			}
+			DrawRotaGraph(1500, 630, 0.25, 0, yowafireGraphs[frame], TRUE, FALSE);
+		}
 	}
 	else if (state == STAGE2)
 	{
 		DrawRotaGraph(400, 300, 0.5, 0, muzuiimage, TRUE);
+		{
+			timer++;
+			if (timer % 7 == 0) {
+				frame++;
+
+				if (frame >= 4) {
+					frame = 0;
+				}
+			}
+			DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
+		}
 	}
 	else if (state == STAGE3)
 	{

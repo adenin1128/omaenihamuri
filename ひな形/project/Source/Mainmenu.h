@@ -72,5 +72,6 @@ private:
 	bool start;
 	int suitime;
 	int mukidouimage;
+	int yowafireimage;
 };
 
