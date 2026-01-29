@@ -73,5 +73,6 @@ private:
 	int suitime;
 	int mukidouimage;
 	int yowafireimage;
+	int tuyofireimage;
 };
 
