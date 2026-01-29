@@ -16,6 +16,7 @@ using namespace std;
 int medaruGraphs[3];
 int fireGraphs[4];
 int yowafireGraphs[4];
+int tuyofireGraphs[4];
 
 MainmenuScene::MainmenuScene()
 {
@@ -58,10 +59,12 @@ MainmenuScene::MainmenuScene()
 	speace = LoadGraph("data/image/speace.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	fireimage = LoadGraph("data/image/NEWONFIRE.png");
-	LoadDivGraph("data/image/NEWONFIRE.png", 4, 4, 1, 1980, 1080, fireGraphs);
+	LoadDivGraph("data/image/NEWONFIRE.png", 4, 4, 1, 1920, 1080, fireGraphs);
 	yowafireimage = LoadGraph("data/image/yowafire.png");
-	LoadDivGraph("data/image/yowafire.png", 4, 4, 1, 1980, 1080, yowafireGraphs);
-	assert(fireimage > 0);
+	LoadDivGraph("data/image/yowafire.png", 4, 4, 1, 1920, 1080, yowafireGraphs);
+	tuyofireimage = LoadGraph("data/image/tuyofire.png");
+	LoadDivGraph("data/image/tuyofire.png", 4, 4, 1, 1920, 1080, tuyofireGraphs);
+	assert(tuyofireimage > 0);
 	state = STAGE1;
 	ue = false;
 	Timer* tm = FindGameObject<Timer>();
@@ -307,7 +310,7 @@ void MainmenuScene::Draw()
 					frame = 0;
 				}
 			}
-			DrawRotaGraph(1500, 630, 0.25, 0, yowafireGraphs[frame], TRUE, FALSE);
+			DrawRotaGraph(1500, 680, 0.25, 0, yowafireGraphs[frame], TRUE, FALSE);
 		}
 	}
 	else if (state == STAGE2)
@@ -322,12 +325,23 @@ void MainmenuScene::Draw()
 					frame = 0;
 				}
 			}
-			DrawRotaGraph(1500, 630, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
+			DrawRotaGraph(1500, 680, 0.25, 0, fireGraphs[frame], TRUE, FALSE);
 		}
 	}
 	else if (state == STAGE3)
 	{
 		DrawRotaGraph(400, 300, 0.5, 0, gekimuzuimage, TRUE);
+		{
+			timer++;
+			if (timer % 7 == 0) {
+				frame++;
+
+				if (frame >= 4) {
+					frame = 0;
+				}
+			}
+			DrawRotaGraph(1500, 680, 0.25, 0, tuyofireGraphs[frame], TRUE, FALSE);
+		}
 	}
 
 	DrawRotaGraph(400, 760, 5, 0, speace, TRUE);
