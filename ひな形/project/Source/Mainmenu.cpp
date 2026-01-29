@@ -397,10 +397,12 @@ void MainmenuScene::Draw()
 		DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
 
 	if (state == STAGE1) {
+
 		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "比較的かんたん\n平均クリア時間\n平均デス数\n");
 	}
 	else if (state == STAGE2) {
 		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "\n平均クリア時間\n平均デス数\n");
+
 	}
 	else if (state == STAGE3) {
 		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "お前には無理！！\n");

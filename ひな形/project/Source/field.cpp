@@ -29,6 +29,7 @@
 #include "Timer.h"
 #include "SuiUGOKU2.h"
 #include "Screen.h"
+#include "StageNumber.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <assert.h>
@@ -669,6 +670,7 @@ int Field::HitCheckUp(int px, int py)
 
 int Field::HitCheckDown(int px, int py)
 {
+	StageNumber* stageNum = FindGameObject<StageNumber>();
 	int x = (px + scrollX) / 64;
 	int y = py / 64;
 	if (OutOfMap(x, y))
@@ -682,13 +684,7 @@ int Field::HitCheckDown(int px, int py)
 			return px % 64 + 1;
 		}
 	}
-	if (maps[y][x] == 700) {
-		dokan::dokanOn = true;
-		scrollX = 1920;
-		return py % 64 + 1;
-		dokan::dokanOn = false;
 
-	}
 	return 0;
 }
 
@@ -899,7 +895,6 @@ void Field::dokan(int px, int py)
 
 	if (maps[y][x] == 700)
 	{
-		scrollX = 1000;
 
 	}
 }
