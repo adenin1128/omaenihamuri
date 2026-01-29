@@ -99,6 +99,7 @@ void GenerateBreath(int posx, int posy, int id) {
 
 Field::Field(int stage)
 {
+	respawnSE = LoadSoundMem("data/sound/TYUKANN.mp3");
 	clear = false;
 	char filename[60];
 	sprintf_s<60>(filename, "data/Stage%02d.csv", stage);
@@ -250,6 +251,7 @@ Field::~Field()
 	DeleteGraph(easyImage);
 	DeleteGraph(HGimage);
 	DeleteGraph(gokunobanImage);
+	DeleteSoundMem(respawnSE);
 }
 
 void Field::Update()
@@ -715,20 +717,18 @@ void Field::ChangeMapChip(int x, int y, int type)
 void Field::ChangeRespawnPoint(int x, int y)
 {
 	Player* player = FindGameObject<Player>();
-	if (player != nullptr) {
-		if (player->GetState() == STATE_NORMAL) {
-			if (maps[y][x] == 4) {
-				// リスポーンポイントの削除
-				for (int my = 0; my < saveMaps.size(); my++) {
-					for (int mx = 0; mx < saveMaps[my].size(); mx++) {
-						if (saveMaps[my][mx] == 2) {
-							saveMaps[my][mx] = 0;
-						}
-					}
+	if (player != nullptr && player->GetState() == STATE_NORMAL) {
+		if (maps[y][x] == 4) {
+			// --- 追加：音を鳴らす ---
+			PlaySoundMem(respawnSE, DX_PLAYTYPE_BACK);
+
+			// リスポーンポイントの書き換え処理（既存）
+			for (int my = 0; my < saveMaps.size(); my++) {
+				for (int mx = 0; mx < saveMaps[my].size(); mx++) {
+					if (saveMaps[my][mx] == 2) saveMaps[my][mx] = 0;
 				}
-				// saveMaps[y][x]をリスポーンポイントに設定
-				ChangeMapChip(x, y, 2);
 			}
+			ChangeMapChip(x, y, 2);
 		}
 	}
 }
