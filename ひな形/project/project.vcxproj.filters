@@ -146,11 +146,11 @@
     <ClCompile Include="Source\Timer.cpp">
       <Filter>COMMON</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MainMenu.cpp">
-      <Filter>Mainmenu</Filter>
-    </ClCompile>
     <ClCompile Include="Source\field.cpp">
       <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mainmenu.cpp">
+      <Filter>Mainmenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
