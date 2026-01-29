@@ -20,9 +20,9 @@ int tuyofireGraphs[4];
 
 MainmenuScene::MainmenuScene()
 {
-	// --- BGM‚Ì“Ç‚İ‚İ‚ÆÄ¶‚ğ’Ç‰Á ---
-	// ‘æ2ˆø”‚Ì DX_PLAYTYPE_LOOP ‚ÅƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚Å‚Ìƒ‹[ƒvÄ¶‚É‚È‚è‚Ü‚·
-	bgmHandle = LoadSoundMem("data/sound/MENU.mp3"); // ƒpƒX‚Í“K‹X’²®‚µ‚Ä‚­‚¾‚³‚¢
+	// --- BGMã®èª­ã¿è¾¼ã¿ã¨å†ç”Ÿã‚’è¿½åŠ  ---
+	// ç¬¬2å¼•æ•°ã® DX_PLAYTYPE_LOOP ã§ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã§ã®ãƒ«ãƒ¼ãƒ—å†ç”Ÿã«ãªã‚Šã¾ã™
+	bgmHandle = LoadSoundMem("data/sound/MENU.mp3"); // ãƒ‘ã‚¹ã¯é©å®œèª¿æ•´ã—ã¦ãã ã•ã„
 	PlaySoundMem(bgmHandle, DX_PLAYTYPE_LOOP);
 	timer = 0;
 	rand = 0;
@@ -85,7 +85,7 @@ MainmenuScene::MainmenuScene()
 
 MainmenuScene::~MainmenuScene()
 {
-	// ‰¹Šy‚ğ~‚ß‚Äƒƒ‚ƒŠ‚©‚çíœ
+	// éŸ³æ¥½ã‚’æ­¢ã‚ã¦ãƒ¡ãƒ¢ãƒªã‹ã‚‰å‰Šé™¤
 	StopSoundMem(bgmHandle);
 	DeleteSoundMem(bgmHandle);
 	HAIKEI* h = FindGameObject<HAIKEI>();
@@ -216,13 +216,13 @@ void MainmenuScene::Update()
 		}
 		else if (medarustage == 3) {
 			if (rand == 3) {
-				// ˆ— 3
+				// å‡¦ç† 3
 				on = true;
 				start = true;
 
 			}
 			else if (rand == 4) {
-				// ˆ— 4
+				// å‡¦ç† 4
 				on = true;
 				start = true;
 
@@ -397,13 +397,13 @@ void MainmenuScene::Draw()
 		DrawRotaGraph(400, 550, 3, 0, medaruGraphs[2], TRUE);
 
 	if (state == STAGE1) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "”äŠr“I‚©‚ñ‚½‚ñ\n•½‹ÏƒNƒŠƒAŠÔ\n•½‹ÏƒfƒX”\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "æ¯”è¼ƒçš„ã‹ã‚“ãŸã‚“\nå¹³å‡ã‚¯ãƒªã‚¢æ™‚é–“\nå¹³å‡ãƒ‡ã‚¹æ•°\n");
 	}
 	else if (state == STAGE2) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "\n•½‹ÏƒNƒŠƒAŠÔ\n•½‹ÏƒfƒX”\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "\nå¹³å‡ã‚¯ãƒªã‚¢æ™‚é–“\nå¹³å‡ãƒ‡ã‚¹æ•°\n");
 	}
 	else if (state == STAGE3) {
-		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "‚¨‘O‚É‚Í–³—II\n");
+		DrawExtendFormatStringToHandle(200, 850, 3, 3, GetColor(255, 255, 255), GetDefaultFontHandle(), "ãŠå‰ã«ã¯ç„¡ç†ï¼ï¼\n");
 	}
 
 	if (state == STAGE3 && start == false) {

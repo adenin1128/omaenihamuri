@@ -10,4 +10,5 @@ public:
 private:
 	int loseImage;
 	int deathCount;
+	int seHandle;
 };
