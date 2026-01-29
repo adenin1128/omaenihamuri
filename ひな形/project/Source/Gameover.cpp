@@ -8,10 +8,8 @@ GameOver::GameOver()
 	loseImage = LoadGraph("data/image/you lose.png");
 	// --- 追加: サウンドの読み込み ---
 	seHandle = LoadSoundMem("data/sound/GAMEOVER.mp3"); // パスは環境に合わせて調整してください
+	PlaySoundMem(seHandle, DX_PLAYTYPE_BACK);
 	assert(loseImage > 0);
-	if (seHandle != -1) {
-		PlaySoundMem(seHandle, DX_PLAYTYPE_BACK);
-	}
 	Timer* timer = FindGameObject<Timer>();
 	deathCount = timer->GetDeathCount();
 }

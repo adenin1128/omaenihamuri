@@ -45,5 +45,5 @@ void Clear::Update()
 void Clear::Draw()
 {
 	DrawRotaGraph(Screen::WIDTH/2, Screen::HEIGHT/2, 1, 0., clearImage, TRUE, FALSE);
-	DrawExtendFormatStringToHandle(980, 600, 3, 3, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE R KEY", deathCount + 1);
+	DrawExtendFormatStringToHandle(980, 600, 2.5, 2.5, GetColor(0, 0, 0), GetDefaultFontHandle(), "PRESS THE R KEY", deathCount + 1);
 }

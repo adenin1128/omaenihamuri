@@ -139,7 +139,7 @@ void Nyoki::Draw()
 		DrawGraph(nx, ny + i * 64, blockImage, TRUE);
 	}
 	//DrawRotaGraph(nx * 64, ny * 64, 1, 0, NyokiGraphs[move], TRUE, FALSE);
-	DrawFormatString(0, 240, GetColor(255, 255, 255), "loop:: %d", loop);
+	//DrawFormatString(0, 240, GetColor(255, 255, 255), "loop:: %d", loop);
 }
 
 // プレイヤーの下判定用
