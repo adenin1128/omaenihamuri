@@ -58,9 +58,9 @@ MainmenuScene::MainmenuScene()
 	speace = LoadGraph("data/image/speace.png");
 	LoadDivGraph("data/image/medaru.png", 3, 3, 1, 128, 128, medaruGraphs);
 	fireimage = LoadGraph("data/image/NEWONFIRE.png");
-	LoadDivGraph("data/image/NEWONFIRE.png", 4, 4, 1, 1980, 1080, fireGraphs);
+	LoadDivGraph("data/image/NEWONFIRE.png", 4, 4, 1, 1920, 1080, fireGraphs);
 	yowafireimage = LoadGraph("data/image/yowafire.png");
-	LoadDivGraph("data/image/yowafire.png", 4, 4, 1, 1980, 1080, yowafireGraphs);
+	LoadDivGraph("data/image/yowafire.png", 4, 4, 1, 1920, 1080, yowafireGraphs);
 	assert(fireimage > 0);
 	state = STAGE1;
 	ue = false;

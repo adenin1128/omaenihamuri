@@ -5,7 +5,7 @@
 respawn::respawn(int px, int py)
 {
 	hataImage = LoadGraph("data/image/hata.png");
-	//// --- 追加: サウンドの読み込み ---
+	// --- 追加: サウンドの読み込み ---
 	//seHandle = LoadSoundMem("data/sound/TYUKANN.mp3"); // パスは環境に合わせて調整してください
 	x = px;
 	y = py;

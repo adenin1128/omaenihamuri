@@ -42,33 +42,44 @@ void PlayScene::Update()
 	Timer* timer = FindGameObject<Timer>();
 	StageNumber* sn = FindGameObject<StageNumber>();
 
+	Clear* clear = FindGameObject<Clear>();
+	if (clear != nullptr) {
+		// Clearが出現していたら、PlaySceneのBGMを止める
+		if (CheckSoundMem(bgmHandle) == 1) { // 再生中なら
+			StopSoundMem(bgmHandle);
+		}
+	}
+
 	if (sn->noSound == true) {
 		ChangeVolumeSoundMem(0, bgmHandle);
 	}
 	else {
-		ChangeVolumeSoundMem(255, bgmHandle);
-	}
+		// Clearがいない時だけボリュームを戻す（念のため）
+		if (clear == nullptr) {
+			ChangeVolumeSoundMem(255, bgmHandle);
+		}
 
-	if (CheckHitKey(KEY_INPUT_O)) {
-		fader->FadeOut(0.1f);
-		timer->StopTimer();
-		timer->ResetTimer();
-		SceneManager::ChangeScene("TITLE");
-	}
-	if (CheckHitKey(KEY_INPUT_M)) {
-		fader->FadeOut(0.1f);
-		timer->StopTimer();
-		timer->ResetTimer();
-		SceneManager::ChangeScene("MENU");
-	}
-
-	if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
-		if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		if (CheckHitKey(KEY_INPUT_O)) {
 			fader->FadeOut(0.1f);
 			timer->StopTimer();
 			timer->ResetTimer();
-			timer->ResetDeathcount();
-			SceneManager::Exit();
+			SceneManager::ChangeScene("TITLE");
+		}
+		if (CheckHitKey(KEY_INPUT_M)) {
+			fader->FadeOut(0.1f);
+			timer->StopTimer();
+			timer->ResetTimer();
+			SceneManager::ChangeScene("MENU");
+		}
+
+		if (Screen::DEVELOPER_MODE == TRUE || CheckHitKey(KEY_INPUT_RIGHT)) {
+			if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+				fader->FadeOut(0.1f);
+				timer->StopTimer();
+				timer->ResetTimer();
+				timer->ResetDeathcount();
+				SceneManager::Exit();
+			}
 		}
 	}
 }
