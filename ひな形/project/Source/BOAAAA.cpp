@@ -103,7 +103,7 @@ void Boaaa::Draw()
 	DrawLineAA(bx, by, ex, ey, GetColor(255, 255, 255), thickness);
 
 
-	DrawFormatString(0, 300, GetColor(255, 255, 255), "SEHandle: %d", SEHandle);
+	//DrawFormatString(0, 300, GetColor(255, 255, 255), "SEHandle: %d", SEHandle);
 }
 
 
