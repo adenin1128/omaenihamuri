@@ -202,7 +202,12 @@ void MainmenuScene::Update()
 			on = false;
 		}
 	}
-
+	if (CheckHitKey(KEY_INPUT_7)) {
+		fader->FadeOut(0.1f);
+		stageNum->stagenum = 7;
+		timer->StartTimer();
+		SceneManager::ChangeScene("PlayScene");
+	}
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (medarustage == 1) {
 			on = true;
